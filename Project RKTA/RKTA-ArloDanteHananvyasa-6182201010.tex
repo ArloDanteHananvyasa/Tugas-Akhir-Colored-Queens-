@@ -1,0 +1,150 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\geometry{margin=3cm}
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\scriptsize\textbf{AIF234001/AIF234002 ---RENCANA KERJA TUGAS AKHIR ---SEM. GANJIL 2025/2026}}
+\fancyhead[R]{\scriptsize\textbf{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{8pt}
+\fancyfoot{}
+
+
+\begin{document}
+	
+	\begin{center}
+		\Large \textbf{Rencana Kerja Tugas Akhir (RKTA)} \\
+		\vspace{0.5cm}
+	\end{center}
+	
+	\noindent \textbf{Kode:} HUH5902ACS \\[0.3cm]
+	\noindent \textbf{Topik:} Pembangunan Perangkat Lunak dan Penyelesaian Permainan \textit{Coloured Queens} \\[0.3cm]
+	\noindent \textbf{Nama Mahasiswa:} Arlo Dante Hananvyasa \\[0.3cm]
+	\noindent \textbf{NPM:} 6182201010 \\[0.8cm]
+
+	\section*{Deskripsi}
+	Masalah \textit{n-queens} merupakan salah satu permasalahan klasik dalam ilmu komputer yang telah dipelajari secara ekstensif sejak abad ke-19. Permasalahan ini tergolong ke dalam kategori \textit{constraint satisfaction problem} (CSP) yang memiliki aplikasi luas dalam berbagai ruang lingkup seperti kecerdasan buatan, operasi tugas akhir, dan tekik optimasi. Dalam bentuk stardarnya, masalah \textit{n-queens} memerlukan penempatan \textit{n} buah bidak menteri pada papan catur berukuran $n*n$ sedemikian rupa sehingga tidak ada menteri yang dapat menyerang satu sama lain sesuai dengan aturan catur, dimana bidak menteri dapat menyerang secara horizontal, vertikal, dan diagonal tanpa batas jarak.
+	
+	Seiring dengan perkembangan teknologi dan kebutuhan akan variasi permasalahan yang lebih kompleks, muncul berbagai variasi dari masalah \textit{n-queens} tradisional. Salah satu varian yang menarik perhatian adalah \textit{Coloured Queens}, di mana papan permainan dibagi menjadi sektor-sektor berwarna dengan aturan tambahan bahwa setiap sektor harus berisi tepat satu menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung baik horizontal, vertikal, maupun diagonal. Tidak seperti masalah \textit{n-queens} tradisional, bidak menteri pada permainan \textit{Coloured Queens} hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak menteri dapat ditempatkan pada satu garis diagonal.
+	
+	Kompleksitas komputasional varian \textit{Coloured Queens} lebih tinggi dibanding permasalahan \textit{n-queens} tradisional karena harus memenuhi beberapa batasan secara bersamaan. Oleh karena itu, selain algoritma pencarian dan teknik optimasi metaheuristik yang digunakan dalam tugas akhir ini untuk menemukan solusi optimal, pendekatan \textit{ Maintaining Arc Consistency} (MAC) yang mengimplementasikan algoritma \textit{Arc Consistency Algorithm 3} (AC-3) akan digunakan secara komplementer. Peran AC-3 adalah untuk melakukan penyempitan ruang solusi berdasarkan batasan yang berlaku, baik pada tahap awal maupun selama proses pencarian, sehingga ruang pencarian dapat dipersempit secara berkala dan efisiensi pencarian solusi meningkat.
+	
+	Dari sisi pengembangan perangkat lunak, perancangan \textit{solver} untuk \textit{Coloured Queens Puzzle} menghadirkan tantangan yang tidak hanya terkait dengan optimasi algoritma, tetapi juga dengan perancangan antarmuka pengguna yang intuitif. Sistem yang dibangun harus mampu menghasilkan solusi yang benar sekaligus menyajikannya dalam bentuk visualisasi yang mudah dipahami oleh pengguna. Selain itu, sebagai bagian dari tugas akhir ini, akan dikembangkan pula aplikasi interaktif yang memungkinkan pengguna untuk berinteraksi langsung dengan permainan sekaligus memahami proses pencarian solusi yang dilakukan oleh sistem.
+
+	\section*{Rumusan Masalah}
+	Berisi poin-poin masalah yang ditemukan pada tugas akhir ini:
+	\begin{itemize}	
+		\item Bagaimana memodelkan permasalahan \textit{ Coloured Queens} sehingga dapat diproses secara sistematis untuk menemukan solusi?
+		
+		\item Bagaimana mengimplementasikan algoritma pencarian \textit{Backtracking} serta teknik optimasi metaheuristik \textit{Ant Colony Optimization} untuk menyelesaikan permasalahan \textit{Coloured Queens}?
+		
+		\item Bagaimana penerapan algoritma AC-3 dapat meningkatkan efisiensi dalam proses pencarian solusi \textit{Coloured Queen}s?
+		
+		\item Bagaimana kinerja pencarian solusi menggunakan algoritma pencarian dan teknik optimasi metaheuristik dalam hal kualitas solusi dan waktu komputasi?
+		
+		\item Bagaimana menyajikan permainan \textit{Coloured Queens} beserta solver-nya melalui antarmuka interaktif yang dapat memfasilitasi pemahaman pengguna?
+	\end{itemize}
+	
+	\section*{Tujuan}
+	Berikut adalah tujuan yang akan diselesaikan dalam tugas akhir ini:
+	\begin{itemize}	
+		\item Memodelkan permasalahan \textit{Coloured Queens} agar proses pencarian solusi dapat dilakukan secara sistematis, cepat, dan efisien.
+		
+		\item Membangun perangkat lunak pencari solusi permasalahan \textit{Coloured Queens} dengan menggunakan algoritma pencarian Backtracking dan teknik optimasi metaheuristik \textit{Ant Colony Optimizatio}n.
+		
+		\item Menerapkan algoritma AC-3 untuk meningkatkan efisiensi dalam proses pencarian solusi.
+		
+		\item Melakukan pengujian dan evaluasi kinerja sistem pencarian solusi berdasarkan kualitas solusi serta waktu komputasi.
+		
+		\item Merancang dan mengimplementasikan antarmuka interaktif yang memungkinkan pengguna untuk bermain Coloured Queens sekaligus memahami proses pencarian solusi yang dilakukan sistem.
+	\end{itemize}
+	
+	\section*{Deskripsi Perangkat Lunak}
+	Perangkat lunak yang akan dihasilkan oleh tugas akhir ini akan memiliki fitur-fitur minimal sebagai berikut: 
+	\begin{itemize}
+		\item Pengguna dapat memilih masalah \textit{Coloured Queens} yang ingin diselesaikannya yang sudah dikelompokan berdasarkan ukuran papan dan tingkat kesulitan
+		\item Pengguna dapat memainkan permainan \textit{Coloured Queens} untuk mencari solusi
+		\item Perangkat lunak akan memberikan peringatan pada pemain apabila menempatkan bidak menteri pada posisi yang invalid
+		\item Perangakat lunak dapat memberikan hint kepada pengguna apabila kesusahkan dalam mencari solusi
+		\item Perangkat lunak dilengkapi oleh dua mode, yakni untuk permainan biasa dan untuk melakukan testing pencarian solusi menggunakan algoritma. Mode ini juga dilengkapi tampilan-tampilan penting seperti iterasi, waktu, dan perbandingan solusi yang ditemukan dan solusi-solusi yang diketahui
+	\end{itemize}
+	
+	\section*{Detail Pengerjaan Tugas Akhir}
+	Berikut adalah bagian-bagian tugas akhir yang harus diselesaikan: 
+	Misalnya:
+	\begin{enumerate}
+		\item Melakukan studi literatur terkait permasalahan \textit{n-queens} dan variannya, \textit{Constraint Satisfaction Problem} (CSP), algoritma pencarian Backtracking, teknik metaheuristik Ant Colony Optimization, serta metode propagasi kendala AC-3.
+		
+		\item Mengumpulkan dan menyusun berbagai skenario permasalahan \textit{Coloured Queens} yang akan digunakan sebagai basis pengujian algoritma serta sebagai pilihan tingkat kesulitan bagi pengguna.
+		
+		\item Melakukan pemodelan masalah \textit{Coloured Queens} ke dalam bentuk CSP agar dapat diproses oleh algoritma pencarian.
+		
+		\item Melakukan analisis kebutuhan perangkat lunak, baik fungsional maupun non-fungsional, termasuk kebutuhan solver dan antarmuka pengguna.
+		
+		\item Merancang arsitektur sistem serta antarmuka pengguna untuk aplikasi \textit{Coloured Queens Solver}.
+		
+		\item Mengimplementasikan algoritma Backtracking dan Ant Colony Optimization dengan integrasi AC-3 sebagai mekanisme penyempitan ruang solusi.
+		
+		\item Melakukan pengujian efisiensi dan efektivitas algoritma (dengan dan tanpa AC-3) serta membandingkan kinerja metode Backtracking dan Ant Colony Optimization.
+		
+		\item Mengembangkan antarmuka pengguna yang terhubung dengan solver untuk menampilkan visualisasi proses dan hasil pencarian solusi.
+		
+		\item Menyusun dokumentasi penelitian dan panduan penggunaan aplikasi.
+	\end{enumerate}
+	
+	\section*{Rencana Kerja}
+	Buat pembagian pengerjaan TA 1 dan TA 2.
+	
+	\subsection*{TA 1}
+	\begin{itemize}
+		\item Melakukan studi literatur secara menyeluruh terkait permasalahan \textit{Coloured Queens}, \textit{Constraint Satisfaction Problem}, algoritma Backtracking, Ant Colony Optimization, serta metode propagasi kendala AC-3.
+		
+		\item Melakukan analisis kebutuhan perangkat lunak, mencakup kebutuhan fungsional, non-fungsional, serta spesifikasi awal sistem.
+		
+		\item Mengumpulkan skenario-skenario masalah \textit{Coloured Queens} dengan tingkat kesusahan yang variatif
+		
+		\item Melakukan pemodelan permasalahan \textit{Coloured Queens} ke dalam bentuk CSP.
+		
+		\item Mengimplementasikan algoritma Backtracking dan Ant Colony Optimization pada sisi \textit{backend}, dengan hasil keluaran masih berbasis terminal.
+		
+		\item Mengintegrasikan algoritma AC-3 ke dalam proses pencarian solusi sebagai tahap penyempitan ruang solusi.
+		
+		\item Melakukan pengujian awal untuk membandingkan efisiensi algoritma dengan dan tanpa integrasi AC-3.
+		
+		\item Menyusun dokumentasi tugas akhir untuk tahap TA 1.
+	\end{itemize}
+	
+	\subsection*{TA 2}
+	\begin{itemize}
+		\item Mengembangkan antarmuka pengguna (frontend) yang terhubung dengan \textit{backend} solver.
+		
+		\item Mengintegrasikan modul solver dengan antarmuka agar pengguna dapat berinteraksi langsung dengan permainan dan hasil pencarian solusi.
+		
+		\item Melakukan perbaikan bug serta optimalisasi sistem agar aplikasi dapat berjalan dengan stabil dan ramah pengguna.
+		
+		\item Melakukan pengujian akhir untuk menilai kinerja sistem secara keseluruhan, baik dari sisi algoritma maupun aspek pengalaman pengguna.
+		
+		\item Menyusun dokumentasi akhir, termasuk laporan penelitian dan panduan penggunaan aplikasi.
+	\end{itemize}
+	
+	\begin{center}
+		Bandung, 09/10/2025 \\[2cm] 
+		\rule{5cm}{0.4pt} \\
+		Arlo Dante Hananvyasa
+	\end{center}
+	
+	\vspace{1cm}
+	
+	\begin{center}
+		Menyetujui, \\[2cm]
+		\rule{5cm}{0.4pt} \\
+		Nama: Husnul Hakim \\
+		Pembimbing Tunggal
+	\end{center}
+	
+	
+\end{document}
