@@ -28,6 +28,9 @@ public class Board {
     private void buildColorSymbols() {
         char symbol = 'A';
         for (String color : colorMap.keySet()) {
+            if (symbol == 'Q') {
+                symbol++;
+            }
             colorSymbolMap.put(color, String.valueOf(symbol));
             symbol++;
         }
