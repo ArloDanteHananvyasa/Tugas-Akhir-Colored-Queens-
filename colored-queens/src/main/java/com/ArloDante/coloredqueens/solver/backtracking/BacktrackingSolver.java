@@ -1,6 +1,8 @@
-package com.ArloDante.coloredqueens.solver;
+package com.ArloDante.coloredqueens.solver.backtracking;
 
 import com.ArloDante.coloredqueens.objects.Board;
+
+import java.math.BigInteger;
 import java.util.*;
 
 public class BacktrackingSolver {
@@ -10,8 +12,8 @@ public class BacktrackingSolver {
     private List<String> colors;
     private int[] solution;       // solution[colorIndex] = index in color's cell list
     private boolean[][] occupied; // tracks queen positions
-    private int steps;
-    private int backtracks;
+    private BigInteger steps;
+    private BigInteger backtracks;
     private long startTime;
 
     // Flags for showing extra details
@@ -28,8 +30,8 @@ public class BacktrackingSolver {
         this.solution = new int[colors.size()];
         Arrays.fill(solution, -1);
         this.occupied = new boolean[size][size];
-        this.steps = 0;
-        this.backtracks = 0;
+        this.steps = BigInteger.ZERO;
+        this.backtracks = BigInteger.ZERO;
     }
 
     //memilih logging yang ingin ditampilkan
@@ -56,7 +58,7 @@ public class BacktrackingSolver {
         return result;
     }
 
-    //
+    //fungsi backtracking utama
     private boolean placeQueens(int colorIndex) {
         if (colorIndex == colors.size()) {
             return true; //base case
@@ -68,9 +70,10 @@ public class BacktrackingSolver {
         List<int[]> cells = colorCells.get(color);
 
         if (showSteps) {
-            System.out.println("Step " + (++steps) + ": placing queen for color " + symbol);
+            steps = steps.add(BigInteger.ONE);
+            System.out.println("Step " + steps + ": placing queen for color " + symbol);
         } else {
-            steps++;
+            steps = steps.add(BigInteger.ONE);
         }
 
         //mencoba setiap cell yang berwarna sama
@@ -99,7 +102,7 @@ public class BacktrackingSolver {
                 if (showBacktracks) {
                     System.out.println("Backtracking from [" + row + "," + col + "]");
                 }
-                backtracks++;
+                backtracks = backtracks.add(BigInteger.ONE);
                 solution[colorIndex] = -1;
                 occupied[row][col] = false;
             } else if (showConflicts) {
@@ -221,10 +224,10 @@ public class BacktrackingSolver {
         printBoard();
     }
 
-    public int getSteps() {
+    public BigInteger getSteps() {
         return steps;
     }
-    public int getBacktracks() {
+    public BigInteger getBacktracks() {
         return backtracks;
     }
 }
