@@ -1,0 +1,105 @@
+F:\CampusStuff\TA-HUH\colored-queens>.\gradlew run
+
+> Task :run
+Loading board (size=20, level=1)...
+
+Board summary:
+Board color distribution:
+Color 218,112,214 (A) -> 21 cells
+Color 60,179,113 (B) -> 19 cells
+Color 240,230,140 (C) -> 22 cells
+Color 65,105,225 (D) -> 31 cells
+Color 0,0,128 (E) -> 20 cells
+Color 255,0,255 (F) -> 11 cells
+Color 255,192,203 (G) -> 16 cells
+Color 128,0,0 (H) -> 25 cells
+Color 25,25,112 (I) -> 21 cells
+Color 255,215,0 (J) -> 25 cells
+Color 107,142,35 (K) -> 31 cells
+Color 0,128,0 (L) -> 29 cells
+Color 255,99,71 (M) -> 11 cells
+Color 160,82,45 (N) -> 17 cells
+Color 72,61,139 (O) -> 16 cells
+Color 192,192,192 (P) -> 12 cells
+Color 255,69,0 (R) -> 12 cells
+Color 138,43,226 (S) -> 19 cells
+Color 255,165,0 (T) -> 21 cells
+Color 0,206,209 (U) -> 21 cells
+Board size: 20
+Unique colors: 20
+
+Color layout:
+J J J J J J J G G G G G E E E E I I I I
+J J J J J J J G G G G E E E E E I I I I
+J J J J J J J G G G G E E E E E I I I I
+D D D J J J J G G E E E E E R R R I I I
+D D D D D D D D G H E R R R R R R I I I
+D D D D D D U U H H H H P P R R R O I I
+D D D D D U U U H H H H P P P P P O O I
+D D D D U U U U H H H H H P P O O O O O
+D D D D S U U U U H H H H P P O O O O O
+M D S S S U U U U U H H H P K K K O O O
+M M S S S S U U U F H H H K K K K K K K
+M S S S S S S F F F L H K K K K K K K K
+M M M S S S F F F F L L L K K K K K K K
+M M M S S T F F F L L L L L K K K K C C
+M B B B T T L L L L L L L L L K K C C C
+B B B B T T T L L L L L L L A A C C C C
+B B B T T T T T N L L L L A A A C C C C
+B B B T T T T N N N N N A A A A C C C C
+B B B T T T N N N N N N A A A A A C C C
+B B B T T T N N N N N A A A A A A A C C
+Starting solver for 20x20 board with 20 colors.
+
+Solver stats:
+Steps: 118401240766
+Backtracks: 118401240746
+Time: 24638023 ms
+Solution found: true
+Final solution:
+Color A at [15,14]
+Color B at [14,1]
+Color C at [17,16]
+Color D at [3,0]
+Color E at [0,12]
+Color F at [10,9]
+Color G at [1,7]
+Color H at [5,8]
+Color I at [6,19]
+Color J at [2,3]
+Color K at [11,17]
+Color L at [16,10]
+Color M at [12,2]
+Color N at [18,11]
+Color O at [8,18]
+Color P at [7,13]
+Color R at [4,15]
+Color S at [13,4]
+Color T at [19,5]
+Color U at [9,6]
+Board state:
+   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+0  J J J J J J J G G G G G Q E E E I I I I
+1  J J J J J J J Q G G G E E E E E I I I I
+2  J J J Q J J J G G G G E E E E E I I I I
+3  Q D D J J J J G G E E E E E R R R I I I
+4  D D D D D D D D G H E R R R R Q R I I I
+5  D D D D D D U U Q H H H P P R R R O I I
+6  D D D D D U U U H H H H P P P P P O O Q
+7  D D D D U U U U H H H H H Q P O O O O O
+8  D D D D S U U U U H H H H P P O O O Q O
+9  M D S S S U Q U U U H H H P K K K O O O
+10  M M S S S S U U U Q H H H K K K K K K K
+11  M S S S S S S F F F L H K K K K K Q K K
+12  M M Q S S S F F F F L L L K K K K K K K
+13  M M M S Q T F F F L L L L L K K K K C C
+14  M Q B B T T L L L L L L L L L K K C C C
+15  B B B B T T T L L L L L L L Q A C C C C
+16  B B B T T T T T N L Q L L A A A C C C C
+17  B B B T T T T N N N N N A A A A Q C C C
+18  B B B T T T N N N N N Q A A A A A C C C
+19  B B B T T Q N N N N N A A A A A A A C C
+
+
+BUILD SUCCESSFUL in 6h 50m 39s
+3 actionable tasks: 2 executed, 1 up-to-date
