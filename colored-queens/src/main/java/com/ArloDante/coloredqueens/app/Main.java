@@ -11,7 +11,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         int size = 11;
-        int level = 50;
+        int level = 1;
 
         int solverChoice = 2;
 
@@ -29,10 +29,12 @@ public class Main {
 
             switch (solverChoice) {
                 case 1:
+                    System.out.println("Solving using pure backtracking");
                     callBacktracking(board);
                     break;
-                
+                    
                 case 2:
+                    System.out.println("Solving using backtracking and AC3");
                     callBacktrackingAC3(board);
                     break;
 
