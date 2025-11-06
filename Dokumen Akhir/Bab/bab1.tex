@@ -1,0 +1,61 @@
+%versi 2 (8-10-2016) 
+\chapter{Pendahuluan}
+\label{chap:intro}
+   
+\section{Latar Belakang}
+\label{sec:label}
+Masalah n-queens merupakan salah satu permasalahan klasik dalam ilmu komputer yang telah dipelajari secara ekstensif sejak abad ke-19 \cite{nqueenshistory}. Permasalahan ini menantang untuk menempatkan n buah bidak menteri pada papan catur berukuran $n \times n$ sedemikian rupa sehingga tidak ada menteri yang dapat saling menyerang secara horizontal, vertikal, dan diagonal. Masalah n-queens tergolong ke dalam kategori Constraint Satisfaction Problem (CSP), yaitu jenis permasalahan yang melibatkan pencarian solusi dengan memberikan nilai pada variabel-variabel tertentu sedemikian rupa sehingga memenuhi sejumlah batasan atau kendala yang telah ditentukan \cite{cspdef}. 
+
+Seiring perkembangan penelitian, muncul berbagai variasi dari masalah n-queens tradisional yang menawarkan kompleksitas dan tantangan baru. Salah satu varian yang menarik perhatian adalah Colored Queens, di mana papan permainan dibagi menjadi beberapa sektor berwarna dengan aturan tambahan yang lebih ketat. Dalam permainan Colored Queens, setiap sektor berwarna harus berisi tepat satu bidak menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung baik horizontal, vertikal, maupun diagonal. Berbeda dengan masalah n-queens tradisional, bidak menteri pada Colored Queens hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak dapat ditempatkan pada satu garis diagonal. Kendala tambahan berupa pembagian warna sektor membuat kompleksitas komputasional varian Colored Queens lebih tinggi dibandingkan permasalahan n-queens standar.
+
+Untuk menyelesaikan permasalahan Colored Queens, diperlukan pendekatan algoritma yang mampu menangani kendala-kendala kompleks tersebut secara efisien. Algoritma Backtracking merupakan salah satu pendekatan klasik yang sering digunakan untuk menyelesaikan CSP. Algoritma ini bekerja dengan membangun solusi secara bertahap melalui pencarian mendalam (depth-first search) dan mundur ke keputusan sebelumnya ketika menemui jalan buntu. Meskipun terbukti efektif untuk berbagai permasalahan CSP, backtracking dapat mengalami kesulitan pada ruang pencarian yang sangat luas.
+
+Di sisi lain, Particle Swarm Optimization (PSO) merupakan algoritma metaheuristik yang terinspirasi dari perilaku kolektif kawanan burung atau ikan dalam mencari makanan. PSO menggunakan mekanisme kolaborasi antar partikel untuk mengeksplorasi ruang solusi secara paralel dan konvergen menuju solusi optimal. Namun, karena PSO pada dasarnya dirancang untuk masalah optimasi kontinu, penerapannya pada permasalahan diskret seperti Colored Queens memerlukan adaptasi khusus berupa diskretisasi posisi partikel dan mekanisme perbaikan untuk menangani solusi yang tidak valid.
+
+Untuk meningkatkan efisiensi pencarian solusi pada kedua algoritma tersebut, dapat diterapkan teknik Maintaining Arc Consistency (MAC) yang mengimplementasikan algoritma Arc Consistency Algorithm 3 (AC-3). Algoritma AC-3 berfungsi untuk melakukan penyempitan ruang solusi dengan mengeliminasi nilai-nilai yang tidak mungkin menghasilkan solusi valid berdasarkan kendala yang berlaku. Dengan menjalankan AC-3 pada tahap preprocessing dan selama proses pencarian berlangsung, ruang solusi dapat dipersempit secara berkala sehingga efisiensi pencarian meningkat secara signifikan.
+
+Dari perspektif pengembangan perangkat lunak, perancangan solver untuk Colored Queens tidak hanya berfokus pada optimasi algoritma, tetapi juga pada penyediaan antarmuka pengguna yang intuitif dan mudah digunakan. Hal ini penting agar hasil solusi tidak hanya benar secara komputasional, tetapi juga dapat dipahami dan dimanfaatkan oleh pengguna dengan beban kognitif yang minimal. Sebuah aplikasi berbasis web yang memungkinkan pengguna berinteraksi langsung dengan permainan Colored Queens, dilengkapi dengan peringatan visual ketika terjadi pelanggaran kendala serta visualisasi proses pencarian solusi, dapat memberikan pengalaman pembelajaran yang lebih baik tentang cara kerja algoritma-algoritma tersebut.
+
+\section{Rumusan Masalah}
+\label{sec:rumusan}
+\begin{itemize}	
+	\item Bagaimana cara membangun perangkat lunak permainan colored queens?
+	
+	\item Bagaimana membangun solusi permainan colored Queens menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization} (PSO)?
+	
+	\item Bagaimana membangun solver untuk permainan colored queen yang mengimplementasikan \textit{Backtracking} dan PSO yang dapat diintegrasikan dengan perangkat lunak yang dibangun?
+	
+	\item Bagiamana kinerja dari solver yang dibangun dalam mencari solusi permainan Colored Queens?
+\end{itemize}
+
+\section{Tujuan}
+\label{sec:tujuan}
+\begin{itemize}	
+	\item Membangun perangkat lunak permainan Colored Queens.
+	
+	\item Mempelajari cara membangun solusi permainan Colored Queen menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization}.
+	
+	\item Membangun solver untuk permainan colored queen yang mengimplementasikan \textit{Backtracking} dan PSO yang dapat diintegrasikan dengan perangkat lunak yang dibangun.
+	
+	\item Melakukan pegujian untuk mengukur kinerja dari solver yang dibangun dalam mencari solusi permainan Colored Queens
+\end{itemize}
+
+\section{Batasan Masalah}
+\label{sec:batasan}
+Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
+
+\dtext{8}
+
+\section{Metodologi}
+\label{sec:metlit}
+Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
+
+\dtext{9}
+
+\section{Sistematika Pembahasan}
+\label{sec:sispem}
+Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
+Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
+Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
+
+\dtext{10}

@@ -1,0 +1,14 @@
+\begin{thebibliography}{99}
+
+\bibitem{nqueenshistory}
+Gent, I.~P., Jefferson, C., dan Nightingale, P. (2017) Complexity of n-queens
+  completion.
+\newblock {\em Journal of Artificial Intelligence Research}, {\bf  59},
+  815--848.
+
+\bibitem{cspdef}
+Brailsford, S.~C., Potts, C.~N., dan Smith, B.~M. (1999) Constraint
+  satisfaction problems: Algorithms and applications.
+\newblock {\em European journal of operational research}, {\bf  119}, 557--581.
+
+\end{thebibliography}

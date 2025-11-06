@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.11)  19 SEP 2025 13:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  4 NOV 2025 15:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,13 +6,9 @@ entering extended mode
 (RKTA-ArloDanteHananvyasa-6182201010-Revisi1.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
-
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/base\art
-icle.cls
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/base\siz
-e10.clo
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count275
@@ -27,12 +23,10 @@ File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/base\fon
-tenc.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/babel\
-babel.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2025/08/03 v25.12 The multilingual framework for LuaLaTeX, pdfLa
 TeX and XeLaTeX
 \babel@savecnt=\count283
@@ -53,62 +47,52 @@ on input line 2078.
 \U@D=\dimen149
 \l@unhyphenated=\language79
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/babel\
-txtbabel.def)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count284
 
 *************************************
 * Local config file bblopts.cfg used
 *
-
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bb
-lopts.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/babel-in
-donesian\bahasa.ldf
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\bahasa.
+ldf
 Language: bahasa 2025/06/01 v1.0n Bahasa Indonesia support from the babel syste
 m
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/babel-in
-donesian\indonesian.ldf
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\indones
+ian.ldf
 Language: indonesian 2025/06/01 v1.0n Bahasa Indonesia support from the babel s
 ystem
 )))
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/graphics
-\graphicx.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/graphics
-\keyval.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/graphics
-\graphics.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/graphics
-\trig.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/graphics
--cfg\graphics.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cf
+g
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/graphics
--def\pdftex.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen150
 \Gin@req@width=\dimen151
-)
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/float\fl
-oat.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count285
 \float@exts=\toks18
@@ -116,30 +100,25 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks19
 \@floatcapt=\box54
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/preprint
-\fullpage.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/preprint\fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip51
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox
-\etoolbox.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count286
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/setspace
-\setspace.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\l
-ipsum.sty
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/l3packag
-es/l3keys2e\l3keys2e.sty
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel
-\expl3.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3ke
+ys2e.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
 Package: expl3 2025-08-13 L3 programming layer (loader) 
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/l3backen
-d\l3backend-pdftex.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
+ex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count287
 ))
@@ -150,14 +129,11 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_a_int=\count289
 \l__lipsum_b_int=\count290
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\l
-ipsum.ltd.tex))
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/caption\
-caption.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/caption\
-caption3.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen152
 \captionmargin=\dimen153
@@ -173,16 +149,13 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count292
 Package caption Info: float package is loaded.
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/geometry
-\geometry.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/iftex\
-ifvtex.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/iftex\
-iftex.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count293
@@ -198,47 +171,40 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layoutvoffset=\dimen167
 \Gm@dimlist=\toks20
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/geometry
-\geometry.cfg))
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/datetime
-2\datetime2.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/datetime2\datetime2.sty
 Package: datetime2 2021/03/21 v1.5.7 (NLCT) date and time formats
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/tracklan
-g\tracklang.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tracklang\tracklang.sty
 Package: tracklang 2025/03/11 v1.6.6 (NLCT) Track Languages
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/trackl
-ang\tracklang.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/tracklang\tracklang.te
+x)
 Package tracklang Info: Tracking dialect `bahasa' (language `bahasai') on input
  line 264.
-)
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\
-xkeyval.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/xkeyva
-l\xkeyval.tex
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/generic/xkeyva
-l\xkvutils.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
 \XKV@toks=\toks21
 \XKV@tempa@toks=\toks22
 )
 \XKV@depth=\count296
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/datetime
-2-bahasai\datetime2-bahasai.ldf
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/datetime2-bahasai\dateti
+me2-bahasai.ldf
 File: datetime2-bahasai.ldf 2018/01/10 v1.01
 ))
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/caption\
-subcaption.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count297
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count298
-) (RKTA-ArloDanteHananvyasa-6182201010-Revisi1.aux)
+)
+(RKTA-ArloDanteHananvyasa-6182201010-Revisi1.aux)
 \openout1 = `RKTA-ArloDanteHananvyasa-6182201010-Revisi1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -256,8 +222,8 @@ LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/context/base/m
-kii\supp-pdf.mkii
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
+i
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count299
 \scratchdimen=\dimen168
@@ -271,14 +237,14 @@ kii\supp-pdf.mkii
 \makeMPintoPDFobject=\count304
 \everyMPtoPDFconversion=\toks24
 )
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf
--pkg\epstopdf-base.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
+se.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\Arlo Dante Hananvyas\AppData\Local\Programs\MiKTeX\tex/latex/00miktex
-\epstopdf-sys.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cf
+g
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
@@ -351,8 +317,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (7.49817pt too high) has occurred while \output is active []
 
 
-[1{C:/Users/Arlo Dante Hananvyas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.m
-ap}
+[1{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
  <./images/N_queens_wrong.png> <./images/N_queens_correct.png>]
 <images/AC3_start.png, id=21, 976.64874pt x 915.42pt>
@@ -398,27 +363,25 @@ L3 programming layer <2025-08-13>
  ) 
 Here is how much of TeX's memory you used:
  8306 strings out of 468133
- 166015 string characters out of 5423416
+ 164307 string characters out of 5431196
  666447 words of memory out of 5000000
  36859 multiletter control sequences out of 15000+600000
  637771 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,8n,79p,1104b,560s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Arlo Dante Hananvyas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
-/ec/dpi600\tcrm1000.pk> <C:\Users\Arlo Dante Hananvyas\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Arlo Dante Hananvyas\App
-Data\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Arl
-o Dante Hananvyas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1
-440.pk> <C:\Users\Arlo Dante Hananvyas\AppData\Local\MiKTeX\fonts/pk/ljfour/jkn
-appen/ec/dpi600\ecxc1200.pk> <C:\Users\Arlo Dante Hananvyas\AppData\Local\MiKTe
-X\fonts/pk/ljfour/jknappen/ec/dpi600\ecxc1728.pk> <C:\Users\Arlo Dante Hananvya
-s\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\User
-s\Arlo Dante Hananvyas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecoc1000.pk><C:/Users/Arlo Dante Hananvyas/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Arlo Dante Hananvyas/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1
+000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
+ecrm0900.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\ecti1000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\ecbx1440.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\ecxc1200.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecxc1728.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/l
+jfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts
+/pk/ljfour/jknappen/ec/dpi600\ecoc1000.pk><C:/Users/User/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 Output written on RKTA-ArloDanteHananvyasa-6182201010-Revisi1.pdf (5 pages, 400
-941 bytes).
+940 bytes).
 PDF statistics:
  299 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

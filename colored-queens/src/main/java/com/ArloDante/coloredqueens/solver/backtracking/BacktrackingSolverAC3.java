@@ -5,23 +5,38 @@ import com.ArloDante.coloredqueens.objects.Board;
 import java.math.BigInteger;
 import java.util.*;
 
-public class BacktrackingSolverAC3 {
+public class BacktrackingSolverAC3{
     private Board board;
     private int size;
     private Map<String, List<int[]>> colorCells;
     private List<String> colors;
-    private int[] solution;       // solution[colorIndex] = index in color's cell list
-    private boolean[][] occupied; // tracks queen positions
+    private int[] solution;
+    private boolean[][] occupied;
     private BigInteger steps;
     private BigInteger backtracks;
     private long startTime;
-    private Map<String, Set<int[]>> invalidCells;
-
-    // Flags for showing extra details
+    
+    // OPTIMIZATION 1: Use bitsets instead of HashSet for O(1) operations
+    private Map<String, BitSet> validCells; // Track which cells are still valid
+    private int[] colorCellCount; // Track how many valid cells each color has
+    
+    // OPTIMIZATION 2: Stack-based undo instead of cloning entire map
+    private Stack<PruneAction> pruneStack;
+    
     private boolean showSteps = false;
     private boolean showBoard = false;
-    private boolean showConflicts = false;
     private boolean showBacktracks = false;
+
+    // Helper class to track what was pruned (for efficient undo)
+    private static class PruneAction {
+        String color;
+        int cellIndex;
+        
+        PruneAction(String color, int cellIndex) {
+            this.color = color;
+            this.cellIndex = cellIndex;
+        }
+    }
 
     public BacktrackingSolverAC3(Board board) {
         this.board = board;
@@ -33,26 +48,32 @@ public class BacktrackingSolverAC3 {
         this.occupied = new boolean[size][size];
         this.steps = BigInteger.ZERO;
         this.backtracks = BigInteger.ZERO;
-
-        this.invalidCells = new HashMap<>();
-        for (String color : colors) {
-            invalidCells.put(color, new HashSet<>());
+        
+        // Initialize bitsets - all cells start as valid
+        this.validCells = new HashMap<>();
+        this.colorCellCount = new int[colors.size()];
+        for (int i = 0; i < colors.size(); i++) {
+            String color = colors.get(i);
+            int cellCount = colorCells.get(color).size();
+            BitSet bs = new BitSet(cellCount);
+            bs.set(0, cellCount); // Set all bits to true (valid)
+            validCells.put(color, bs);
+            colorCellCount[i] = cellCount;
         }
+        
+        this.pruneStack = new Stack<>();
     }
 
-    //memilih logging yang ingin ditampilkan
-    public void setDetailOptions(boolean steps, boolean board, boolean conflicts, boolean backtrack) {
+    public void setDetailOptions(boolean steps, boolean board, boolean backtrack) {
         showSteps = steps;
         showBoard = board;
-        showConflicts = conflicts;
         showBacktracks = backtrack;
     }
 
-    //memanggil fungsi rekursif
     public boolean solve() {
-        System.out.println("Starting solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
+        System.out.println("Starting optimized solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
         startTime = System.currentTimeMillis();
-        boolean result = placeQueens(0); //hasil fungsi rekursif disimpan di sini
+        boolean result = placeQueens(0);
         long endTime = System.currentTimeMillis();
 
         System.out.println("\nSolver stats:");
@@ -64,151 +85,135 @@ public class BacktrackingSolverAC3 {
         return result;
     }
 
-    //fungsi backtracking utama
     private boolean placeQueens(int colorIndex) {
         if (colorIndex == colors.size()) {
-            return true; //base case
+            return true;
         }
 
         String color = colors.get(colorIndex);
         String symbol = board.getSymbolForColor(color);
         List<int[]> cells = colorCells.get(color);
+        BitSet valid = validCells.get(color);
 
         if (showSteps) {
             steps = steps.add(BigInteger.ONE);
-            System.out.println("Step " + steps + ": menempatkan menteri untuk warna " + symbol);
+            System.out.println("Step " + steps + ": placing queen for color " + symbol);
         } else {
             steps = steps.add(BigInteger.ONE);
         }
 
-        //mencoba setiap sel pada warna ini
-        for (int i = 0; i < cells.size(); i++) {
+        // OPTIMIZATION 3: Iterate only over valid cells using BitSet
+        for (int i = valid.nextSetBit(0); i >= 0; i = valid.nextSetBit(i + 1)) {
             int row = cells.get(i)[0];
             int col = cells.get(i)[1];
 
-            //jika posisi sekarang ada di invalidCells, lewati sel ini
-            boolean skip = false;
-            for (int[] inv : invalidCells.get(color)) {
-                if (inv[0] == row && inv[1] == col) {
-                    skip = true;
-                    break;
-                }
+            solution[colorIndex] = i;
+            occupied[row][col] = true;
+
+            if (showBoard) {
+                printBoard();
             }
-            if (skip) continue;
 
-            //jika posisi valid
-            if (isValid(row, col)) {
-                solution[colorIndex] = i;  
-                occupied[row][col] = true; 
+            // Mark the position where we start pruning (for undo)
+            int pruneStartPos = pruneStack.size();
 
-                if (showBoard) {
-                    printBoard(); 
-                }
+            // Propagate constraints and track changes
+            propagateConstraints(row, col, colorIndex);
 
-                //AC-3 propagation: tandai sel baru yang menjadi tidak valid
-                Map<String, Set<int[]>> oldInvalids = cloneInvalidCells(); //simpan snapshot untuk backtracking
-                propagateConstraints(row, col, color); //perbarui invalidCells
-
-                //pengecekan kegagalan awal: jika ada warna yang semua selnya invalid, backtrack
-                if (anyColorExhausted()) {
-                    restoreInvalidCells(oldInvalids); //kembalikan kondisi invalidCells sebelumnya
-
-                    occupied[row][col] = false;
-                    solution[colorIndex] = -1;
-
-                    if (showBacktracks) {
-                        System.out.println("Backtracking (prune awal) dari [" + row + "," + col + "]");
-                    }
-
-                    backtracks = backtracks.add(BigInteger.ONE);
-                    continue; //lanjut ke sel berikutnya
-                }
-
-                //rekursi ke warna berikutnya
-                if (placeQueens(colorIndex + 1)) {
-                    return true; //solusi ditemukan di cabang ini
-                }
-
-                //backtrack: hapus menteri dan kembalikan kondisi invalidCells
-                restoreInvalidCells(oldInvalids);
+            // Early pruning check
+            if (anyColorExhausted(colorIndex)) {
+                // Undo all prunes from this placement
+                undoPrunes(pruneStartPos);
                 occupied[row][col] = false;
                 solution[colorIndex] = -1;
 
                 if (showBacktracks) {
-                    System.out.println("Backtracking dari [" + row + "," + col + "]");
+                    System.out.println("Backtracking (prune awal) dari [" + row + "," + col + "]");
                 }
 
                 backtracks = backtracks.add(BigInteger.ONE);
-
-            } else if (showConflicts) {
-                //tampilkan alasan sel tidak valid jika opsi konflik aktif
-                System.out.println("Tidak bisa ditempatkan di [" + row + "," + col + "] " + conflictReason(row, col));
+                continue;
             }
+
+            // Recurse
+            if (placeQueens(colorIndex + 1)) {
+                return true;
+            }
+
+            // Backtrack: undo prunes
+            undoPrunes(pruneStartPos);
+            occupied[row][col] = false;
+            solution[colorIndex] = -1;
+
+            if (showBacktracks) {
+                System.out.println("Backtracking dari [" + row + "," + col + "]");
+            }
+
+            backtracks = backtracks.add(BigInteger.ONE);
         }
 
-        return false; //tidak ada sel valid untuk warna ini di cabang ini
+        return false;
     }
 
-
-
-    private boolean isValid(int row, int col) {
-        //mengecek apakah cell tersebut sudah ada menteri atau belum
-        if (occupied[row][col]) {
-            return false;
-        }
-
-        //mengecek semua cell horizontal dan vertikal
-        for (int i = 0; i < size; i++) {
-            if (occupied[row][i] || occupied[i][col]) {
-                return false;
-            }
-        }
-
-        //mengecek apakah ada bidak yang bersebelahan (8 mata angin)
+    // OPTIMIZATION 4: Only propagate to colors not yet placed
+    private void propagateConstraints(int row, int col, int placedColorIndex) {
+        // Pre-compute attack positions for efficiency
+        boolean[] attackRow = new boolean[size];
+        boolean[] attackCol = new boolean[size];
+        boolean[][] attackAdjacent = new boolean[size][size];
+        
+        attackRow[row] = true;
+        attackCol[col] = true;
+        
+        // Mark all 8 adjacent positions
         int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
         for (int[] d : dirs) {
-            int r = row + d[0];
-            int c = col + d[1];
-            if (r >= 0 && r < size && c >= 0 && c < size && occupied[r][c]) {
-                return false;
+            int r = row + d[0], c = col + d[1];
+            if (r >= 0 && r < size && c >= 0 && c < size) {
+                attackAdjacent[r][c] = true;
             }
         }
 
-        return true;
+        // Only check colors that haven't been placed yet
+        for (int colorIdx = placedColorIndex + 1; colorIdx < colors.size(); colorIdx++) {
+            String color = colors.get(colorIdx);
+            List<int[]> cells = colorCells.get(color);
+            BitSet valid = validCells.get(color);
+
+            // Iterate only over currently valid cells
+            for (int i = valid.nextSetBit(0); i >= 0; i = valid.nextSetBit(i + 1)) {
+                int[] cell = cells.get(i);
+                int r = cell[0], c = cell[1];
+                
+                // Check if this cell is attacked
+                if (attackRow[r] || attackCol[c] || attackAdjacent[r][c]) {
+                    valid.clear(i); // Mark as invalid
+                    colorCellCount[colorIdx]--;
+                    pruneStack.push(new PruneAction(color, i));
+                }
+            }
+        }
     }
 
-    //logging
-    private String conflictReason(int row, int col) {
-        List<String> reasons = new ArrayList<>();
-        if (occupied[row][col]) {
-            reasons.add("already occupied");
+    private void undoPrunes(int pruneStartPos) {
+        while (pruneStack.size() > pruneStartPos) {
+            PruneAction action = pruneStack.pop();
+            int colorIdx = colors.indexOf(action.color);
+            validCells.get(action.color).set(action.cellIndex); // Restore validity
+            colorCellCount[colorIdx]++;
         }
-
-        for (int i = 0; i < size; i++) {
-            if (occupied[row][i]) {
-                reasons.add("row conflict");
-                break;
-            }
-            if (occupied[i][col]) {
-                reasons.add("column conflict");
-                break;
-            }
-        }
-
-        int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
-        for (int[] d : dirs) {
-            int r = row + d[0];
-            int c = col + d[1];
-            if (r >= 0 && r < size && c >= 0 && c < size && occupied[r][c]) {
-                reasons.add("adjacent to queen");
-                break;
-            }
-        }
-
-        return "(" + String.join(", ", reasons) + ")";
     }
 
-    //print hasil akhir papan dengan Q menandakan Bidak menteri
+    private boolean anyColorExhausted(int currentColorIndex) {
+        // Only check colors that haven't been placed yet
+        for (int i = currentColorIndex + 1; i < colors.size(); i++) {
+            if (colorCellCount[i] == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void printBoard() {
         System.out.println("Board state:");
         String[][] grid = new String[size][size];
@@ -244,7 +249,6 @@ public class BacktrackingSolverAC3 {
         System.out.println();
     }
 
-    //Print posisi akhir semua bidak menteri dalam bentuk per baris
     public void printSolution() {
         if (solution[0] == -1) {
             System.out.println("No solution found!");
@@ -265,59 +269,8 @@ public class BacktrackingSolverAC3 {
     public BigInteger getSteps() {
         return steps;
     }
+    
     public BigInteger getBacktracks() {
         return backtracks;
     }
-
-    // Mengkopi map invalidCells untuk keperluan backtracking
-    private Map<String, Set<int[]>> cloneInvalidCells() {
-        Map<String, Set<int[]>> clone = new HashMap<>();
-        for (String c : colors) {
-            clone.put(c, new HashSet<>(invalidCells.get(c))); // Salin set sel yang tidak valid untuk tiap warna
-        }
-        return clone;
-    }
-
-    // Mengembalikan map invalidCells saat melakukan backtracking
-    private void restoreInvalidCells(Map<String, Set<int[]>> oldInvalids) {
-        invalidCells.clear(); // Kosongkan map saat ini
-        for (String c : colors) {
-            invalidCells.put(c, oldInvalids.get(c)); // Kembalikan set sel yang tidak valid dari versi lama
-        }
-    }
-
-    // Menyebarkan batasan seperti AC-3 setelah menempatkan menteri
-    private void propagateConstraints(int row, int col, String placedColor) {
-        int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}}; // 8 arah sekeliling
-        for (String color : colors) {
-            if (color.equals(placedColor)) continue; // Lewati warna yang baru saja ditempatkan
-            for (int[] cell : colorCells.get(color)) {
-                if (occupied[cell[0]][cell[1]]) continue; // Lewati sel yang sudah ditempati
-
-                // Tambahkan sel ke invalid jika ada konflik di baris, kolom, atau sel bersebelahan
-                if (cell[0] == row || cell[1] == col) {
-                    invalidCells.get(color).add(cell);
-                }
-                for (int[] d : dirs) {
-                    int r = row + d[0], c = col + d[1];
-                    if (cell[0] == r && cell[1] == c) {
-                        invalidCells.get(color).add(cell); // Sel bersebelahan juga menjadi tidak valid
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    // Mengecek apakah ada warna yang semua selnya sudah tidak valid
-    private boolean anyColorExhausted() {
-        for (String color : colors) {
-            // Jika warna ini belum ditempatkan dan semua selnya invalid, maka gagal
-            if (solution[colors.indexOf(color)] == -1 && invalidCells.get(color).size() == colorCells.get(color).size()) {
-                return true;
-            }
-        }
-        return false; // Semua warna masih memiliki sel yang valid
-    }
-
 }
