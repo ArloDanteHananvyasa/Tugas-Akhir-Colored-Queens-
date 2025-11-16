@@ -1,0 +1,4 @@
+n+kSolution - http://www.npluskqueens.info/background.html
+toroidalQueens - https://www.johndcook.com/blog/2021/08/18/queens-on-a-donut/
+4-queens csp - https://courses.grainger.illinois.edu/cs440/fa2021/lectures/csp1.html
+pso visualization - https://www.researchgate.net/figure/sualization-of-the-PSO-Algorithm_fig3_334363118
