@@ -8,7 +8,7 @@
 \contentsline {section}{\numberline {1.3}Tujuan}{6}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Batasan Masalah}{6}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Metodologi}{6}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Sistematika Pembahasan}{6}{section.1.6}%
+\contentsline {section}{\numberline {1.6}Sistematika Pembahasan}{7}{section.1.6}%
 \contentsline {chapter}{\numberline {2}Landasan Teori}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Skripsi}{9}{section.2.1}%
 \contentsline {section}{\numberline {2.2}\LaTeX }{9}{section.2.2}%
