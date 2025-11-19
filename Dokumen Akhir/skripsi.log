@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  16 NOV 2025 21:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  19 NOV 2025 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1525,9 +1525,9 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 [5{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <
-./Gambar/visualizationofPSO.png (PNG copy)>])
+./Gambar/visualizationofPSO.png (PNG copy)>]
 
-[6]
+[6])
 
 [7]
 \openout2 = `Bab/bab2.aux'.
@@ -1618,12 +1618,12 @@ e 110.
 LaTeX Warning: Citation `agung:12:tango' on page 11 undefined on input line 111
 .
 
-<./Gambar/ular-png.png, id=349, 166.37157pt x 194.22563pt>
+<./Gambar/ular-png.png, id=362, 166.37157pt x 194.22563pt>
 File: ./Gambar/ular-png.png Graphic file (type png)
 <use ./Gambar/ular-png.png>
 Package pdftex.def Info: ./Gambar/ular-png.png  used on input line 138.
 (pdftex.def)             Requested size: 166.37114pt x 194.22514pt.
-<./Gambar/ular-jpg.jpg, id=350, 166.37157pt x 194.22563pt>
+<./Gambar/ular-jpg.jpg, id=363, 166.37157pt x 194.22563pt>
 File: ./Gambar/ular-jpg.jpg Graphic file (type jpg)
 <use ./Gambar/ular-jpg.jpg>
 Package pdftex.def Info: ./Gambar/ular-jpg.jpg  used on input line 146.
@@ -1631,7 +1631,7 @@ Package pdftex.def Info: ./Gambar/ular-jpg.jpg  used on input line 146.
 
 
 [11]
-<./Gambar/ular-pdf.pdf, id=356, 166.35149pt x 194.20154pt>
+<./Gambar/ular-pdf.pdf, id=369, 166.35149pt x 194.20154pt>
 File: ./Gambar/ular-pdf.pdf Graphic file (type pdf)
 <use ./Gambar/ular-pdf.pdf>
 Package pdftex.def Info: ./Gambar/ular-pdf.pdf  used on input line 154.
@@ -1718,18 +1718,15 @@ L3 programming layer <2025-08-13>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
 (rerunfilecheck)             Checksum: F961F5BD537D4C6B5685C5E88ACCB099;2515.
  ) 
 Here is how much of TeX's memory you used:
- 42242 strings out of 468133
- 936863 string characters out of 5431196
- 2183502 words of memory out of 5000000
- 69730 multiletter control sequences out of 15000+600000
- 728505 words of font info for 221 fonts, out of 8000000 for 9000
+ 42257 strings out of 468133
+ 937031 string characters out of 5431196
+ 2183518 words of memory out of 5000000
+ 69734 multiletter control sequences out of 15000+600000
+ 728422 words of font info for 220 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  110i,14n,131p,1804b,2272s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecxc1
@@ -1754,9 +1751,9 @@ er/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/User/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on skripsi.pdf (39 pages, 1082175 bytes).
+Output written on skripsi.pdf (39 pages, 1084076 bytes).
 PDF statistics:
- 663 PDF objects out of 1000 (max. 8388607)
- 161 named destinations out of 1000 (max. 500000)
+ 678 PDF objects out of 1000 (max. 8388607)
+ 174 named destinations out of 1000 (max. 500000)
  58232 words of extra memory for PDF output out of 61914 (max. 10000000)
 

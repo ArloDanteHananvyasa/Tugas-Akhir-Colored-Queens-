@@ -1,0 +1,540 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  19 NOV 2025 23:38
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./pr_618221010.tex
+(pr_618221010.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-08-13>
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2025/08/03 v25.12 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
+\babel@savecnt=\count283
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2045.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2047.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2049.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2050.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2051.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2053.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2078.
+\U@D=\dimen149
+\l@unhyphenated=\language79
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count284
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\bahasa.
+ldf
+Language: bahasa 2025/06/01 v1.0n Bahasa Indonesia support from the babel syste
+m
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\indones
+ian.ldf
+Language: indonesian 2025/06/01 v1.0n Bahasa Indonesia support from the babel s
+ystem
+)))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cf
+g
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count285
+\float@exts=\toks18
+\float@box=\box53
+\@float@everytoks=\toks19
+\@floatcapt=\box54
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count286
+\lst@gtempboxa=\box55
+\lst@token=\toks20
+\lst@length=\count287
+\lst@currlwidth=\dimen152
+\lst@column=\count288
+\lst@pos=\count289
+\lst@lostspace=\dimen153
+\lst@width=\dimen154
+\lst@newlines=\count290
+\lst@lineno=\count291
+\lst@maxwidth=\dimen155
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count292
+\lst@skipnumbers=\count293
+\lst@framebox=\box56
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/preprint\fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip51
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count294
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3ke
+ys2e.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-08-13 L3 programming layer (loader) 
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
+ex.def
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count295
+))
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+)
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count296
+\l__lipsum_a_int=\count297
+\l__lipsum_b_int=\count298
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count299
+\Gm@cntv=\count300
+\c@Gm@tempcnt=\count301
+\Gm@bindingoffset=\dimen156
+\Gm@wd@mp=\dimen157
+\Gm@odd@mp=\dimen158
+\Gm@even@mp=\dimen159
+\Gm@layoutwidth=\dimen160
+\Gm@layoutheight=\dimen161
+\Gm@layouthoffset=\dimen162
+\Gm@layoutvoffset=\dimen163
+\Gm@dimlist=\toks21
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen164
+\captionmargin=\dimen165
+\caption@leftmargin=\dimen166
+\caption@rightmargin=\dimen167
+\caption@width=\dimen168
+\caption@indent=\dimen169
+\caption@parindent=\dimen170
+\caption@hangindent=\dimen171
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count302
+\c@continuedfloat=\count303
+Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
+)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count304
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count305
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/datetime2\datetime2.sty
+Package: datetime2 2021/03/21 v1.5.7 (NLCT) date and time formats
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tracklang\tracklang.sty
+Package: tracklang 2025/03/11 v1.6.6 (NLCT) Track Languages
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/tracklang\tracklang.te
+x)
+Package tracklang Info: Tracking dialect `bahasa' (language `bahasai') on input
+ line 264.
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+\XKV@toks=\toks22
+\XKV@tempa@toks=\toks23
+)
+\XKV@depth=\count306
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/datetime2-bahasai\dateti
+me2-bahasai.ldf
+File: datetime2-bahasai.ldf 2018/01/10 v1.01
+)) (pr_618221010.aux)
+\openout1 = `pr_618221010.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
+i
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count307
+\scratchdimen=\dimen172
+\scratchbox=\box57
+\nofMPsegments=\count308
+\nofMParguments=\count309
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count310
+\MPscratchDim=\dimen173
+\MPnumerator=\count311
+\makeMPintoPDFobject=\count312
+\everyMPtoPDFconversion=\toks25
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
+se.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cf
+g
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+\c@lstlisting=\count313
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(56.9055pt, 469.47049pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 717.00946pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=469.47049pt
+* \textheight=717.00946pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-31.1381pt
+* \headheight=0.0pt
+* \headsep=30.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=111.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 89.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 89.
+<./Gambar/N_queens_wrong.png, id=1, 396.48125pt x 395.4775pt>
+File: ./Gambar/N_queens_wrong.png Graphic file (type png)
+<use ./Gambar/N_queens_wrong.png>
+Package pdftex.def Info: ./Gambar/N_queens_wrong.png  used on input line 95.
+(pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
+<./Gambar/N_queens_correct.png, id=3, 396.48125pt x 395.4775pt>
+File: ./Gambar/N_queens_correct.png Graphic file (type png)
+<use ./Gambar/N_queens_correct.png>
+Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 102.
+
+(pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
+
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[1{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
+
+ <./Gambar/N_queens_wrong.png> <./Gambar/N_queens_correct.png>]
+<./Gambar/n+kSolution.jpg, id=21, 316.18124pt x 319.1925pt>
+File: ./Gambar/n+kSolution.jpg Graphic file (type jpg)
+<use ./Gambar/n+kSolution.jpg>
+Package pdftex.def Info: ./Gambar/n+kSolution.jpg  used on input line 114.
+(pdftex.def)             Requested size: 164.31754pt x 165.88364pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 116.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 116.
+<./Gambar/toroidalQueens.png, id=22, 426.59375pt x 425.59pt>
+File: ./Gambar/toroidalQueens.png Graphic file (type png)
+<use ./Gambar/toroidalQueens.png>
+Package pdftex.def Info: ./Gambar/toroidalQueens.png  used on input line 122.
+(pdftex.def)             Requested size: 164.31754pt x 163.93382pt.
+<./Gambar/Queens_unsolved.png, id=23, 399.74344pt x 402.75468pt>
+File: ./Gambar/Queens_unsolved.png Graphic file (type png)
+<use ./Gambar/Queens_unsolved.png>
+Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 135.
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+<./Gambar/Queens_solved.png, id=24, 399.74344pt x 402.75468pt>
+File: ./Gambar/Queens_solved.png Graphic file (type png)
+<use ./Gambar/Queens_solved.png>
+Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 142.
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[2 <./Gambar/n+kSolution.jpg> <./Gambar/toroidalQueens.png>]
+<./Gambar/4queensCSP.png, id=31, 903.375pt x 451.6875pt>
+File: ./Gambar/4queensCSP.png Graphic file (type png)
+<use ./Gambar/4queensCSP.png>
+Package pdftex.def Info: ./Gambar/4queensCSP.png  used on input line 154.
+(pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[3 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>]
+<./Gambar/beforeafterARC.png, id=38, 903.375pt x 451.6875pt>
+File: ./Gambar/beforeafterARC.png Graphic file (type png)
+<use ./Gambar/beforeafterARC.png>
+Package pdftex.def Info: ./Gambar/beforeafterARC.png  used on input line 165.
+(pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[4 <./Gambar/4queensCSP.png (PNG copy)>]
+<./Gambar/visualizationofPSO.png, id=42, 903.375pt x 451.6875pt>
+File: ./Gambar/visualizationofPSO.png Graphic file (type png)
+<use ./Gambar/visualizationofPSO.png>
+Package pdftex.def Info: ./Gambar/visualizationofPSO.png  used on input line 17
+4.
+(pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[5 <./Gambar/beforeafterARC.png (PNG copy)>]
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[6 <./Gambar/visualizationofPSO.png (PNG copy)>]
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 23
+4.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[7]
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <5> not available
+(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 246.
+
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[8{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[9]
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[10]
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[11]
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[12] (pr_618221010.aux)
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-08-13>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 10846 strings out of 468133
+ 198759 string characters out of 5431196
+ 2401437 words of memory out of 5000000
+ 39346 multiletter control sequences out of 15000+600000
+ 646129 words of font info for 75 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 73i,8n,77p,1715b,1818s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1
+000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
+ecrm0500.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\ecbi1000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tcrm1000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\ectt0800.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/l
+jfour/jknappen/ec/dpi600\ecti0900.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts
+/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\User\AppData\Local\MiKTeX\
+fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\User\AppData\Local\Mi
+KTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\User\AppData\Loc
+al\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\User\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecxc1200.pk> <C:\Users\User\A
+ppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecxc1728.pk> <C:\Users\U
+ser\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Us
+ers\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecoc1000.pk><C
+:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/bera/fvmb8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/b
+era/fvmr8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fv
+mro8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/latxfont/lcircle1.pfb>
+Output written on pr_618221010.pdf (12 pages, 506311 bytes).
+PDF statistics:
+ 577 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+
