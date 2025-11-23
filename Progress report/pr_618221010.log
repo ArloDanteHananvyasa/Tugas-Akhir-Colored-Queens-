@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  19 NOV 2025 23:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  24 NOV 2025 00:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -255,7 +255,29 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/datetime2-bahasai\dateti
 me2-bahasai.ldf
 File: datetime2-bahasai.ldf 2018/01/10 v1.01
-)) (pr_618221010.aux)
+)) (pr_618221010.aux
+
+LaTeX Warning: Label `fig:queenattackpattern' multiply defined.
+
+
+LaTeX Warning: Label `fig:4queensCSP' multiply defined.
+
+
+LaTeX Warning: Label `fig:4queensCSP' multiply defined.
+
+
+LaTeX Warning: Label `fig:Queens_unsolved' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:Queens_unsolved' multiply defined.
+
+
+LaTeX Warning: Label `fig:Queens_solved' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:Queens_solved' multiply defined.
+
+)
 \openout1 = `pr_618221010.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -337,18 +359,18 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 89.
+(Font)              <7> on input line 90.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 89.
+(Font)              <5> on input line 90.
 <./Gambar/N_queens_wrong.png, id=1, 396.48125pt x 395.4775pt>
 File: ./Gambar/N_queens_wrong.png Graphic file (type png)
 <use ./Gambar/N_queens_wrong.png>
-Package pdftex.def Info: ./Gambar/N_queens_wrong.png  used on input line 95.
+Package pdftex.def Info: ./Gambar/N_queens_wrong.png  used on input line 96.
 (pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
 <./Gambar/N_queens_correct.png, id=3, 396.48125pt x 395.4775pt>
 File: ./Gambar/N_queens_correct.png Graphic file (type png)
 <use ./Gambar/N_queens_correct.png>
-Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 102.
+Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 103.
 
 (pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
 
@@ -360,75 +382,81 @@ Overfull \vbox (7.49817pt too high) has occurred while \output is active []
 [1{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
  <./Gambar/N_queens_wrong.png> <./Gambar/N_queens_correct.png>]
-<./Gambar/n+kSolution.jpg, id=21, 316.18124pt x 319.1925pt>
-File: ./Gambar/n+kSolution.jpg Graphic file (type jpg)
-<use ./Gambar/n+kSolution.jpg>
-Package pdftex.def Info: ./Gambar/n+kSolution.jpg  used on input line 114.
-(pdftex.def)             Requested size: 164.31754pt x 165.88364pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 116.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 116.
-<./Gambar/toroidalQueens.png, id=22, 426.59375pt x 425.59pt>
+<./Gambar/n+kSolution.png, id=21, 451.6875pt x 451.6875pt>
+File: ./Gambar/n+kSolution.png Graphic file (type png)
+<use ./Gambar/n+kSolution.png>
+Package pdftex.def Info: ./Gambar/n+kSolution.png  used on input line 115.
+(pdftex.def)             Requested size: 201.86887pt x 201.87216pt.
+<./Gambar/toroidalQueens.png, id=22, 451.6875pt x 451.6875pt>
 File: ./Gambar/toroidalQueens.png Graphic file (type png)
 <use ./Gambar/toroidalQueens.png>
 Package pdftex.def Info: ./Gambar/toroidalQueens.png  used on input line 122.
-(pdftex.def)             Requested size: 164.31754pt x 163.93382pt.
+(pdftex.def)             Requested size: 201.86887pt x 201.87216pt.
 <./Gambar/Queens_unsolved.png, id=23, 399.74344pt x 402.75468pt>
 File: ./Gambar/Queens_unsolved.png Graphic file (type png)
 <use ./Gambar/Queens_unsolved.png>
-Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 135.
+Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 134.
 (pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
 <./Gambar/Queens_solved.png, id=24, 399.74344pt x 402.75468pt>
 File: ./Gambar/Queens_solved.png Graphic file (type png)
 <use ./Gambar/Queens_solved.png>
-Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 142.
+Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 141.
 (pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 
 Overfull \vbox (6.4151pt too high) has occurred while \output is active []
 
 
-[2 <./Gambar/n+kSolution.jpg> <./Gambar/toroidalQueens.png>]
-<./Gambar/4queensCSP.png, id=31, 903.375pt x 451.6875pt>
+[2 <./Gambar/n+kSolution.png (PNG copy)> <./Gambar/toroidalQueens.png (PNG copy
+)>]
+<./Gambar/4queensCSP.png, id=29, 903.375pt x 451.6875pt>
 File: ./Gambar/4queensCSP.png Graphic file (type png)
 <use ./Gambar/4queensCSP.png>
-Package pdftex.def Info: ./Gambar/4queensCSP.png  used on input line 154.
+Package pdftex.def Info: ./Gambar/4queensCSP.png  used on input line 153.
 (pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 
 Overfull \vbox (7.49817pt too high) has occurred while \output is active []
 
 
-[3 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>]
-<./Gambar/beforeafterARC.png, id=38, 903.375pt x 451.6875pt>
+[3 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png> <./Gambar/4queen
+sCSP.png (PNG copy)>]
+<./Gambar/beforeafterARC.png, id=36, 903.375pt x 451.6875pt>
 File: ./Gambar/beforeafterARC.png Graphic file (type png)
 <use ./Gambar/beforeafterARC.png>
-Package pdftex.def Info: ./Gambar/beforeafterARC.png  used on input line 165.
+Package pdftex.def Info: ./Gambar/beforeafterARC.png  used on input line 164.
 (pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 
 Overfull \vbox (6.4151pt too high) has occurred while \output is active []
 
 
-[4 <./Gambar/4queensCSP.png (PNG copy)>]
-<./Gambar/visualizationofPSO.png, id=42, 903.375pt x 451.6875pt>
+[4 <./Gambar/beforeafterARC.png (PNG copy)>]
+<./Gambar/visualizationofPSO.png, id=40, 903.375pt x 451.6875pt>
 File: ./Gambar/visualizationofPSO.png Graphic file (type png)
 <use ./Gambar/visualizationofPSO.png>
 Package pdftex.def Info: ./Gambar/visualizationofPSO.png  used on input line 17
-4.
+3.
+(pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 175.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 175.
+
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[5 <./Gambar/visualizationofPSO.png (PNG copy)>]
+<./Gambar/queen_attack_pattern.png, id=47, 903.375pt x 451.6875pt>
+File: ./Gambar/queen_attack_pattern.png Graphic file (type png)
+<use ./Gambar/queen_attack_pattern.png>
+Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line 
+220.
 (pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -436,40 +464,43 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-Overfull \vbox (7.49817pt too high) has occurred while \output is active []
-
-
-[5 <./Gambar/beforeafterARC.png (PNG copy)>]
-
-
 Overfull \vbox (6.4151pt too high) has occurred while \output is active []
 
 
-[6 <./Gambar/visualizationofPSO.png (PNG copy)>]
-LaTeX Font Info:    Trying to load font information for T1+fvm on input line 23
-4.
+[6]
+File: ./Gambar/N_queens_wrong.png Graphic file (type png)
+<use ./Gambar/N_queens_wrong.png>
+Package pdftex.def Info: ./Gambar/N_queens_wrong.png  used on input line 229.
+(pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
 
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
-File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
-)
 
 
 Overfull \vbox (7.49817pt too high) has occurred while \output is active []
 
 
-[7]
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <5> not available
-(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 246.
+[7 <./Gambar/queen_attack_pattern.png (PNG copy)>]
+File: ./Gambar/n+kSolution.png Graphic file (type png)
+<use ./Gambar/n+kSolution.png>
+Package pdftex.def Info: ./Gambar/n+kSolution.png  used on input line 254.
+(pdftex.def)             Requested size: 281.68515pt x 281.69746pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 
 
 Overfull \vbox (6.4151pt too high) has occurred while \output is active []
 
 
-[8{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+[8]
+File: ./Gambar/toroidalQueens.png Graphic file (type png)
+<use ./Gambar/toroidalQueens.png>
+Package pdftex.def Info: ./Gambar/toroidalQueens.png  used on input line 266.
+(pdftex.def)             Requested size: 281.68515pt x 281.69746pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 
 Overfull \vbox (7.49817pt too high) has occurred while \output is active []
@@ -482,31 +513,79 @@ Overfull \vbox (6.4151pt too high) has occurred while \output is active []
 
 
 [10]
+File: ./Gambar/Queens_unsolved.png Graphic file (type png)
+<use ./Gambar/Queens_unsolved.png>
+Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 288.
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+File: ./Gambar/Queens_solved.png Graphic file (type png)
+<use ./Gambar/Queens_solved.png>
+Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 295.
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+
 
 
 Overfull \vbox (7.49817pt too high) has occurred while \output is active []
 
 
 [11]
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 31
+8.
+ (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <5> not available
+(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 330.
+
 
 
 Overfull \vbox (6.4151pt too high) has occurred while \output is active []
 
 
-[12] (pr_618221010.aux)
+[12{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[13]
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[14]
+
+
+Overfull \vbox (7.49817pt too high) has occurred while \output is active []
+
+
+[15]
+
+
+Overfull \vbox (6.4151pt too high) has occurred while \output is active []
+
+
+[16] (pr_618221010.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 10846 strings out of 468133
- 198759 string characters out of 5431196
- 2401437 words of memory out of 5000000
- 39346 multiletter control sequences out of 15000+600000
+ 10857 strings out of 468133
+ 199124 string characters out of 5431196
+ 2501116 words of memory out of 5000000
+ 39357 multiletter control sequences out of 15000+600000
  646129 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,8n,77p,1715b,1818s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,8n,77p,1696b,1821s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1
 000.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 ecrm0500.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
@@ -525,16 +604,17 @@ ser\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Us
 ers\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecoc1000.pk><C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
 0.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/bera/fvmb8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/b
-era/fvmr8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fv
-mro8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/latxfont/lcircle1.pfb>
-Output written on pr_618221010.pdf (12 pages, 506311 bytes).
+cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/
+fonts/type1/bera/fvmb8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/
+type1/bera/fvmr8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/
+bera/fvmro8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/latxfont/lcircle1.pfb>
+Output written on pr_618221010.pdf (16 pages, 662664 bytes).
 PDF statistics:
- 577 PDF objects out of 1000 (max. 8388607)
+ 599 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
