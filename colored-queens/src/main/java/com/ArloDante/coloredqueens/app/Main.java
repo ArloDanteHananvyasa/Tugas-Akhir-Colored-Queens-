@@ -10,10 +10,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int size = 11;
+        int size = 20;
         int level = 1;
 
-        int solverChoice = 2;
+        int solverChoice = 1;
 
         System.out.println("Loading board (size=" + size + ", level=" + level + ")...");
 
