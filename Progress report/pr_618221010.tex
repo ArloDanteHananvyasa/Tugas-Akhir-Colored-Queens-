@@ -16,6 +16,10 @@
 % \pagestyle{empty}
 \usepackage{subcaption}
 \usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amssymb}
 
 \lstset{numbers=left,stepnumber=1, numbersep=5pt, frame=single,frameround={tttt},
 	tabsize=4, breaklines=true, basicstyle=\fontfamily{fvm}\selectfont\tiny, 
@@ -25,6 +29,10 @@
 } 
 
 \usepackage[useregional=false]{datetime2}
+
+\DeclareCaptionLabelFormat{subfig}{\figurename~#1#2}
+\captionsetup[subfigure]{labelformat=subfig, labelsep=colon}
+\renewcommand\thesubfigure{\thefigure(\alph{subfigure})}
 
 \DTMsetdatestyle{ddmmyyyy}
 \DTMsetup{datesep=/}
@@ -87,138 +95,117 @@
 	}
 	
 	\section{Latar Belakang}
-	Masalah n-queens merupakan salah satu permasalahan klasik dalam ilmu komputer yang telah dipelajari secara ekstensif sejak abad ke-19. Dalam bentuk standarnya, masalah n-queens memerlukan penempatan $n$ buah bidak menteri pada papan catur berukuran $n \times n$ sedemikian rupa sehingga tidak ada menteri yang dapat menyerang satu sama lain secara horizontal, vertikal, maupun diagonal. Sebagai contoh, pada papan berukuran $8 \times 8$, terdapat 92 solusi valid yang memenuhi seluruh kendala tersebut. Masalah ini tidak hanya menarik dari segi teoretis, tetapi juga memiliki aplikasi praktis dalam berbagai bidang seperti penjadwalan, alokasi sumber daya, dan desain sirkuit terpadu, sehingga menjadikannya salah satu tolok ukur penting dalam penelitian algoritma pencarian dan pemodelan berbasis kendala.
+	Masalah n-queens merupakan salah satu permasalahan klasik dalam ilmu komputer yang telah dipelajari secara ekstensif sejak abad ke-19 \footnote{I.P. Gent, C. Jefferson, dan P. Nightingale, "Complexity of n-queens completion," \textit{Journal of Artificial Intelligence Research}, vol. 59, hal. 815--848, 2017.}. Dalam bentuk standarnya, masalah n-queens memerlukan penempatan $n$ buah bidak menteri pada papan catur berukuran $n \times n$ sedemikian rupa sehingga tidak ada menteri yang dapat menyerang satu sama lain secara horizontal, vertikal, maupun diagonal seperti pada gambar 1(a) dan 1(b). Sebagai contoh, pada papan berukuran $8 \times 8$, terdapat 92 solusi valid yang memenuhi seluruh kendala tersebut. Masalah ini tidak hanya menarik dari segi teoretis, tetapi juga memiliki aplikasi praktis dalam berbagai bidang seperti penjadwalan, alokasi sumber daya, dan desain sirkuit terpadu, sehingga menjadikannya salah satu tolok ukur penting dalam penelitian algoritma pencarian dan pemodelan berbasis kendala.
 	
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.35\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{N_queens_wrong.png}
-			\caption*{Gambar 1(a): Contoh solusi salah masalah N-Queens}
+			\caption{Contoh solusi salah masalah N-Queens}
 			\label{fig:NQ_wrong}
 		\end{subfigure}
 		\hspace{2cm}
 		\begin{subfigure}{0.35\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{N_queens_correct.png}
-			\caption*{Gambar 1(b): Contoh valid permasalahan N-Queens}
+			\caption{Contoh valid permasalahan N-Queens}
 			\label{fig:NQ_correct}
 		\end{subfigure}
+		\caption{Perbandingan solusi N-Queens}
+		\label{fig:NQ_comparison}
 	\end{figure}
 	
-	Seiring perkembangan penelitian, muncul berbagai variasi dari masalah n-queens tradisional yang menawarkan kompleksitas dan tantangan komputasional yang lebih tinggi. Salah satu variasi yang telah diteliti adalah \textit{N+k Queens Problem}, di mana $k$ buah bidak pion ditempatkan sebagai penghalang sehingga memungkinkan penempatan $N+k$ bidak menteri pada papan berukuran $N \times N$. Variasi lainnya adalah \textit{Toroidal N-Queens}, di mana papan catur dibentuk menjadi torus dengan menghubungkan sisi-sisi yang berlawanan, sehingga menteri dapat “melingkar” dari satu sisi ke sisi lainnya. Peningkatan kompleksitas pada variasi-variasi ini terlihat jelas; misalnya pada \textit{N+k Queens Problem} dengan $N=8$ dan $k=2$, jumlah kemungkinan konfigurasi yang harus dieksplorasi meningkat secara signifikan dibandingkan masalah standar karena adanya kendala tambahan berupa posisi pion yang tidak dapat dilanggar. Variasi-variasi ini menunjukkan bahwa menambahkan satu atau dua aturan baru saja dapat memperbesar ruang pencarian secara drastis dan mengubah struktur solusi problem secara fundamental.
+	Seiring perkembangan penelitian, muncul berbagai variasi dari masalah n-queens tradisional yang menawarkan kompleksitas dan tantangan komputasional yang lebih tinggi. Salah satu variasi yang telah diteliti adalah \textit{N+k Queens Problem}, di mana $k$ buah bidak pion ditempatkan sebagai penghalang sehingga memungkinkan penempatan $N+k$ bidak menteri pada papan berukuran $N \times N$ \footnote{R.D. Chatham, "Reflections on the N+k Queens Problem," \textit{The College Mathematics Journal}, vol. 40, no. 3, hal. 204--210, Mei 2009.}. Variasi lainnya adalah \textit{Toroidal N-Queens}, di mana papan catur dibentuk menjadi torus dengan menghubungkan sisi-sisi yang berlawanan, sehingga menteri dapat “melingkar” dari satu sisi ke sisi lainnya \footnote{A. García Sánchez, "The n-Queens Problem: An Activity Book," Undergraduate Research Support Scheme, Mathematics Institute, University of Warwick, 2024. Supervised by Dr. Candida Bowtell.} Peningkatan kompleksitas pada variasi-variasi ini terlihat jelas; misalnya pada \textit{N+k Queens Problem} dengan $N=8$ dan $k=2$, jumlah kemungkinan konfigurasi yang harus dieksplorasi meningkat secara signifikan dibandingkan masalah standar karena adanya kendala tambahan berupa posisi pion yang tidak dapat dilanggar. Variasi-variasi ini menunjukkan bahwa menambahkan satu atau dua aturan baru saja dapat memperbesar ruang pencarian secara drastis dan mengubah struktur solusi masalah.
 	
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.43\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{n+kSolution.png}
-			\caption*{Gambar 2(a): Contoh solusi salah masalah \textit{8+1 Queens}}
+			\caption{ Contoh solusi salah masalah \textit{8+1 Queens}}
+			\footnotesize Sumber: Penggambaran ulang dari \url{http://www.npluskqueens.info/background.html}
 		\label{fig:nkSolution}
 	\end{subfigure}
 		\hspace{2cm}
 		\begin{subfigure}{0.43\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{toroidalQueens.png}
-			\caption*{Gambar 2(b): Contoh penyerangan yang dapat terjadi pada masalah \textit{Toroidal Queens}}
+			\caption{ Contoh penyerangan yang dapat terjadi pada masalah \textit{Toroidal Queens}}
+			\footnotesize Sumber: Penggambaran ulang dari \url{https://www.johndcook.com/blog/2021/08/18/queens-on-a-donut/}
 			\label{fig:toroidalQueens}
 		\end{subfigure}
+		\caption{Beberapa varian dari permaslahan \textit{N-Queens}}
+		\label{fig:nqueenvariants}
 	\end{figure}
 
-<<<<<<< HEAD
-	Tugas akhir ini berfokus pada varian \textit{Colored Queens}, sebuah permasalahan yang hingga saat ini belum memiliki literatur akademis yang memadai dan belum diteliti secara formal dalam publikasi ilmiah. Berbeda dengan masalah n-queens tradisional, permainan \textit{Colored Queens} memiliki aturan yang lebih kompleks: papan permainan dibagi menjadi beberapa sektor berwarna, setiap sektor harus berisi tepat satu bidak menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung, baik horizontal, vertikal, maupun diagonal. Perbedaan fundamental lainnya adalah bahwa bidak menteri pada \cq hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak dapat ditempatkan pada satu garis diagonal yang sama. Kompleksitas komputasional varian ini lebih tinggi dibandingkan permasalahan n-queens tradisional karena terdapat tiga lapis kendala yang harus dipenuhi secara simultan: kendala partisi warna (setiap warna tepat satu menteri), kendala \textit{adjacency} (tidak boleh bersebelahan), dan kendala serangan (horizontal dan vertikal). Sebagai ilustrasi, pada papan berukuran $6 \times 6$ dengan 6 sektor warna, ruang pencarian solusi menjadi jauh lebih sempit dan bergantung pada struktur pembagian sektor, sehingga kompleksitasnya umumnya lebih tinggi dibandingkan 6-queens standar yang memiliki ruang solusi yang lebih teratur. Ketidakteraturan struktur sektor warna juga membuat heuristik dan simetri yang biasa dimanfaatkan pada n-queens standar tidak lagi berlaku, sehingga \cq merupakan permasalah yang jauh lebih sulit.
-=======
-	Tugas akhir ini berfokus pada varian \textit{Colored Queens}, sebuah permasalahan yang hingga saat ini belum memiliki literatur akademis yang memadai dan belum diteliti secara formal dalam publikasi ilmiah. Berbeda dengan masalah n-queens tradisional, permainan \textit{Colored Queens} memiliki aturan yang lebih kompleks: papan permainan dibagi menjadi beberapa sektor berwarna, setiap sektor harus berisi tepat satu bidak menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung, baik horizontal, vertikal, maupun diagonal. Perbedaan fundamental lainnya adalah bahwa bidak menteri pada \textit{Colored Queens} hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak dapat ditempatkan pada satu garis diagonal yang sama. Kompleksitas komputasional varian ini lebih tinggi dibandingkan permasalahan n-queens tradisional karena terdapat tiga lapis kendala yang harus dipenuhi secara simultan: kendala partisi warna (setiap warna tepat satu menteri), kendala \textit{adjacency} (tidak boleh bersebelahan), dan kendala serangan (horizontal dan vertikal). Sebagai ilustrasi, pada papan berukuran $6 \times 6$ dengan 6 sektor warna, ruang pencarian solusi menjadi jauh lebih sempit dan bergantung pada struktur pembagian sektor, sehingga kompleksitasnya umumnya lebih tinggi dibandingkan 6-queens standar yang memiliki ruang solusi yang lebih teratur. Ketidakteraturan struktur sektor warna juga membuat heuristik dan simetri yang biasa dimanfaatkan pada n-queens standar tidak lagi berlaku, sehingga \textit{Colored Queens} merupakan permasalah yang jauh lebih sulit.
->>>>>>> a696c30bcafc19aa2797e44d8e3eef73be704eaa
-	
+	Tugas akhir ini berfokus pada varian \textit{Colored Queens}, sebuah permasalahan yang hingga saat ini belum memiliki literatur akademis yang memadai dan belum diteliti secara formal dalam publikasi ilmiah. Berbeda dengan masalah n-queens tradisional, permainan \cq memiliki aturan yang lebih kompleks: papan permainan dibagi menjadi beberapa sektor berwarna, setiap sektor harus berisi tepat satu bidak menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung, baik horizontal, vertikal, maupun diagonal. Perbedaan fundamental lainnya adalah bahwa bidak menteri pada \cq hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak dapat ditempatkan pada satu garis diagonal yang sama. Kompleksitas komputasional varian ini lebih tinggi dibandingkan permasalahan n-queens tradisional karena terdapat tiga lapis kendala yang harus dipenuhi secara simultan: kendala partisi warna (setiap warna tepat satu menteri), kendala \textit{adjacency} (tidak boleh bersebelahan), dan kendala serangan (horizontal dan vertikal). Sebagai ilustrasi, pada papan berukuran $6 \times 6$ dengan 6 sektor warna, ruang pencarian solusi menjadi jauh lebih sempit dan bergantung pada struktur pembagian sektor, sehingga kompleksitasnya umumnya lebih tinggi dibandingkan 6-queens standar yang memiliki ruang solusi yang lebih teratur. Ketidakteraturan struktur sektor warna juga membuat heuristik dan simetri yang biasa dimanfaatkan pada n-queens standar tidak lagi berlaku, sehingga \cq merupakan permasalah yang jauh lebih sulit.
+
 	\begin{figure}
 		\centering
 		\begin{subfigure}{0.3\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{Queens_unsolved.png}
-			\caption*{Gambar 3(a) Contoh kondisi awal permainan Colored Queens}
+			\caption{Contoh kondisi awal permainan Colored Queens}
 			\label{fig:Queens_unsolved}
 		\end{subfigure}
 		\hspace{2cm}
 		\begin{subfigure}{0.3\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{Queens_solved.png}
-			\caption*{Gambar 3(b) Solusi valid permainan Colored Queens}
+			\caption{Solusi valid permainan Colored Queens}
 			\label{fig:Queens_solved}
 		\end{subfigure}
+		\caption{Contoh permainan \cq}
 	\end{figure}
 	
 	Masalah n-queens dan seluruh variasinya, termasuk \cq, tergolong ke dalam kategori \textit{Constraint Satisfaction Problem} (CSP). CSP adalah jenis permasalahan yang melibatkan pencarian solusi dengan memberikan nilai pada sejumlah variabel sedemikian rupa sehingga memenuhi seperangkat batasan atau kendala tertentu. Secara formal, sebuah CSP didefinisikan oleh tiga komponen: himpunan variabel $X = {X1, X2, ..., Xn}$, himpunan domain $D = {D1, D2, ..., Dn}$ yang berisi nilai-nilai yang mungkin untuk setiap variabel, dan himpunan kendala C yang membatasi kombinasi nilai yang dapat diberikan pada variabel-variabel tersebut. Dalam konteks \cq, variabel-variabelnya adalah posisi menteri untuk setiap sektor warna, domain untuk setiap variabel adalah sel-sel yang tersedia pada sektor tersebut, dan kendala-kendalanya mencakup aturan tidak bersebelahan serta tidak saling menyerang. CSP memiliki aplikasi luas dalam penjadwalan, perencanaan, konfigurasi produk, desain jaringan, serta berbagai sistem pengambilan keputusan berbasis kendala.
 	
-<<<<<<< HEAD
-	Penyelesaian permasalahan CSP, terutama yang memiliki ruang pencarian besar dan kompleks seperti \cq, dapat didekati melalui perspektif optimasi. Optimasi adalah proses pencarian solusi terbaik dari sekumpulan alternatif yang memungkinkan, biasanya dengan memaksimalkan atau meminimalkan suatu fungsi objektif tertentu. Dalam konteks CSP, fungsi objektif dapat berupa jumlah kendala yang dilanggar, sehingga solusi optimal adalah konfigurasi yang tidak melanggar kendala sama sekali (nilai objektif nol). Algoritma optimasi umumnya bekerja dengan menggabungkan strategi eksplorasi dan eksploitasi terhadap ruang solusi: eksplorasi memungkinkan algoritma menjelajahi area solusi baru, sedangkan eksploitasi berfokus pada penyempurnaan solusi yang sudah dianggap menjanjikan. Keseimbangan antara keduanya sangat penting, karena terlalu banyak eksploitasi berpotensi membuat algoritma terjebak pada solusi lokal, yaitu kondisi ketika algoritma menemukan konfigurasi yang tampak optimal di sekitar posisinya saat ini tetapi sebenarnya bukan solusi terbaik secara global. Perspektif optimasi menjadi relevan karena banyak permasalahan CSP tergolong \textit{NP-hard}, yaitu kelas masalah yang tidak diketahui memiliki algoritma yang dapat diselesaikan secara efisien dalam waktu polinomial. Waktu polinomial berarti waktu komputasi yang meningkat secara wajar terhadap ukuran input (misalnya $O(n^{2})$ atau $O(n^{3})$), sedangkan masalah NP-hard umumnya membutuhkan waktu eksponensial yang meningkat jauh lebih cepat sehingga tidak praktis untuk diselesaikan secara eksak pada ukuran besar, sehingga metode optimasi menjadi alternatif yang lebih realistis.
-	
-=======
->>>>>>> a696c30bcafc19aa2797e44d8e3eef73be704eaa
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.9\linewidth]{4queensCSP.png}
-		\caption*{Gambar 4: Contoh permasalahan \textit{4-Queens} yang dimodelkan sebagai CSP, dimana variabel X1 s.d. X4 adalah baris bidak menteri pada setiap kolomnya dengan nilai kemungkinan {1,2,3,4} dan kendala yang menghubungakn setiap variabel berupa aturan penyerangan bidak menteri pada permainan catur}
+		\caption{Contoh permasalahan \textit{4-Queens} yang dimodelkan sebagai CSP, dimana variabel X1 s.d. X4 adalah baris bidak menteri pada setiap kolomnya dengan nilai kemungkinan {1,2,3,4} dan kendala yang menghubungakn setiap variabel berupa aturan penyerangan bidak menteri pada permainan catur}
 		\label{fig:4queensCSP}
 	\end{figure}
 	
 	Untuk menyelesaikan permasalahan CSP seperti \cq, salah satu pendekatan klasik yang terbukti efektif adalah algoritma \textit{backtracking}. \textit{Backtracking} bekerja dengan membangun solusi secara bertahap melalui pencarian mendalam, di mana setiap variabel diberi nilai satu per satu sambil memeriksa konsistensi dengan kendala yang ada. Ketika algoritma menemui situasi di mana tidak ada nilai yang valid untuk variabel berikutnya (\textit{dead end}), algoritma akan mundur (\textit{backtrack}) ke langkah sebelumnya dan mencoba alternatif lain. Kekuatan \textit{backtracking} terletak pada sifatnya yang sistematis dan kemampuannya untuk menjamin bahwa solusi akan ditemukan jika memang ada. Namun, pada masalah dengan ruang pencarian yang berkembang secara eksponensial seperti \cq, \textit{backtracking} murni dapat menjadi sangat tidak efisien karena harus mengeksplorasi sejumlah besar kemungkinan konfigurasi sebelum menemukan solusi yang valid. Oleh karena itu, diperlukan modifikasi dan teknik tambahan untuk memangkas ruang pencarian agar algoritma tetap praktis digunakan pada instansi masalah \cq yang berukuran besar seperti papan $20 \times 20$ dan $30 \times 30$.
 	
-<<<<<<< HEAD
-	Untuk meningkatkan efisiensi algoritma backtracking, tugas akhir ini mengintegrasikan teknik \textit{Maintaining Arc Consistency} (MAC) yang mengimplementasikan algoritma \textit{Arc Consistency 3} (AC-3). AC-3 adalah teknik propagasi kendala yang berfungsi untuk menyempitkan ruang pencarian dengan mengeliminasi nilai-nilai dalam domain yang tidak mungkin menghasilkan solusi valid berdasarkan kendala antar variabel. Algoritma ini bekerja dengan memeriksa konsistensi antara pasangan variabel dan secara iteratif menghapus nilai-nilai yang tidak memiliki pasangan yang konsisten pada variabel lain. Dengan menjalankan AC-3 pada tahap preprocessing sebelum pencarian dimulai serta setiap kali backtracking membuat assignment baru, banyak konfigurasi yang tidak valid dapat dieliminasi lebih awal sebelum algoritma membuang waktu mengeksplorasinya. Pada problem seperti \cq yang memiliki ketergantungan antar variabel sangat kuat akibat kendala \textit{adjacency} dan partisi warna, propagasi kendala memberikan dampak reduksi ruang solusi yang signifikan sehingga dapat mengurangi jumlah langkah \textit{backtracking} yang diperlukan secara drastis dan memperpendek waktu yang dibutuhkan untuk mencari solusi yang valid.
-=======
-	Untuk meningkatkan efisiensi algoritma backtracking, tugas akhir ini mengintegrasikan teknik \textit{Maintaining Arc Consistency} (MAC) yang mengimplementasikan algoritma \textit{Arc Consistency 3} (AC-3). AC-3 adalah teknik propagasi kendala yang berfungsi untuk menyempitkan ruang pencarian dengan mengeliminasi nilai-nilai dalam domain yang tidak mungkin menghasilkan solusi valid berdasarkan kendala antar variabel. Algoritma ini bekerja dengan memeriksa konsistensi antara pasangan variabel dan secara iteratif menghapus nilai-nilai yang tidak memiliki pasangan yang konsisten pada variabel lain. Dengan menjalankan AC-3 pada tahap preprocessing sebelum pencarian dimulai serta setiap kali backtracking membuat assignment baru, banyak konfigurasi yang tidak valid dapat dieliminasi lebih awal sebelum algoritma membuang waktu mengeksplorasinya. Pada problem seperti \textit{Colored Queens} yang memiliki ketergantungan antar variabel sangat kuat akibat kendala \textit{adjacency} dan partisi warna, propagasi kendala memberikan dampak reduksi ruang solusi yang signifikan sehingga dapat mengurangi jumlah langkah \textit{backtracking} yang diperlukan secara drastis dan memperpendek waktu yang dibutuhkan untuk mencari solusi yang valid.
->>>>>>> a696c30bcafc19aa2797e44d8e3eef73be704eaa
+	Untuk meningkatkan efisiensi algoritma backtracking, tugas akhir ini mengintegrasikan teknik \textit{Maintaining Arc Consistency} (MAC) yang mengimplementasikan algoritma \textit{Arc Consistency 3} (AC-3). AC-3 adalah teknik propagasi kendala yang berfungsi untuk menyempitkan ruang pencarian dengan mengeliminasi nilai-nilai dalam domain yang tidak mungkin menghasilkan solusi valid berdasarkan kendala antar variabel. Algoritma ini bekerja dengan memeriksa konsistensi antara pasangan variabel dan secara iteratif menghapus nilai-nilai yang tidak memiliki pasangan yang konsisten pada variabel lain. Dengan menjalankan AC-3 pada tahap preprocessing sebelum pencarian dimulai serta setiap kali backtracking membuat assignment baru, banyak konfigurasi yang tidak valid dapat dieliminasi lebih awal sebelum algoritma membuang waktu mengeksplorasinya. Pada permasalahan seperti \cq yang memiliki ketergantungan antar variabel sangat kuat akibat kendala \textit{adjacency} dan partisi warna, propagasi kendala memberikan dampak reduksi ruang solusi yang signifikan sehingga dapat mengurangi jumlah langkah \textit{backtracking} yang diperlukan secara drastis dan memperpendek waktu yang dibutuhkan untuk mencari solusi yang valid.
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.9\linewidth]{beforeafterARC.png}
-		\caption*{Gambar 5: Contoh ruang solusi \textit{4-Queens} yang dimodelkan sebagai CSP, sebelum(kiri) dan sesudah(kanan) menjalankan AC-3 pada saat menaruh bidak menteri di posisi 1 di kolom X1}
+		\caption{Contoh ruang solusi \textit{4-Queens} yang dimodelkan sebagai CSP, sebelum(kiri) dan sesudah(kanan) menjalankan AC-3 pada saat menaruh bidak menteri di posisi 1 di kolom X1}
+		\footnotesize Sumber: Penggambaran ulang dari \url{https://courses.grainger.illinois.edu/cs440/fa2021/lectures/csp1.htm}
 		\label{fig:beforeafterARC}
 	\end{figure}
 	
-<<<<<<< HEAD
-	Sebagai alternatif dari pendekatan deterministik, tugas akhir ini juga mengeksplorasi penggunaan \textit{Particle Swarm Optimization} (PSO), sebuah algoritma metaheuristik yang terinspirasi dari perilaku kolektif kawanan burung atau ikan dalam mencari makanan. Metaheuristik adalah strategi pencarian tingkat tinggi yang memandu proses eksplorasi ruang solusi tanpa menjamin menemukan solusi optimal, namun seringkali dapat menemukan solusi yang cukup baik dalam waktu yang lebih singkat dibandingkan metode eksak seperti backtracking. PSO bekerja dengan mensimulasikan sekumpulan partikel yang bergerak dalam ruang solusi, di mana setiap partikel menyesuaikan posisinya berdasarkan pengalaman terbaiknya sendiri dan pengalaman terbaik kawanan. Kelebihan PSO terletak pada kemampuannya untuk melakukan eksplorasi ruang solusi secara paralel dan menghindari jebakan solusi lokal dalam beberapa kasus. Namun, karena PSO dirancang untuk ruang solusi kontinu, penerapannya pada \cq yang bersifat diskret memerlukan adaptasi khusus. Adaptasi tersebut mencakup representasi setiap partikel sebagai susunan posisi menteri untuk setiap sektor warna pada papan. Konsep velocity dalam PSO juga dimodifikasi menjadi bilangan desimal yang merepresentasikan probabilitas seberapa besar kemungkinan posisi menteri pada suatu sektor akan beralih mengikuti konfigurasi Neighbourhood Best, serta prosedur perbaikan (\textit{repair mechanisms}) untuk menangani solusi yang melanggar kendala hard constraint seperti aturan satu menteri per warna.. Adaptasi ini penting agar PSO tetap relevan dan dapat memberikan performa yang kompetitif pada problem bersifat kombinatorial.
-=======
-	Sebagai alternatif dari pendekatan deterministik, tugas akhir ini juga mengeksplorasi penggunaan \textit{Particle Swarm Optimization} (PSO), sebuah algoritma metaheuristik yang terinspirasi dari perilaku kolektif kawanan burung atau ikan dalam mencari makanan. Metaheuristik adalah strategi pencarian tingkat tinggi yang memandu proses eksplorasi ruang solusi tanpa menjamin menemukan solusi optimal, namun seringkali dapat menemukan solusi yang cukup baik dalam waktu yang lebih singkat dibandingkan metode eksak seperti backtracking. PSO bekerja dengan mensimulasikan sekumpulan partikel yang bergerak dalam ruang solusi, di mana setiap partikel menyesuaikan posisinya berdasarkan pengalaman terbaiknya sendiri dan pengalaman terbaik kawanan. Kelebihan PSO terletak pada kemampuannya untuk melakukan eksplorasi ruang solusi secara paralel dan menghindari jebakan solusi lokal dalam beberapa kasus. Namun, karena PSO dirancang untuk ruang solusi kontinu, penerapannya pada \textit{Colored Queens} yang bersifat diskret memerlukan adaptasi khusus. Adaptasi tersebut mencakup representasi setiap partikel sebagai susunan posisi menteri untuk setiap sektor warna pada papan. Konsep velocity dalam PSO juga dimodifikasi menjadi bilangan desimal yang merepresentasikan probabilitas seberapa besar kemungkinan posisi menteri pada suatu sektor akan beralih mengikuti konfigurasi Neighbourhood Best, serta prosedur perbaikan (\textit{repair mechanisms}) untuk menangani solusi yang melanggar kendala hard constraint seperti aturan satu menteri per warna.. Adaptasi ini penting agar PSO tetap relevan dan dapat memberikan performa yang kompetitif pada problem bersifat kombinatorial.
->>>>>>> a696c30bcafc19aa2797e44d8e3eef73be704eaa
+	Sebagai alternatif dari pendekatan deterministik, tugas akhir ini juga mengeksplorasi penggunaan \textit{Particle Swarm Optimization} (PSO), sebuah algoritma metaheuristik yang terinspirasi dari perilaku kolektif kawanan burung atau ikan dalam mencari makanan. Metaheuristik adalah strategi pencarian tingkat tinggi yang memandu proses eksplorasi ruang solusi tanpa menjamin menemukan solusi optimal, namun seringkali dapat menemukan solusi yang cukup baik dalam waktu yang lebih singkat dibandingkan metode eksak seperti backtracking. PSO bekerja dengan mensimulasikan sekumpulan partikel yang bergerak dalam ruang solusi, di mana setiap partikel menyesuaikan posisinya berdasarkan pengalaman terbaiknya sendiri dan pengalaman terbaik kawanan. Kelebihan PSO terletak pada kemampuannya untuk melakukan eksplorasi ruang solusi secara paralel dan menghindari jebakan solusi lokal dalam beberapa kasus \footnote{D. Wang, D. Tan, dan L. Liu, "Particle swarm optimization algorithm: an overview," \textit{Soft Computing}, vol. 22, no. 2, hal. 387--408, 2018.}. Namun, karena PSO dirancang untuk ruang solusi kontinu, penerapannya pada \cq yang bersifat diskret memerlukan adaptasi khusus. Adaptasi tersebut mencakup representasi setiap partikel sebagai susunan posisi menteri untuk setiap sektor warna pada papan. Konsep velocity dalam PSO juga dimodifikasi menjadi bilangan desimal yang merepresentasikan probabilitas seberapa besar kemungkinan posisi menteri pada suatu sektor akan beralih mengikuti konfigurasi Neighbourhood Best, serta prosedur perbaikan (\textit{repair mechanisms}) untuk menangani solusi yang melanggar kendala hard constraint seperti aturan satu menteri per warna. Adaptasi ini penting agar PSO tetap relevan dan dapat memberikan performa yang kompetitif pada masalah bersifat kombinatorial.
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.9\linewidth]{visualizationofPSO.png}
-		\caption*{Gambar 6: Contoh pergerakan partikel-partikle ke arah solusi optimal dengan setiap iterasi}
+		\caption{Contoh pergerakan partikel-partikle ke arah solusi optimal dengan setiap iterasi}
 		\footnotesize Sumber: Modifikasi dari  \url{https://www.researchgate.net/figure/sualization-of-the-PSO-Algorithm_fig3_334363118}
 		\label{fig:PSOvisualization}
 	\end{figure}
 	
-	
-<<<<<<< HEAD
 	Dari segi pengembangan perangkat lunak, tugas akhir ini tidak hanya berfokus pada aspek algoritmik, tetapi juga pada penyediaan antarmuka pengguna yang intuitif dan edukatif. Akan dikembangkan sebuah aplikasi berbasis web yang memungkinkan pengguna untuk berinteraksi langsung dengan permainan \cq, memilih tingkat kesulitan berdasarkan ukuran papan, serta memungkinkan pengguna untuk menyelesaikan \textit{puzzle} secara manual. Aplikasi ini akan dilengkapi sistem peringatan visual ketika pengguna menempatkan menteri pada posisi yang melanggar kendala, sehingga membantu pemahaman terhadap aturan permainan. Selain mode permainan manual, aplikasi juga akan menyediakan mode demonstrasi yang menampilkan proses pencarian solusi oleh algoritma backtracking dan PSO secara visual, lengkap dengan metrik performa seperti waktu eksekusi, jumlah iterasi, dan perbandingan efektivitas kedua metode. Pendekatan ini diharapkan dapat mengurangi kesenjangan antara teori algoritma dan aplikasi praktis, serta memberikan alat pembelajaran interaktif bagi pengguna yang tertarik mempelajari teknik penyelesaian CSP.
-=======
-	Dari segi pengembangan perangkat lunak, tugas akhir ini tidak hanya berfokus pada aspek algoritmik, tetapi juga pada penyediaan antarmuka pengguna yang intuitif dan edukatif. Akan dikembangkan sebuah aplikasi berbasis web yang memungkinkan pengguna untuk berinteraksi langsung dengan permainan \textit{Colored Queens}, memilih tingkat kesulitan berdasarkan ukuran papan, serta memungkinkan pengguna untuk menyelesaikan \textit{puzzle} secara manual. Aplikasi ini akan dilengkapi sistem peringatan visual ketika pengguna menempatkan menteri pada posisi yang melanggar kendala, sehingga membantu pemahaman terhadap aturan permainan. Selain mode permainan manual, aplikasi juga akan menyediakan mode demonstrasi yang menampilkan proses pencarian solusi oleh algoritma backtracking dan PSO secara visual, lengkap dengan metrik performa seperti waktu eksekusi, jumlah iterasi, dan perbandingan efektivitas kedua metode. Pendekatan ini diharapkan dapat mengurangi kesenjangan antara teori algoritma dan aplikasi praktis, serta memberikan alat pembelajaran interaktif bagi pengguna yang tertarik mempelajari teknik penyelesaian CSP.
->>>>>>> a696c30bcafc19aa2797e44d8e3eef73be704eaa
+
 	
 	\section{Rumusan Masalah}
-	
 	\begin{itemize}	
 		\item Bagaimana cara membangun perangkat lunak permainan \cq?
-		
 		\item Bagaimana membangun solusi permainan \cq menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization} (PSO)?
-		
 		\item Bagaimana membangun solver untuk permainan colored queen yang mengimplementasikan \textit{Backtracking} dan PSO yang dapat diintegrasikan dengan perangkat lunak yang dibangun?
-		
 		\item Bagiamana kinerja dari solver yang dibangun dalam mencari solusi permainan \cq?
 	\end{itemize}
 	
 	\section{Tujuan}
-	
 	\begin{itemize}	
 		\item Membangun perangkat lunak permainan \cq.
-		
 		\item Mempelajari cara membangun solusi permainan Colored Queen menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization}.
-		
 		\item Membangun solver untuk permainan colored queen yang mengimplementasikan \textit{Backtracking} dan PSO yang dapat diintegrasikan dengan perangkat lunak yang dibangun.
-		
 		\item Melakukan pegujian untuk mengukur kinerja dari solver yang dibangun dalam mencari solusi permainan \cq
 	\end{itemize}
 	
@@ -226,19 +213,19 @@
 	Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan terkahir :
 	\begin{enumerate}
 		\item \textbf{Melakukan studi literatur terkait permasalahan n-queens dan variannya, Constraint Satisfaction Problem (CSP), algoritma pencarian Backtracking, teknik metaheuristik Particle Swarm Optimization, serta metode propagasi kendala AC-3).}\\
+		\label{dasarteori}
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
 		{\bf Hasil :}
 		
 		\begin{enumerate}
-<<<<<<< HEAD
 			\item \textbf{Permasalahan N-Queens}
 			
-			Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu komputer dan matematika diskrit, dengan sejarah panjang sejak pertama kali diperkenalkan oleh Max Bezzel pada tahun 1848. Pada formulasi dasar permasalahan ini, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Sebagaimana dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut.
+			Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu komputer dan matematika diskrit, dengan sejarah panjang sejak pertama kali diperkenalkan oleh Max Bezzel pada tahun 1848. Pada formulasi dasar permasalahan ini, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Sebagaimana dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut seperti yang tertera pada gambar\textsuperscript{\ref{fig:queenattackpattern}}.
 			
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.9\linewidth]{queen_attack_pattern.png}
-				\caption*{Gambar 7: Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidah menteri.}
+				\caption{Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidah menteri.}
 				\label{fig:queenattackpattern}
 			\end{figure}
 			
@@ -248,15 +235,14 @@
 				\centering
 				\includegraphics[width=0.35\linewidth]{N_queens_wrong.png}
 				\caption*{Gambar 8: Contoh solusi salah masalah N-Queens pada papan berukuran $8 \times 8$ (8-Queens)}
-				\label{fig:queenattackpattern}
+				\label{fig:nqueenswrong}
 			\end{figure}
 			
 			Kajian literatur menunjukkan bahwa meskipun permasalahan N-Queens tidak termasuk ke dalam kategori NP-complete, struktur batasannya memiliki karakteristik serupa dengan berbagai masalah optimasi dan pencarian lain yang lebih kompleks. Hal ini menyebabkan N-Queens banyak digunakan sebagai kasus uji dalam pengembangan algoritma pencarian, optimasi, kecerdasan buatan, serta dalam kajian teori graf dan teori komputasi. Penelitian-penelitian awal menggunakan metode konstruktif dan teknik komputasional berbasis enumerasi, sementara publikasi yang lebih modern banyak mengeksplorasi formulasi matematis dan teknik heuristik untuk mempercepat pencarian solusi.
 			
 			Secara struktural, permasalahan N-Queens memiliki tiga komponen kendala utama yang harus dipenuhi secara simultan. Pertama, kendala kolom yang memastikan tidak ada dua menteri pada kolom yang sama. Kedua, kendala diagonal positif yang mencegah konflik pada diagonal dengan gradien positif. Ketiga, kendala diagonal negatif yang mencegah konflik pada diagonal dengan gradien negatif. Ketiga kendala ini membentuk sistem pembatasan yang saling berinteraksi, dan pelanggaran terhadap salah satu kendala mengakibatkan konfigurasi menjadi tidak valid. Interaksi kompleks antar kendala inilah yang membuat permasalahan ini dapat dimodelkan menggunakan kerangka kerja formal tertentu, yang akan dibahas lebih lanjut pada bagian berikutnya.
 			
-			Studi literatur juga menekankan bahwa meskipun solusi untuk N-Queens selalu ada untuk sebagian besar nilai $n$ (terutama untuk $n \geq 4$), struktur solusinya sangat beragam dan sering kali memiliki pola-pola tertentu yang dapat dimanfaatkan oleh algoritma. Misalnya, beberapa penelitian menghasilkan konstruksi langsung untuk ukuran $n$ tertentu yang menghasilkan solusi tanpa perlu eksplorasi ruang pencarian secara menyeluruh. Namun, pendekatan konstruktif semacam ini tidak berlaku secara umum untuk seluruh varian N-Queens, sehingga algoritma pencarian tetap menjadi pendekatan yang paling banyak digunakan. Selain itu, jumlah solusi unik untuk N-Queens tumbuh secara dramatis seiring bertambahnya nn
-			n, dengan pola pertumbuhan yang telah menjadi objek kajian dalam teori kombinatorik.
+			Studi literatur juga menekankan bahwa meskipun solusi untuk N-Queens selalu ada untuk sebagian besar nilai $n$ (terutama untuk $n \geq 4$), struktur solusinya sangat beragam dan sering kali memiliki pola-pola tertentu yang dapat dimanfaatkan oleh algoritma. Misalnya, beberapa penelitian menghasilkan konstruksi langsung untuk ukuran $n$ tertentu yang menghasilkan solusi tanpa perlu eksplorasi ruang pencarian secara menyeluruh. Namun, pendekatan konstruktif semacam ini tidak berlaku secara umum untuk seluruh varian N-Queens, sehingga algoritma pencarian tetap menjadi pendekatan yang paling banyak digunakan. Selain itu, jumlah solusi unik untuk N-Queens tumbuh secara dramatis seiring bertambahnya $n$, dengan pola pertumbuhan yang telah menjadi objek kajian dalam teori kombinatorik.
 			
 			Secara keseluruhan, pemahaman mendalam mengenai sifat dasar N-Queens, karakteristik ruang pencariannya, struktur kendala yang mendasarinya, serta berbagai teknik algoritmik yang digunakan untuk menyelesaikannya memberikan landasan konseptual kuat sebelum mempelajari varian-varian yang lebih kompleks, termasuk Colored Queens yang menjadi fokus tugas akhir ini.
 			
@@ -264,7 +250,7 @@
 			
 			Berbagai penelitian telah mengembangkan sejumlah varian dari permasalahan N-Queens untuk mengeksplorasi karakteristik baru dalam struktur constraint, ruang solusi, maupun strategi penyelesaian. Varian-varian ini umumnya memodifikasi jumlah bidak, aturan serangan, atau bahkan topologi papan sehingga menghasilkan dinamika pencarian yang berbeda secara signifikan dari permasalahan N-Queens klasik. Pada bagian ini dibahas tiga varian yang relevan: \textit{N+k Queens}, \textit{Toroidal Queens}, dan \textit{Colored Queens}. Dua varian pertama merupakan topik yang telah diteliti secara formal dalam literatur akademik, sedangkan varian terakhir merupakan permasalahan non-standar yang tidak ditemukan dalam publikasi ilmiah dan menjadi fokus utama tugas akhir ini.
 			
-			\textbf{1. Variansi \textit{N + k Queens}} \\
+			\textbf{1. Variasi \textit{N + k Queens}} \\
 			Varian N+k Queens memodifikasi jumlah bidak menteri yang harus ditempatkan pada papan berukuran $n \times n$. Jika pada N-Queens standar terdapat tepat $n$ menteri, pada varian ini jumlah menteri menjadi $n + k$, di mana $k$ dapat bernilai positif maupun negatif. Untuk $k > 0$, algoritma harus menemukan konfigurasi dengan lebih dari $n$ menteri tanpa konflik horizontal, vertikal, maupun diagonal. Sebaliknya, ketika $k < 0$, tidak semua baris perlu diisi sehingga proses pencarian mencakup pemilihan subset baris yang digunakan.
 			
 			Struktur constraint pada N+k Queens lebih kompleks karena hubungan antara jumlah variabel dan domainnya tidak lagi linear seperti pada N-Queens standar. Penambahan jumlah menteri secara langsung meningkatkan densitas konflik, sehingga ruang pencarian menjadi lebih padat dan heuristik penyempitan domain menjadi jauh lebih penting. Varian ini sering digunakan untuk menguji ketahanan algoritma metaheuristik dan adaptasi CSP, sebab perubahan $k$ dapat menghasilkan tipe solusi yang berbeda, termasuk konfigurasi yang tidak mungkin muncul pada permasalahan dasar.
@@ -272,24 +258,28 @@
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.6\linewidth]{n+kSolution.png}
-				\caption*{Gambar 9: Contoh solusi dari \textit{8+1 Queens} dimana terdapat 1 bidak pion pada posisi D5 mencegah penyerangan antara bidak menteri D4 dengan D6 dan B5 dengan G5.}
-				\label{fig:4queensCSP}
+				\caption{Contoh solusi dari \textit{8+1 Queens} dimana terdapat 1 bidak pion pada posisi D5 mencegah penyerangan antara bidak menteri D4 dengan D6 dan B5 dengan G5.}
+				\footnotesize Sumber: Penggambaran ulang dari \url{http://www.npluskqueens.info/background.html}
+				\label{fig:solusi8+1Queens}
 			\end{figure}
 			
-			\textbf{2. Variansi \textit{Toroidal Queens}} \\
+			\textbf{2. Variasi \textit{Toroidal Queens}} \\
 			Varian toroidal mengubah struktur papan menjadi sebuah torus, di mana sisi kiri dan kanan papan terhubung, demikian pula sisi atas dan bawah. Perubahan topologi ini mengubah definisi serangan menteri karena pergerakannya bersifat \textit{wrap-around}: sebuah garis serangan tidak berhenti pada tepi papan tetapi terus berlanjut dari sisi berlawanan. Dengan demikian, konflik horizontal, vertikal, dan diagonal harus diperiksa dengan mempertimbangkan operasi modulo terhadap ukuran papan.
 			
-			Penelitian teoretis menunjukkan bahwa tidak semua ukuran papan memiliki solusi pada varian toroidal. Hasil klasik menyatakan bahwa permasalahan Toroidal Queens hanya memiliki solusi jika dan hanya jika $\gcd(n, 6) = 1$. Hal ini berbeda jauh dari N-Queens standar yang memiliki solusi untuk semua $n \geq 4$. Dari perspektif CSP, varian toroidal menghasilkan grafik constraint yang lebih padat karena hubungan antar variabel bersifat siklik, sehingga banyak teknik heuristik tradisional harus disesuaikan agar mempertimbangkan topologi torus. Studi-varian ini memberikan wawasan mendalam mengenai bagaimana perubahan struktural pada ruang masalah dapat memengaruhi pola solusi dan kompleksitas komputasional.
+			Untuk memahami kompleksitas varian toroidal secara bertahap, dapat dipertimbangkan konsep \textit{semi-queen}, yaitu bidak imajiner yang dapat bergerak sepanjang baris, kolom, dan diagonal jumlah, tetapi tidak pada diagonal selisih. Analisis terhadap toroidal semi-queens menunjukkan bahwa solusi hanya ada ketika $n$ ganjil. Kondisi ini diturunkan dari fakta bahwa jumlah $\sum_{i=0}^{n-1} i \equiv 0 \pmod{n}$ hanya terpenuhi ketika $\frac{n(n-1)}{2}$ merupakan bilangan bulat kelipatan $n$, yang mengimplikasikan bahwa $n$ harus ganjil\footnote{A. García Sánchez, "The n-Queens Problem: An Activity Book," Undergraduate Research Support Scheme, Mathematics Institute, University of Warwick, 2024. Supervised by Dr. Candida Bowtell.}. 
+			
+			Penelitian teoretis menunjukkan bahwa tidak semua ukuran papan memiliki solusi pada varian toroidal penuh. Hasil klasik menyatakan bahwa permasalahan Toroidal Queens hanya memiliki solusi jika dan hanya jika $\gcd(n, 6) = 1$. Kondisi ini menggabungkan dua syarat: pertama, $n$ harus ganjil (diwarisi dari analisis semi-queens), dan kedua, $n$ tidak boleh habis dibagi 3 (berasal dari pembatasan tambahan akibat pergerakan pada diagonal selisih). Hal ini berbeda jauh dari N-Queens standar yang memiliki solusi untuk semua $n \geq 4$. Dari perspektif CSP, varian toroidal menghasilkan grafik constraint yang lebih padat karena hubungan antar variabel bersifat siklik, sehingga banyak teknik heuristik tradisional harus disesuaikan agar mempertimbangkan topologi torus. Studi varian ini memberikan wawasan mendalam mengenai bagaimana perubahan struktural pada ruang masalah dapat memengaruhi pola solusi dan kompleksitas komputasional.
 			
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.6\linewidth]{toroidalQueens.png}
-				\caption*{Gambar 10: Ilustrasi serangan menteri pada papan toroidal. Garis merah menunjukkan serangan yang melewati batas papan dan berlanjut dari sisi berlawanan (wrap-around). Menteri yang dilingkari merah menyerang menteri lain melalui koneksi toroidal.}
+				\caption{Ilustrasi serangan menteri pada papan toroidal. Garis merah menunjukkan serangan yang melewati batas papan dan berlanjut dari sisi berlawanan (\textit{wrap-around}). Menteri yang dilingkari merah menyerang menteri lain melalui koneksi toroidal.}
+				\footnotesize Sumber: Penggambaran ulang dari \url{https://www.johndcook.com/blog/2021/08/18/queens-on-a-donut/}
 				\label{fig:4queensCSP}
 			\end{figure}
 			
-			\textbf{3. Variansi \textit{Colored Queens}} \\
-			Berbeda dengan dua varian sebelumnya, \textit{Colored Queens} merupakan varian non-standar yang tidak ditemukan dalam literatur akademik formal. Hingga saat penulisan laporan ini, tidak terdapat publikasi ilmiah—baik jurnal maupun prosiding—yang membahas permasalahan Colored Queens secara eksplisit. Permasalahan ini muncul dalam konteks permainan logika komersial berbasis teka-teki, bukan dalam riset teoretis N-Queens. Oleh karena itu, struktur formal, representasi CSP, serta analisis algoritmik untuk varian ini harus dikonstruksi sendiri sebagai bagian dari penelitian.
+			\textbf{3. Variasi \textit{Colored Queens}} \\
+			Berbeda dengan dua varian sebelumnya, \cq merupakan varian non-standar yang tidak ditemukan dalam literatur akademik formal. Hingga saat penulisan laporan ini, tidak terdapat publikasi ilmiah—baik jurnal maupun prosiding—yang membahas permasalahan Colored Queens secara eksplisit. Permasalahan ini muncul dalam konteks permainan logika komersial berbasis teka-teki, bukan dalam riset teoretis N-Queens. Oleh karena itu, struktur formal, representasi CSP, serta analisis algoritmik untuk varian ini harus dikonstruksi sendiri sebagai bagian dari penelitian.
 			
 			Pada varian Colored Queens, papan permainan dibagi ke dalam sejumlah kawasan atau sektor yang masing-masing diberi warna berbeda. Setiap sektor harus berisi tepat satu menteri, sehingga constraint warna menjadi komponen tambahan selain constraint klasik (baris, kolom, dan—pada Colored Queens—hanya sebagian aspek diagonal). Salah satu perbedaan paling signifikan dari N-Queens tradisional adalah bahwa pada Colored Queens, menteri tidak menyerang secara diagonal, melainkan hanya secara horizontal dan vertikal. Akibatnya, lebih dari satu menteri dapat berada dalam satu diagonal tanpa menyebabkan konflik, berbeda dengan aturan standar catur. Namun, varian ini menambahkan aturan baru berupa larangan menempatkan dua menteri pada sel yang saling bersebelahan baik secara horizontal, vertikal, maupun diagonal. Hal ini menjadikan struktur constraint unik: sebagian diagonal diabaikan (untuk serangan), tetapi sebagian diagonal diperhitungkan (untuk adjacency constraint).
 			
@@ -306,83 +296,225 @@
 				\begin{subfigure}{0.35\textwidth}
 					\centering
 					\includegraphics[width=\linewidth]{Queens_unsolved.png}
-					\caption*{Gambar 11(a) Contoh kondisi awal permainan Colored Queens}
+					\caption{Contoh kondisi awal permainan Colored Queens}
 					\label{fig:Queens_unsolved}
 				\end{subfigure}
 				\hspace{2cm}
 				\begin{subfigure}{0.35\textwidth}
 					\centering
 					\includegraphics[width=\linewidth]{Queens_solved.png}
-					\caption*{Gambar 11(b) Solusi valid permainan Colored Queens}
+					\caption{Solusi valid permainan Colored Queens}
 					\label{fig:Queens_solved}
 				\end{subfigure}
+				\caption{Contoh permainan Colored Queens}
+				\label{fig:permainanCQ}
 			\end{figure}
 			
-			\item \textbf{\textit{Constraint Satisfaction Problems} (CSP)}
-			\item \textbf{Algoritma \textit{Backtracking}}
-			\item \textbf{\textit{Maintaining Arc Consistency} dengan algoritma \textit{Arc Consistency 3} (AC-3)}
-			\item \textbf{Algoritma \textit{Particle Swarm Optimization} (PSO)}
-=======
-			\item \textbf{Permasalahan N-Queens}\\
-			Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu komputer dan matematika diskrit, dengan sejarah panjang sejak pertama kali diperkenalkan oleh Max Bezzel pada tahun 1848. Pada bentuk dasar permasalahan ini, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Seperti dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut.
-			
-			Dari segi komputasi, permasalahan ini menarik karena memiliki struktur yang sederhana namun ruang solusinya sangat besar dan tumbuh secara eksponensial. Jika setiap baris diasosiasikan dengan satu menteri, maka setiap menteri memiliki $n$ kemungkinan kolom, menghasilkan ruang solusi awal sebesar $n^n$. Ketika nilai $n$ meningkat, ruang solusi menjadi sangat luas sehingga pencarian solusi tanpa teknik penyempitan ruang menjadi tidak realistis. Sebagai contoh, untuk $n = 20$ saja terdapat $20^{20}$ kemungkinan konfigurasi awal, jumlah yang jauh melampaui kemampuan komputasi brute-force konvensional.
-			
-			Kajian literatur menunjukkan bahwa meskipun permasalahan N-Queens tidak termasuk ke dalam kategori NP-complete, struktur batasannya memiliki karakteristik serupa dengan berbagai masalah optimasi dan pencarian lain yang lebih kompleks. Hal ini menyebabkan N-Queens banyak digunakan sebagai kasus uji dalam pengembangan algoritma pencarian, optimasi, kecerdasan buatan, serta dalam kajian teori graf dan teori komputasi. Penelitian-penelitian awal menggunakan metode konstruktif dan teknik komputasional berbasis enumerasi, sementara publikasi yang lebih modern banyak mengeksplorasi formulasi matematis dan teknik heuristik untuk mempercepat pencarian solusi.
-			
-			Secara konseptual, permasalahan ini dapat direpresentasikan sebagai \textit{Constraint Satisfaction Problem} (CSP), yang terdiri dari tiga komponen utama: variabel, domain, dan constraint. Setiap variabel mewakili baris pada papan, dengan domain berupa pilihan kolom tempat menteri dapat ditempatkan. Constraint pada N-Queens memastikan bahwa tidak ada dua variabel yang bernilai sama (menghindari konflik kolom), serta memastikan bahwa perbedaan nilai antar variabel tidak sama dengan selisih indeks barisnya (menghindari konflik diagonal). Formulasi CSP ini memberikan sejumlah keuntungan, terutama karena memungkinkan algoritma pencarian untuk memanfaatkan teknik penyempitan domain seperti \textit{forward checking} atau propagasi kendala seperti AC-3.
-			
-			Studi literatur juga menekankan bahwa meskipun solusi untuk N-Queens selalu ada untuk sebagian besar nilai $n$ (terutama untuk $n \geq 4$), struktur solusinya sangat beragam dan sering kali memiliki pola-pola tertentu yang dapat dimanfaatkan oleh algoritma. Misalnya, beberapa penelitian menghasilkan konstruksi langsung untuk ukuran $n$ tertentu yang menghasilkan solusi tanpa perlu eksplorasi ruang pencarian secara menyeluruh. Namun, pendekatan konstruktif semacam ini tidak berlaku secara umum untuk seluruh varian N-Queens, sehingga algoritma pencarian tetap menjadi pendekatan yang paling banyak digunakan.
-			
-			
-			\item \textbf{Berbagai Varian N-Queens}\\
-			Studi literatur menunjukkan bahwa permasalahan N-Queens memiliki banyak varian yang dikembangkan untuk mengeksplorasi sifat-sifat baru dari struktur constraint maupun untuk menguji kemampuan algoritma pencarian dalam kondisi yang lebih menantang. Dua varian yang cukup menonjol dalam penelitian teoretis adalah \textit{N+k Queens} dan \textit{Toroidal Queens}. Keduanya memodifikasi aturan dasar masalah sehingga menghasilkan ruang pencarian yang berbeda secara signifikan dari N-Queens klasik.
-			
-			\textbf{1. Variansi \textit{N + k Queens}} \\
-			Pada varian N+k Queens, jumlah bidak yang harus ditempatkan tidak lagi sama dengan ukuran papan. Jika pada permasalahan standar setiap baris harus diisi tepat satu menteri, pada varian ini digunakan papan berukuran $n \times n$ namun dengan total bidak sebanyak $n + k$, di mana $k$ dapat bernilai positif atau negatif. Ketika $k > 0$, tujuan dari masalah menjadi mencari konfigurasi di mana lebih dari $n$ menteri ditempatkan tanpa adanya konflik horizontal, vertikal, maupun diagonal. Sebaliknya, ketika $k < 0$, jumlah menteri lebih sedikit dari ukuran papan, dan fokusnya beralih dari penempatan wajib per baris menjadi pemilihan subset baris mana saja yang akan diisi.
-			
-			Variasi ini tidak hanya memperluas ruang solusi tetapi juga mengubah struktur constraint. Pada N-Queens klasik, setiap baris memiliki tepat satu variabel, namun pada N+k Queens jumlah variabel dan struktur domainnya menjadi lebih fleksibel. Permasalahan ini lebih mirip \textit{extended CSP}, di mana pemilihan variabel aktif menjadi bagian dari proses pencarian. Literatur menunjukkan bahwa varian N+k Queens menarik karena beberapa nilai $k$ memungkinkan konfigurasi solusi yang tidak mungkin terjadi pada N-Queens standar. Misalnya, untuk $k$ tertentu, solusi yang memanfaatkan simetri papan atau pola diagonal alternatif dapat muncul, sehingga analisis struktur solusinya jauh lebih beragam. Permasalahan ini sering digunakan untuk menguji performa algoritma heuristik atau metaheuristik, sebab pertambahan jumlah menteri memperbesar dan memadatkan ruang konflik, meningkatkan kebutuhan strategi penyempitan domain yang efektif.
-			
-			\textbf{2. Variansi \textit{Toroidal Queens}} \\
-			Varian toroidal merupakan modifikasi signifikan dari permasalahan N-Queens yang mengubah topologi papan dari bidang datar menjadi permukaan torus. Dalam papan toroidal, tepi kanan terhubung dengan tepi kiri, dan tepi atas terhubung dengan tepi bawah, sehingga gerakan menteri bersifat \textit{wrap-around}. Ini berarti bahwa serangan diagonal, vertikal, dan horizontal tidak berhenti pada batas papan, melainkan berlanjut melewati tepi dan kembali dari sisi yang berlawanan.
-			
-			Perubahan topologi ini memodifikasi definisi konflik secara drastis. Sebagai contoh, dua menteri yang ditempatkan pada kolom ujung kiri dan kolom ujung kanan dengan baris yang sama akan tetap saling menyerang secara horizontal karena papan membentuk lingkaran pada orientasi tersebut. Demikian pula, serangan diagonal tidak hanya mempertimbangkan selisih baris dan kolom, tetapi juga efek pembungkusan yang terjadi pada kedua sumbu. Studi klasik (misalnya oleh Pólya) menunjukkan bahwa solusi pada papan toroidal sangat dibatasi untuk ukuran tertentu. Salah satu hasil paling terkenal adalah bahwa permasalahan toroidal N-Queens hanya memiliki solusi jika dan hanya jika $n$ tidak memiliki faktor pembagi $2$ atau $3$. Dengan kata lain, solusi hanya ada jika $n$ relatif prima terhadap $6$ (i.e., $\gcd(n, 6) = 1$). 
-			
-			Keterbatasan teoretis ini membuat varian toroidal jauh lebih ketat dibandingkan N-Queens klasik yang memiliki solusi untuk semua $n \geq 4$. Dalam konteks CSP, perubahan topologi ini mengubah bentuk constraint diagonal dan menghadirkan pola konflik yang bersifat siklik, yang sering kali menghasilkan grafik constraint yang jauh lebih padat. Untuk algoritma pencarian, toroidal queens memberikan tantangan unik karena banyak heuristik standar (misalnya pembatasan serangan diagonal berbasis selisih baris dan kolom) perlu disesuaikan agar mempertimbangkan pembungkusan tepi. Varian ini menjadi studi penting dalam bidang teori graf, teori grup, dan pengembangan algoritma karena struktur konflik yang lebih kaya dibandingkan permasalahan N-Queens tradisional.
-			
-			Secara keseluruhan, kedua varian ini memberikan wawasan penting mengenai bagaimana perubahan jumlah variabel dan perubahan topologi papan dapat mengubah sifat dasar constraint, ruang solusi, dan strategi algoritmik yang diperlukan untuk menyelesaikan masalah. Pemahaman terhadap varian-varian ini memperkaya perspektif terhadap fleksibilitas formulasi N-Queens dan menunjukkan bagaimana permasalahan tersebut dapat berkembang menjadi bentuk-bentuk yang lebih kompleks, yang pada akhirnya membantu dalam mempelajari varian lain seperti Colored Queens.
-			
-			
 			\item \textbf{\textit{Constraint Satisfaction Problems} (CSP)}\\
-			\item \textbf{Algoritma \textit{Backtracking}}\\
-			\item \textbf{\textit{Maintaining Arc Consistency} dengan algoritma \textit{Arc Consistency 3} (AC-3)}\\
-			\item \textbf{Algoritma \textit{Particle Swarm Optimization} (PSO)}\\
->>>>>>> a696c30bcafc19aa2797e44d8e3eef73be704eaa
+			\textit{Constraint Satisfaction Problem} (CSP) adalah kerangka kerja umum untuk merepresentasikan dan menyelesaikan berbagai permasalahan kombinatorial. Secara formal, CSP terdiri dari tiga komponen utama: (1) sekumpulan variabel $X = \{x_1, \ldots, x_n\}$, (2) untuk setiap variabel $x_i$, sebuah himpunan domain $D_i$ yang berisi nilai-nilai yang mungkin dapat diberikan kepada variabel tersebut, dan (3) sekumpulan \textit{constraint} atau batasan yang membatasi kombinasi nilai yang dapat diberikan kepada variabel-variabel secara bersamaan\footnote{S.C. Brailsford, C.N. Potts, dan B.M. Smith, "Constraint satisfaction problems: Algorithms and applications," \textit{European Journal of Operational Research}, vol. 119, no. 3, hal. 557-581, 1999.}. Solusi dari CSP adalah pemberian nilai kepada setiap variabel dari domain masing-masing sedemikian rupa sehingga semua batasan terpenuhi.
+			
+			Dalam konteks N-Queens, CSP memberikan representasi yang natural: variabel dapat merepresentasikan baris papan catur dengan domain berupa kolom tempat menteri dapat ditempatkan, sedangkan batasan menyatakan bahwa tidak ada dua menteri yang dapat saling menyerang. Keunggulan pendekatan CSP terletak pada fleksibilitasnya dalam menangani berbagai jenis batasan, tidak terbatas pada batasan linear seperti dalam \textit{integer programming}. Algoritma penyelesaian CSP umumnya menggunakan pencarian pohon yang dikombinasikan dengan teknik \textit{backtracking} dan \textit{consistency checking}, di mana pemberian nilai pada satu variabel dapat memicu propagasi batasan yang mengurangi domain variabel-variabel lainnya, sehingga mempercepat pencarian solusi.
+			
+			\item \textbf{Algoritma \textit{Backtracking}} \\
+			Algoritma backtracking merupakan salah satu dari tiga teknik algoritma utama untuk menyelesaikan CSP, bersama dengan \textit{local search} dan \textit{dynamic programming}\footnote{P. van Beek, ``Backtracking Search Algorithms,'' dalam \textit{Handbook of Constraint Programming}, F. Rossi, P. van Beek, dan T. Walsh, Ed., Elsevier, 2006, hal. 85--133.}. Algoritma backtracking tergolong sebagai algoritma \textit{complete} atau sistematis, yang berarti algoritma ini dijamin menemukan solusi jika solusi tersebut ada, dan dapat membuktikan bahwa suatu CSP tidak memiliki solusi. Berbeda dengan dynamic programming yang memerlukan waktu dan ruang eksponensial serta menemukan semua solusi sekaligus, algoritma backtracking bekerja pada satu solusi dalam satu waktu sehingga hanya memerlukan ruang polinomial. Prinsip dasar backtracking adalah melakukan penelusuran depth-first pada pohon pencarian, di mana pohon pencarian dihasilkan secara bertahap selama pencarian berlangsung dan merepresentasikan pilihan-pilihan alternatif yang mungkin perlu diperiksa untuk menemukan solusi.
+			
+			
+			\subsection*{Cara Kerja Backtracking (Step-by-Step) dan Implementasi pada N-Queens}
+			
+			
+			\textbf{1. Representasi dan Inisialisasi}
+			\begin{itemize}
+				\item Modelkan papan ukuran $n$ sebagai variabel $\{x_1, \ldots, x_n\}$ dengan domain $\mathrm{dom}(x_i) = \{1, \ldots, n\}$. Setiap $x_i$ mewakili baris ratu pada kolom $i$.
+				\item Mulai dari assignment kosong.
+			\end{itemize}
+			
+			
+			\textbf{2. Pemilihan Variabel dan Urutan Domain}
+			\begin{itemize}
+				\item Biasanya pilih variabel secara berurutan dari kolom 1 hingga kolom $n$.
+				\item Coba nilai domain secara berurutan (1 hingga $n$).
+			\end{itemize}
+			
+			
+			\textbf{3. Langkah Utama Backtracking}
+			\begin{itemize}
+				\item Pada rekursi untuk kolom $k$:
+				\begin{enumerate}
+					\item Jika $k > n$, seluruh kolom sudah terisi dan solusi ditemukan.
+					\item Untuk setiap nilai baris $r \in \{1, \ldots, n\}$:
+					\begin{itemize}
+						\item Periksa konsistensi lokal terhadap kolom 1 hingga $k-1$. Untuk N-Queens:
+						\begin{itemize}
+							\item Tidak boleh satu baris: $x_i \neq r$.
+							\item Tidak boleh satu diagonal: $|i - k| \neq |x_i - r|$.
+						\end{itemize}
+						\item Jika konsisten, tetapkan $x_k = r$ dan panggil rekursi untuk kolom $k+1$.
+						\item Jika semua nilai gagal, lakukan backtrack ke kolom sebelumnya.
+					\end{itemize}
+				\end{enumerate}
+			\end{itemize}
+			
+			
+			\textbf{4. Pseudocode Implementasi}
+			
+			
+			\begin{lstlisting}[language=Python]
+				function solveNQueens(n):
+					x = array of size n initialized to 0
+					results = []
+					backtrack(1)
+				return results
+				
+				function backtrack(k):
+					if k > n:
+						add copy of x to results
+						return
+				
+					for r in 1..n:
+						if isConsistent(k, r):
+							x[k] = r
+							backtrack(k + 1)
+							x[k] = 0 # undo	
+				
+				function isConsistent(k, r):
+					for i in 1..k-1:
+						if x[i] == r:
+							return false
+						if abs(i - k) == abs(x[i] - r):
+							return false
+					return true
+			\end{lstlisting}
+			
+			
+			\textbf{5. Contoh Jejak Langkah (ringkas) untuk $n=4$}
+			
+			
+			\begin{itemize}
+				\item Kolom 1: coba baris 1 → konsisten → $x_1 = 1$.
+				\item Kolom 2: baris 1 (bentrok), 2 (diagonal), 3 (ok) → $x_2 = 3$.
+				\item Kolom 3: semua nilai 1--4 gagal → backtrack ke kolom 2.
+				\item Kolom 2: coba baris 4 → konsisten → $x_2 = 4$.
+				\item Lanjut hingga solusi ditemukan: $[2,4,1,3]$ dan $[3,1,4,2]$.
+			\end{itemize}
+			
+			
+			\item \textbf{\textit{Maintaining Arc Consistency} dengan algoritma \textit{Arc Consistency 3} (AC-3)}			
+			\textit{Maintaining Arc Consistency} (MAC) adalah teknik propagasi constraint yang digunakan selama proses pencarian solusi dalam \textit{Constraint Satisfaction Problem} (CSP). Untuk memahami MAC, pertama-tama kita perlu memahami konsep \textit{arc} dalam CSP.
+			
+			\textbf{Arc dalam CSP:} Dalam jaringan constraint biner yang ternormalisasi, sebuah \textit{arc} adalah pasangan terurut $(x_i, c_{ij})$ yang menunjukkan bahwa variabel $x_i$ harus konsisten dengan constraint $c_{ij}$ yang menghubungkan $x_i$ dengan variabel lain $x_j$\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 39.}. Sebuah nilai $v_i \in D(x_i)$ dikatakan konsisten dengan constraint $c_{ij}$ jika terdapat setidaknya satu nilai $v_j \in D(x_j)$ sedemikian sehingga pasangan $(v_i, v_j)$ memenuhi constraint $c_{ij}$. Nilai $v_j$ ini disebut sebagai \textit{support} untuk $v_i$ pada constraint $c_{ij}$.
+			
+			\textbf{Peran MAC:} MAC bekerja dengan menjaga \textit{arc consistency} setelah setiap assignment variabel selama pencarian solusi\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14}. Ketika sebuah variabel diberi nilai, MAC akan melakukan propagasi untuk menghilangkan nilai-nilai yang tidak konsisten dari domain variabel-variabel lain yang terhubung. Hal ini membantu mendeteksi inkonsistensi lebih awal dalam proses pencarian dan mengurangi ruang pencarian secara signifikan.
+			
+			\textbf{Algoritma AC-3:} AC-3 adalah algoritma yang paling terkenal untuk menegakkan \textit{arc consistency}\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 38-40.}. Algoritma ini menggunakan pendekatan berbasis antrian (\textit{queue}) untuk memproses arc yang perlu direvisi. Berikut adalah pseudocode algoritma AC-3:
+			
+			\begin{lstlisting}[language=Python, caption={Algoritma AC-3}, mathescape=true]
+				function AC3(X: set): Boolean;
+				begin
+				/* inisialisasi */
+				Q $\leftarrow$ {$(x_i, c)$ | $c \in C$, $x_i \in X(c)$};
+				
+				/* propagasi */
+				while Q $\neq \emptyset$ do
+				pilih dan hapus $(x_i, c)$ dari Q;
+				if Revise($x_i$, c) then
+				if $D(x_i) = \emptyset$ then return false;
+				else Q $\leftarrow$ Q $\cup$ {$(x_j, c')$ | $c' \in C$ $\wedge$ 
+					$c' \neq c$ $\wedge$ $x_i, x_j \in X(c')$ $\wedge$ $j \neq i$};
+				return true;
+				end
+				
+				function Revise($x_i$: variable; c: constraint): Boolean;
+				begin
+				CHANGE $\leftarrow$ false;
+				foreach $v_i \in D(x_i)$ do
+				if $\nexists \tau \in c \cap \pi_{X(c)}(D)$ with $\tau[x_i] = v_i$ then
+				hapus $v_i$ dari $D(x_i)$;
+				CHANGE $\leftarrow$ true;
+				return CHANGE;
+				end
+			\end{lstlisting}
+			
+			\textbf{Penjelasan notasi dan cara kerja:}
+			\begin{itemize}
+				\item $X$: himpunan semua variabel dalam CSP
+				\item $D(x_i)$: domain dari variabel $x_i$, yaitu himpunan nilai-nilai yang mungkin untuk $x_i$
+				\item $c$: sebuah constraint dalam jaringan
+				\item $X(c)$: skema constraint $c$, yaitu urutan variabel yang terlibat dalam constraint $c$
+				\item $Q$: antrian yang berisi pasangan $(x_i, c)$ yang perlu direvisi
+				\item $\pi_{X(c)}(D)$: proyeksi domain $D$ pada variabel-variabel dalam $X(c)$
+				\item $\tau[x_i]$: nilai yang diberikan pada variabel $x_i$ dalam tuple $\tau$
+			\end{itemize}
+			
+			Algoritma dimulai dengan memasukkan semua pasangan $(x_i, c)$ ke dalam antrian $Q$ (baris 3). Kemudian, selama $Q$ tidak kosong, algoritma mengambil sebuah pasangan $(x_i, c)$ dan memanggil fungsi \texttt{Revise} untuk memeriksa apakah setiap nilai dalam $D(x_i)$ memiliki \textit{support} pada constraint $c$ (baris 6-7). Fungsi \texttt{Revise} mengembalikan \texttt{true} jika ada nilai yang dihapus dari $D(x_i)$.
+			
+			Jika domain $D(x_i)$ menjadi kosong setelah revisi, algoritma mengembalikan \texttt{false} yang menandakan bahwa tidak ada solusi (baris 8). Jika ada nilai yang dihapus tetapi domain tidak kosong, maka semua arc $(x_j, c')$ yang melibatkan $x_i$ ditambahkan kembali ke $Q$ karena perubahan pada $D(x_i)$ mungkin mempengaruhi konsistensi variabel lain (baris 9). Algoritma berakhir dan mengembalikan \texttt{true} ketika $Q$ kosong, yang berarti semua arc telah konsisten.
+			
+			\textbf{Penerapan pada N-Queens Problem:} \\
+			Gambar \ref{fig:ac3-nqueens} menunjukkan contoh penerapan AC-3 pada masalah 4-Queens setelah menempatkan queen pertama.
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.8\textwidth]{beforeafterARC.png}
+				\caption{Penerapan AC-3 pada N-Queens Problem setelah assignment pertama}
+				\label{fig:ac3-nqueens}
+			\end{figure}
+			
+			Pada gambar sebelah kiri, kondisi awal menunjukkan papan 4×4 dengan empat variabel $X_1, X_2, X_3, X_4$ yang masing-masing merepresentasikan kolom. Setiap variabel memiliki domain awal $\{1,2,3,4\}$ yang merepresentasikan baris tempat queen dapat ditempatkan pada kolom tersebut. Semua constraint antar variabel ditunjukkan oleh garis yang menghubungkan mereka, yang menyatakan bahwa tidak boleh ada dua queen yang saling menyerang (berada pada baris, kolom, atau diagonal yang sama).
+			
+			Setelah menempatkan queen pertama pada posisi $X_1 = 1$ (queen pada kolom 1, baris 1), AC-3 melakukan propagasi constraint\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14}:
+			
+			\begin{enumerate}
+				\item \textbf{Eliminasi baris yang sama}: Nilai 1 dihapus dari domain semua variabel lain ($X_2, X_3, X_4$) karena constraint "tidak boleh ada dua queen pada baris yang sama".
+				
+				\item \textbf{Eliminasi diagonal}: 
+				\begin{itemize}
+					\item Untuk $X_2$: nilai 2 dihapus karena posisi (2,2) berada pada diagonal yang sama dengan (1,1)
+					\item Untuk $X_3$: nilai 3 dihapus karena posisi (3,3) berada pada diagonal yang sama dengan (1,1)
+					\item Untuk $X_4$: nilai 4 dihapus karena posisi (4,4) berada pada diagonal yang sama dengan (1,1)
+				\end{itemize}
+			\end{enumerate}
+			
+			Hasil propagasi dapat dilihat pada gambar sebelah kanan, di mana domain variabel berkurang menjadi:
+			\begin{itemize}
+				\item $D(X_1) = \{1\}$ (sudah di-assign)
+				\item $D(X_2) = \{3,4\}$ (nilai 1 dan 2 tereliminasi)
+				\item $D(X_3) = \{2,4\}$ (nilai 1 dan 3 tereliminasi)
+				\item $D(X_4) = \{2,3\}$ (nilai 1 dan 4 tereliminasi)
+			\end{itemize}
+			
+			Pengurangan domain ini sangat signifikan: dari total $4^3 = 64$ kemungkinan kombinasi untuk tiga variabel yang tersisa, hanya $2 \times 2 \times 2 = 8$ kombinasi yang perlu dieksplorasi. Ini mendemonstrasikan kekuatan AC-3 dalam mengurangi ruang pencarian secara dramatis sebelum melanjutkan ke assignment berikutnya. Tanpa AC-3, algoritma pencarian akan membuang waktu mengeksplorasi banyak cabang yang pasti akan gagal.
+			
+			Kompleksitas waktu AC-3 pada jaringan biner ternormalisasi adalah $O(ed^3)$, di mana $e$ adalah jumlah constraint dan $d$ adalah ukuran domain terbesar\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 40.}. Meskipun tidak optimal, AC-3 tetap menjadi pilihan populer karena kesederhanaannya dan performa yang baik dalam praktik. Dalam konteks \cq, prinsip yang sama diterapkan dengan constraint tambahan untuk region warna dan aturan adjacency.
+			
+			\item \textbf{Algoritma \textit{Particle Swarm Optimization} (PSO)}
 		\end{enumerate}
 		
 		\item \textbf{Mengumpulkan dan menyusun berbagai skenario permasalahan Colored Queens yang akan digunakan sebagai basis pengujian algoritma serta sebagai pilihan tingkat kesulitan bagi pengguna.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
 		{\bf Hasil :}
-		
+		\label{scraper}
 		Sebagai bagian dari tahap pengumpulan dan penyusunan skenario permasalahan Colored Queens, saya membangun sebuah web scraper Python yang menggunakan library Selenium untuk mengekstraksi beragam konfigurasi papan dari situs \textbf{\textit{Play Queens Game}}. Data ini diperlukan sebagai dasar pengujian untuk algoritma Backtracking dan Particle Swarm Optimization (PSO), sekaligus menjadi kumpulan level yang dapat dipilih pengguna berdasarkan tingkat kesulitan. Skrip yang dibuat mengotomatisasi proses pengambilan puzzle untuk berbagai ukuran papan—mulai dari 7×7 hingga 11×11—dengan jumlah level yang bervariasi pada setiap ukuran. Setiap puzzle diakses melalui URL tertentu, kemudian Selenium membaca atribut setiap sel (baris, kolom, dan warna) untuk membentuk representasi papan yang terstruktur.
 		
 		Hasil ekstraksi disimpan dalam bentuk berkas JSON yang menyimpan posisi baris, kolom, serta warna dari setiap kotak di dalam papan, agat mudah diproses kembali oleh \textit{solver} maupun antarmuka pengguna. Pendekatan ini memastikan bahwa dataset berisi skenario yang beragam, valid, dan sesuai dengan mekanisme permainan asli. Dengan adanya kumpulan skenario ini, pengujian algoritma dapat dilakukan pada berbagai tingkat kesulitan, dan pengguna aplikasi dapat memilih puzzle berdasarkan ukuran papan. 
 		
 		Selain puzzle yang diambil dari situs daring tersebut, dua papan vaild tambahan berukuran $20 \times 20$ dan $30 \times 30$ telah dibuat untuk pengujian algoritma yang akan diimplementasikan pada tugas akhir ini. Pembuatan papan-papan baru ini dimulai dengan sebuah solusi valid permasalahan N-Queens lalu menambahan sektor-sektor warna sedemikian rupa agar hanya terdapat satu bidak menteri di dalam satu sektor warna.
 		
-		Cuplikan file JSON:
-		\begin{lstlisting}
-				[
-				{
-					"row": 0, //posisi baris
-					"col": 0, //posisi kolom
-					"color": "rgba(253, 224, 71, 1)" //warna
-				},
-				...
+		\begin{lstlisting}[caption={Cuplikan file JSON untuk papan 4x4}, label={lst:jsonSample}]
+			[
+			{
+				"row": 0, // posisi baris
+				"col": 0, // posisi kolom
+				"color": "rgba(253, 224, 71, 1)" // warna
+			},
+			{
+				"row": 0,
+				"col": 1,
+				"color": "rgba(0, 0, 0, 1)"
+			}
+			]
 		\end{lstlisting}
 		
-		Cuplikan fungsi inti program Python:
-		\begin{lstlisting}[language=Python]
+		\begin{lstlisting}[caption={Cuplikan fungsi inti program Python}, label={lst:scraperinti}, language=Python]
 				for cell in cells: # untuk setiap cell/kotak dalam papan:
 				row = int(cell.get_attribute("data-row")) # ambil posisi baris
 				col = int(cell.get_attribute("data-col")) # ambil posisi kolom
@@ -395,8 +527,7 @@
 				})
 		\end{lstlisting}
 		
-		Keseluruhan Program Python:
-		\begin{lstlisting}[language=Python]
+		\begin{lstlisting}[caption={Keseluruhan Scraper menggunakan Python}, label={lst:fullscraper}, language=Python]
 			from selenium import webdriver
 			from selenium.webdriver.common.by import By
 			import chromedriver_autoinstaller
@@ -459,8 +590,7 @@
 		
 		\end{lstlisting}
 		
-		Papan $20 \times 20$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A'):
-		\begin{lstlisting}
+		\begin{lstlisting} [caption={Papan $20 \times 20$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A')}, label={lst:20x20board}]
 			J J J J J J J G G G G G E E E E I I I I
 			J J J J J J J G G G G E E E E E I I I I
 			J J J J J J J G G G G E E E E E I I I I
@@ -483,8 +613,7 @@
 			B B B T T T N N N N N A A A A A A A C C
 		\end{lstlisting}
 		
-		Papan $30 \times 30$ valid setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A':
-		\begin{lstlisting}
+		\begin{lstlisting} [caption={Papan $30 \times 30$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A')}, label={lst:30x30board}]
 			I I I I I I I ^ ^ ^ ^ F F F W W W W W W V V V V V V V V V V
 			I I I I I I ^ ^ ^ ^ ^ F F F F W W W W V V V V V V V V V V V
 			I I I I _ _ ^ ^ ^ ^ ^ F F F F F W W V V V V V V V V V V V V
@@ -542,16 +671,16 @@
 		
 		\textbf{Contoh sederhana:}  
 		
-		Misalkan papan 4x4 dengan 4 warna berbeda (R, B, G, Y) dan setiap warna membentuk sektor yang tersebar di papan:
+		Misalkan papan 4x4 dengan 4 warna berbeda (R, B, G, Y) dan setiap warna membentuk sektor yang tersebar di papan seperti pada \textsuperscript{\ref{lst:4x4example}}
 		
-		\begin{lstlisting}[basicstyle=\ttfamily, frame=single]
+		\begin{lstlisting}[caption={papan 4x4 dengan 4 warna berbeda (R, B, G, Y)}, label={lst:4x4example}, basicstyle=\ttfamily, frame=single]
 			R B B B
 			R R B Y
 			G Y Y Y
 			G G G Y
 		\end{lstlisting}
 		
-		Di sini:
+		Papan \cq \textsuperscript{\ref{lst:4x4example}} dapat direpresentasikan sebagai CSP dengan ketentuan berikut:
 		\begin{itemize}
 			\item Variabel: R, B, G, Y
 			\item Domain variabel: Semua sel dengan warna yang sesuai
@@ -564,9 +693,8 @@
 			\item Tujuan: Menempatkan satu menteri per warna tanpa melanggar kendala
 		\end{itemize}
 		
-		Contoh solusi yang memenuhi kendala:
 		
-		\begin{lstlisting}[basicstyle=\ttfamily, frame=single]
+		\begin{lstlisting}[caption={Contoh solusi valid dari \textsuperscript{\ref{lst:4x4example}}}, basicstyle=\ttfamily, frame=single]
 			- - Q -
 			Q - - -
 			- - - Q
@@ -583,43 +711,153 @@
 		Dengan pemodelan CSP tersebut, seluruh aturan permainan dapat dinyatakan secara terstruktur sehingga solver dapat melakukan pemeriksaan dan pencarian solusi dengan cara yang konsisten dan sistematis.
 				
 		\item \textbf{Melakukan analisis kebutuhan perangkat lunak, baik fungsional maupun non-fungsional, termasuk kebutuhan solver dan antarmuka pengguna.}\\
+		\label{analisis1}
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
 		{\bf Hasil :}
 		
-		Melakukan analisis kebutuhan perangkat lunak, yang meliputi:
-		\begin{itemize}
-			\item Kebutuhan fungsional, seperti:
+		Berdasarkan hasil analisis dan diskusi mengenai proses bisnis tugas akhir ini, dihasilkan dua \textit{flowchart} yang menggambarkan fungsi-fungsi utama dari sistem yang akan dibangun. Sebuah aplikasi berbasis web akan dikembangkan dengan fungsi utama menyediakan sarana untuk memainkan permainan \cq dengan fitur \textit{solver} otomatis yang dapat memberikan solusi valid ketika pemain mengalami kesulitan, seperti yang digambarkan pada \textit{flowchart} \ref{fig:flowchart1}. Sistem juga menyediakan fitur perbandingan kinerja antara algoritma Backtracking dan PSO, dengan alur seperti yang ditunjukkan pada \textit{flowchart} \ref{fig:flowchart2}.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{flowchart2.png}
+			\caption{\textit{Flowchart} dari proses bisnis pertama, yaitu permainan \cq yang berbasis web dan dapat memberikan solusi yang valid kepada pemain dengan memanggil \textit{solver} yang memanfaatkan algoritma backtracking}
+			\label{fig:flowchart1}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth]{flowchart.png}
+			\caption{\textit{Flowchart} dari proses bisnis kedua, yaitu membandingkan performa dua algoritma berbeda, \textit{Backtracking} dan PSO, dalam menyelesaikan masalah \cq.}
+			\label{fig:flowchart2}
+		\end{figure}
+		
+		\begin{enumerate}
+			\item \textbf{Kebutuhan Fungsional Sistem} \\
+			Untuk membangun permainan \cq, sistem akan dibangun dengan arsitektur berbasis web, menggunakan \textit{frontend} React dan \textit{backend} Spring Boot. \textit{Frontend} bertugas menampilkan papan permainan, menerima input pengguna, memberikan umpan balik visual secara real-time, dan menyediakan antarmuka interaktif untuk bermain atau menguji solusi. \textit{Backend} menjalankan \textit{solver} Java yang mengimplementasikan algoritma Backtracking degan AC-3 dan Particle Swarm Optimization (PSO), serta menangani logika validasi.
+			
+			\item \textbf{Situs Web dan Pemilihan Papan} \\
+			Aplikasi akan mengelompokkan papan-papan yang dapat dimainkan berdasarkan ukuran agar mudah dinavigasikan. Pemain juga dapat memilih papan secara acak dari daftar tersebut dan halaman web akan menampilkan papan yang sesuai dengan pilihan pemain.
+			
+			\item \textbf{Mengambil data papan dari JSON} \\
+			Ketika pemain memilih salah satu papan untuk dimainkan, \textit{Frontend} aplikasi web akan mengambil keseluruhan data papan dari file JSON yang tersedia setelah menjalankan \textit{web scraper}, seperti yang dijelaskan di bagian \ref{scraper}, lalu memprosesnya menjadi papan berwarna yang dapat ditampilkan dan dimainkan.
+			
+			\item \textbf{Adaptasi Algoritma Backtracking dengan AC-3} \\
+			Algoritma Backtracking standar untuk Colored Queens menggunakan pendekatan rekursif untuk menempatkan setiap menteri berdasarkan warna pada papan. Agar lebih efisien, algoritma ini akan digabungkan dengan \textit{Arc Consistency Algorithm 3} (AC-3) untuk menyempitkan ruang solusi sebelum dan selama pencarian.
+			
+			\textbf{Proses Backtracking dengan AC-3:}
+			\begin{enumerate}
+				\item \textbf{Inisialisasi:} Setiap warna direpresentasikan sebagai variabel, dan domainnya adalah semua posisi yang valid dalam warna tersebut.
+				\item \textbf{Preprocessing AC-3:} Jalankan AC-3 untuk mengeliminasi posisi yang jelas tidak mungkin, misalnya karena konflik adjacency atau serangan langsung.
+				\item \textbf{Rekursi Backtracking:} 
+				\begin{itemize}
+					\item Pilih variabel warna berikutnya.
+					\item Coba setiap posisi dalam domain yang tersisa.
+					\item Jika posisi valid (tidak melanggar adjacency atau aturan serangan):
+					\begin{itemize}
+						\item Tempatkan menteri pada posisi tersebut.
+						\item Jalankan AC-3 lagi untuk memperbarui domain variabel lain.
+						\item Lanjutkan ke variabel warna berikutnya secara rekursif.
+					\end{itemize}
+					\item Jika tidak ada posisi valid, mundur (\textit{backtrack}) ke variabel sebelumnya dan coba posisi lain.
+				\end{itemize}
+				\item \textbf{Kondisi berhenti:} Semua warna telah ditempatkan tanpa konflik → solusi valid ditemukan.
+			\end{enumerate}
+			
+			\item \textbf{Adaptasi Algoritma PSO} \\
+			PSO biasanya digunakan untuk optimasi kontinu. Agar dapat diterapkan pada masalah diskret seperti Colored Queens, beberapa modifikasi dilakukan:
+			\begin{enumerate}
+				\item \textbf{Representasi Partikel:} Setiap partikel adalah solusi kandidat, direpresentasikan sebagai array integer di mana elemen ke-$i$ menunjukkan posisi ke-$n$ dari warna $i$.
+				\item \textbf{Velocity Diskret:} Velocity yang semula berupa jarak perpindahan kontinu diubah menjadi probabilitas pertukaran posisi dengan \textit{neighborhood best} (nBest). Misalnya, partikel $[2,2,4,1]$ dengan velocity $[0.3,0.5,0.4,0.6]$ berarti elemen ke-1 yang bernilai 2 memiliki kemungkinan 0.3 untuk diubah menjadi nilai yang sesuai di nBest.
+				\item \textbf{Update Velocity:} Velocity diperbarui menggunakan rumus standar PSO:
+				\[
+				v[i] = \omega \cdot v[i] + c_1 \cdot r_1 \cdot \Delta_p[i] + c_2 \cdot r_2 \cdot \Delta_n[i]
+				\]
+				di mana $\Delta_p[i]$ dan $\Delta_n[i]$ adalah nilai boolean yang menunjukkan apakah posisi saat ini berbeda dari pBest/nBest, dan $c_1,c_2,r_1,r_2$ mengikuti nilai konvensional PSO.
+				\item \textbf{Update Partikel:} Setiap partikel akan diperbarui berdasarkan \textit{velocity} barunya yang sudah dihitung dengan cara mengambil nilai acak untuk setiap elemen $i$. Apabila nilai acak $<$ \textit{velocity}, elemen tersebut akan mengubah nilainya sesuai dengan elemen pada posisi yang sama di nBest. Apabila nilai acak $>$ \textit{velocity}, elemen tidak akan mengalami perubahan.
+				\item \textbf{Fungsi Fitness:} \textit{Fitness} dihitung untuk meminimalkan pelanggaran adjacency dan serangan dengan:
+				\[
+				\text{fitness} = w_1 \cdot \text{adjacencyViolation} + w_2 \cdot \text{attackingViolation}
+				\]
+				
+				dimana nilai \textit{Fitness} yang optimal adalah 0.
+			\end{enumerate}
+			\textbf{Contoh iterasi PSO} \\
+			Contoh iterasi ini menggunakan papan\textsuperscript{\ref{lst:4x4example}} dengan parameter $\omega = 0.7$, $c_1 = 2$, $c_2 = 2$, $r_1 = 0.2$, dan $r_2 = 0.2$. nBest juga ditetapkan sebagai $[2,1,3,4]$ dan pBest sebagai $[2,3,3,2]$. Bobot dari pelanggaran ditetapkan sebagai $w_1 (adjacency) = 2$ dan $w_2 (attacking) = 1$
+			\begin{enumerate}[label=\arabic*.]
+				\item Inisialisasi partikel secara acak, sebagai contoh $[2,4,3,3]$ yang dapat dibaca sebagai:
+					\begin{itemize}
+						\item R → posisi ke-2 = $(2,1)$
+						\item B → posisi ke-1 = $(2,3)$
+						\item G → posisi ke-3 = $(4,2)$
+						\item Y → posisi ke-3 = $(3,3)$
+					\end{itemize}
+				dengan \textit{velocity} awal sebagai $[0.3,0.5,0.4,0.6]$
+				\item Hitung \textit{velocity} baru dengan menghitung: 
+					\begin{itemize}
+						\item $0.7 \cdot 0.3 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 0 = 0.21$
+						\item $0.7 \cdot 0.5 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 1 = 0.75$
+						\item $0.7 \cdot 0.4 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 0 = 0.28$
+						\item $0.7 \cdot 0.6 + 2.0 \cdot 0.2 \cdot 1 + 2.0 \cdot 0.2 \cdot 0 = 0.82$
+					\end{itemize}
+					Maka $(v + 1) = [0.21,0.75,0.28,0.82]$
+				\item Hitung posisi baru partikel tersebut dengan cara mengambil nilai acak untuk setiap elemen:
+					\begin{itemize}
+						\item Elemen 1 → $0.3 > 0.21 \therefore$ tidak terjadi perubahan.
+						\item Elemen 2 → $0.78 > 0.75 \therefore$ tidak terjadi perubahan
+						\item Elemen 3 → $0.4 > 0.28 \therefore$ tidak terjadi perubahan.
+						\item Elemen 4 → $0.45 < 0.82 \therefore$ nilai berubah sesuai dengan nBest (4).
+					\end{itemize}
+					Maka $x + (v + 1) = [2,4,3,4]$
+				\item Hitung fitness untuk kondisi partikel sekarang berdasarkan posisi bidak menteri:
+					\begin{itemize}
+						\item Bidak 1 → $(2,1)$\\
+						Adjacency Violation dengan Bidak 2
+						\item Bidak 2 → $(1,2)$\\
+						Adjacency Violation dengan Bidak 1 \\
+						Attacking Violation dengan bidak 3
+						\item Bidak 3 → $(4,2)$\\
+						Attacking Violation dengan bidak 2
+						\item Bidak 4 → $(3,4)$\\
+						Maka fitness partikel ini adalah:
+						\[
+						\text{fitness} = 2 \cdot 2 + 1 \cdot 2 = 6
+						\]
+					\end{itemize}
+				\item Evaluasi pBest dan nBest
+					\begin{itemize}
+						\item Fitness pBest = 10 
+						\item Fitness nBest = 8
+						\item Current Fitness = 6
+						
+						Karena current fitness < nbest, kedua pBest dan nBest ditukar dengan partikel sekarang. Sehingga nBest = pBest = $[0.21,0.75,0.28,0.82]$ dan Fitness nBest = Fitness pBest = 6
+					\end{itemize}
+				
+			\end{enumerate}
+			
+			\item \textbf{Optimasi menggunakan \textit{BitSet}}
 			\begin{itemize}
-				\item Fitur permainan Colored Queens.
-				\item Fungsi solver untuk menyelesaikan permainan.
-				\item Peringatan visual saat terjadi pelanggaran kendala.
-				\item Fitur petunjuk untuk pemain yang membutuhkan bantuan.
-				\item Mode permainan, mode pengujian algoritma, dan visualisasi algoritma.
+				\item Untuk meningkatkan efisiensi, baik Backtracking maupun PSO memanfaatkan \textit{bitset} untuk memantau baris, kolom, dan warna yang sudah ditempati.
+				\item Pengecekan konflik dapat dilakukan dalam waktu konstan $O(1)$ menggunakan operasi logika bitwise.
+				\item \textit{Bitset} juga memungkinkan perhitungan adjacency violation secara cepat dengan operasi AND/OR pada \textit{mask} bit.
 			\end{itemize}
-			\item Kebutuhan non-fungsional, seperti:
-			\begin{itemize}
-				\item Performa: Waktu respons sistem dan efisiensi komputasi solver
-				\item Usability: Antarmuka intuitif dan mudah dipelajari
-				\item Visualisasi: Representasi grafis yang jelas untuk proses pencarian solusi
-				\item Skalabilitas: Kemampuan menangani berbagai ukuran papan permainan
-			\end{itemize}
-			\item Kebutuhan khusus terkait solver, seperti:
-			\begin{itemize}
-				\item Integrasi algoritma Backtracking dengan dan tanpa AC-3 dan PSO.
-				\item Mekanisme perbandingan performa antar algoritma (Waktu dan ketepatan solusi)
-				\item Visualisasi langkah-langkah pencarian solusi secara real-time
-			\end{itemize}
-			\item Kebutuhan antarmuka pengguna, seperti:
-			\begin{itemize}
-				\item Tampilan jelas dan konsisten, sehingga pengguna mudah mengenali fungsi setiap tombol atau menu.
-				\item Interaksi sederhana, dengan langkah-langkah minimum untuk melakukan tindakan utama (misal menempatkan menteri, memulai ulang permainan).
-				\item Peringatan visual langsung, seperti peringatan warna atau highlight, saat terjadi pelanggaran kendala.
-				\item Navigasi mudah, dengan akses cepat ke mode permainan dan mode pengujian algoritma.
-				\item Informasi penting terlihat tanpa perlu membuka banyak menu.
-			\end{itemize}
-		\end{itemize}
+			
+			\item \textbf{Integrasi Web dan Solver} \\
+			Pada sistem ini, papan permainan Colored Queens sepenuhnya di-render oleh React di sisi klien. Pengguna dapat menempatkan menteri, memindahkan bidak, dan menerima umpan balik secara real-time mengenai pelanggaran aturan atau saran langkah, tanpa memerlukan komunikasi dengan \textit{backend}. Hal ini memastikan pengalaman bermain yang interaktif dan responsif.
+			
+			Fitur \textit{solver} (menggunakan Backtracking atau PSO) hanya akan dipanggil melalui \textit{backend} Spring Boot ketika pengguna menekan tombol \textit{Solve} untuk papan berukuran hingga 11×11. Backend akan memproses perhitungan, mengembalikan solusi beserta informasi tambahan seperti langkah-langkah penempatan menteri dan status validasi. React kemudian akan menampilkan solusi ini pada papan secara visual.
+			
+			Untuk papan yang lebih besar (20×20 dan 30×30), \textit{solver} tidak dijalankan secara real-time. Sebagai gantinya, solusi telah disiapkan sebelumnya dan hanya ditampilkan oleh frontend, sehingga pengguna tetap dapat melihat hasil tanpa menunggu proses komputasi yang berat.
+			
+			Dengan arsitektur ini, interaksi normal pengguna tetap cepat dan sepenuhnya client-side, sedangkan operasi komputasi berat dialihkan ke server hanya ketika diperlukan.
+			
+			\item \textbf{Perbandingan Kinerja Algoritma} \\
+			Agar proses penelitian lebih cepat dan efisien, perbandingan kinerja algoritma tidak dilakukan melalui antarmuka web, melainkan menggunakan \textit{Command Line Interface} (CLI). Pendekatan ini memungkinkan perubahan \textit{hyperparameter} dengan mudah dan eksekusi pengujian secara otomatis tanpa \textit{overhead rendering} antarmuka grafis, sehingga waktu eksekusi murni dari algoritma dapat diukur dengan lebih akurat.
+		\end{enumerate}
+		
+		
 		
 		\item \textbf{Merancang arsitektur sistem serta antarmuka pengguna untuk aplikasi Colored Queens Solver.}\\
+		\label{analisis2}
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
 		{\bf Hasil :}
 		
@@ -627,10 +865,10 @@
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
 		{\bf Hasil :}
 		
+		Bagian latar belakang, dasar teori dan analisis dapat diambil dari dokumen ini. Dasar teoru dapat diambil dari bagian \ref{dasarteori} sedangkan bagian analisis dapat diambil dari bagian \ref{analisis1} dan \ref{analisis2}.
 		
 		
-		
-	\end{enumerate}
+ 	\end{enumerate}
 	
 	\section{Pencapaian Rencana Kerja}
 	Langkah-langkah kerja yang berhasil diselesaikan dalam Tugas Akhir 1 ini adalah sebagai berikut:
@@ -642,18 +880,6 @@
 		\item Merancang arsitektur sistem serta antarmuka pengguna untuk aplikasi Colored Queens Solver.
 		\item Menyusun dokumentasi tugas akhir untuk tahap TA 1.
 	\end{enumerate}
-	
-	
-	
-	\section{Kendala yang Dihadapi}
-	%TULISKAN BAGIAN INI JIKA DOKUMEN ANDA TIPE A ATAU C
-	Kendala - kendala yang dihadapi selama mengerjakan Tugas Akhir :
-	\begin{itemize}
-		\item Terlalu banyak melakukan prokratinasi
-		\item Terlalu banyak godaan berupa hiburan (game, film, dll)
-		\item Tugas Akhir diambil bersamaan dengan kuliah ASD karena selama 5 semester pertama kuliah tersebut sangat dihindari dan tidak diambil, dan selama 4 semester terakhir kuliah tersebut selalu mendapat nilai E
-		\item Mengalami kesulitan pada saat sudah mulai membuat program komputer karena selama ini selalu dibantu teman
-	\end{itemize}
 	
 	\vspace{1cm}
 	\centering Bandung, \tanggal\\
