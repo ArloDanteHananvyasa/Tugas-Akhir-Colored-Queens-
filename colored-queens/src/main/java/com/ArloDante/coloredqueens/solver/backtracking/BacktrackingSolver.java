@@ -29,7 +29,7 @@ public class BacktrackingSolver {
 
     //memanggil fungsi rekursif
     public boolean solve() {
-        System.out.println("Starting solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
+        System.out.println("Starting pure backtracking solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
         startTime = System.currentTimeMillis();
         boolean result = placeQueens(0); //hasil fungsi rekursif disimpan di sini
         long endTime = System.currentTimeMillis();
