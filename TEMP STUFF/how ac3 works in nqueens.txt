@@ -1,0 +1,37 @@
+\textbf{Penerapan pada N-Queens Problem:} \\
+	Gambar \ref{fig:ac3-nqueens} menunjukkan contoh penerapan AC-3 pada masalah 4-Queens setelah menempatkan queen pertama.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{beforeafterARC.png}
+	\caption{Penerapan AC-3 pada N-Queens Problem setelah menempatkan pion pertama pada posisi 1 untuk variablel X1}
+	\footnotesize Sumber: Diadaptasikan dari \url{https://courses.grainger.illinois.edu/cs440/fa2021/lectures/csp1.htm}
+	\label{fig:ac3-nqueens}
+	\end{figure}
+	
+	Pada gambar sebelah kiri, kondisi awal menunjukkan papan 4×4 dengan empat variabel $X_1, X_2, X_3, X_4$ yang masing-masing merepresentasikan kolom. Setiap variabel memiliki domain awal $\{1,2,3,4\}$ yang merepresentasikan baris tempat queen dapat ditempatkan pada kolom tersebut. Semua constraint antarvariabel ditunjukkan oleh garis yang menghubungkan mereka, yang menyatakan bahwa tidak boleh ada dua queen yang saling menyerang (berada pada baris, kolom, atau diagonal yang sama).
+	
+	Setelah menempatkan queen pertama pada posisi $X_1 = 1$: (queen pada kolom 1, baris 1), AC-3 melakukan propagasi constraint\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14}
+	
+	\begin{enumerate}
+	\item \textbf{Eliminasi baris yang sama}: Nilai 1 dihapus dari domain semua variabel lain ($X_2, X_3, X_4$) karena constraint "tidak boleh ada dua queen pada baris yang sama".
+	
+	\item \textbf{Eliminasi diagonal}: 
+	\begin{itemize}
+		\item Untuk $X_2$: nilai 2 dihapus karena posisi (2,2) berada pada diagonal yang sama dengan (1,1)
+		\item Untuk $X_3$: nilai 3 dihapus karena posisi (3,3) berada pada diagonal yang sama dengan (1,1)
+		\item Untuk $X_4$: nilai 4 dihapus karena posisi (4,4) berada pada diagonal yang sama dengan (1,1)
+	\end{itemize}
+	\end{enumerate}
+	
+	Hasil propagasi dapat dilihat pada gambar sebelah kanan, di mana domain variabel berkurang menjadi:
+	\begin{itemize}
+	\item $D(X_1) = \{1\}$ (sudah di-assign)
+	\item $D(X_2) = \{3,4\}$ (nilai 1 dan 2 tereliminasi)
+	\item $D(X_3) = \{2,4\}$ (nilai 1 dan 3 tereliminasi)
+	\item $D(X_4) = \{2,3\}$ (nilai 1 dan 4 tereliminasi)
+	\end{itemize}
+	
+	Pengurangan domain ini sangat signifikan: dari total $4^3 = 64$ kemungkinan kombinasi untuk tiga variabel yang tersisa, hanya $2 \times 2 \times 2 = 8$ kombinasi yang perlu dieksplorasi. Ini mendemonstrasikan kekuatan AC-3 dalam mengurangi ruang pencarian secara dramatis sebelum melanjutkan ke assignment berikutnya. Tanpa AC-3, algoritma pencarian akan membuang waktu mengeksplorasi banyak cabang yang pasti akan gagal.
+	
+	Kompleksitas waktu AC-3 pada jaringan biner ternormalisasi adalah $O(ed^3)$, di mana $e$ adalah jumlah constraint dan $d$ adalah ukuran domain terbesar.\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 40.} Meskipun tidak optimal, AC-3 tetap menjadi pilihan populer karena kesederhanaannya dan performa yang baik dalam praktik. Dalam konteks \textit{Colored Queens}, prinsip yang sama diterapkan dengan constraint tambahan untuk region warna dan aturan adjacency.

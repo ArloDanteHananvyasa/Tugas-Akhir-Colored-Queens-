@@ -88,78 +88,73 @@ public class BacktrackingSolverAC3 {
     }
 
     private boolean placeQueens(int colorIndex) {
-        if (colorIndex == colors.size()) {
-            // All colors placed
-            return true;
-        }
+    if (colorIndex == colors.size()) return true;
 
-        String color = colors.get(colorIndex);
-        List<int[]> cells = colorCells.get(color);
-        BitSet valid = validCells.get(color);
+    String color = colors.get(colorIndex);
+    List<int[]> cells = colorCells.get(color);
+    BitSet valid = validCells.get(color);
 
-        // Debug: ensure there are valid cells
-        if (valid.cardinality() == 0) {
-            // Domain empty — backtrack immediately
-            return false;
-        }
+    if (valid.cardinality() == 0) return false;
 
-        // Iterate over all currently valid cells for this color
-        for (int cellIdx = valid.nextSetBit(0); cellIdx >= 0; cellIdx = valid.nextSetBit(cellIdx + 1)) {
-            int row = cells.get(cellIdx)[0];
-            int col = cells.get(cellIdx)[1];
+    for (int cellIdx = valid.nextSetBit(0); cellIdx >= 0; cellIdx = valid.nextSetBit(cellIdx + 1)) {
+        int row = cells.get(cellIdx)[0];
+        int col = cells.get(cellIdx)[1];
 
-            // Place the queen
-            solution[colorIndex] = cellIdx;
-            occupied[row][col] = true;
+        solution[colorIndex] = cellIdx;
+        occupied[row][col] = true;
 
-            // Record current prune stack size
-            int pruneStartPos = pruneStack.size();
+        int pruneStartPos = pruneStack.size();
 
-            // Forward-check: remove attacked cells from all future colors
-            forwardCheck(row, col, colorIndex);
+        // Forward-check
+        forwardCheck(row, col, colorIndex);
 
-            // Check if any future color domain is empty
-            if (anyColorExhausted(colorIndex)) {
-                // Undo forward-check pruning
-                undoPrunes(pruneStartPos);
-                occupied[row][col] = false;
-                solution[colorIndex] = -1;
-                backtracks++;
-                continue;
+        // AC-3 arc propagation among future colors
+        Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
+        for (int i = colorIndex + 1; i < colors.size(); i++) {
+            for (int j = colorIndex + 1; j < colors.size(); j++) {
+                if (i != j) queue.add(new Pair<>(i, j));
             }
+        }
+        propagateArcs(queue);
 
-            // Recurse
-            steps++;
-            if (placeQueens(colorIndex + 1)) {
-                return true;
-            }
-
-            // Undo placement and prunes
+        if (anyColorExhausted(colorIndex)) {
             undoPrunes(pruneStartPos);
             occupied[row][col] = false;
             solution[colorIndex] = -1;
             backtracks++;
+            continue;
         }
 
-        // No valid placement found for this color
-        return false;
+        steps++;
+        if (placeQueens(colorIndex + 1)) return true;
+
+        undoPrunes(pruneStartPos);
+        occupied[row][col] = false;
+        solution[colorIndex] = -1;
+        backtracks++;
     }
 
-    // --- Forward-checking using BitSets ---
-    private void forwardCheck(int row, int col, int placedColorIdx) {
-        Set<Long> attackZone = computeAttackZone(row, col);
+    return false;
+}
 
+    private void forwardCheck(int row, int col, int placedColorIdx) {
         // Remove attacked cells from all future colors
         for (int colorIdx = placedColorIdx + 1; colorIdx < colors.size(); colorIdx++) {
             String color = colors.get(colorIdx);
-            List<int[]> cells = colorCells.get(color);
+            // List<int[]> cells = colorCells.get(color); // Don't need this if we iterate bitset
             BitSet valid = validCells.get(color);
+            List<int[]> currentCellList = colorCells.get(color);
 
             for (int i = valid.nextSetBit(0); i >= 0; i = valid.nextSetBit(i + 1)) {
-                int[] cell = cells.get(i);
-                long pos = encodePosition(cell[0], cell[1]);
+                int[] target = currentCellList.get(i);
+                int r2 = target[0];
+                int c2 = target[1];
 
-                if (attackZone.contains(pos)) {
+                // INLINE CONFLICT CHECK (Replaces attackZone.contains)
+                boolean conflict = (row == r2 || col == c2 || 
+                                   Math.abs(row - r2) <= 1 && Math.abs(col - c2) <= 1);
+                
+                if (conflict) {
                     valid.clear(i);
                     colorCellCount[colorIdx]--;
                     pruneStack.push(new PruneAction(color, i));
@@ -167,31 +162,6 @@ public class BacktrackingSolverAC3 {
             }
         }
     }
-
-    private long[] encodeAttackZone(int row, int col) {
-        long[] zone = new long[1]; // can extend if needed for very large boards
-
-        // row and column
-        for (int i = 0; i < size; i++) {
-            zone[0] |= 1L << (row * size + i);
-            zone[0] |= 1L << (i * size + col);
-        }
-
-        // adjacent 8 cells
-        int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
-        for (int[] d : dirs) {
-            int r = row + d[0], c = col + d[1];
-            if (r >= 0 && r < size && c >= 0 && c < size)
-                zone[0] |= 1L << (r * size + c);
-        }
-
-        return zone;
-    }
-
-    private boolean isInAttackZone(long pos, long[] zone) {
-        return (zone[0] & (1L << pos)) != 0;
-    }
-
 
     private boolean revise(int fromColorIdx, int toColorIdx) {
         boolean revised = false;
@@ -209,7 +179,7 @@ public class BacktrackingSolverAC3 {
             int[] toCell = toCells.get(i);
             boolean supported = false;
 
-            // Check only currently valid cells in fromColor using BitSet
+            // Check support in fromColor: at least one non-conflicting cell
             for (int j = fromValid.nextSetBit(0); j >= 0; j = fromValid.nextSetBit(j + 1)) {
                 int[] fromCell = fromCells.get(j);
                 if (!conflicts(fromCell, toCell)) {
@@ -218,17 +188,20 @@ public class BacktrackingSolverAC3 {
                 }
             }
 
-            // Check against already placed queens
-            for (int placedIdx = 0; placedIdx < colors.size(); placedIdx++) {
-                if (solution[placedIdx] != -1 && placedIdx != toColorIdx) {
-                    int[] placedCell = colorCells.get(colors.get(placedIdx)).get(solution[placedIdx]);
-                    if (conflicts(placedCell, toCell)) {
-                        supported = false;
-                        break;
+            // Also check already placed queens
+            if (supported) {
+                for (int placedIdx = 0; placedIdx < colors.size(); placedIdx++) {
+                    if (solution[placedIdx] != -1 && placedIdx != toColorIdx) {
+                        int[] placedCell = colorCells.get(colors.get(placedIdx)).get(solution[placedIdx]);
+                        if (conflicts(placedCell, toCell)) {
+                            supported = false;
+                            break;
+                        }
                     }
                 }
             }
 
+            // If no support, remove the value from toColor
             if (!supported) {
                 toValid.clear(i);
                 colorCellCount[toColorIdx]--;
@@ -240,126 +213,28 @@ public class BacktrackingSolverAC3 {
         return revised;
     }
 
-
-
-    // Full AC-3 implementation
-    private void propagateConstraints(int row, int col, int placedColorIndex) {
-        Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
-        
-        // Step 1: Initial forward checking - prune values conflicting with placed queen
-        Set<Long> attackZone = computeAttackZone(row, col);
-        
-        for (int colorIdx = placedColorIndex + 1; colorIdx < colors.size(); colorIdx++) {
-            String color = colors.get(colorIdx);
-            List<int[]> cells = colorCells.get(color);
-            BitSet valid = validCells.get(color);
-            
-            for (int i = valid.nextSetBit(0); i >= 0; i = valid.nextSetBit(i + 1)) {
-                int[] cell = cells.get(i);
-                long pos = encodePosition(cell[0], cell[1]);
-                
-                if (attackZone.contains(pos)) {
-                    valid.clear(i);
-                    colorCellCount[colorIdx]--;
-                    pruneStack.push(new PruneAction(color, i));
-                    
-                    // Add to queue for AC-3 propagation
-                    queue.add(new Pair<>(colorIdx, i));
-                }
-            }
-        }
-        
-        // Step 2: AC-3 propagation - check if removals cause more removals
+    private void propagateArcs(Queue<Pair<Integer, Integer>> queue) {
         while (!queue.isEmpty()) {
-            Pair<Integer, Integer> removed = queue.poll();
-            int removedColorIdx = removed.getKey();
-            int removedCellIdx = removed.getValue();
-            
-            // Get the removed cell's attack zone
-            int[] removedCell = colorCells.get(colors.get(removedColorIdx)).get(removedCellIdx);
-            Set<Long> removedAttackZone = computeAttackZone(removedCell[0], removedCell[1]);
-            
-            // Check all other future colors
-            for (int colorIdx = placedColorIndex + 1; colorIdx < colors.size(); colorIdx++) {
-                if (colorIdx == removedColorIdx) continue;
-                
-                String color = colors.get(colorIdx);
-                List<int[]> cells = colorCells.get(color);
-                BitSet valid = validCells.get(color);
-                
-                // Check each valid cell in this color
-                for (int i = valid.nextSetBit(0); i >= 0; i = valid.nextSetBit(i + 1)) {
-                    int[] cell = cells.get(i);
-                    long pos = encodePosition(cell[0], cell[1]);
-                    
-                    // If this cell is in the removed cell's attack zone
-                    if (removedAttackZone.contains(pos)) {
-                        // Check if this cell has lost all support
-                        if (!hasAnySupport(cell, colorIdx, removedColorIdx, placedColorIndex)) {
-                            valid.clear(i);
-                            colorCellCount[colorIdx]--;
-                            pruneStack.push(new PruneAction(color, i));
-                            queue.add(new Pair<>(colorIdx, i));
-                        }
+            Pair<Integer, Integer> arc = queue.poll();
+            int fromColorIdx = arc.getKey(); // The "Supporter"
+            int toColorIdx = arc.getValue(); // The "victim" (being pruned)
+
+            // revise checks if 'to' is supported by 'from'. If 'to' shrinks:
+            if (revise(fromColorIdx, toColorIdx)) {
+                if (colorCellCount[toColorIdx] == 0) return;
+
+                // We must notify neighbors of 'to' that 'to' has changed.
+                // We need to prune the neighbors ('k').
+                // So we add (to, k) so that revise(to, k) is called.
+                for (int k = 0; k < colors.size(); k++) {
+                    // Don't add the one we just came from, and don't add itself
+                    if (k != toColorIdx && k != fromColorIdx) { 
+                        // CHANGED: Order swapped from (k, to) to (to, k)
+                        queue.add(new Pair<>(toColorIdx, k)); 
                     }
                 }
             }
         }
-    }
-
-    private void propagateArcs(Queue<Pair<Integer, Integer>> queue) {
-        while (!queue.isEmpty()) {
-            Pair<Integer, Integer> arc = queue.poll();
-            int fromColorIdx = arc.getKey();
-            int toColorIdx = arc.getValue();
-
-            if (revise(fromColorIdx, toColorIdx)) {
-                if (colorCellCount[toColorIdx] == 0) return;
-
-                for (int k = 0; k < colors.size(); k++) {
-                    if (k != toColorIdx && k != fromColorIdx)
-                        queue.add(new Pair<>(k, toColorIdx));
-                }
-            }
-        }
-    }
-
-
-
-    // Check if a cell has support from at least one value in another color
-    private boolean hasAnySupport(int[] cell, int cellColorIdx, int excludeColorIdx, int placedColorIndex) {
-        // A cell has support if there exists at least one compatible value
-        // in every other color's domain
-        
-        for (int otherColorIdx = placedColorIndex + 1; otherColorIdx < colors.size(); otherColorIdx++) {
-            if (otherColorIdx == cellColorIdx || otherColorIdx == excludeColorIdx) continue;
-            
-            String otherColor = colors.get(otherColorIdx);
-            BitSet otherValid = validCells.get(otherColor);
-            
-            if (otherValid.cardinality() == 0) {
-                return false; // No values left in this color
-            }
-            
-            // Check if there's at least one value that doesn't conflict
-            boolean foundSupport = false;
-            List<int[]> otherCells = colorCells.get(otherColor);
-            
-            for (int j = otherValid.nextSetBit(0); j >= 0; j = otherValid.nextSetBit(j + 1)) {
-                int[] otherCell = otherCells.get(j);
-                
-                if (!conflicts(cell, otherCell)) {
-                    foundSupport = true;
-                    break;
-                }
-            }
-            
-            if (!foundSupport) {
-                return false; // No support from this color
-            }
-        }
-        
-        return true; // Has support from all colors
     }
 
     // Check if two cells conflict (same row/col or adjacent)
@@ -376,35 +251,6 @@ public class BacktrackingSolverAC3 {
         if (dr <= 1 && dc <= 1) return true;
         
         return false;
-    }
-
-    // Compute attack zone for a cell (all conflicting positions)
-    private Set<Long> computeAttackZone(int row, int col) {
-        Set<Long> attackZone = new HashSet<>();
-        
-        // Add entire row and column
-        for (int c = 0; c < size; c++) {
-            attackZone.add(encodePosition(row, c));
-        }
-        for (int r = 0; r < size; r++) {
-            attackZone.add(encodePosition(r, col));
-        }
-        
-        // Add all 8 adjacent positions
-        int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
-        for (int[] d : dirs) {
-            int r = row + d[0];
-            int c = col + d[1];
-            if (r >= 0 && r < size && c >= 0 && c < size) {
-                attackZone.add(encodePosition(r, c));
-            }
-        }
-        
-        return attackZone;
-    }
-
-    private long encodePosition(int row, int col) {
-        return ((long) row << 32) | col;
     }
 
     private void undoPrunes(int pruneStartPos) {

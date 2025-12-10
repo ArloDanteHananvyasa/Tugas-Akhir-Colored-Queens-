@@ -4,6 +4,7 @@ import com.ArloDante.coloredqueens.objects.Board;
 import com.ArloDante.coloredqueens.objects.Cell;
 import com.ArloDante.coloredqueens.solver.backtracking.BacktrackingSolver;
 import com.ArloDante.coloredqueens.solver.backtracking.BacktrackingSolverAC3;
+import com.ArloDante.coloredqueens.solver.backtracking.BacktrackingSolverBitset;
 import com.ArloDante.coloredqueens.util.BoardImporter;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class Main {
         int size = 11;
         int level = 20;
 
-        int solverChoice = 1;
+        int solverChoice = 2;
 
         System.out.println("Loading board (size=" + size + ", level=" + level + ")...");
 
@@ -32,8 +33,13 @@ public class Main {
                     System.out.println("Solving using pure backtracking");
                     callBacktracking(board);
                     break;
-                    
+
                 case 2:
+                    System.out.println("Solving using backtracking optimized with bitsets");
+                    callBacktrackingBitset(board);
+                    break;
+                    
+                case 3:
                     System.out.println("Solving using backtracking and AC3");
                     callBacktrackingAC3(board);
                     break;
@@ -50,6 +56,18 @@ public class Main {
 
     public static void callBacktrackingAC3(Board board) {
         BacktrackingSolverAC3 solver = new BacktrackingSolverAC3(board);
+
+        boolean solved = solver.solve();
+
+            if (solved) {
+                solver.printSolution();
+            } else {
+                System.out.println("No solution found for this board.");
+            }
+    }
+
+    public static void callBacktrackingBitset(Board board) {
+        BacktrackingSolverBitset solver = new BacktrackingSolverBitset(board);
 
         boolean solved = solver.solve();
 
