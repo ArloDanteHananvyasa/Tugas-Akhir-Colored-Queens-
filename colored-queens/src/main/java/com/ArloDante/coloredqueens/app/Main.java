@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int size = 20;
-        int level = 1;
+        int size = 11;
+        int level = 20;
 
         int solverChoice = 1;
 
