@@ -17,6 +17,12 @@
 \usepackage{subcaption}
 \usepackage{url}
 \usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue
+}
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{amssymb}
@@ -32,7 +38,10 @@
 
 \DeclareCaptionLabelFormat{subfig}{\figurename~#1#2}
 \captionsetup[subfigure]{labelformat=subfig, labelsep=colon}
-\renewcommand\thesubfigure{\thefigure(\alph{subfigure})}
+\renewcommand\thesubfigure{\alph{subfigure}}
+
+\DeclareCaptionLabelFormat{subfig}{\figurename~\thefigure(\thesubfigure)}
+\captionsetup[subfigure]{labelformat=subfig, labelsep=colon}
 
 \DTMsetdatestyle{ddmmyyyy}
 \DTMsetup{datesep=/}
@@ -43,7 +52,7 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{Laporan Perkembangan Pengerjaan Tugas Akhir\textemdash Sem. Genap 2025/2026}}}
+\markright{\textbf{\textsc{Laporan Perkembangan Pengerjaan Tugas Akhir\textemdash Sem. Ganjil 2025/2026}}}
 
 \onehalfspacing
 
@@ -70,7 +79,6 @@
 	% B : dokumen untuk reviewer pada presentasi dan review Tugas Akhir 1
 	% C : dokumen pendukung untuk pengambilan ke-2 di Tugas Akhir 2
 	
-	\newcommand{\cq}{\textit{Colored Queens}}
 	
 	% Dokumen hasil template ini harus dicetak bolak-balik !!!!
 	
@@ -95,7 +103,7 @@
 	}
 	
 	\section{Latar Belakang}
-	Masalah n-queens merupakan salah satu permasalahan klasik dalam ilmu komputer yang telah dipelajari secara ekstensif sejak abad ke-19 \footnote{I.P. Gent, C. Jefferson, dan P. Nightingale, "Complexity of n-queens completion," \textit{Journal of Artificial Intelligence Research}, vol. 59, hal. 815--848, 2017.}. Dalam bentuk standarnya, masalah n-queens memerlukan penempatan $n$ buah bidak menteri pada papan catur berukuran $n \times n$ sedemikian rupa sehingga tidak ada menteri yang dapat menyerang satu sama lain secara horizontal, vertikal, maupun diagonal seperti pada gambar 1(a) dan 1(b). Sebagai contoh, pada papan berukuran $8 \times 8$, terdapat 92 solusi valid yang memenuhi seluruh kendala tersebut. Masalah ini tidak hanya menarik dari segi teoretis, tetapi juga memiliki aplikasi praktis dalam berbagai bidang seperti penjadwalan, alokasi sumber daya, dan desain sirkuit terpadu, sehingga menjadikannya salah satu tolok ukur penting dalam penelitian algoritma pencarian dan pemodelan berbasis kendala.
+	Masalah n-queens merupakan salah satu permasalahan klasik dalam ilmu komputer yang telah dipelajari secara ekstensif sejak abad ke-19. \footnote{I.P. Gent, C. Jefferson, dan P. Nightingale, "Complexity of n-queens completion," \textit{Journal of Artificial Intelligence Research}, vol. 59, hal. 815--848, 2017.} Dalam bentuk standarnya, masalah n-queens memerlukan penempatan $n$ buah bidak menteri pada papan catur berukuran $n \times n$ sedemikian rupa sehingga tidak ada menteri yang dapat menyerang satu sama lain secara horizontal, vertikal, maupun diagonal seperti pada Gambar \ref{fig:NQ_wrong} dan \ref{fig:NQ_correct}. Sebagai contoh, pada papan berukuran $8 \times 8$, terdapat 92 solusi valid yang memenuhi seluruh kendala tersebut. Masalah ini tidak hanya menarik dari segi teoretis, tetapi juga memiliki aplikasi praktis dalam berbagai bidang seperti penjadwalan, alokasi sumber daya, dan desain sirkuit terpadu, sehingga menjadikannya salah satu tolok ukur penting dalam penelitian algoritma pencarian dan pemodelan berbasis kendala.
 	
 	\begin{figure}[H]
 		\centering
@@ -117,7 +125,7 @@
 		\label{fig:NQ_comparison}
 	\end{figure}
 	
-	Seiring perkembangan penelitian, muncul berbagai variasi dari masalah n-queens tradisional yang menawarkan kompleksitas dan tantangan komputasional yang lebih tinggi. Salah satu variasi yang telah diteliti adalah \textit{N+k Queens Problem}, di mana $k$ buah bidak pion ditempatkan sebagai penghalang sehingga memungkinkan penempatan $N+k$ bidak menteri pada papan berukuran $N \times N$ \footnote{R.D. Chatham, "Reflections on the N+k Queens Problem," \textit{The College Mathematics Journal}, vol. 40, no. 3, hal. 204--210, Mei 2009.}. Variasi lainnya adalah \textit{Toroidal N-Queens}, di mana papan catur dibentuk menjadi torus dengan menghubungkan sisi-sisi yang berlawanan, sehingga menteri dapat “melingkar” dari satu sisi ke sisi lainnya \footnote{A. García Sánchez, "The n-Queens Problem: An Activity Book," Undergraduate Research Support Scheme, Mathematics Institute, University of Warwick, 2024. Supervised by Dr. Candida Bowtell.} Peningkatan kompleksitas pada variasi-variasi ini terlihat jelas; misalnya pada \textit{N+k Queens Problem} dengan $N=8$ dan $k=2$, jumlah kemungkinan konfigurasi yang harus dieksplorasi meningkat secara signifikan dibandingkan masalah standar karena adanya kendala tambahan berupa posisi pion yang tidak dapat dilanggar. Variasi-variasi ini menunjukkan bahwa menambahkan satu atau dua aturan baru saja dapat memperbesar ruang pencarian secara drastis dan mengubah struktur solusi masalah.
+	Seiring perkembangan penelitian, muncul berbagai variasi dari masalah n-queens tradisional yang menawarkan kompleksitas dan tantangan komputasional yang lebih tinggi. Salah satu variasi yang telah diteliti adalah \textit{N+k Queens Problem}, di mana $k$ buah bidak pion ditempatkan sebagai penghalang sehingga memungkinkan penempatan $N+k$ bidak menteri pada papan berukuran $N \times N$.\footnote{R.D. Chatham, "Reflections on the N+k Queens Problem," \textit{The College Mathematics Journal}, vol. 40, no. 3, hal. 204--210, Mei 2009.} Salah satu solusi dari \textit{8+1 Queens} dapat dilihat pada Gambar \ref{fig:nkSolution}.  Variasi lainnya adalah \textit{Toroidal N-Queens}, di mana papan catur dibentuk menjadi torus dengan menghubungkan sisi-sisi yang berlawanan, sehingga menteri dapat “melingkar” dari satu sisi ke sisi lainnya. \footnote{A. García Sánchez, "The n-Queens Problem: An Activity Book," Undergraduate Research Support Scheme, Mathematics Institute, University of Warwick, 2024. Supervised by Dr. Candida Bowtell.} Penyerangan yang dapat terjadi pada permasalahan \textit{Toroidal Queens} dapat dilihat pada Gambar \ref{fig:toroidalQueens}. Peningkatan kompleksitas pada variasi-variasi ini terlihat jelas; misalnya pada \textit{N+k Queens Problem} dengan $N=8$ dan $k=2$, jumlah kemungkinan konfigurasi yang harus dieksplorasi meningkat secara signifikan dibandingkan masalah standar karena adanya kendala tambahan berupa posisi pion yang tidak dapat dilanggar. Variasi-variasi ini menunjukkan bahwa menambahkan satu atau dua aturan baru saja dapat memperbesar ruang pencarian secara drastis dan mengubah struktur solusi masalah.
 	
 	\begin{figure}[H]
 		\centering
@@ -140,7 +148,7 @@
 		\label{fig:nqueenvariants}
 	\end{figure}
 
-	Tugas akhir ini berfokus pada varian \textit{Colored Queens}, sebuah permasalahan yang hingga saat ini belum memiliki literatur akademis yang memadai dan belum diteliti secara formal dalam publikasi ilmiah. Berbeda dengan masalah n-queens tradisional, permainan \cq memiliki aturan yang lebih kompleks: papan permainan dibagi menjadi beberapa sektor berwarna, setiap sektor harus berisi tepat satu bidak menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung, baik horizontal, vertikal, maupun diagonal. Perbedaan fundamental lainnya adalah bahwa bidak menteri pada \cq hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak dapat ditempatkan pada satu garis diagonal yang sama. Kompleksitas komputasional varian ini lebih tinggi dibandingkan permasalahan n-queens tradisional karena terdapat tiga lapis kendala yang harus dipenuhi secara simultan: kendala partisi warna (setiap warna tepat satu menteri), kendala \textit{adjacency} (tidak boleh bersebelahan), dan kendala serangan (horizontal dan vertikal). Sebagai ilustrasi, pada papan berukuran $6 \times 6$ dengan 6 sektor warna, ruang pencarian solusi menjadi jauh lebih sempit dan bergantung pada struktur pembagian sektor, sehingga kompleksitasnya umumnya lebih tinggi dibandingkan 6-queens standar yang memiliki ruang solusi yang lebih teratur. Ketidakteraturan struktur sektor warna juga membuat heuristik dan simetri yang biasa dimanfaatkan pada n-queens standar tidak lagi berlaku, sehingga \cq merupakan permasalah yang jauh lebih sulit.
+	Tugas akhir ini berfokus pada varian \textit{Colored Queens}, sebuah permasalahan yang hingga saat ini memiliki literatur akademis dan penelitian secara formal dalam publikasi ilmiah yang minim. Berbeda dengan masalah n-queens tradisional, permainan \textit{Colored Queens} memiliki aturan yang lebih kompleks: papan permainan dibagi menjadi beberapa sektor berwarna seperti pada Gambar \ref{fig:Queens_unsolved_1}, setiap sektor harus berisi tepat satu bidak menteri, dan tidak ada menteri yang boleh bersebelahan secara langsung, baik horizontal, vertikal, maupun diagonal. Perbedaan fundamental lainnya adalah bahwa bidak menteri pada \textit{Colored Queens} hanya dapat menyerang secara horizontal dan vertikal, sehingga lebih dari satu bidak dapat ditempatkan pada satu garis diagonal yang sama, sehingga salah satu solusi valid untuk contoh permasalahan \textit{Colored Queens} dapat dilihat pada Gambar \ref{fig:Queens_solved_1}. Kompleksitas komputasional varian ini lebih tinggi dibandingkan permasalahan n-queens tradisional karena terdapat tiga lapis kendala yang harus dipenuhi secara simultan: kendala partisi warna (setiap warna tepat satu menteri), kendala \textit{adjacency} (tidak boleh bersebelahan), dan kendala serangan (horizontal dan vertikal). Sebagai ilustrasi, pada papan berukuran $6 \times 6$ dengan 6 sektor warna, ruang pencarian solusi menjadi jauh lebih sempit dan bergantung pada struktur pembagian sektor, sehingga kompleksitasnya umumnya lebih tinggi dibandingkan 6-queens standar yang memiliki ruang solusi yang lebih teratur. Ketidakteraturan struktur sektor warna juga membuat heuristik dan simetri yang biasa dimanfaatkan pada n-queens standar tidak lagi berlaku, sehingga \textit{Colored Queens} merupakan permasalah yang jauh lebih sulit.
 
 	\begin{figure}
 		\centering
@@ -148,31 +156,31 @@
 			\centering
 			\includegraphics[width=\linewidth]{Queens_unsolved.png}
 			\caption{Contoh kondisi awal permainan Colored Queens}
-			\label{fig:Queens_unsolved}
+			\label{fig:Queens_unsolved_1}
 		\end{subfigure}
 		\hspace{2cm}
 		\begin{subfigure}{0.3\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{Queens_solved.png}
 			\caption{Solusi valid permainan Colored Queens}
-			\label{fig:Queens_solved}
+			\label{fig:Queens_solved_1}
 		\end{subfigure}
-		\caption{Contoh permainan \cq}
+		\caption{Contoh permainan \textit{Colored Queens}}
 	\end{figure}
 	
-	Masalah n-queens dan seluruh variasinya, termasuk \cq, tergolong ke dalam kategori \textit{Constraint Satisfaction Problem} (CSP). CSP adalah jenis permasalahan yang melibatkan pencarian solusi dengan memberikan nilai pada sejumlah variabel sedemikian rupa sehingga memenuhi seperangkat batasan atau kendala tertentu. Secara formal, sebuah CSP didefinisikan oleh tiga komponen: himpunan variabel $X = {X1, X2, ..., Xn}$, himpunan domain $D = {D1, D2, ..., Dn}$ yang berisi nilai-nilai yang mungkin untuk setiap variabel, dan himpunan kendala C yang membatasi kombinasi nilai yang dapat diberikan pada variabel-variabel tersebut. Dalam konteks \cq, variabel-variabelnya adalah posisi menteri untuk setiap sektor warna, domain untuk setiap variabel adalah sel-sel yang tersedia pada sektor tersebut, dan kendala-kendalanya mencakup aturan tidak bersebelahan serta tidak saling menyerang. CSP memiliki aplikasi luas dalam penjadwalan, perencanaan, konfigurasi produk, desain jaringan, serta berbagai sistem pengambilan keputusan berbasis kendala.
+	Masalah n-queens dan seluruh variasinya, termasuk \textit{Colored Queens}, tergolong ke dalam kategori \textit{Constraint Satisfaction Problem} (CSP). CSP adalah jenis permasalahan yang melibatkan pencarian solusi dengan memberikan nilai pada sejumlah variabel sedemikian rupa sehingga memenuhi seperangkat batasan atau kendala tertentu. Secara formal, sebuah CSP didefinisikan oleh tiga komponen: himpunan variabel $X = \{X_1, X_2, ..., X_n\}$, himpunan domain $D = \{D_1, D_2, ..., D_n\}$ yang berisi nilai-nilai yang mungkin untuk setiap variabel, dan himpunan kendala C yang membatasi kombinasi nilai yang dapat diberikan pada variabel-variabel tersebut. Dalam konteks \textit{Colored Queens}, variabel-variabelnya adalah posisi menteri untuk setiap sektor warna, domain untuk setiap variabel adalah sel-sel yang tersedia pada sektor tersebut, dan kendala-kendalanya mencakup aturan tidak bersebelahan serta tidak saling menyerang, seperti yang tertera pada Gambar \ref{fig:4queensCSP_1}. CSP memiliki aplikasi luas dalam penjadwalan, perencanaan, konfigurasi produk, desain jaringan, serta berbagai sistem pengambilan keputusan berbasis kendala.
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.9\linewidth]{4queensCSP.png}
 		\caption{Contoh permasalahan \textit{4-Queens} yang dimodelkan sebagai CSP, dimana variabel X1 s.d. X4 adalah baris bidak menteri pada setiap kolomnya dengan nilai kemungkinan {1,2,3,4} dan kendala yang menghubungakn setiap variabel berupa aturan penyerangan bidak menteri pada permainan catur}
 		\footnotesize Sumber: Penggambaran ulang dari \url{https://courses.grainger.illinois.edu/cs440/fa2021/lectures/csp1.html}
-		\label{fig:4queensCSP}
+		\label{fig:4queensCSP_1}
 	\end{figure}
 	
-	Untuk menyelesaikan permasalahan CSP seperti \cq, salah satu pendekatan klasik yang terbukti efektif adalah algoritma \textit{backtracking}. \textit{Backtracking} bekerja dengan membangun solusi secara bertahap melalui pencarian mendalam, di mana setiap variabel diberi nilai satu per satu sambil memeriksa konsistensi dengan kendala yang ada. Ketika algoritma menemui situasi di mana tidak ada nilai yang valid untuk variabel berikutnya (\textit{dead end}), algoritma akan mundur (\textit{backtrack}) ke langkah sebelumnya dan mencoba alternatif lain. Kekuatan \textit{backtracking} terletak pada sifatnya yang sistematis dan kemampuannya untuk menjamin bahwa solusi akan ditemukan jika memang ada. Namun, pada masalah dengan ruang pencarian yang berkembang secara eksponensial seperti \cq, \textit{backtracking} murni dapat menjadi sangat tidak efisien karena harus mengeksplorasi sejumlah besar kemungkinan konfigurasi sebelum menemukan solusi yang valid. Oleh karena itu, diperlukan modifikasi dan teknik tambahan untuk memangkas ruang pencarian agar algoritma tetap praktis digunakan pada instansi masalah \cq yang berukuran besar seperti papan $20 \times 20$ dan $30 \times 30$.
+	Untuk menyelesaikan permasalahan CSP seperti \textit{Colored Queens}, salah satu pendekatan klasik yang terbukti efektif adalah algoritma \textit{backtracking}. \textit{Backtracking} bekerja dengan membangun solusi secara bertahap melalui pencarian mendalam, di mana setiap variabel diberi nilai satu per satu sambil memeriksa konsistensi dengan kendala yang ada. Ketika algoritma menemui situasi di mana tidak ada nilai yang valid untuk variabel berikutnya (\textit{dead end}), algoritma akan mundur (\textit{backtrack}) ke langkah sebelumnya dan mencoba alternatif lain. Kekuatan \textit{backtracking} terletak pada sifatnya yang sistematis dan kemampuannya untuk menjamin bahwa solusi akan ditemukan jika memang ada. Namun, pada masalah dengan ruang pencarian yang berkembang secara eksponensial seperti \textit{Colored Queens}, \textit{backtracking} murni dapat menjadi sangat tidak efisien karena harus mengeksplorasi sejumlah besar kemungkinan konfigurasi sebelum menemukan solusi yang valid. Oleh karena itu, diperlukan modifikasi dan teknik tambahan untuk memangkas ruang pencarian agar algoritma tetap praktis digunakan pada instansi masalah \textit{Colored Queens} yang berukuran besar seperti papan $20 \times 20$ dan $30 \times 30$.
 	
-	Untuk meningkatkan efisiensi algoritma backtracking, tugas akhir ini mengintegrasikan teknik \textit{Maintaining Arc Consistency} (MAC) yang mengimplementasikan algoritma \textit{Arc Consistency 3} (AC-3). AC-3 adalah teknik propagasi kendala yang berfungsi untuk menyempitkan ruang pencarian dengan mengeliminasi nilai-nilai dalam domain yang tidak mungkin menghasilkan solusi valid berdasarkan kendala antar variabel. Algoritma ini bekerja dengan memeriksa konsistensi antara pasangan variabel dan secara iteratif menghapus nilai-nilai yang tidak memiliki pasangan yang konsisten pada variabel lain. Dengan menjalankan AC-3 pada tahap preprocessing sebelum pencarian dimulai serta setiap kali backtracking membuat assignment baru, banyak konfigurasi yang tidak valid dapat dieliminasi lebih awal sebelum algoritma membuang waktu mengeksplorasinya. Pada permasalahan seperti \cq yang memiliki ketergantungan antar variabel sangat kuat akibat kendala \textit{adjacency} dan partisi warna, propagasi kendala memberikan dampak reduksi ruang solusi yang signifikan sehingga dapat mengurangi jumlah langkah \textit{backtracking} yang diperlukan secara drastis dan memperpendek waktu yang dibutuhkan untuk mencari solusi yang valid.
+	Untuk meningkatkan efisiensi algoritma backtracking, tugas akhir ini mengintegrasikan teknik \textit{Maintaining Arc Consistency} (MAC) yang mengimplementasikan algoritma \textit{Arc Consistency 3} (AC-3). AC-3 adalah teknik propagasi kendala yang berfungsi untuk menyempitkan ruang pencarian dengan mengeliminasi nilai-nilai dalam domain yang tidak mungkin menghasilkan solusi valid berdasarkan kendala antarvariabel. Algoritma ini bekerja dengan memeriksa konsistensi antara pasangan variabel dan secara iteratif menghapus nilai-nilai yang tidak memiliki pasangan yang konsisten pada variabel lain. Dengan menjalankan AC-3 pada tahap \textit{preprocessing} sebelum pencarian dimulai serta setiap kali backtracking membuat \textit{assignment} baru, banyak konfigurasi yang tidak valid dapat dieliminasi lebih awal sebelum algoritma membuang waktu mengeksplorasinya. Pada permasalahan seperti \textit{Colored Queens} yang memiliki ketergantungan antar variabel sangat kuat akibat kendala \textit{adjacency} dan partisi warna, propagasi kendala memberikan dampak reduksi ruang solusi yang signifikan sehingga dapat mengurangi jumlah langkah \textit{backtracking} yang diperlukan secara drastis dan memperpendek waktu yang dibutuhkan untuk mencari solusi yang valid.
 	
 	\begin{figure}[H]
 		\centering
@@ -182,7 +190,7 @@
 		\label{fig:beforeafterARC}
 	\end{figure}
 	
-	Sebagai alternatif dari pendekatan deterministik, tugas akhir ini juga mengeksplorasi penggunaan \textit{Particle Swarm Optimization} (PSO), sebuah algoritma metaheuristik yang terinspirasi dari perilaku kolektif kawanan burung atau ikan dalam mencari makanan. Metaheuristik adalah strategi pencarian tingkat tinggi yang memandu proses eksplorasi ruang solusi tanpa menjamin menemukan solusi optimal, namun seringkali dapat menemukan solusi yang cukup baik dalam waktu yang lebih singkat dibandingkan metode eksak seperti backtracking. PSO bekerja dengan mensimulasikan sekumpulan partikel yang bergerak dalam ruang solusi, di mana setiap partikel menyesuaikan posisinya berdasarkan pengalaman terbaiknya sendiri dan pengalaman terbaik kawanan. Kelebihan PSO terletak pada kemampuannya untuk melakukan eksplorasi ruang solusi secara paralel dan menghindari jebakan solusi lokal dalam beberapa kasus. Namun, karena PSO dirancang untuk ruang solusi kontinu, penerapannya pada \cq yang bersifat diskret memerlukan adaptasi khusus. Adaptasi tersebut mencakup representasi setiap partikel sebagai susunan posisi menteri untuk setiap sektor warna pada papan. Konsep velocity dalam PSO juga dimodifikasi menjadi bilangan desimal yang merepresentasikan probabilitas seberapa besar kemungkinan posisi menteri pada suatu sektor akan beralih mengikuti konfigurasi Neighbourhood Best, serta prosedur perbaikan (\textit{repair mechanisms}) untuk menangani solusi yang melanggar kendala hard constraint seperti aturan satu menteri per warna. Adaptasi ini penting agar PSO tetap relevan dan dapat memberikan performa yang kompetitif pada masalah bersifat kombinatorial.
+	Sebagai alternatif dari pendekatan deterministik, tugas akhir ini juga mengeksplorasi penggunaan \textit{Particle Swarm Optimization} (PSO), sebuah algoritma metaheuristik yang terinspirasi dari perilaku kolektif kawanan burung atau ikan dalam mencari makanan. Metaheuristik adalah strategi pencarian tingkat tinggi yang memandu proses eksplorasi ruang solusi tanpa menjamin menemukan solusi optimal, namun seringkali dapat menemukan solusi yang cukup baik dalam waktu yang lebih singkat dibandingkan metode eksak seperti backtracking. PSO bekerja dengan mensimulasikan sekumpulan partikel yang bergerak dalam ruang solusi, di mana setiap partikel menyesuaikan posisinya berdasarkan pengalaman terbaiknya sendiri dan pengalaman terbaik kawanan. Kelebihan PSO terletak pada kemampuannya untuk melakukan eksplorasi ruang solusi secara paralel dan menghindari jebakan solusi lokal dalam beberapa kasus. Namun, karena PSO dirancang untuk ruang solusi kontinu, penerapannya pada \textit{Colored Queens} yang bersifat diskret memerlukan adaptasi khusus. Adaptasi tersebut mencakup representasi setiap partikel sebagai susunan posisi menteri untuk setiap sektor warna pada papan. Konsep velocity dalam PSO juga dimodifikasi menjadi bilangan desimal yang merepresentasikan probabilitas seberapa besar kemungkinan posisi menteri pada suatu sektor akan beralih mengikuti konfigurasi Neighbourhood Best, serta prosedur perbaikan (\textit{repair mechanisms}) untuk menangani solusi yang melanggar kendala hard constraint seperti aturan satu menteri per warna. Adaptasi ini penting agar PSO tetap relevan dan dapat memberikan performa yang kompetitif pada masalah bersifat kombinatorial.
 	
 	\begin{figure}[H]
 		\centering
@@ -192,1397 +200,1439 @@
 		\label{fig:PSOvisualization}
 	\end{figure}
 	
-	Dari segi pengembangan perangkat lunak, tugas akhir ini tidak hanya berfokus pada aspek algoritmik, tetapi juga pada penyediaan antarmuka pengguna yang intuitif dan edukatif. Akan dikembangkan sebuah aplikasi berbasis web yang memungkinkan pengguna untuk berinteraksi langsung dengan permainan \cq, memilih tingkat kesulitan berdasarkan ukuran papan, serta memungkinkan pengguna untuk menyelesaikan \textit{puzzle} secara manual. Aplikasi ini akan dilengkapi sistem peringatan visual ketika pengguna menempatkan menteri pada posisi yang melanggar kendala, sehingga membantu pemahaman terhadap aturan permainan. Apabila kesulitan, pengguna dapat meminta bantuan berupa \textit{hint} untuk mempermudah proses penyelesaian \textit{puzzle}. Pengguna juga dapat memanggil \textit{solver} untuk menyelesaikan \textit{puzzle} secara otomatis apabila tidak bisa memecahkan masalah tersebut secara manual.
+	Dari segi pengembangan perangkat lunak, tugas akhir ini tidak hanya berfokus pada aspek algoritmik, tetapi juga pada penyediaan antarmuka pengguna untuk memainkan dan menyelesaikan berbagai contoh permasalahan \textit{Colored Queens} secara manual. Akan dikembangkan sebuah aplikasi berbasis web yang memungkinkan pengguna untuk berinteraksi langsung dengan permainan \textit{Colored Queens}, memilih tingkat kesulitan berdasarkan ukuran papan, serta memungkinkan pengguna untuk menyelesaikan \textit{puzzle} secara manual. Aplikasi ini akan dilengkapi sistem peringatan visual ketika pengguna menempatkan menteri pada posisi yang melanggar kendala, sehingga membantu pemahaman terhadap aturan permainan. Apabila kesulitan, pengguna dapat meminta bantuan berupa \textit{hint} untuk mempermudah proses penyelesaian \textit{puzzle}. Pengguna juga dapat memanggil \textit{solver} untuk menyelesaikan \textit{puzzle} secara otomatis apabila tidak bisa memecahkan masalah tersebut secara manual.
 
 	
 	\section{Rumusan Masalah}
+	Sebelum masuk ke pembahasan lebih lanjut, berikut disajikan rumusan masalah yang menjadi dasar penelitian ini:
 	\begin{itemize}	
-		\item Bagaimana cara membangun perangkat lunak permainan \cq?
-		\item Bagaimana membangun solusi permainan \cq menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization} (PSO)?
+		\item Bagaimana cara membangun perangkat lunak permainan \textit{Colored Queens}?
+		\item Bagaimana membangun solusi permainan \textit{Colored Queens} menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization} (PSO)?
 		\item Bagaimana membangun solver untuk permainan colored queen yang mengimplementasikan \textit{Backtracking} dan PSO yang dapat diintegrasikan dengan perangkat lunak yang dibangun?
-		\item Bagiamana kinerja dari solver yang dibangun dalam mencari solusi permainan \cq?
+		\item Bagiamana kinerja dari solver yang dibangun dalam mencari solusi permainan \textit{Colored Queens}?
 	\end{itemize}
 	
 	\section{Tujuan}
+	Selanjutnya, tujuan dari penelitian ini dapat dirumuskan sebagai berikut:
 	\begin{itemize}	
-		\item Membangun perangkat lunak permainan \cq.
+		\item Membangun perangkat lunak permainan \textit{Colored Queens}.
 		\item Mempelajari cara membangun solusi permainan Colored Queen menggunakan teknik \textit{Backtracking} dan \textit{Particle Swarm Optimization}.
 		\item Membangun solver untuk permainan colored queen yang mengimplementasikan \textit{Backtracking} dan PSO yang dapat diintegrasikan dengan perangkat lunak yang dibangun.
-		\item Melakukan pegujian untuk mengukur kinerja dari solver yang dibangun dalam mencari solusi permainan \cq
+		\item Melakukan pegujian untuk mengukur kinerja dari solver yang dibangun dalam mencari solusi permainan \textit{Colored Queens}
 	\end{itemize}
 	
 	\section{Detail Perkembangan Pengerjaan Tugas Akhir}
 	Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan terkahir :
+	\section{Detail Perkembangan Pengerjaan Tugas Akhir}
+	Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan terkahir :
+	\subsection{Melakukan studi literatur terkait permasalahan n-queens dan variannya.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :} \\
+	Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu komputer dan matematika diskrit, dengan sejarah panjang sejak pertama kali diperkenalkan oleh Max Bezzel pada tahun 1848. Pada formulasi dasar permasalahan ini, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Sebagaimana dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut seperti yang tertera pada gambar\textsuperscript{\ref{fig:queenattackpattern}}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{queen_attack_pattern.png}
+		\caption{Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidah menteri.}
+		\label{fig:queenattackpattern}
+	\end{figure}
+	
+	Dari perspektif komputasi, permasalahan ini menarik karena memiliki struktur yang sederhana namun ruang solusinya sangat besar dan tumbuh secara eksponensial. Jika setiap baris diasosiasikan dengan satu menteri, maka setiap menteri memiliki $n$ kemungkinan kolom, menghasilkan ruang solusi awal sebesar $n^n$. Ketika nilai $n$ meningkat, ruang solusi menjadi sangat luas sehingga pencarian solusi tanpa teknik penyempitan ruang menjadi tidak realistis. Sebagai contoh, untuk $n = 20$ saja terdapat $20^{20}$ kemungkinan konfigurasi awal, jumlah yang jauh melampaui kemampuan komputasi brute-force konvensional.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.35\linewidth]{N_queens_wrong.png}
+		\caption*{Gambar 8: Contoh solusi salah masalah N-Queens pada papan berukuran $8 \times 8$ (8-Queens)}
+		\footnotesize Sumber: \url{https://www.researchgate.net/figure/N-Queen-problem-explanation-with-8-queens-in-a-chessboard-of-8_fig3_372415823}
+		\label{fig:nqueenswrong}
+	\end{figure}
+	
+	Secara struktural, permasalahan N-Queens memiliki tiga komponen kendala utama yang harus dipenuhi secara simultan. Pertama, kendala kolom yang memastikan tidak ada dua menteri pada kolom yang sama. Kedua, kendala diagonal positif yang mencegah konflik pada diagonal dengan gradien positif. Ketiga, kendala diagonal negatif yang mencegah konflik pada diagonal dengan gradien negatif. Ketiga kendala ini membentuk sistem pembatasan yang saling berinteraksi, dan pelanggaran terhadap salah satu kendala mengakibatkan konfigurasi menjadi tidak valid. Interaksi kompleks antar kendala inilah yang membuat permasalahan ini dapat dimodelkan menggunakan kerangka kerja formal tertentu, yang akan dibahas lebih lanjut pada bagian berikutnya.
+	
+	Studi literatur juga menekankan bahwa meskipun solusi untuk N-Queens selalu ada untuk $n \geq 4$), struktur solusinya sangat beragam dan sering kali memiliki pola-pola tertentu yang dapat dimanfaatkan oleh algoritma. Misalnya, beberapa penelitian menghasilkan konstruksi langsung untuk ukuran $n$ tertentu yang menghasilkan solusi tanpa perlu eksplorasi ruang pencarian secara menyeluruh. Namun, pendekatan konstruktif semacam ini tidak berlaku secara umum untuk seluruh varian N-Queens, sehingga algoritma pencarian tetap menjadi pendekatan yang paling banyak digunakan. Selain itu, jumlah solusi unik untuk N-Queens tumbuh secara eksponensial seiring bertambahnya $n$, dengan pola pertumbuhan yang telah menjadi objek kajian dalam teori kombinatorik.
+	
+	Secara keseluruhan, pemahaman mendalam mengenai sifat dasar N-Queens, karakteristik ruang pencariannya, struktur kendala yang mendasarinya, serta berbagai teknik algoritmik yang digunakan untuk menyelesaikannya memberikan landasan konseptual kuat sebelum mempelajari varian-varian yang lebih kompleks, termasuk Colored Queens yang menjadi fokus tugas akhir ini.
+	
+	\subsubsection{Berbagai Varian N-Queens}
+	
+	Berbagai penelitian telah mengembangkan sejumlah varian dari permasalahan N-Queens untuk mengeksplorasi karakteristik baru dalam struktur constraint, ruang solusi, maupun strategi penyelesaian. Varian-varian ini umumnya memodifikasi jumlah bidak, aturan serangan, atau bahkan topologi papan sehingga menghasilkan dinamika pencarian yang berbeda secara signifikan dari permasalahan N-Queens klasik. Pada bagian ini dibahas tiga varian yang relevan: \textit{N+k Queens}, \textit{Toroidal Queens}, dan \textit{Colored Queens}. Dua varian pertama merupakan topik yang telah diteliti secara formal dalam literatur akademik, sedangkan varian terakhir merupakan permasalahan non-standar yang tidak ditemukan dalam publikasi ilmiah dan menjadi fokus utama tugas akhir ini.
+	
 	\begin{enumerate}
-		\item \textbf{Melakukan studi literatur terkait permasalahan n-queens dan variannya, Constraint Satisfaction Problem (CSP), algoritma pencarian Backtracking, teknik metaheuristik Particle Swarm Optimization, serta metode propagasi kendala AC-3).}\\
-		\label{dasarteori}
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-		
+	\item\textbf{Variasi \textit{N + k Queens}}\\
+	Varian N+k Queens memodifikasi jumlah bidak menteri yang harus ditempatkan pada papan berukuran $n \times n$. Jika pada N-Queens standar terdapat tepat $n$ menteri, pada varian ini jumlah menteri menjadi $n + k$, di mana $k$ dapat bernilai positif maupun negatif. Untuk $k > 0$, algoritma harus menemukan konfigurasi dengan lebih dari $n$ menteri tanpa konflik horizontal, vertikal, maupun diagonal. Sebaliknya, ketika $k < 0$, tidak semua baris perlu diisi sehingga proses pencarian mencakup pemilihan subset baris yang digunakan.
+	
+	Struktur constraint pada N+k Queens lebih kompleks karena hubungan antara jumlah variabel dan domainnya tidak lagi linear seperti pada N-Queens standar. Penambahan jumlah menteri secara langsung meningkatkan densitas konflik, sehingga ruang pencarian menjadi lebih padat dan heuristik penyempitan domain menjadi jauh lebih penting. Varian ini sering digunakan untuk menguji ketahanan algoritma metaheuristik dan adaptasi CSP, sebab perubahan $k$ dapat menghasilkan tipe solusi yang berbeda, termasuk konfigurasi yang tidak mungkin muncul pada permasalahan dasar.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{n+kSolution.png}
+		\caption{Contoh solusi dari \textit{8+1 Queens} dimana terdapat 1 bidak pion pada posisi D5 mencegah penyerangan antara bidak menteri D4 dengan D6 dan B5 dengan G5.}
+		\footnotesize Sumber: Penggambaran ulang dari \url{http://www.npluskqueens.info/background.html}
+		\label{fig:solusi8+1Queens}
+	\end{figure}
+	
+	\item\textbf{Variasi \textit{Toroidal Queens}}\\
+	Varian toroidal mengubah struktur papan menjadi sebuah torus, di mana sisi kiri dan kanan papan terhubung, demikian pula sisi atas dan bawah. Perubahan topologi ini mengubah definisi serangan menteri karena pergerakannya bersifat \textit{wrap-around}: sebuah garis serangan tidak berhenti pada tepi papan tetapi terus berlanjut dari sisi berlawanan. Dengan demikian, konflik horizontal, vertikal, dan diagonal harus diperiksa dengan mempertimbangkan operasi modulo terhadap ukuran papan.
+	
+	Untuk memahami kompleksitas varian toroidal secara bertahap, dapat dipertimbangkan konsep \textit{semi-queen}, yaitu bidak imajiner yang dapat bergerak sepanjang baris, kolom, dan diagonal jumlah, tetapi tidak pada diagonal selisih. Analisis terhadap toroidal semi-queens menunjukkan bahwa solusi hanya ada ketika $n$ ganjil. Kondisi ini diturunkan dari fakta bahwa jumlah $\sum_{i=0}^{n-1} i \equiv 0 \pmod{n}$ hanya terpenuhi ketika $\frac{n(n-1)}{2}$ merupakan bilangan bulat kelipatan $n$, yang mengimplikasikan bahwa $n$ harus ganjil.\footnote{A. García Sánchez, "The n-Queens Problem: An Activity Book," Undergraduate Research Support Scheme, Mathematics Institute, University of Warwick, 2024. Supervised by Dr. Candida Bowtell.}
+	
+	Penelitian teoretis menunjukkan bahwa tidak semua ukuran papan memiliki solusi pada varian toroidal penuh. Hasil klasik menyatakan bahwa permasalahan Toroidal Queens hanya memiliki solusi jika dan hanya jika $\gcd(n, 6) = 1$. Kondisi ini menggabungkan dua syarat: pertama, $n$ harus ganjil (diwarisi dari analisis semi-queens), dan kedua, $n$ tidak boleh habis dibagi 3 (berasal dari pembatasan tambahan akibat pergerakan pada diagonal selisih). Hal ini berbeda jauh dari N-Queens standar yang memiliki solusi untuk semua $n \geq 4$. Dari perspektif CSP, varian toroidal menghasilkan grafik constraint yang lebih padat karena hubungan antar variabel bersifat siklik, sehingga banyak teknik heuristik tradisional harus disesuaikan agar mempertimbangkan topologi torus. Studi varian ini memberikan wawasan mendalam mengenai bagaimana perubahan struktural pada ruang masalah dapat memengaruhi pola solusi dan kompleksitas komputasional.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{toroidalQueens.png}
+		\caption{Ilustrasi serangan menteri pada papan toroidal. Garis merah menunjukkan serangan yang melewati batas papan dan berlanjut dari sisi berlawanan (\textit{wrap-around}). Menteri yang dilingkari merah menyerang menteri lain melalui koneksi toroidal.}
+		\footnotesize Sumber: Penggambaran ulang dari \url{https://www.johndcook.com/blog/2021/08/18/queens-on-a-donut/}
+		\label{fig:4queensCSP}
+	\end{figure}
+	
+	\item\textbf{Variasi \textit{Colored Queens}}\\
+	Berbeda dengan dua varian sebelumnya, \textit{Colored Queens} merupakan varian non-standar yang tidak ditemukan dalam literatur akademik formal. Hingga saat penulisan laporan ini, tidak terdapat publikasi ilmiah—baik jurnal maupun prosiding—yang membahas permasalahan Colored Queens secara eksplisit. Permasalahan ini muncul dalam konteks permainan logika komersial berbasis teka-teki, bukan dalam riset teoretis N-Queens. Oleh karena itu, struktur formal, representasi CSP, serta analisis algoritmik untuk varian ini harus dikonstruksi sendiri sebagai bagian dari penelitian.
+	
+	Pada varian Colored Queens, papan permainan dibagi ke dalam sejumlah kawasan atau sektor yang masing-masing diberi warna berbeda. Setiap sektor harus berisi tepat satu menteri, sehingga constraint warna menjadi komponen tambahan selain constraint klasik (baris, kolom, dan—pada Colored Queens—hanya sebagian aspek diagonal). Salah satu perbedaan paling signifikan dari N-Queens tradisional adalah bahwa pada Colored Queens, menteri tidak menyerang secara diagonal, melainkan hanya secara horizontal dan vertikal. Akibatnya, lebih dari satu menteri dapat berada dalam satu diagonal tanpa menyebabkan konflik, berbeda dengan aturan standar catur. Namun, varian ini menambahkan aturan baru berupa larangan menempatkan dua menteri pada sel yang saling bersebelahan baik secara horizontal, vertikal, maupun diagonal. Hal ini menjadikan struktur constraint unik: sebagian diagonal diabaikan (untuk serangan), tetapi sebagian diagonal diperhitungkan (untuk adjacency constraint).
+	
+	Dibandingkan varian-varian formal lainnya, Colored Queens memiliki dua karakteristik yang membuatnya menarik untuk dikaji sebagai CSP dan sebagai objek analisis algoritmik:
+	\begin{enumerate}
+		\item \textit{Constraint warna} menjadikan setiap sektor bertindak sebagai variabel tingkat tinggi dengan domain yang harus memastikan pemilihan tepat satu sel dalam area tertentu.
+		\item \textit{Aturan adjacency} menciptakan constraint jarak pendek yang meningkatkan kepadatan konflik lokal, namun tidak mempengaruhi konflik jarak jauh seperti pada N-Queens standar.
+	\end{enumerate}
+	
+	Sifat-sifat ini menjadikan Colored Queens sebagai permasalahan yang secara struktural berbeda dari varian N-Queens mana pun dalam literatur. Akibat ketiadaan referensi formal, tugas akhir ini perlu menyusun sendiri definisi matematis, model CSP, serta strategi algoritmik berbasis Backtracking dengan AC-3 dan Particle Swarm Optimization untuk memecahkan permasalahan tersebut. Dengan demikian, studi Colored Queens tidak hanya mengimplementasikan algoritma, tetapi juga berkontribusi dalam formalisasi permasalahan baru, pembangunan model CSP yang sesuai, dan analisis komparatif strategi algoritmik berbasis Backtracking dengan AC-3 dan Particle Swarm Optimization pada domain yang belum pernah dikaji secara akademik sebelumnya.
+	
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.35\textwidth}
+				\centering
+				\includegraphics[width=\linewidth]{Queens_unsolved.png}
+				\caption{Contoh kondisi awal permainan Colored Queens}
+				\label{fig:Queens_unsolved}
+			\end{subfigure}
+			\hspace{2cm}
+			\begin{subfigure}{0.35\textwidth}
+				\centering
+				\includegraphics[width=\linewidth]{Queens_solved.png}
+				\caption{Solusi valid permainan Colored Queens}
+				\label{fig:Queens_solved}
+			\end{subfigure}
+			\caption{Contoh permainan Colored Queens}
+			\label{fig:permainanCQ}
+		\end{figure}
+	\end{enumerate}
+	
+	\subsection{Melakukan studi literatur terkait Constraint Satisfaction Problem (CSP).}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	\textit{Constraint Satisfaction Problem} (CSP) adalah kerangka kerja umum untuk merepresentasikan dan menyelesaikan berbagai permasalahan kombinatorial. Secara formal, CSP terdiri dari tiga komponen utama: (1) sekumpulan variabel $X = \{X_1, \ldots, X_n\}$, (2) untuk setiap variabel $X_i$, sebuah himpunan domain $D_i$ yang berisi nilai-nilai yang mungkin dapat diberikan kepada variabel tersebut, dan (3) sekumpulan \textit{constraint} atau batasan yang membatasi kombinasi nilai yang dapat diberikan kepada variabel-variabel secara bersamaan.\footnote{S.C. Brailsford, C.N. Potts, dan B.M. Smith, "Constraint satisfaction problems: Algorithms and applications," \textit{European Journal of Operational Research}, vol. 119, no. 3, hal. 557-581, 1999.} Solusi dari CSP adalah pemberian nilai kepada setiap variabel dari domain masing-masing sedemikian rupa sehingga semua batasan terpenuhi.
+	
+	Dalam konteks N-Queens, CSP memberikan representasi yang natural: variabel dapat merepresentasikan baris papan catur dengan domain berupa kolom tempat menteri dapat ditempatkan, sedangkan batasan menyatakan bahwa tidak ada dua menteri yang dapat saling menyerang. Keunggulan pendekatan CSP terletak pada fleksibilitasnya dalam menangani berbagai jenis batasan, tidak terbatas pada batasan linear seperti dalam \textit{integer programming}. Algoritma penyelesaian CSP umumnya menggunakan pencarian pohon yang dikombinasikan dengan teknik \textit{backtracking} dan \textit{consistency checking}, di mana pemberian nilai pada satu variabel dapat memicu propagasi batasan yang mengurangi domain variabel-variabel lainnya, sehingga mempercepat pencarian solusi.
+	
+	\subsection{Melakukan studi literatur terkait algoritma pencarian Backtracking.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	Algoritma backtracking merupakan salah satu dari tiga teknik algoritma utama untuk menyelesaikan CSP, bersama dengan \textit{local search} dan \textit{dynamic programming}.\footnote{P. van Beek, ``Backtracking Search Algorithms,'' dalam \textit{Handbook of Constraint Programming}, F. Rossi, P. van Beek, dan T. Walsh, Ed., Elsevier, 2006, hal. 85--133.} Algoritma backtracking tergolong sebagai algoritma \textit{complete} atau sistematis, yang berarti algoritma ini dijamin menemukan solusi jika solusi tersebut ada, dan dapat membuktikan bahwa suatu CSP tidak memiliki solusi. Berbeda dengan dynamic programming yang memerlukan waktu dan ruang eksponensial serta menemukan semua solusi sekaligus, algoritma backtracking bekerja pada satu solusi dalam satu waktu sehingga hanya memerlukan ruang polinomial. Prinsip dasar backtracking adalah melakukan penelusuran depth-first pada pohon pencarian, di mana pohon pencarian dihasilkan secara bertahap selama pencarian berlangsung dan merepresentasikan pilihan-pilihan alternatif yang mungkin perlu diperiksa untuk menemukan solusi.
+	
+	
+	\textbf{Cara Kerja Backtracking (Step-by-Step) dan Implementasi pada N-Queens}
+	
+	
+	\textbf{1. Representasi dan Inisialisasi}
+	\begin{itemize}
+		\item Modelkan papan ukuran $n$ sebagai variabel $\{x_1, \ldots, x_n\}$ dengan domain $\mathrm{dom}(x_i) = \{1, \ldots, n\}$. Setiap $x_i$ mewakili baris ratu pada kolom $i$.
+		\item Mulai dari assignment kosong.
+	\end{itemize}
+	
+	
+	\textbf{2. Pemilihan Variabel dan Urutan Domain}
+	\begin{itemize}
+		\item Biasanya pilih variabel secara berurutan dari kolom 1 hingga kolom $n$.
+		\item Coba nilai domain secara berurutan (1 hingga $n$).
+	\end{itemize}
+	
+	
+	\textbf{3. Langkah Utama Backtracking}
+	\begin{itemize}
+		\item Pada rekursi untuk kolom $k$:
 		\begin{enumerate}
-			\item \textbf{Permasalahan N-Queens}
-			
-			Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu komputer dan matematika diskrit, dengan sejarah panjang sejak pertama kali diperkenalkan oleh Max Bezzel pada tahun 1848. Pada formulasi dasar permasalahan ini, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Sebagaimana dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut seperti yang tertera pada gambar\textsuperscript{\ref{fig:queenattackpattern}}.
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.9\linewidth]{queen_attack_pattern.png}
-				\caption{Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidah menteri.}
-				\label{fig:queenattackpattern}
-			\end{figure}
-			
-			Dari perspektif komputasi, permasalahan ini menarik karena memiliki struktur yang sederhana namun ruang solusinya sangat besar dan tumbuh secara eksponensial. Jika setiap baris diasosiasikan dengan satu menteri, maka setiap menteri memiliki $n$ kemungkinan kolom, menghasilkan ruang solusi awal sebesar $n^n$. Ketika nilai $n$ meningkat, ruang solusi menjadi sangat luas sehingga pencarian solusi tanpa teknik penyempitan ruang menjadi tidak realistis. Sebagai contoh, untuk $n = 20$ saja terdapat $20^{20}$ kemungkinan konfigurasi awal, jumlah yang jauh melampaui kemampuan komputasi brute-force konvensional.
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.35\linewidth]{N_queens_wrong.png}
-				\caption*{Gambar 8: Contoh solusi salah masalah N-Queens pada papan berukuran $8 \times 8$ (8-Queens)}
-				\footnotesize Sumber: \url{https://www.researchgate.net/figure/N-Queen-problem-explanation-with-8-queens-in-a-chessboard-of-8_fig3_372415823}
-				\label{fig:nqueenswrong}
-			\end{figure}
-			
-			Kajian literatur menunjukkan bahwa meskipun permasalahan N-Queens tidak termasuk ke dalam kategori NP-complete, struktur batasannya memiliki karakteristik serupa dengan berbagai masalah optimasi dan pencarian lain yang lebih kompleks. Hal ini menyebabkan N-Queens banyak digunakan sebagai kasus uji dalam pengembangan algoritma pencarian, optimasi, kecerdasan buatan, serta dalam kajian teori graf dan teori komputasi. Penelitian-penelitian awal menggunakan metode konstruktif dan teknik komputasional berbasis enumerasi, sementara publikasi yang lebih modern banyak mengeksplorasi formulasi matematis dan teknik heuristik untuk mempercepat pencarian solusi.
-			
-			Secara struktural, permasalahan N-Queens memiliki tiga komponen kendala utama yang harus dipenuhi secara simultan. Pertama, kendala kolom yang memastikan tidak ada dua menteri pada kolom yang sama. Kedua, kendala diagonal positif yang mencegah konflik pada diagonal dengan gradien positif. Ketiga, kendala diagonal negatif yang mencegah konflik pada diagonal dengan gradien negatif. Ketiga kendala ini membentuk sistem pembatasan yang saling berinteraksi, dan pelanggaran terhadap salah satu kendala mengakibatkan konfigurasi menjadi tidak valid. Interaksi kompleks antar kendala inilah yang membuat permasalahan ini dapat dimodelkan menggunakan kerangka kerja formal tertentu, yang akan dibahas lebih lanjut pada bagian berikutnya.
-			
-			Studi literatur juga menekankan bahwa meskipun solusi untuk N-Queens selalu ada untuk $n \geq 4$), struktur solusinya sangat beragam dan sering kali memiliki pola-pola tertentu yang dapat dimanfaatkan oleh algoritma. Misalnya, beberapa penelitian menghasilkan konstruksi langsung untuk ukuran $n$ tertentu yang menghasilkan solusi tanpa perlu eksplorasi ruang pencarian secara menyeluruh. Namun, pendekatan konstruktif semacam ini tidak berlaku secara umum untuk seluruh varian N-Queens, sehingga algoritma pencarian tetap menjadi pendekatan yang paling banyak digunakan. Selain itu, jumlah solusi unik untuk N-Queens tumbuh secara dramatis seiring bertambahnya $n$, dengan pola pertumbuhan yang telah menjadi objek kajian dalam teori kombinatorik.
-			
-			Secara keseluruhan, pemahaman mendalam mengenai sifat dasar N-Queens, karakteristik ruang pencariannya, struktur kendala yang mendasarinya, serta berbagai teknik algoritmik yang digunakan untuk menyelesaikannya memberikan landasan konseptual kuat sebelum mempelajari varian-varian yang lebih kompleks, termasuk Colored Queens yang menjadi fokus tugas akhir ini.
-			
-			\item \textbf{Berbagai Varian N-Queens}
-			
-			Berbagai penelitian telah mengembangkan sejumlah varian dari permasalahan N-Queens untuk mengeksplorasi karakteristik baru dalam struktur constraint, ruang solusi, maupun strategi penyelesaian. Varian-varian ini umumnya memodifikasi jumlah bidak, aturan serangan, atau bahkan topologi papan sehingga menghasilkan dinamika pencarian yang berbeda secara signifikan dari permasalahan N-Queens klasik. Pada bagian ini dibahas tiga varian yang relevan: \textit{N+k Queens}, \textit{Toroidal Queens}, dan \textit{Colored Queens}. Dua varian pertama merupakan topik yang telah diteliti secara formal dalam literatur akademik, sedangkan varian terakhir merupakan permasalahan non-standar yang tidak ditemukan dalam publikasi ilmiah dan menjadi fokus utama tugas akhir ini.
-			
-			\textbf{1. Variasi \textit{N + k Queens}} \\
-			Varian N+k Queens memodifikasi jumlah bidak menteri yang harus ditempatkan pada papan berukuran $n \times n$. Jika pada N-Queens standar terdapat tepat $n$ menteri, pada varian ini jumlah menteri menjadi $n + k$, di mana $k$ dapat bernilai positif maupun negatif. Untuk $k > 0$, algoritma harus menemukan konfigurasi dengan lebih dari $n$ menteri tanpa konflik horizontal, vertikal, maupun diagonal. Sebaliknya, ketika $k < 0$, tidak semua baris perlu diisi sehingga proses pencarian mencakup pemilihan subset baris yang digunakan.
-			
-			Struktur constraint pada N+k Queens lebih kompleks karena hubungan antara jumlah variabel dan domainnya tidak lagi linear seperti pada N-Queens standar. Penambahan jumlah menteri secara langsung meningkatkan densitas konflik, sehingga ruang pencarian menjadi lebih padat dan heuristik penyempitan domain menjadi jauh lebih penting. Varian ini sering digunakan untuk menguji ketahanan algoritma metaheuristik dan adaptasi CSP, sebab perubahan $k$ dapat menghasilkan tipe solusi yang berbeda, termasuk konfigurasi yang tidak mungkin muncul pada permasalahan dasar.
-			
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.6\linewidth]{n+kSolution.png}
-				\caption{Contoh solusi dari \textit{8+1 Queens} dimana terdapat 1 bidak pion pada posisi D5 mencegah penyerangan antara bidak menteri D4 dengan D6 dan B5 dengan G5.}
-				\footnotesize Sumber: Penggambaran ulang dari \url{http://www.npluskqueens.info/background.html}
-				\label{fig:solusi8+1Queens}
-			\end{figure}
-			
-			\textbf{2. Variasi \textit{Toroidal Queens}} \\
-			Varian toroidal mengubah struktur papan menjadi sebuah torus, di mana sisi kiri dan kanan papan terhubung, demikian pula sisi atas dan bawah. Perubahan topologi ini mengubah definisi serangan menteri karena pergerakannya bersifat \textit{wrap-around}: sebuah garis serangan tidak berhenti pada tepi papan tetapi terus berlanjut dari sisi berlawanan. Dengan demikian, konflik horizontal, vertikal, dan diagonal harus diperiksa dengan mempertimbangkan operasi modulo terhadap ukuran papan.
-			
-			Untuk memahami kompleksitas varian toroidal secara bertahap, dapat dipertimbangkan konsep \textit{semi-queen}, yaitu bidak imajiner yang dapat bergerak sepanjang baris, kolom, dan diagonal jumlah, tetapi tidak pada diagonal selisih. Analisis terhadap toroidal semi-queens menunjukkan bahwa solusi hanya ada ketika $n$ ganjil. Kondisi ini diturunkan dari fakta bahwa jumlah $\sum_{i=0}^{n-1} i \equiv 0 \pmod{n}$ hanya terpenuhi ketika $\frac{n(n-1)}{2}$ merupakan bilangan bulat kelipatan $n$, yang mengimplikasikan bahwa $n$ harus ganjil\footnote{A. García Sánchez, "The n-Queens Problem: An Activity Book," Undergraduate Research Support Scheme, Mathematics Institute, University of Warwick, 2024. Supervised by Dr. Candida Bowtell.}. 
-			
-			Penelitian teoretis menunjukkan bahwa tidak semua ukuran papan memiliki solusi pada varian toroidal penuh. Hasil klasik menyatakan bahwa permasalahan Toroidal Queens hanya memiliki solusi jika dan hanya jika $\gcd(n, 6) = 1$. Kondisi ini menggabungkan dua syarat: pertama, $n$ harus ganjil (diwarisi dari analisis semi-queens), dan kedua, $n$ tidak boleh habis dibagi 3 (berasal dari pembatasan tambahan akibat pergerakan pada diagonal selisih). Hal ini berbeda jauh dari N-Queens standar yang memiliki solusi untuk semua $n \geq 4$. Dari perspektif CSP, varian toroidal menghasilkan grafik constraint yang lebih padat karena hubungan antar variabel bersifat siklik, sehingga banyak teknik heuristik tradisional harus disesuaikan agar mempertimbangkan topologi torus. Studi varian ini memberikan wawasan mendalam mengenai bagaimana perubahan struktural pada ruang masalah dapat memengaruhi pola solusi dan kompleksitas komputasional.
-			
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.6\linewidth]{toroidalQueens.png}
-				\caption{Ilustrasi serangan menteri pada papan toroidal. Garis merah menunjukkan serangan yang melewati batas papan dan berlanjut dari sisi berlawanan (\textit{wrap-around}). Menteri yang dilingkari merah menyerang menteri lain melalui koneksi toroidal.}
-				\footnotesize Sumber: Penggambaran ulang dari \url{https://www.johndcook.com/blog/2021/08/18/queens-on-a-donut/}
-				\label{fig:4queensCSP}
-			\end{figure}
-			
-			\textbf{3. Variasi \textit{Colored Queens}} \\
-			Berbeda dengan dua varian sebelumnya, \cq merupakan varian non-standar yang tidak ditemukan dalam literatur akademik formal. Hingga saat penulisan laporan ini, tidak terdapat publikasi ilmiah—baik jurnal maupun prosiding—yang membahas permasalahan Colored Queens secara eksplisit. Permasalahan ini muncul dalam konteks permainan logika komersial berbasis teka-teki, bukan dalam riset teoretis N-Queens. Oleh karena itu, struktur formal, representasi CSP, serta analisis algoritmik untuk varian ini harus dikonstruksi sendiri sebagai bagian dari penelitian.
-			
-			Pada varian Colored Queens, papan permainan dibagi ke dalam sejumlah kawasan atau sektor yang masing-masing diberi warna berbeda. Setiap sektor harus berisi tepat satu menteri, sehingga constraint warna menjadi komponen tambahan selain constraint klasik (baris, kolom, dan—pada Colored Queens—hanya sebagian aspek diagonal). Salah satu perbedaan paling signifikan dari N-Queens tradisional adalah bahwa pada Colored Queens, menteri tidak menyerang secara diagonal, melainkan hanya secara horizontal dan vertikal. Akibatnya, lebih dari satu menteri dapat berada dalam satu diagonal tanpa menyebabkan konflik, berbeda dengan aturan standar catur. Namun, varian ini menambahkan aturan baru berupa larangan menempatkan dua menteri pada sel yang saling bersebelahan baik secara horizontal, vertikal, maupun diagonal. Hal ini menjadikan struktur constraint unik: sebagian diagonal diabaikan (untuk serangan), tetapi sebagian diagonal diperhitungkan (untuk adjacency constraint).
-			
-			Dibandingkan varian-varian formal lainnya, Colored Queens memiliki dua karakteristik yang membuatnya menarik untuk dikaji sebagai CSP dan sebagai objek analisis algoritmik:
-			\begin{enumerate}
-				\item \textit{Constraint warna} menjadikan setiap sektor bertindak sebagai variabel tingkat tinggi dengan domain yang harus memastikan pemilihan tepat satu sel dalam area tertentu.
-				\item \textit{Aturan adjacency} menciptakan constraint jarak pendek yang meningkatkan kepadatan konflik lokal, namun tidak mempengaruhi konflik jarak jauh seperti pada N-Queens standar.
-			\end{enumerate}
-			
-			Sifat-sifat ini menjadikan Colored Queens sebagai permasalahan yang secara struktural berbeda dari varian N-Queens mana pun dalam literatur. Akibat ketiadaan referensi formal, tugas akhir ini perlu menyusun sendiri definisi matematis, model CSP, serta strategi algoritmik berbasis Backtracking dengan AC-3 dan Particle Swarm Optimization untuk memecahkan permasalahan tersebut. Dengan demikian, studi Colored Queens tidak hanya mengimplementasikan algoritma, tetapi juga berkontribusi dalam formalisasi permasalahan baru, pembangunan model CSP yang sesuai, dan analisis komparatif strategi algoritmik berbasis Backtracking dengan AC-3 dan Particle Swarm Optimization pada domain yang belum pernah dikaji secara akademik sebelumnya.
-			
-			\begin{figure}
-				\centering
-				\begin{subfigure}{0.35\textwidth}
-					\centering
-					\includegraphics[width=\linewidth]{Queens_unsolved.png}
-					\caption{Contoh kondisi awal permainan Colored Queens}
-					\label{fig:Queens_unsolved}
-				\end{subfigure}
-				\hspace{2cm}
-				\begin{subfigure}{0.35\textwidth}
-					\centering
-					\includegraphics[width=\linewidth]{Queens_solved.png}
-					\caption{Solusi valid permainan Colored Queens}
-					\label{fig:Queens_solved}
-				\end{subfigure}
-				\caption{Contoh permainan Colored Queens}
-				\label{fig:permainanCQ}
-			\end{figure}
-			
-			\item \textbf{\textit{Constraint Satisfaction Problems} (CSP)}\\
-			\textit{Constraint Satisfaction Problem} (CSP) adalah kerangka kerja umum untuk merepresentasikan dan menyelesaikan berbagai permasalahan kombinatorial. Secara formal, CSP terdiri dari tiga komponen utama: (1) sekumpulan variabel $X = \{x_1, \ldots, x_n\}$, (2) untuk setiap variabel $x_i$, sebuah himpunan domain $D_i$ yang berisi nilai-nilai yang mungkin dapat diberikan kepada variabel tersebut, dan (3) sekumpulan \textit{constraint} atau batasan yang membatasi kombinasi nilai yang dapat diberikan kepada variabel-variabel secara bersamaan\footnote{S.C. Brailsford, C.N. Potts, dan B.M. Smith, "Constraint satisfaction problems: Algorithms and applications," \textit{European Journal of Operational Research}, vol. 119, no. 3, hal. 557-581, 1999.}. Solusi dari CSP adalah pemberian nilai kepada setiap variabel dari domain masing-masing sedemikian rupa sehingga semua batasan terpenuhi.
-			
-			Dalam konteks N-Queens, CSP memberikan representasi yang natural: variabel dapat merepresentasikan baris papan catur dengan domain berupa kolom tempat menteri dapat ditempatkan, sedangkan batasan menyatakan bahwa tidak ada dua menteri yang dapat saling menyerang. Keunggulan pendekatan CSP terletak pada fleksibilitasnya dalam menangani berbagai jenis batasan, tidak terbatas pada batasan linear seperti dalam \textit{integer programming}. Algoritma penyelesaian CSP umumnya menggunakan pencarian pohon yang dikombinasikan dengan teknik \textit{backtracking} dan \textit{consistency checking}, di mana pemberian nilai pada satu variabel dapat memicu propagasi batasan yang mengurangi domain variabel-variabel lainnya, sehingga mempercepat pencarian solusi.
-			
-			\item \textbf{Algoritma \textit{Backtracking}} \\
-			Algoritma backtracking merupakan salah satu dari tiga teknik algoritma utama untuk menyelesaikan CSP, bersama dengan \textit{local search} dan \textit{dynamic programming}\footnote{P. van Beek, ``Backtracking Search Algorithms,'' dalam \textit{Handbook of Constraint Programming}, F. Rossi, P. van Beek, dan T. Walsh, Ed., Elsevier, 2006, hal. 85--133.}. Algoritma backtracking tergolong sebagai algoritma \textit{complete} atau sistematis, yang berarti algoritma ini dijamin menemukan solusi jika solusi tersebut ada, dan dapat membuktikan bahwa suatu CSP tidak memiliki solusi. Berbeda dengan dynamic programming yang memerlukan waktu dan ruang eksponensial serta menemukan semua solusi sekaligus, algoritma backtracking bekerja pada satu solusi dalam satu waktu sehingga hanya memerlukan ruang polinomial. Prinsip dasar backtracking adalah melakukan penelusuran depth-first pada pohon pencarian, di mana pohon pencarian dihasilkan secara bertahap selama pencarian berlangsung dan merepresentasikan pilihan-pilihan alternatif yang mungkin perlu diperiksa untuk menemukan solusi.
-			
-			
-			\subsection*{Cara Kerja Backtracking (Step-by-Step) dan Implementasi pada N-Queens}
-			
-			
-			\textbf{1. Representasi dan Inisialisasi}
+			\item Jika $k > n$, seluruh kolom sudah terisi dan solusi ditemukan.
+			\item Untuk setiap nilai baris $r \in \{1, \ldots, n\}$:
 			\begin{itemize}
-				\item Modelkan papan ukuran $n$ sebagai variabel $\{x_1, \ldots, x_n\}$ dengan domain $\mathrm{dom}(x_i) = \{1, \ldots, n\}$. Setiap $x_i$ mewakili baris ratu pada kolom $i$.
-				\item Mulai dari assignment kosong.
-			\end{itemize}
-			
-			
-			\textbf{2. Pemilihan Variabel dan Urutan Domain}
-			\begin{itemize}
-				\item Biasanya pilih variabel secara berurutan dari kolom 1 hingga kolom $n$.
-				\item Coba nilai domain secara berurutan (1 hingga $n$).
-			\end{itemize}
-			
-			
-			\textbf{3. Langkah Utama Backtracking}
-			\begin{itemize}
-				\item Pada rekursi untuk kolom $k$:
-				\begin{enumerate}
-					\item Jika $k > n$, seluruh kolom sudah terisi dan solusi ditemukan.
-					\item Untuk setiap nilai baris $r \in \{1, \ldots, n\}$:
-					\begin{itemize}
-						\item Periksa konsistensi lokal terhadap kolom 1 hingga $k-1$. Untuk N-Queens:
-						\begin{itemize}
-							\item Tidak boleh satu baris: $x_i \neq r$.
-							\item Tidak boleh satu diagonal: $|i - k| \neq |x_i - r|$.
-						\end{itemize}
-						\item Jika konsisten, tetapkan $x_k = r$ dan panggil rekursi untuk kolom $k+1$.
-						\item Jika semua nilai gagal, lakukan backtrack ke kolom sebelumnya.
-					\end{itemize}
-				\end{enumerate}
-			\end{itemize}
-			
-			
-			\textbf{4. Pseudocode Implementasi}
-			
-			
-			\begin{lstlisting}[language=Python]
-				function solveNQueens(n):
-					x = array of size n initialized to 0
-					results = []
-					backtrack(1)
-				return results
-				
-				function backtrack(k):
-					if k > n:
-						add copy of x to results
-						return
-				
-					for r in 1..n:
-						if isConsistent(k, r):
-							x[k] = r
-							backtrack(k + 1)
-							x[k] = 0 # undo	
-				
-				function isConsistent(k, r):
-					for i in 1..k-1:
-						if x[i] == r:
-							return false
-						if abs(i - k) == abs(x[i] - r):
-							return false
-					return true
-			\end{lstlisting}
-			
-			
-			\textbf{5. Contoh Jejak Langkah (ringkas) untuk $n=4$}
-			
-			
-			\begin{itemize}
-				\item Kolom 1: coba baris 1 → konsisten → $x_1 = 1$.
-				\item Kolom 2: baris 1 (bentrok), 2 (diagonal), 3 (ok) → $x_2 = 3$.
-				\item Kolom 3: semua nilai 1--4 gagal → backtrack ke kolom 2.
-				\item Kolom 2: coba baris 4 → konsisten → $x_2 = 4$.
-				\item Lanjut hingga solusi ditemukan: $[2,4,1,3]$ dan $[3,1,4,2]$.
-			\end{itemize}
-			
-			
-			\item \textbf{\textit{Maintaining Arc Consistency} dengan algoritma \textit{Arc Consistency 3} (AC-3)}			
-			\textit{Maintaining Arc Consistency} (MAC) adalah teknik propagasi constraint yang digunakan selama proses pencarian solusi dalam \textit{Constraint Satisfaction Problem} (CSP). Untuk memahami MAC, pertama-tama kita perlu memahami konsep \textit{arc} dalam CSP.
-			
-			\textbf{Arc dalam CSP:} Dalam jaringan constraint biner yang ternormalisasi, sebuah \textit{arc} adalah pasangan terurut $(x_i, c_{ij})$ yang menunjukkan bahwa variabel $x_i$ harus konsisten dengan constraint $c_{ij}$ yang menghubungkan $x_i$ dengan variabel lain $x_j$\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 39.}. Sebuah nilai $v_i \in D(x_i)$ dikatakan konsisten dengan constraint $c_{ij}$ jika terdapat setidaknya satu nilai $v_j \in D(x_j)$ sedemikian sehingga pasangan $(v_i, v_j)$ memenuhi constraint $c_{ij}$. Nilai $v_j$ ini disebut sebagai \textit{support} untuk $v_i$ pada constraint $c_{ij}$.
-			
-			\textbf{Peran MAC:} MAC bekerja dengan menjaga \textit{arc consistency} setelah setiap assignment variabel selama pencarian solusi\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14}. Ketika sebuah variabel diberi nilai, MAC akan melakukan propagasi untuk menghilangkan nilai-nilai yang tidak konsisten dari domain variabel-variabel lain yang terhubung. Hal ini membantu mendeteksi inkonsistensi lebih awal dalam proses pencarian dan mengurangi ruang pencarian secara signifikan.
-			
-			\textbf{Algoritma AC-3:} AC-3 adalah algoritma yang paling terkenal untuk menegakkan \textit{arc consistency}\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 38-40.}. Algoritma ini menggunakan pendekatan berbasis antrian (\textit{queue}) untuk memproses arc yang perlu direvisi. Berikut adalah pseudocode algoritma AC-3:
-			
-			\begin{lstlisting}[language=Python, caption={Algoritma AC-3}, mathescape=true]
-				function AC3(X: set): Boolean;
-				begin
-				/* inisialisasi */
-				Q $\leftarrow$ {$(x_i, c)$ | $c \in C$, $x_i \in X(c)$};
-				
-				/* propagasi */
-				while Q $\neq \emptyset$ do
-				pilih dan hapus $(x_i, c)$ dari Q;
-				if Revise($x_i$, c) then
-				if $D(x_i) = \emptyset$ then return false;
-				else Q $\leftarrow$ Q $\cup$ {$(x_j, c')$ | $c' \in C$ $\wedge$ 
-					$c' \neq c$ $\wedge$ $x_i, x_j \in X(c')$ $\wedge$ $j \neq i$};
-				return true;
-				end
-				
-				function Revise($x_i$: variable; c: constraint): Boolean;
-				begin
-				CHANGE $\leftarrow$ false;
-				foreach $v_i \in D(x_i)$ do
-				if $\nexists \tau \in c \cap \pi_{X(c)}(D)$ with $\tau[x_i] = v_i$ then
-				hapus $v_i$ dari $D(x_i)$;
-				CHANGE $\leftarrow$ true;
-				return CHANGE;
-				end
-			\end{lstlisting}
-			
-			\textbf{Penjelasan notasi dan cara kerja:}
-			\begin{itemize}
-				\item $X$: himpunan semua variabel dalam CSP
-				\item $D(x_i)$: domain dari variabel $x_i$, yaitu himpunan nilai-nilai yang mungkin untuk $x_i$
-				\item $c$: sebuah constraint dalam jaringan
-				\item $X(c)$: skema constraint $c$, yaitu urutan variabel yang terlibat dalam constraint $c$
-				\item $Q$: antrian yang berisi pasangan $(x_i, c)$ yang perlu direvisi
-				\item $\pi_{X(c)}(D)$: proyeksi domain $D$ pada variabel-variabel dalam $X(c)$
-				\item $\tau[x_i]$: nilai yang diberikan pada variabel $x_i$ dalam tuple $\tau$
-			\end{itemize}
-			
-			Algoritma dimulai dengan memasukkan semua pasangan $(x_i, c)$ ke dalam antrian $Q$ (baris 3). Kemudian, selama $Q$ tidak kosong, algoritma mengambil sebuah pasangan $(x_i, c)$ dan memanggil fungsi \texttt{Revise} untuk memeriksa apakah setiap nilai dalam $D(x_i)$ memiliki \textit{support} pada constraint $c$ (baris 6-7). Fungsi \texttt{Revise} mengembalikan \texttt{true} jika ada nilai yang dihapus dari $D(x_i)$.
-			
-			Jika domain $D(x_i)$ menjadi kosong setelah revisi, algoritma mengembalikan \texttt{false} yang menandakan bahwa tidak ada solusi (baris 8). Jika ada nilai yang dihapus tetapi domain tidak kosong, maka semua arc $(x_j, c')$ yang melibatkan $x_i$ ditambahkan kembali ke $Q$ karena perubahan pada $D(x_i)$ mungkin mempengaruhi konsistensi variabel lain (baris 9). Algoritma berakhir dan mengembalikan \texttt{true} ketika $Q$ kosong, yang berarti semua arc telah konsisten.
-			
-			\textbf{Penerapan pada N-Queens Problem:} \\
-			Gambar \ref{fig:ac3-nqueens} menunjukkan contoh penerapan AC-3 pada masalah 4-Queens setelah menempatkan queen pertama.
-			
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.8\textwidth]{beforeafterARC.png}
-				\caption{Penerapan AC-3 pada N-Queens Problem setelah menempatkan pion pertama pada posisi 1 untuk variablel X1}
-				\footnotesize Sumber: Diadaptasikan dari \url{https://courses.grainger.illinois.edu/cs440/fa2021/lectures/csp1.htm}
-				\label{fig:ac3-nqueens}
-			\end{figure}
-			
-			Pada gambar sebelah kiri, kondisi awal menunjukkan papan 4×4 dengan empat variabel $X_1, X_2, X_3, X_4$ yang masing-masing merepresentasikan kolom. Setiap variabel memiliki domain awal $\{1,2,3,4\}$ yang merepresentasikan baris tempat queen dapat ditempatkan pada kolom tersebut. Semua constraint antar variabel ditunjukkan oleh garis yang menghubungkan mereka, yang menyatakan bahwa tidak boleh ada dua queen yang saling menyerang (berada pada baris, kolom, atau diagonal yang sama).
-			
-			Setelah menempatkan queen pertama pada posisi $X_1 = 1$ (queen pada kolom 1, baris 1), AC-3 melakukan propagasi constraint\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14}:
-			
-			\begin{enumerate}
-				\item \textbf{Eliminasi baris yang sama}: Nilai 1 dihapus dari domain semua variabel lain ($X_2, X_3, X_4$) karena constraint "tidak boleh ada dua queen pada baris yang sama".
-				
-				\item \textbf{Eliminasi diagonal}: 
+				\item Periksa konsistensi lokal terhadap kolom 1 hingga $k-1$. Untuk N-Queens:
 				\begin{itemize}
-					\item Untuk $X_2$: nilai 2 dihapus karena posisi (2,2) berada pada diagonal yang sama dengan (1,1)
-					\item Untuk $X_3$: nilai 3 dihapus karena posisi (3,3) berada pada diagonal yang sama dengan (1,1)
-					\item Untuk $X_4$: nilai 4 dihapus karena posisi (4,4) berada pada diagonal yang sama dengan (1,1)
+					\item Tidak boleh satu baris: $x_i \neq r$.
+					\item Tidak boleh satu diagonal: $|i - k| \neq |x_i - r|$.
 				\end{itemize}
-			\end{enumerate}
-			
-			Hasil propagasi dapat dilihat pada gambar sebelah kanan, di mana domain variabel berkurang menjadi:
-			\begin{itemize}
-				\item $D(X_1) = \{1\}$ (sudah di-assign)
-				\item $D(X_2) = \{3,4\}$ (nilai 1 dan 2 tereliminasi)
-				\item $D(X_3) = \{2,4\}$ (nilai 1 dan 3 tereliminasi)
-				\item $D(X_4) = \{2,3\}$ (nilai 1 dan 4 tereliminasi)
+				\item Jika konsisten, tetapkan $x_k = r$ dan panggil rekursi untuk kolom $k+1$.
+				\item Jika semua nilai gagal, lakukan backtrack ke kolom sebelumnya.
 			\end{itemize}
-			
-			Pengurangan domain ini sangat signifikan: dari total $4^3 = 64$ kemungkinan kombinasi untuk tiga variabel yang tersisa, hanya $2 \times 2 \times 2 = 8$ kombinasi yang perlu dieksplorasi. Ini mendemonstrasikan kekuatan AC-3 dalam mengurangi ruang pencarian secara dramatis sebelum melanjutkan ke assignment berikutnya. Tanpa AC-3, algoritma pencarian akan membuang waktu mengeksplorasi banyak cabang yang pasti akan gagal.
-			
-			Kompleksitas waktu AC-3 pada jaringan biner ternormalisasi adalah $O(ed^3)$, di mana $e$ adalah jumlah constraint dan $d$ adalah ukuran domain terbesar\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 40.}. Meskipun tidak optimal, AC-3 tetap menjadi pilihan populer karena kesederhanaannya dan performa yang baik dalam praktik. Dalam konteks \cq, prinsip yang sama diterapkan dengan constraint tambahan untuk region warna dan aturan adjacency.
-			
-			\item \textbf{Algoritma \textit{Particle Swarm Optimization} (PSO)}
-			
-			\textit{Particle Swarm Optimization} (PSO) adalah algoritma optimasi berbasis populasi yang diperkenalkan oleh Kennedy dan Eberhart pada tahun 1995\footnote{J. Kennedy and R. Eberhart, "Particle swarm optimization," \textit{Proceedings of IEEE International Conference on Neural Networks}, Perth, Australia, pp. 1942-1948, 1995.}. Algoritma ini terinspirasi dari perilaku sosial kawanan burung (\textit{bird flocking}) atau gerombolan ikan (\textit{fish schooling}) dalam mencari sumber makanan. Dalam alam, ketika seekor burung menemukan jalur yang efisien menuju makanan, anggota kawanan lainnya dengan cepat menyesuaikan jalur mereka untuk mengikutinya, terlepas dari posisi awal mereka dalam kelompok\footnote{Okto Suprianto, Mariatul Kiftiah, dan Hendra Perdana, "Penerapan Particle Swarm Optimization dalam Penyusunan Jadwal Mata Kuliah di Prodi Matematika Universitas Tanjungpura," \textit{Bimaster: Buletin Ilmiah Matematika, Statistika dan Terapannya}, Volume 13, No 05, hal 609-618, 2024.}.
-			
-			\textbf{Konsep Dasar PSO}
-			
-			Dalam PSO, setiap solusi potensial disebut sebagai \textit{particle} (partikel), dan kumpulan dari partikel-partikel tersebut disebut \textit{swarm} (kawanan). Setiap partikel bernavigasi melalui ruang solusi dengan kecepatan (\textit{velocity}) yang disesuaikan berdasarkan pengalaman mereka sendiri dan pengalaman kawanan secara keseluruhan. Algoritma PSO dimulai dengan populasi acak yang disebut partikel, dan setiap partikel "terbang" melalui ruang masalah dengan mengikuti partikel-partikel yang berkinerja lebih baik\footnote{Xiaohui Hu, Russell C. Eberhart, dan Yuhui Shi, "Swarm Intelligence for Permutation Optimization: A Case Study of n-Queens Problem," \textit{Proceedings of IEEE Swarm Intelligence Symposium}, pp. 243-246, 2003.}.
-			
-			Setiap partikel memiliki dua atribut utama:
-			\begin{enumerate}
-				\item \textbf{Posisi} ($X_i$): merepresentasikan solusi kandidat dalam ruang pencarian
-				\item \textbf{Velocity} ($V_i$): menentukan arah dan jarak perpindahan partikel
-			\end{enumerate}
-			
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.6\linewidth]{pso_single.png}
-				\caption{Ilustrasi perpindahan satu partikel berdaskarkan \textit{Velocity} baru yang dipengaruhi oleh \textit{personal best} dan \textit{global best}}
-				\footnotesize Sumber: \url{https://www.baeldung.com/cs/pso}
-				\label{fig:singlepso}
-			\end{figure}
-			
-			Selain itu, setiap partikel melacak dua nilai penting:
-			\begin{itemize}
-				\item \textbf{Personal Best} (\textit{pBest}): posisi terbaik yang pernah dicapai oleh partikel tersebut selama proses pencarian
-				\item \textbf{Global Best} (\textit{gBest}) atau \textbf{Neighborhood Best} (\textit{nBest}): posisi terbaik yang dicapai oleh seluruh kawanan (global) atau oleh tetangga-tetangga terdekat (lokal)
-			\end{itemize}
-			
-			\textbf{Persamaan Update PSO}
-			
-			Pada setiap iterasi, velocity dan posisi setiap partikel diperbarui menggunakan persamaan berikut:
-			
-			\begin{equation}
-				V_i^{k+1} = \omega \cdot V_i^k + c_1 \cdot r_1 \cdot (pBest_i - X_i^k) + c_2 \cdot r_2 \cdot (gBest - X_i^k)
-				\label{eq:velocity}
-			\end{equation}
-			
-			\begin{equation}
-				X_i^{k+1} = X_i^k + V_i^{k+1}
-				\label{eq:position}
-			\end{equation}
-			
-			di mana:
-			\begin{itemize}
-				\item $V_i^k$ adalah velocity partikel $i$ pada iterasi ke-$k$
-				\item $X_i^k$ adalah posisi partikel $i$ pada iterasi ke-$k$
-				\item $\omega$ adalah \textit{inertia weight} yang mengontrol momentum partikel (biasanya 0.7-0.9)
-				\item $c_1$ adalah \textit{cognitive coefficient} yang mengontrol pengaruh \textit{personal best} (biasanya 1.5-2.0)
-				\item $c_2$ adalah \textit{social coefficient} yang mengontrol pengaruh \textit{global best} (biasanya 1.5-2.0)
-				\item $r_1, r_2$ adalah bilangan acak dalam rentang [0,1]
-			\end{itemize}
-			
-			Persamaan velocity terdiri dari tiga komponen:
-			\begin{enumerate}
-				\item \textbf{Komponen inersia} ($\omega \cdot V_i^k$): mempertahankan arah pergerakan sebelumnya, mendorong eksplorasi ruang pencarian
-				\item \textbf{Komponen kognitif} ($c_1 \cdot r_1 \cdot (pBest_i - X_i^k)$): menarik partikel kembali ke posisi terbaik yang pernah dicapainya sendiri
-				\item \textbf{Komponen sosial} ($c_2 \cdot r_2 \cdot (gBest - X_i^k)$): menarik partikel menuju posisi terbaik yang ditemukan oleh kawanan
-			\end{enumerate}
-			
-			\begin{figure}
-				\centering
-				\includegraphics[width=0.65\linewidth]{psoflow.png}
-				\caption{Diagram alir PSO yang menggambarkan inisialisasi partikel, pembaruan \textit{velocity} dan posisi, evaluasi fitness, serta mekanisme pembaruan pBest dan gBest.}
-				\footnotesize Sumber: Terjemahan dan penggambaran ulang dari \url{https://www.elsevier.es/en-revista-journal-applied-research-technology-jart-81-articulo-a-pso-procedure-for-coordinated-S1665642313715748}
-				\label{fig:psoflow}
-			\end{figure}
-			
-			\textbf{Langkah-langkah algoritma PSO (mengacu pada diagram alir \ref{fig:psoflow})}
-			\begin{enumerate}
-				\item \textbf{Inisialisasi parameter} \\
-				Tentukan nilai-nilai untuk ukuran populasi $N$, inertia $\omega$, konstanta $c_1$ dan $c_2$, serta kriteria penghentian (mis. jumlah iterasi maksimum atau toleransi perubahan fitness).
-				\item \textbf{Beri nilai acak awal untuk posisi dan kecepatan setiap partikel.} Untuk setiap partikel $i=1\ldots N$, inisialisasi $X_i^0$ (mis. di ruang solusi) dan $V_i^0$ (mis. kecil dan acak).
-				\item \textbf{Inisialisasi $pBest$ dan $gBest$.} Hitung fitness pada posisi awal tiap partikel. Set $pBest_i = X_i^0$ untuk setiap partikel. Tentukan $gBest$ sebagai posisi dengan nilai fitness terbaik di antara semua $pBest_i$.
-				\item \textbf{Perulangan hingga memenuhi \textit{stopping condition}:}
-				\begin{enumerate}
-					\item \textbf{Hitung velocity baru setiap partikel} \\
-					Untuk tiap partikel $i$, hitung $V_i^{k+1}$ sesuai persamaan (\ref{eq:velocity}).
-					\item \textbf{Hitung posisi baru setiap partikel} \\
-					Untuk tiap partikel $i$, perbarui posisi menggunakan persamaan (\ref{eq:position})
-					\item \textbf{Evaluasi fitness setiap partikel.} \\
-					Hitung nilai fungsi objektif pada $X_i^{k+1}$ untuk tiap partikel.
-					\item \textbf{Perbarui $pBest$ dan $gBest$ jika ada perbaikan.} \\
-					Jika fitness($X_i^{k+1}$) lebih baik daripada \textit{fitness}($pBest_i$), maka $pBest_i = X_i^{k+1}$. Jika ada $pBest_i$ yang lebih baik daripada fitness($gBest$), maka $gBest = pBest_i$.
-					\item \textbf{Cek \textit{stopping condition}.} \\
-					Jika kondisi penghentian tercapai, bisa dalam bentuk jumlah iterasi maksimum atau tidak ada peningkatan kualitas solusi yang signifikan, keluarkan hasil; jika belum, lanjutkan ke iterasi berikutnya dan kembali ke langkah menghitung \textit{velocity}.
-				\end{enumerate}
-				\item \textbf{Keluaran} Berikan posisi partikel dengan nilai fitness terbaik yaitu $gBest$ sebagai solusi akhir.
-			\end{enumerate}
-			
-			
-			
-			\textbf{Keunggulan PSO}
-			
-			PSO memiliki beberapa keunggulan yang menjadikannya populer di kalangan peneliti dan praktisi:
-			
-			\begin{enumerate}
-				\item \textbf{Kesederhanaan implementasi}: PSO memiliki struktur algoritma yang sederhana dengan parameter yang sedikit, sehingga mudah dipahami dan diimplementasikan\footnote{N. K. Jain, Uma Nangia, dan Jyoti Jain, "A Review of Particle Swarm Optimization," \textit{Journal of The Institution of Engineers (India): Series B}, 2018.}. Tidak seperti Genetic Algorithm (GA), PSO tidak memerlukan operator evolusi seperti \textit{crossover} dan \textit{mutation}.
-				
-				\item \textbf{Konvergensi cepat}: PSO cenderung konvergen lebih cepat dibandingkan algoritma evolusioner lainnya, terutama pada tahap awal pencarian. Hal ini karena informasi \textit{global best} langsung dibagikan ke seluruh partikel dalam kawanan.
-				
-				\item \textbf{Fleksibilitas}: PSO dapat disesuaikan untuk berbagai jenis masalah optimasi, baik kontinu maupun diskret, tanpa perubahan mendasar pada struktur algoritma.
-				
-				\item \textbf{Keseimbangan eksplorasi-eksploitasi}: Melalui parameter $\omega$, $c_1$, dan $c_2$, PSO dapat menyeimbangkan antara eksplorasi (pencarian area baru) dan eksploitasi (pencarian intensif di area yang menjanjikan).
-				
-				\item \textbf{Paralelisasi mudah}: Karena setiap partikel dapat dievaluasi secara independen, PSO sangat cocok untuk implementasi paralel, yang dapat mempercepat proses komputasi secara signifikan.
-			\end{enumerate}
-			
-			Keberhasilan PSO di berbagai domain telah memicu banyak penelitian untuk memodifikasi dan meningkatkan performanya, seperti penambahan mutasi, hibridisasi dengan algoritma lain, dan adaptasi untuk masalah multiobjektif atau masalah diskret kombinatorika\footnote{Y. Zhang, S. Wang, dan G. Ji, "A comprehensive survey on particle swarm optimization algorithm and its applications," \textit{Mathematical Problems in Engineering}, 2015.}.
 		\end{enumerate}
+	\end{itemize}
+	
+	
+	\textbf{4. Pseudocode Implementasi}
+	
+	
+	\begin{lstlisting}[language=Python]
+		function solveNQueens(n):
+		x = array of size n initialized to 0
+		results = []
+		backtrack(1)
+		return results
 		
-		\item \textbf{Mengumpulkan dan menyusun berbagai skenario permasalahan Colored Queens yang akan digunakan sebagai basis pengujian algoritma serta sebagai pilihan tingkat kesulitan bagi pengguna.}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-		\label{scraper}
-		Sebagai bagian dari tahap pengumpulan dan penyusunan skenario permasalahan Colored Queens, saya membangun sebuah web scraper Python yang menggunakan library Selenium untuk mengekstraksi beragam konfigurasi papan dari situs \textbf{\textit{Play Queens Game}} \footnote{Situs daring dapat diakses melalui \url{https://www.playqueensgame.com/}}. Data ini diperlukan sebagai dasar pengujian untuk algoritma Backtracking dan Particle Swarm Optimization (PSO), sekaligus menjadi kumpulan level yang dapat dipilih pengguna berdasarkan tingkat kesulitan. Skrip yang dibuat mengotomatisasi proses pengambilan puzzle untuk berbagai ukuran papan—mulai dari 7×7 hingga 11×11—dengan jumlah level yang bervariasi pada setiap ukuran. Setiap puzzle diakses melalui URL tertentu, kemudian Selenium membaca atribut setiap sel (baris, kolom, dan warna) untuk membentuk representasi papan yang terstruktur.
+		function backtrack(k):
+		if k > n:
+		add copy of x to results
+		return
 		
-		Hasil ekstraksi disimpan dalam bentuk berkas JSON yang menyimpan posisi baris, kolom, serta warna dari setiap kotak di dalam papan, agat mudah diproses kembali oleh \textit{solver} maupun antarmuka pengguna. Pendekatan ini memastikan bahwa dataset berisi skenario yang beragam, valid, dan sesuai dengan mekanisme permainan asli. Dengan adanya kumpulan skenario ini, pengujian algoritma dapat dilakukan pada berbagai tingkat kesulitan, dan pengguna aplikasi dapat memilih puzzle berdasarkan ukuran papan. 
+		for r in 1..n:
+		if isConsistent(k, r):
+		x[k] = r
+		backtrack(k + 1)
+		x[k] = 0 # undo	
 		
-		Selain puzzle yang diambil dari situs daring tersebut, dua papan vaild tambahan berukuran $20 \times 20$ \textsuperscript{\ref{lst:20x20board}} dan $30 \times 30$ \textsuperscript{\ref{lst:30x30board}} telah dibuat untuk pengujian algoritma yang akan diimplementasikan pada tugas akhir ini. Pembuatan papan-papan baru ini dimulai dengan sebuah solusi valid permasalahan N-Queens lalu menambahan sektor-sektor warna sedemikian rupa agar hanya terdapat satu bidak menteri di dalam satu sektor warna.
+		function isConsistent(k, r):
+		for i in 1..k-1:
+		if x[i] == r:
+		return false
+		if abs(i - k) == abs(x[i] - r):
+		return false
+		return true
+	\end{lstlisting}
+	
+	
+	\textbf{5. Contoh Jejak Langkah (ringkas) untuk $n=4$}
+	
+	
+	\begin{itemize}
+		\item Kolom 1: coba baris 1 → konsisten → $x_1 = 1$.
+		\item Kolom 2: baris 1 (bentrok), 2 (diagonal), 3 (ok) → $x_2 = 3$.
+		\item Kolom 3: semua nilai 1--4 gagal → backtrack ke kolom 2.
+		\item Kolom 2: coba baris 4 → konsisten → $x_2 = 4$.
+		\item Lanjut hingga solusi ditemukan: $[2,4,1,3]$ dan $[3,1,4,2]$.
+	\end{itemize}
+	
+	\subsection{Melakukan studi literatur terkait \textit{teknik metaheuristik Particle Swarm Optimization}.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	\textit{Particle Swarm Optimization} (PSO) adalah algoritma optimasi berbasis populasi yang diperkenalkan oleh Kennedy dan Eberhart pada tahun 1995.\footnote{J. Kennedy and R. Eberhart, "Particle swarm optimization," \textit{Proceedings of IEEE International Conference on Neural Networks}, Perth, Australia, pp. 1942-1948, 1995.} Algoritma ini terinspirasi dari perilaku sosial kawanan burung (\textit{bird flocking}) atau gerombolan ikan (\textit{fish schooling}) dalam mencari sumber makanan. Dalam alam, ketika seekor burung menemukan jalur yang efisien menuju makanan, anggota kawanan lainnya dengan cepat menyesuaikan jalur mereka untuk mengikutinya, terlepas dari posisi awal mereka dalam kelompok.\footnote{Okto Suprianto, Mariatul Kiftiah, dan Hendra Perdana, "Penerapan Particle Swarm Optimization dalam Penyusunan Jadwal Mata Kuliah di Prodi Matematika Universitas Tanjungpura," \textit{Bimaster: Buletin Ilmiah Matematika, Statistika dan Terapannya}, Volume 13, No 05, hal 609-618, 2024.}
+	
+	\textbf{Konsep Dasar PSO}
+	
+	Dalam PSO, setiap solusi potensial disebut sebagai \textit{particle} (partikel), dan kumpulan dari partikel-partikel tersebut disebut \textit{swarm} (kawanan). Setiap partikel bernavigasi melalui ruang solusi dengan kecepatan (\textit{velocity}) yang disesuaikan berdasarkan pengalaman mereka sendiri dan pengalaman kawanan secara keseluruhan. Algoritma PSO dimulai dengan populasi acak yang disebut partikel, dan setiap partikel "terbang" melalui ruang masalah dengan mengikuti partikel-partikel yang berkinerja lebih baik.\footnote{Xiaohui Hu, Russell C. Eberhart, dan Yuhui Shi, "Swarm Intelligence for Permutation Optimization: A Case Study of n-Queens Problem," \textit{Proceedings of IEEE Swarm Intelligence Symposium}, pp. 243-246, 2003.}
+	
+	Setiap partikel memiliki dua atribut utama:
+	\begin{enumerate}
+		\item \textbf{Posisi} ($X_i$): merepresentasikan solusi kandidat dalam ruang pencarian
+		\item \textbf{Velocity} ($V_i$): menentukan arah dan jarak perpindahan partikel
+	\end{enumerate}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{pso_single.png}
+		\caption{Ilustrasi perpindahan satu partikel berdaskarkan \textit{Velocity} baru yang dipengaruhi oleh \textit{personal best} dan \textit{global best}}
+		\footnotesize Sumber: \url{https://www.baeldung.com/cs/pso}
+		\label{fig:singlepso}
+	\end{figure}
+	
+	Selain itu, setiap partikel melacak dua nilai penting:
+	\begin{itemize}
+		\item \textbf{Personal Best} (\textit{pBest}): posisi terbaik yang pernah dicapai oleh partikel tersebut selama proses pencarian
+		\item \textbf{Global Best} (\textit{gBest}) atau \textbf{Neighborhood Best} (\textit{nBest}): posisi terbaik yang dicapai oleh seluruh kawanan (global) atau oleh tetangga-tetangga terdekat (lokal)
+	\end{itemize}
+	
+	\textbf{Persamaan Update PSO}
+	
+	Pada setiap iterasi, velocity dan posisi setiap partikel diperbarui menggunakan persamaan berikut:
+	
+	\begin{equation}
+		V_i^{k+1} = \omega \cdot V_i^k + c_1 \cdot r_1 \cdot (pBest_i - X_i^k) + c_2 \cdot r_2 \cdot (gBest - X_i^k)
+		\label{eq:velocity}
+	\end{equation}
+	
+	\begin{equation}
+		X_i^{k+1} = X_i^k + V_i^{k+1}
+		\label{eq:position}
+	\end{equation}
+	
+	di mana:
+	\begin{itemize}
+		\item $V_i^k$ adalah velocity partikel $i$ pada iterasi ke-$k$
+		\item $X_i^k$ adalah posisi partikel $i$ pada iterasi ke-$k$
+		\item $\omega$ adalah \textit{inertia weight} yang mengontrol momentum partikel (biasanya 0.7-0.9)
+		\item $c_1$ adalah \textit{cognitive coefficient} yang mengontrol pengaruh \textit{personal best} (biasanya 1.5-2.0)
+		\item $c_2$ adalah \textit{social coefficient} yang mengontrol pengaruh \textit{global best} (biasanya 1.5-2.0)
+		\item $r_1, r_2$ adalah bilangan acak dalam rentang [0,1]
+	\end{itemize}
+	
+	Persamaan velocity terdiri dari tiga komponen:
+	\begin{enumerate}
+		\item \textbf{Komponen inersia} ($\omega \cdot V_i^k$): mempertahankan arah pergerakan sebelumnya, mendorong eksplorasi ruang pencarian
+		\item \textbf{Komponen kognitif} ($c_1 \cdot r_1 \cdot (pBest_i - X_i^k)$): menarik partikel kembali ke posisi terbaik yang pernah dicapainya sendiri
+		\item \textbf{Komponen sosial} ($c_2 \cdot r_2 \cdot (gBest - X_i^k)$): menarik partikel menuju posisi terbaik yang ditemukan oleh kawanan
+	\end{enumerate}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{psoflow.png}
+		\caption{Diagram alir PSO yang menggambarkan inisialisasi partikel, pembaruan \textit{velocity} dan posisi, evaluasi fitness, serta mekanisme pembaruan pBest dan gBest.}
+		\footnotesize Sumber: Terjemahan dan penggambaran ulang dari \url{https://www.elsevier.es/en-revista-journal-applied-research-technology-jart-81-articulo-a-pso-procedure-for-coordinated-S1665642313715748}
+		\label{fig:psoflow}
+	\end{figure}
+	
+	\textbf{Langkah-langkah algoritma PSO (mengacu pada diagram alir \ref{fig:psoflow})}
+	\begin{enumerate}
+		\item \textbf{Inisialisasi parameter} \\
+		Tentukan nilai-nilai untuk ukuran populasi $N$, inertia $\omega$, konstanta $c_1$ dan $c_2$, serta kriteria penghentian (mis. jumlah iterasi maksimum atau toleransi perubahan fitness).
+		\item \textbf{Beri nilai acak awal untuk posisi dan kecepatan setiap partikel.} Untuk setiap partikel $i=1\ldots N$, inisialisasi $X_i^0$ (mis. di ruang solusi) dan $V_i^0$ (mis. kecil dan acak).
+		\item \textbf{Inisialisasi $pBest$ dan $gBest$.} Hitung fitness pada posisi awal tiap partikel. Set $pBest_i = X_i^0$ untuk setiap partikel. Tentukan $gBest$ sebagai posisi dengan nilai fitness terbaik di antara semua $pBest_i$.
+		\item \textbf{Perulangan hingga memenuhi \textit{stopping condition}:}
+		\begin{enumerate}
+			\item \textbf{Hitung velocity baru setiap partikel} \\
+			Untuk tiap partikel $i$, hitung $V_i^{k+1}$ sesuai persamaan (\ref{eq:velocity}).
+			\item \textbf{Hitung posisi baru setiap partikel} \\
+			Untuk tiap partikel $i$, perbarui posisi menggunakan persamaan (\ref{eq:position})
+			\item \textbf{Evaluasi fitness setiap partikel.} \\
+			Hitung nilai fungsi objektif pada $X_i^{k+1}$ untuk tiap partikel.
+			\item \textbf{Perbarui $pBest$ dan $gBest$ jika ada perbaikan.} \\
+			Jika fitness($X_i^{k+1}$) lebih baik daripada \textit{fitness}($pBest_i$), maka $pBest_i = X_i^{k+1}$. Jika ada $pBest_i$ yang lebih baik daripada fitness($gBest$), maka $gBest = pBest_i$.
+			\item \textbf{Cek \textit{stopping condition}.} \\
+			Jika kondisi penghentian tercapai, bisa dalam bentuk jumlah iterasi maksimum atau tidak ada peningkatan kualitas solusi yang signifikan, keluarkan hasil; jika belum, lanjutkan ke iterasi berikutnya dan kembali ke langkah menghitung \textit{velocity}.
+		\end{enumerate}
+		\item \textbf{Keluaran} Berikan posisi partikel dengan nilai fitness terbaik yaitu $gBest$ sebagai solusi akhir.
+	\end{enumerate}
+	
+	
+	
+	\textbf{Keunggulan PSO}
+	
+	PSO memiliki beberapa keunggulan yang menjadikannya populer di kalangan peneliti dan praktisi:
+	
+	\begin{enumerate}
+		\item \textbf{Kesederhanaan implementasi}: PSO memiliki struktur algoritma yang sederhana dengan parameter yang sedikit, sehingga mudah dipahami dan diimplementasikan.\footnote{N. K. Jain, Uma Nangia, dan Jyoti Jain, "A Review of Particle Swarm Optimization," \textit{Journal of The Institution of Engineers (India): Series B}, 2018.} Tidak seperti Genetic Algorithm (GA), PSO tidak memerlukan operator evolusi seperti \textit{crossover} dan \textit{mutation}.
 		
-		\begin{lstlisting}[caption={Cuplikan file JSON}, label={lst:jsonSample}]
-			[
-			{
-				"row": 0, // posisi baris
-				"col": 0, // posisi kolom
-				"color": "rgba(253, 224, 71, 1)" // warna
-			},
-			]
-		\end{lstlisting}
+		\item \textbf{Konvergensi cepat}: PSO cenderung konvergen lebih cepat dibandingkan algoritma evolusioner lainnya, terutama pada tahap awal pencarian. Hal ini karena informasi \textit{global best} langsung dibagikan ke seluruh partikel dalam kawanan.
 		
-		\begin{lstlisting}[caption={Cuplikan fungsi inti program Python}, label={lst:scraperinti}, language=Python]
-				for cell in cells: # untuk setiap cell/kotak dalam papan:
-				row = int(cell.get_attribute("data-row")) # ambil posisi baris
-				col = int(cell.get_attribute("data-col")) # ambil posisi kolom
-				color = cell.value_of_css_property("background-color") # ambil warna kotak tersebut 
-				# menambahkan file JSON sesuai format
-				board.append({
-					"row": row,
-					"col": col,
-					"color": color
-				})
-		\end{lstlisting}
+		\item \textbf{Fleksibilitas}: PSO dapat disesuaikan untuk berbagai jenis masalah optimasi, baik kontinu maupun diskret, tanpa perubahan mendasar pada struktur algoritma.
 		
-		\begin{lstlisting}[caption={Keseluruhan Scraper menggunakan Python}, label={lst:fullscraper}, language=Python]
-			from selenium import webdriver
-			from selenium.webdriver.common.by import By
-			import chromedriver_autoinstaller
-			import json
-			import time
-			import os
+		\item \textbf{Keseimbangan eksplorasi-eksploitasi}: Melalui parameter $\omega$, $c_1$, dan $c_2$, PSO dapat menyeimbangkan antara eksplorasi (pencarian area baru) dan eksploitasi (pencarian intensif di area yang menjanjikan).
+		
+		\item \textbf{Paralelisasi mudah}: Karena setiap partikel dapat dievaluasi secara independen, PSO sangat cocok untuk implementasi paralel, yang dapat mempercepat proses komputasi secara signifikan.
+	\end{enumerate}
+	
+	Keberhasilan PSO di berbagai domain telah memicu banyak penelitian untuk memodifikasi dan meningkatkan performanya, seperti penambahan mutasi, hibridisasi dengan algoritma lain, dan adaptasi untuk masalah multiobjektif atau masalah diskret kombinatorika.\footnote{Y. Zhang, S. Wang, dan G. Ji, "A comprehensive survey on particle swarm optimization algorithm and its applications," \textit{Mathematical Problems in Engineering}, 2015.}
+	
+	\subsection{Melakukan studi literatur terkait metode propagasi kendala \textit{Maintaining Arc Consistency} (MAC), terutama algoritma \textit{Arc Consistency 3} (AC-3).}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	\textit{Maintaining Arc Consistency} (MAC) adalah teknik propagasi constraint yang digunakan selama proses pencarian solusi dalam \textit{Constraint Satisfaction Problem} (CSP). Untuk memahami MAC, pertama-tama kita perlu memahami konsep \textit{arc} dalam CSP.
+	
+	\textbf{Arc dalam CSP:} Dalam jaringan constraint biner yang ternormalisasi, sebuah \textit{arc} adalah pasangan terurut $(x_i, c_{ij})$ yang menunjukkan bahwa variabel $x_i$ harus konsisten dengan constraint $c_{ij}$ yang menghubungkan $x_i$ dengan variabel lain $x_j$.\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 39.} Sebuah nilai $v_i \in D(x_i)$ dikatakan konsisten dengan constraint $c_{ij}$ jika terdapat setidaknya satu nilai $v_j \in D(x_j)$ sedemikian sehingga pasangan $(v_i, v_j)$ memenuhi constraint $c_{ij}$. Nilai $v_j$ ini disebut sebagai \textit{support} untuk $v_i$ pada constraint $c_{ij}$.
+	
+	\textbf{Peran MAC:} MAC bekerja dengan menjaga \textit{arc consistency} setelah setiap assignment variabel selama pencarian solusi.\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14} Ketika sebuah variabel diberi nilai, MAC akan melakukan propagasi untuk menghilangkan nilai-nilai yang tidak konsisten dari domain variabel-variabel lain yang terhubung. Hal ini membantu mendeteksi inkonsistensi lebih awal dalam proses pencarian dan mengurangi ruang pencarian secara signifikan.
+	
+	\textbf{Algoritma AC-3:} AC-3 adalah algoritma yang paling terkenal untuk menegakkan \textit{arc consistency}.\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 38-40.} Algoritma ini menggunakan pendekatan berbasis antrian (\textit{queue}) untuk memproses arc yang perlu direvisi. Berikut adalah pseudocode algoritma AC-3:
+	
+	\begin{lstlisting}[language=Python, caption={Algoritma AC-3}, mathescape=true]
+	function AC3(X: set): Boolean;
+	begin
+	/* inisialisasi */
+	Q $\leftarrow$ {$(x_i, c)$ | $c \in C$, $x_i \in X(c)$};
+	
+	/* propagasi */
+	while Q $\neq \emptyset$ do
+	pilih dan hapus $(x_i, c)$ dari Q;
+	if Revise($x_i$, c) then
+	if $D(x_i) = \emptyset$ then return false;
+	else Q $\leftarrow$ Q $\cup$ {$(x_j, c')$ | $c' \in C$ $\wedge$ 
+		$c' \neq c$ $\wedge$ $x_i, x_j \in X(c')$ $\wedge$ $j \neq i$};
+	return true;
+	end
+	
+	function Revise($x_i$: variable; c: constraint): Boolean;
+	begin
+	CHANGE $\leftarrow$ false;
+	foreach $v_i \in D(x_i)$ do
+	if $\nexists \tau \in c \cap \pi_{X(c)}(D)$ with $\tau[x_i] = v_i$ then
+	hapus $v_i$ dari $D(x_i)$;
+	CHANGE $\leftarrow$ true;
+	return CHANGE;
+	end
+	\end{lstlisting}
+	
+	\textbf{Penjelasan notasi dan cara kerja:}
+	\begin{itemize}
+	\item $X$: himpunan semua variabel dalam CSP
+	\item $D(x_i)$: domain dari variabel $x_i$, yaitu himpunan nilai-nilai yang mungkin untuk $x_i$
+	\item $c$: sebuah constraint dalam jaringan
+	\item $X(c)$: skema constraint $c$, yaitu urutan variabel yang terlibat dalam constraint $c$
+	\item $Q$: antrian yang berisi pasangan $(x_i, c)$ yang perlu direvisi
+	\item $\pi_{X(c)}(D)$: proyeksi domain $D$ pada variabel-variabel dalam $X(c)$
+	\item $\tau[x_i]$: nilai yang diberikan pada variabel $x_i$ dalam tuple $\tau$
+	\end{itemize}
+	
+	Algoritma dimulai dengan memasukkan semua pasangan $(x_i, c)$ ke dalam antrian $Q$ (baris 3). Kemudian, selama $Q$ tidak kosong, algoritma mengambil sebuah pasangan $(x_i, c)$ dan memanggil fungsi \texttt{Revise} untuk memeriksa apakah setiap nilai dalam $D(x_i)$ memiliki \textit{support} pada constraint $c$ (baris 6-7). Fungsi \texttt{Revise} mengembalikan \texttt{true} jika ada nilai yang dihapus dari $D(x_i)$.
+	
+	Jika domain $D(x_i)$ menjadi kosong setelah revisi, algoritma mengembalikan \texttt{false} yang menandakan bahwa tidak ada solusi (baris 8). Jika ada nilai yang dihapus tetapi domain tidak kosong, maka semua arc $(x_j, c')$ yang melibatkan $x_i$ ditambahkan kembali ke $Q$ karena perubahan pada $D(x_i)$ mungkin mempengaruhi konsistensi variabel lain (baris 9). Algoritma berakhir dan mengembalikan \texttt{true} ketika $Q$ kosong, yang berarti semua arc telah konsisten.
+	
+	\textbf{Penerapan pada N-Queens Problem:} \\
+	Gambar \ref{fig:ac3-nqueens} menunjukkan contoh penerapan AC-3 pada masalah 4-Queens setelah menempatkan queen pertama.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{beforeafterARC.png}
+	\caption{Penerapan AC-3 pada N-Queens Problem setelah menempatkan pion pertama pada posisi 1 untuk variablel X1}
+	\footnotesize Sumber: Diadaptasikan dari \url{https://courses.grainger.illinois.edu/cs440/fa2021/lectures/csp1.htm}
+	\label{fig:ac3-nqueens}
+	\end{figure}
+	
+	Pada gambar sebelah kiri, kondisi awal menunjukkan papan 4×4 dengan empat variabel $X_1, X_2, X_3, X_4$ yang masing-masing merepresentasikan kolom. Setiap variabel memiliki domain awal $\{1,2,3,4\}$ yang merepresentasikan baris tempat queen dapat ditempatkan pada kolom tersebut. Semua constraint antar variabel ditunjukkan oleh garis yang menghubungkan mereka, yang menyatakan bahwa tidak boleh ada dua queen yang saling menyerang (berada pada baris, kolom, atau diagonal yang sama).
+	
+	Setelah menempatkan queen pertama pada posisi $X_1 = 1$: (queen pada kolom 1, baris 1), AC-3 melakukan propagasi constraint\footnote{Thorisson, H. (2017). Arc Consistency and Domain Splitting. Tersedia di: https://www.youtube.com/watch?v=4cCS8rrYT14}
+	
+	\begin{enumerate}
+	\item \textbf{Eliminasi baris yang sama}: Nilai 1 dihapus dari domain semua variabel lain ($X_2, X_3, X_4$) karena constraint "tidak boleh ada dua queen pada baris yang sama".
+	
+	\item \textbf{Eliminasi diagonal}: 
+	\begin{itemize}
+		\item Untuk $X_2$: nilai 2 dihapus karena posisi (2,2) berada pada diagonal yang sama dengan (1,1)
+		\item Untuk $X_3$: nilai 3 dihapus karena posisi (3,3) berada pada diagonal yang sama dengan (1,1)
+		\item Untuk $X_4$: nilai 4 dihapus karena posisi (4,4) berada pada diagonal yang sama dengan (1,1)
+	\end{itemize}
+	\end{enumerate}
+	
+	Hasil propagasi dapat dilihat pada gambar sebelah kanan, di mana domain variabel berkurang menjadi:
+	\begin{itemize}
+	\item $D(X_1) = \{1\}$ (sudah di-assign)
+	\item $D(X_2) = \{3,4\}$ (nilai 1 dan 2 tereliminasi)
+	\item $D(X_3) = \{2,4\}$ (nilai 1 dan 3 tereliminasi)
+	\item $D(X_4) = \{2,3\}$ (nilai 1 dan 4 tereliminasi)
+	\end{itemize}
+	
+	Pengurangan domain ini sangat signifikan: dari total $4^3 = 64$ kemungkinan kombinasi untuk tiga variabel yang tersisa, hanya $2 \times 2 \times 2 = 8$ kombinasi yang perlu dieksplorasi. Ini mendemonstrasikan kekuatan AC-3 dalam mengurangi ruang pencarian secara dramatis sebelum melanjutkan ke assignment berikutnya. Tanpa AC-3, algoritma pencarian akan membuang waktu mengeksplorasi banyak cabang yang pasti akan gagal.
+	
+	Kompleksitas waktu AC-3 pada jaringan biner ternormalisasi adalah $O(ed^3)$, di mana $e$ adalah jumlah constraint dan $d$ adalah ukuran domain terbesar.\footnote{Bessiere, C. (2006). Constraint Propagation. \textit{Handbook of Constraint Programming}, hal. 40.} Meskipun tidak optimal, AC-3 tetap menjadi pilihan populer karena kesederhanaannya dan performa yang baik dalam praktik. Dalam konteks \textit{Colored Queens}, prinsip yang sama diterapkan dengan constraint tambahan untuk region warna dan aturan adjacency.
+	
+	\subsection{Mengumpulkan dan menyusun berbagai skenario permasalahan Colored Queens yang akan digunakan sebagai basis pengujian algoritma serta sebagai pilihan tingkat kesulitan bagi pengguna.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	Sebagai bagian dari tahap pengumpulan dan penyusunan skenario permasalahan Colored Queens, saya membangun sebuah web scraper Python yang menggunakan library Selenium untuk mengekstraksi beragam konfigurasi papan dari situs \textbf{\textit{Play Queens Game}}.\footnote{Situs daring dapat diakses melalui \url{https://www.playqueensgame.com/}} Data ini diperlukan sebagai dasar pengujian untuk algoritma Backtracking dan Particle Swarm Optimization (PSO), sekaligus menjadi kumpulan level yang dapat dipilih pengguna berdasarkan tingkat kesulitan. Skrip yang dibuat mengotomatisasi proses pengambilan puzzle untuk berbagai ukuran papan—mulai dari 7×7 hingga 11×11—dengan jumlah level yang bervariasi pada setiap ukuran. Setiap puzzle diakses melalui URL tertentu, kemudian Selenium membaca atribut setiap sel (baris, kolom, dan warna) untuk membentuk representasi papan yang terstruktur.
+	
+	Hasil ekstraksi disimpan dalam bentuk berkas JSON yang menyimpan posisi baris, kolom, serta warna dari setiap kotak di dalam papan, agat mudah diproses kembali oleh \textit{solver} maupun antarmuka pengguna. Pendekatan ini memastikan bahwa dataset berisi skenario yang beragam, valid, dan sesuai dengan mekanisme permainan asli. Dengan adanya kumpulan skenario ini, pengujian algoritma dapat dilakukan pada berbagai tingkat kesulitan, dan pengguna aplikasi dapat memilih puzzle berdasarkan ukuran papan. 
+	
+	Selain puzzle yang diambil dari situs daring tersebut, dua papan vaild tambahan berukuran $20 \times 20$ \textsuperscript{\ref{lst:20x20board}} dan $30 \times 30$ \textsuperscript{\ref{lst:30x30board}} telah dibuat untuk pengujian algoritma yang akan diimplementasikan pada tugas akhir ini. Pembuatan papan-papan baru ini dimulai dengan sebuah solusi valid permasalahan N-Queens lalu menambahan sektor-sektor warna sedemikian rupa agar hanya terdapat satu bidak menteri di dalam satu sektor warna.
+	
+	\begin{lstlisting}[caption={Cuplikan file JSON}, label={lst:jsonSample}]
+	[
+	{
+		"row": 0, // posisi baris
+		"col": 0, // posisi kolom
+		"color": "rgba(253, 224, 71, 1)" // warna
+	},
+	]
+	\end{lstlisting}
+	
+	\begin{lstlisting}[caption={Cuplikan fungsi inti program Python}, label={lst:scraperinti}, language=Python]
+	for cell in cells: # untuk setiap cell/kotak dalam papan:
+	row = int(cell.get_attribute("data-row")) # ambil posisi baris
+	col = int(cell.get_attribute("data-col")) # ambil posisi kolom
+	color = cell.value_of_css_property("background-color") # ambil warna kotak tersebut 
+	# menambahkan file JSON sesuai format
+	board.append({
+		"row": row,
+		"col": col,
+		"color": color
+	})
+	\end{lstlisting}
+	
+	\begin{lstlisting}[caption={Keseluruhan Scraper menggunakan Python}, label={lst:fullscraper}, language=Python]
+	from selenium import webdriver
+	from selenium.webdriver.common.by import By
+	import chromedriver_autoinstaller
+	import json
+	import time
+	import os
+	
+	# Auto-install ChromeDriver
+	chromedriver_autoinstaller.install()
+	
+	# Base URL
+	BASE_URL = "https://www.playqueensgame.com/puzzles/{size}x{size}/{level}"
+	
+	# Define board sizes and number of levels
+	board_levels = {
+		7: 50,
+		8: 130,
+		9: 110,
+		10: 60,
+		11: 50
+	}
+	
+	# Create output folder
+	os.makedirs("boards", exist_ok=True)
+	
+	# Launch browser
+	driver = webdriver.Chrome()
+	
+	for size, max_level in board_levels.items():
+	for level in range(1, max_level + 1):
+	url = BASE_URL.format(size=size, level=level)
+	driver.get(url)
+	time.sleep(2)  # allow page to load
+	
+	# Extract cells
+	cells = driver.find_elements(By.CSS_SELECTOR, "div[data-row][data-col]")
+	board = []
+	for cell in cells:
+	row = int(cell.get_attribute("data-row"))
+	col = int(cell.get_attribute("data-col"))
+	color = cell.value_of_css_property("background-color")
+	board.append({
+		"row": row,
+		"col": col,
+		"color": color
+	})
+	
+	# Sort for consistency
+	board.sort(key=lambda c: (c["row"], c["col"]))
+	
+	# Save JSON
+	filename = f"boards/{size}x{size}_level{level}.json"
+	with open(filename, "w") as f:
+	json.dump(board, f, indent=2)
+	
+	print(f"Saved {filename}")
+	
+	driver.quit()
+	print("All boards extracted!")
+	
+	\end{lstlisting}
+	
+	\begin{lstlisting} [caption={Papan $20 \times 20$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A')}, label={lst:20x20board}] 
+	J J J J J J J G G G G G E E E E I I I I
+	J J J J J J J G G G G E E E E E I I I I
+	J J J J J J J G G G G E E E E E I I I I
+	D D D J J J J G G E E E E E R R R I I I
+	D D D D D D D D G H E R R R R R R I I I
+	D D D D D D U U H H H H P P R R R O I I
+	D D D D D U U U H H H H P P P P P O O I
+	D D D D U U U U H H H H H P P O O O O O
+	D D D D S U U U U H H H H P P O O O O O
+	M D S S S U U U U U H H H P K K K O O O
+	M M S S S S U U U F H H H K K K K K K K
+	M S S S S S S F F F L H K K K K K K K K
+	M M M S S S F F F F L L L K K K K K K K
+	M M M S S T F F F L L L L L K K K K C C
+	M B B B T T L L L L L L L L L K K C C C
+	B B B B T T T L L L L L L L A A C C C C
+	B B B T T T T T N L L L L A A A C C C C
+	B B B T T T T N N N N N A A A A C C C C
+	B B B T T T N N N N N N A A A A A C C C
+	B B B T T T N N N N N A A A A A A A C C
+	\end{lstlisting}
+	
+	\begin{lstlisting} [caption={Papan $30 \times 30$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A')}, label={lst:30x30board}]
+	I I I I I I I ^ ^ ^ ^ F F F W W W W W W V V V V V V V V V V
+	I I I I I I ^ ^ ^ ^ ^ F F F F W W W W V V V V V V V V V V V
+	I I I I _ _ ^ ^ ^ ^ ^ F F F F F W W V V V V V V V V V V V V
+	I I I I _ _ _ ^ ^ ^ ^ F F F F F F W V V V V V V V V V V V Z
+	I I I _ _ _ _ ^ ^ ^ ^ ^ F F O O O O V V V V V V V V V Z Z Z
+	I I _ _ _ _ _ _ ^ ^ ^ O O O O O O O O V V V V V V Z Z Z Z Z
+	I _ _ _ _ _ _ _ ^ ^ D [ [ O O C C C C C V V V V Z Z Z Z Z Z
+	I _ _ _ _ _ _ _ ^ ^ D [ [ [ C C C C C C C V R R Z Z Z Z Z Z
+	_ _ _ _ _ _ _ D D D D [ [ [ C C C C C C C R R R Z Z Z Z Z Z
+	\ _ _ G G G G G D D D D [ [ C C C C U U R R R R Z Z Z Z Z Z
+	\ \ G G G G G G G D D D [ [ [ C C C U U R R R R Z Z Z Z Z Z
+	\ \ G G G G G G G D D D [ [ [ C C U U U R R R R R P Z Z Z Z
+	\ \ \ \ G G G G G G D D [ [ [ U U U U U R R R R R P P Z Z Z
+	\ \ \ \ \ G G G G G D D [ U U U U U U U U R R R P P P Z Z Z
+	\ \ \ \ \ \ G G G G D D [ [ U U U U U U U R R P P P P P P P
+	\ \ \ \ \ \ G G G B D D [ [ U U U U U U U R R P P P ] ] ] ]
+	\ \ \ \ \ \ \ B B B T T T T U Y Y U Y U S S L L L ] ] ] ] ]
+	M M \ \ \ \ \ B B B B T T T Y Y Y Y Y S S S L L L L ] ] ] ]
+	M M M M M M B B B B T T T T Y Y Y Y Y S S S S L L L ] ] ] ]
+	M M M M M M B B B B T T T T Y Y Y Y Y Y S S S L L L ] ] H H
+	M M M M M B B B B B T T T T Y Y Y Y Y Y S S S L L L ] H H H
+	M M M X X B B B B B T T T T T Y Y Y Y Y Y Y A A L L H H H H
+	M M X X X X B B B B T T T T T T Y Y Y Y Y Y A A A H H H H H
+	X X X X X X B B B T T T T T T N N Y Y Y Y A A A A H H H H H
+	X X X X X X X B B T T T T T N N N N Y A A A A A A A H H H H
+	X X X X X X X J B T T T T T N N N N N A A A A A A A A K K K
+	X X X X E E J J J J T T N N N N N N N N A A A A A A K K K K
+	E E E E E E E J J J J N N N N N N N N N N A A A A A K K K K
+	E E E E E E E J J J J J N N N N N N N N N A A A A A K K K K
+	E E E E E J J J J J J J J N N N N N N N N A A A A A K K K K
+	\end{lstlisting}
+	
+	\subsection{Melakukan pemodelan masalah Colored Queens ke dalam bentuk CSP agar dapat diproses oleh algoritma pencarian.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	Pemodelan permainan Colored Queens sebagai \textit{Constraint Satisfaction Problem} (CSP) dilakukan untuk memastikan bahwa aturan permainan dapat diproses secara konsisten oleh algoritma Backtracking maupun Particle Swarm Optimization (PSO). Pemodelan ini dilakukan dengan mengidentifikasi tiga komponen utama dalam CSP, yaitu variabel, domain atau ruang solusi, dan kendala sebagai berikut:
+	
+	\begin{enumerate}
+	\item \textbf{Variabel} \\
+	Setiap warna pada papan diperlakukan sebagai sebuah variabel. Masing-masing variabel harus ditempatkan tepat satu menteri pada salah satu sel yang termasuk ke dalam sektor warna tersebut.
+	
+	\item \textbf{Ruang Solusi} \\
+	Ruang solusi untuk setiap variabel merupakan himpunan seluruh sel yang memiliki warna yang sesuai dengan variabel tersebut. Dengan demikian, setiap variabel memiliki domain yang berbeda tergantung pada posisi warna di papan.
+	
+	\item \textbf{Kendala (Constraints)} \\
+	Aturan permainan diterjemahkan menjadi sejumlah kendala yang harus dipenuhi secara bersamaan:
+	\begin{itemize}
+		\item Tidak boleh ada dua menteri yang bersebelahan secara horizontal, vertikal, maupun diagonal.
+		\item Setiap warna hanya boleh berisi satu menteri.
+		\item Serangan diagonal tidak dihitung, sehingga dua menteri dapat berada pada garis diagonal yang sama selama tidak bersebelahan.
+		\item Serangan horizontal dan vertikal tetap berlaku, sehingga dua menteri tidak boleh berada pada baris atau kolom yang sama.
+	\end{itemize}
+	\end{enumerate}
+	
+	\textbf{Contoh sederhana:}  
+	
+	Misalkan papan 4x4 dengan 4 warna berbeda (R, B, G, Y) dan setiap warna membentuk sektor yang tersebar di papan seperti pada \textsuperscript{\ref{lst:4x4example}}
+	
+	\begin{lstlisting}[caption={papan 4x4 dengan 4 warna berbeda (R, B, G, Y)}, label={lst:4x4example}, basicstyle=\ttfamily, frame=single]
+	R B B B
+	R R B Y
+	G Y Y Y
+	G G G Y
+	\end{lstlisting}
+	
+	Papan \textit{Colored Queens} \textsuperscript{\ref{lst:4x4example}} dapat direpresentasikan sebagai CSP dengan ketentuan berikut:
+	\begin{itemize}
+	\item Variabel: R, B, G, Y
+	\item Domain variabel: Semua sel dengan warna yang sesuai
+	\begin{itemize}
+		\item R: \{(1,1), (2,1), (2,2)\}
+		\item B: \{(1,2), (1,3), (1,4), (2,3)\}
+		\item G: \{(3,1), (4,1), (4,2), (4,3)\}
+		\item Y: \{(2,4), (3,2), (3,3), (3,4), (4,4)\}
+	\end{itemize}
+	\item Tujuan: Menempatkan satu menteri per warna tanpa melanggar kendala
+	\end{itemize}
+	
+	
+	\begin{lstlisting}[caption={Contoh solusi valid dari \textsuperscript{\ref{lst:4x4example}}}, basicstyle=\ttfamily, frame=single]
+	- - Q -
+	Q - - -
+	- - - Q
+	- Q - -
+	\end{lstlisting}
+	
+	Keterangan:
+	\begin{itemize}
+	\item 'Q' menandakan posisi menteri pada papan.
+	\item Setiap menteri berada di sel dengan warna yang berbeda (satu per variabel/warna).
+	\item Tidak ada dua menteri yang bersebelahan atau berada pada baris/kolom yang sama.
+	\end{itemize}
+	
+	Dengan pemodelan CSP tersebut, seluruh aturan permainan dapat dinyatakan secara terstruktur sehingga solver dapat melakukan pemeriksaan dan pencarian solusi dengan cara yang konsisten dan sistematis.
+	
+	\subsection{Melakukan analisis kebutuhan perangkat lunak, baik fungsional maupun non-fungsional, termasuk kebutuhan solver dan antarmuka pengguna.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	Berdasarkan hasil analisis dan diskusi mengenai proses bisnis tugas akhir ini, dihasilkan dua \textit{flowchart} yang menggambarkan fungsi-fungsi utama dari sistem yang akan dibangun. Sebuah aplikasi berbasis web akan dikembangkan dengan fungsi utama menyediakan sarana untuk memainkan permainan \textit{Colored Queens} dengan fitur \textit{solver} otomatis yang dapat memberikan solusi valid ketika pemain mengalami kesulitan, seperti yang digambarkan pada \textit{flowchart} \ref{fig:flowchart1}. Sistem juga menyediakan fitur perbandingan kinerja antara algoritma Backtracking dan PSO, dengan alur seperti yang ditunjukkan pada \textit{flowchart} \ref{fig:flowchart2}.
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{flowchart2.png}
+	\caption{\textit{Flowchart} dari proses bisnis pertama, yaitu permainan \textit{Colored Queens} yang berbasis web dan dapat memberikan solusi yang valid kepada pemain dengan memanggil \textit{solver} yang memanfaatkan algoritma backtracking}
+	\label{fig:flowchart1}
+	\end{figure}
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{flowchart.png}
+	\caption{\textit{Flowchart} dari proses bisnis kedua, yaitu membandingkan performa dua algoritma berbeda, \textit{Backtracking} dan PSO, dalam menyelesaikan masalah \textit{Colored Queens}.}
+	\label{fig:flowchart2}
+	\end{figure}
+	
+	\begin{enumerate}
+	\item \textbf{Kebutuhan Fungsional Sistem} \\
+	Untuk membangun permainan \textit{Colored Queens}, sistem akan dibangun dengan arsitektur berbasis web, menggunakan \textit{frontend} React dan \textit{backend} Spring Boot. \textit{Frontend} bertugas menampilkan papan permainan, menerima input pengguna, memberikan umpan balik visual secara real-time, dan menyediakan antarmuka interaktif untuk bermain atau menguji solusi. \textit{Backend} menjalankan \textit{solver} Java yang mengimplementasikan algoritma Backtracking degan AC-3 dan Particle Swarm Optimization (PSO), serta menangani logika validasi.
+	
+	\item \textbf{Situs Web dan Pemilihan Papan} \\
+	Aplikasi akan mengelompokkan papan-papan yang dapat dimainkan berdasarkan ukuran agar mudah dinavigasikan. Pemain juga dapat memilih papan secara acak dari daftar tersebut dan halaman web akan menampilkan papan yang sesuai dengan pilihan pemain.
+	
+	\item \textbf{Mengambil data papan dari JSON} \\
+	Ketika pemain memilih salah satu papan untuk dimainkan, \textit{Frontend} aplikasi web akan mengambil keseluruhan data papan dari file JSON yang tersedia setelah menjalankan \textit{web scraper}, seperti yang dijelaskan di bagian \ref{lst:fullscraper}, lalu memprosesnya menjadi papan berwarna yang dapat ditampilkan dan dimainkan.
+	
+	\item \textbf{Adaptasi Algoritma Backtracking dengan AC-3} \\
+	Algoritma Backtracking standar untuk Colored Queens menggunakan pendekatan rekursif untuk menempatkan setiap menteri berdasarkan warna pada papan. Agar lebih efisien, algoritma ini akan digabungkan dengan \textit{Arc Consistency Algorithm 3} (AC-3) untuk menyempitkan ruang solusi sebelum dan selama pencarian.
+	
+	\textbf{Proses Backtracking dengan AC-3:}
+	\begin{enumerate}
+		\item \textbf{Inisialisasi:} Setiap warna direpresentasikan sebagai variabel, dan domainnya adalah semua posisi yang valid dalam warna tersebut.
+		\item \textbf{Preprocessing AC-3:} Jalankan AC-3 untuk mengeliminasi posisi yang jelas tidak mungkin, misalnya karena konflik adjacency atau serangan langsung.
+		\item \textbf{Rekursi Backtracking:} 
+		\begin{itemize}
+			\item Pilih variabel warna berikutnya.
+			\item Coba setiap posisi dalam domain yang tersisa.
+			\item Jika posisi valid (tidak melanggar adjacency atau aturan serangan):
+			\begin{itemize}
+				\item Tempatkan menteri pada posisi tersebut.
+				\item Jalankan AC-3 lagi untuk memperbarui domain variabel lain.
+				\item Lanjutkan ke variabel warna berikutnya secara rekursif.
+			\end{itemize}
+			\item Jika tidak ada posisi valid, mundur (\textit{backtrack}) ke variabel sebelumnya dan coba posisi lain.
+		\end{itemize}
+		\item \textbf{Kondisi berhenti:} Semua warna telah ditempatkan tanpa konflik → solusi valid ditemukan.
+	\end{enumerate}
+	
+	\item \textbf{Adaptasi Algoritma PSO} \\
+	PSO biasanya digunakan untuk optimasi kontinu. Agar dapat diterapkan pada masalah diskret seperti Colored Queens, beberapa modifikasi dilakukan:
+	\begin{enumerate}
+		\item \textbf{Representasi Partikel:} Setiap partikel adalah solusi kandidat, direpresentasikan sebagai array integer di mana elemen ke-$i$ menunjukkan posisi ke-$n$ dari warna $i$.
+		\item \textbf{Velocity Diskret:} Velocity yang semula berupa jarak perpindahan kontinu diubah menjadi probabilitas pertukaran posisi dengan \textit{neighborhood best} (nBest). Misalnya, partikel $[2,2,4,1]$ dengan velocity $[0.3,0.5,0.4,0.6]$ berarti elemen ke-1 yang bernilai 2 memiliki kemungkinan 0.3 untuk diubah menjadi nilai yang sesuai di nBest.
+		\item \textbf{Update Velocity:} Velocity diperbarui menggunakan rumus standar PSO:
+		\[
+		v[i] = \omega \cdot v[i] + c_1 \cdot r_1 \cdot \Delta_p[i] + c_2 \cdot r_2 \cdot \Delta_n[i]
+		\]
+		di mana $\Delta_p[i]$ dan $\Delta_n[i]$ adalah nilai boolean yang menunjukkan apakah posisi saat ini berbeda dari pBest/nBest, dan $c_1,c_2,r_1,r_2$ mengikuti nilai konvensional PSO.
+		\item \textbf{Update Partikel:} Setiap partikel akan diperbarui berdasarkan \textit{velocity} barunya yang sudah dihitung dengan cara mengambil nilai acak untuk setiap elemen $i$. Apabila nilai acak $<$ \textit{velocity}, elemen tersebut akan mengubah nilainya sesuai dengan elemen pada posisi yang sama di nBest. Apabila nilai acak $>$ \textit{velocity}, elemen tidak akan mengalami perubahan.
+		\item \textbf{Fungsi Fitness:} \textit{Fitness} dihitung untuk meminimalkan pelanggaran adjacency dan serangan dengan:
+		\[
+		\text{fitness} = w_1 \cdot \text{adjacencyViolation} + w_2 \cdot \text{attackingViolation}
+		\]
+		
+		dimana nilai \textit{Fitness} yang optimal adalah 0.
+	\end{enumerate}
+	\textbf{Contoh iterasi PSO} \\
+	Contoh iterasi ini menggunakan papan\textsuperscript{\ref{lst:4x4example}} dengan parameter $\omega = 0.7$, $c_1 = 2$, $c_2 = 2$, $r_1 = 0.2$, dan $r_2 = 0.2$. nBest juga ditetapkan sebagai $[2,1,3,4]$ dan pBest sebagai $[2,3,3,2]$. Bobot dari pelanggaran ditetapkan sebagai $w_1 (adjacency) = 2$ dan $w_2 (attacking) = 1$
+	\begin{enumerate}[label=\arabic*.]
+		\item Inisialisasi partikel secara acak, sebagai contoh $[2,4,3,3]$ yang dapat dibaca sebagai:
+		\begin{itemize}
+			\item R → posisi ke-2 = $(2,1)$
+			\item B → posisi ke-1 = $(2,3)$
+			\item G → posisi ke-3 = $(4,2)$
+			\item Y → posisi ke-3 = $(3,3)$
+		\end{itemize}
+		dengan \textit{velocity} awal sebagai $[0.3,0.5,0.4,0.6]$
+		\item Hitung \textit{velocity} baru dengan menghitung: 
+		\begin{itemize}
+			\item $0.7 \cdot 0.3 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 0 = 0.21$
+			\item $0.7 \cdot 0.5 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 1 = 0.75$
+			\item $0.7 \cdot 0.4 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 0 = 0.28$
+			\item $0.7 \cdot 0.6 + 2.0 \cdot 0.2 \cdot 1 + 2.0 \cdot 0.2 \cdot 0 = 0.82$
+		\end{itemize}
+		Maka $(v + 1) = [0.21,0.75,0.28,0.82]$
+		\item Hitung posisi baru partikel tersebut dengan cara mengambil nilai acak untuk setiap elemen:
+		\begin{itemize}
+			\item Elemen 1 → $0.3 > 0.21 \therefore$ tidak terjadi perubahan.
+			\item Elemen 2 → $0.78 > 0.75 \therefore$ tidak terjadi perubahan
+			\item Elemen 3 → $0.4 > 0.28 \therefore$ tidak terjadi perubahan.
+			\item Elemen 4 → $0.45 < 0.82 \therefore$ nilai berubah sesuai dengan nBest (4).
+		\end{itemize}
+		Maka $x + (v + 1) = [2,4,3,4]$
+		\item Hitung fitness untuk kondisi partikel sekarang berdasarkan posisi bidak menteri:
+		\begin{itemize}
+			\item Bidak 1 → $(2,1)$\\
+			Adjacency Violation dengan Bidak 2
+			\item Bidak 2 → $(1,2)$\\
+			Adjacency Violation dengan Bidak 1 \\
+			Attacking Violation dengan bidak 3
+			\item Bidak 3 → $(4,2)$\\
+			Attacking Violation dengan bidak 2
+			\item Bidak 4 → $(3,4)$\\
+			Maka fitness partikel ini adalah:
+			\[
+			\text{fitness} = 2 \cdot 2 + 1 \cdot 2 = 6
+			\]
+		\end{itemize}
+		\item Evaluasi pBest dan nBest
+		\begin{itemize}
+			\item Fitness pBest = 10 
+			\item Fitness nBest = 8
+			\item Current Fitness = 6
 			
-			# Auto-install ChromeDriver
-			chromedriver_autoinstaller.install()
+			Karena current fitness < nbest, kedua pBest dan nBest ditukar dengan partikel sekarang. Sehingga nBest = pBest = $[0.21,0.75,0.28,0.82]$ dan Fitness nBest = Fitness pBest = 6
+		\end{itemize}
+		
+	\end{enumerate}
+	
+	\item \textbf{Optimasi menggunakan \textit{BitSet}}
+	\begin{itemize}
+		\item Untuk meningkatkan efisiensi, baik Backtracking maupun PSO memanfaatkan \textit{bitset} untuk memantau baris, kolom, dan warna yang sudah ditempati.
+		\item Pengecekan konflik dapat dilakukan dalam waktu konstan $O(1)$ menggunakan operasi logika bitwise.
+		\item \textit{Bitset} juga memungkinkan perhitungan adjacency violation secara cepat dengan operasi AND/OR pada \textit{mask} bit.
+	\end{itemize}
+	
+	\item \textbf{Integrasi Web dan Solver} \\
+	Pada sistem ini, papan permainan Colored Queens sepenuhnya di-render oleh React di sisi klien. Pengguna dapat menempatkan menteri, memindahkan bidak, dan menerima umpan balik secara real-time mengenai pelanggaran aturan atau saran langkah, tanpa memerlukan komunikasi dengan \textit{backend}. Hal ini memastikan pengalaman bermain yang interaktif dan responsif.
+	
+	Fitur \textit{solver} (menggunakan Backtracking atau PSO) hanya akan dipanggil melalui \textit{backend} Spring Boot ketika pengguna menekan tombol \textit{Solve} untuk papan berukuran hingga 11×11. Backend akan memproses perhitungan, mengembalikan solusi beserta informasi tambahan seperti langkah-langkah penempatan menteri dan status validasi. React kemudian akan menampilkan solusi ini pada papan secara visual.
+	
+	Untuk papan yang lebih besar (20×20 dan 30×30), \textit{solver} tidak dijalankan secara real-time. Sebagai gantinya, solusi telah disiapkan sebelumnya dan hanya ditampilkan oleh frontend, sehingga pengguna tetap dapat melihat hasil tanpa menunggu proses komputasi yang berat.
+	
+	Dengan arsitektur ini, interaksi normal pengguna tetap cepat dan sepenuhnya client-side, sedangkan operasi komputasi berat dialihkan ke server hanya ketika diperlukan.
+	
+	\item \textbf{Perbandingan Kinerja Algoritma} \\
+	Agar proses penelitian lebih cepat dan efisien, perbandingan kinerja algoritma tidak dilakukan melalui antarmuka web, melainkan menggunakan \textit{Command Line Interface} (CLI). Pendekatan ini memungkinkan perubahan \textit{hyperparameter} dengan mudah dan eksekusi pengujian secara otomatis tanpa \textit{overhead rendering} antarmuka grafis, sehingga waktu eksekusi murni dari algoritma dapat diukur dengan lebih akurat.
+	\end{enumerate}
+	
+	\subsection{Merancang arsitektur sistem serta antarmuka pengguna untuk aplikasi Colored Queens Solver.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	\subsubsection{Arsitektur sistem dalam bentuk \textit{Class Diagram}}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\linewidth]{cDiagram.png}
+		\caption{\textit{Class Diagram} dari \textit{solver} \textit{Colored Queens} yang akan dibangun pada tugas akhir ini}
+		\label{fig:cDiagram}
+	\end{figure}
+
+	Gambar \ref{fig:cDiagram} menunjukkan diagram kelas utama yang digunakan dalam implementasi sistem \textit{Colored Queens} beserta kedua \textit{solver} yang dikembangkan. Diagram ini memberikan gambaran umum mengenai struktur kelas, atribut penting, metode inti, serta relasi antar komponen yang menyusun arsitektur sistem.
+	
+	Secara keseluruhan, terdapat empat kelas utama, yaitu \texttt{Cell}, \texttt{Board}, \texttt{BacktrackingSolverAC3}, dan \texttt{PSOSolver}, dengan satu kelas internal tambahan yaitu \texttt{Particle} yang merupakan bagian dari \texttt{PSOSolver}. Berikut adalah penjelasan tiap elemen dan hubungan antar kelas dalam diagram.
+	
+	\begin{itemize}
+		\item \textbf{Cell}  
+		Kelas ini merepresentasikan sebuah sel pada papan. Setiap sel memiliki koordinat baris dan kolom, serta nilai warna dalam format RGB. Kelas ini berfungsi sebagai unit data dasar yang kemudian dikelompokkan oleh kelas \texttt{Board}.
+		
+		\textit{Metode utama:}
+		\begin{itemize}
+			\item \texttt{Cell(row, col, r, g, b)}: Konstruktor untuk inisialisasi sel dengan koordinat dan nilai warna RGB
+			\item \texttt{getter()} dan \texttt{setter()}: Metode akses untuk membaca dan mengubah atribut sel
+			\item \texttt{toString()}: Menghasilkan representasi string dari sel dalam format \texttt{Cell[row=x, col=y, rgb=(r,g,b)]}
+		\end{itemize}
+		
+		\item \textbf{Board}  
+		Kelas ini mengelola struktur papan dan memetakan setiap warna ke daftar sel yang ditempati. \texttt{Board} membangun \textit{colorMap} dan \textit{colorSymbolMap}, serta menyediakan metode untuk memperoleh sel berdasarkan warna dan menampilkan papan. Kelas ini menjadi dependensi utama bagi kedua algoritma \textit{solver}.
+		
+		\textit{Metode utama:}
+		\begin{itemize}
+			\item \texttt{Board(size, cells)}: Konstruktor yang membangun papan dengan ukuran tertentu dan daftar sel, kemudian memanggil \texttt{buildColorMap()} dan \texttt{buildColorSymbols()}
+			\item \texttt{buildColorMap(cells)}: Memetakan setiap warna RGB unik ke daftar posisi sel yang memiliki warna tersebut
+			\item \texttt{buildColorSymbols(cells)}: Memberikan simbol huruf (A, B, C, ...) untuk setiap warna unik, melewati 'Q' yang digunakan untuk menteri
+			\item \texttt{getCellsByColor(colorKey)}: Mengembalikan daftar posisi sel untuk warna tertentu
+			\item \texttt{getSymbolForColor(colorKey)}: Mengembalikan simbol huruf yang merepresentasikan warna tertentu
+			\item \texttt{printBoard()}: Mencetak papan dalam format grid dengan simbol warna
+		\end{itemize}
+		
+		\item \textbf{BacktrackingSolverAC3}  
+		Kelas ini mengimplementasikan algoritma \textit{Backtracking} yang diperkaya dengan propagasi kendala AC-3. Di dalamnya terdapat struktur optimisasi seperti \textit{bitset}, \textit{prune stack}, dan matriks okupansi. Kelas ini bergantung pada \texttt{Board} untuk memperoleh domain warna dan posisi sel, lalu melakukan pencarian solusi secara deterministik.
+		
+		\textit{Metode utama:}
+		\begin{itemize}
+			\item \texttt{BacktrackingSolverAC3(board)}: Konstruktor yang menginisialisasi solver dengan board, membangun struktur data BitSet untuk tracking domain valid, dan menyiapkan stack untuk undo pruning
+			\item \texttt{solve()}: \textit{Entry point} utama yang memanggil \texttt{placeQueens(0)} dan menghitung statistik waktu eksekusi
+			\item \texttt{placeQueens(colorIndex)}: Metode rekursif untuk menempatkan menteri pada setiap warna, mencoba setiap posisi valid dan melakukan \textit{backtrack} jika gagal
+			\item \texttt{propagateConstraints(row, col, placedColorIndex)}: Melakukan propagasi kendala AC-3 dengan dua tahap: (1) \textit{forward checking} untuk menghapus nilai yang konflik dengan posisi yang baru ditempatkan, (2) propagasi berbasis \textit{queue} untuk memeriksa apakah penghapusan menyebabkan nilai lain kehilangan \textit{support}
+			\item \texttt{hasAnySupport(cell, cellColorIdx, excludeColorIdx, placedColorIndex)}: Memeriksa apakah sebuah sel memiliki \textit{support} (nilai yang kompatibel) dari semua domain warna lainnya
+			\item \texttt{conflicts(cell1, cell2)}: Memeriksa apakah dua sel berkonflik (berada di baris/kolom sama atau bersebelahan)
+			\item \texttt{computeAttackZone(row, col)}: Menghitung semua posisi yang berkonflik dengan posisi \texttt{(row, col)}, termasuk seluruh baris, kolom, dan 8 sel bersebelahan
+			\item \texttt{undoPrunes(pruneStartPos)}: Mengembalikan semua nilai yang dipangkas sejak posisi tertentu di stack dengan memulihkan BitSet
+			\item \texttt{anyColorExhausted(currentColorIndex)}: Memeriksa apakah ada warna yang domainnya kosong setelah propagasi (\textit{domain wipeout})
+			\item \texttt{getSolution()}: Mengembalikan array solusi (indeks posisi untuk setiap warna)
+			\item \texttt{getSteps()}, \texttt{getBacktracks()}, \texttt{getExecutionTime()}: Mengembalikan statistik eksekusi algoritma
+		\end{itemize}
+		
+		\item \textbf{PSOSolver}  
+		Kelas ini mengimplementasikan algoritma \textit{Particle Swarm Optimization} (PSO) yang telah dimodifikasi untuk permasalahan diskret Colored Queens. PSO bekerja dengan membangkitkan populasi partikel, memperbarui \textit{velocity}, memindahkan posisi partikel, menghitung \textit{fitness}, serta menentukan \textit{global best}. Kelas ini juga bergantung pada \texttt{Board} untuk mendapatkan domain posisi tiap warna.
+		
+		\textit{Metode utama:}
+		\begin{itemize}
+			\item \texttt{PSOSolver(board, swarmSize, maxIterations)}: Konstruktor yang menginisialisasi solver PSO dengan board, ukuran \textit{swarm}, dan jumlah iterasi maksimum
+			\item \texttt{setParameters(w, c1, c2, r1, r2, w1, w2)}: Mengatur parameter PSO (\textit{inertia weight}, \textit{cognitive/social coefficients}, faktor random, bobot fitness)
+			\item \texttt{solve()}: \textit{Entry point} utama PSO yang menginisialisasi \textit{swarm}, melakukan iterasi update, dan mengembalikan solusi \textit{global best}
+			\item \texttt{initializeSwarm()}: Membangkitkan populasi awal partikel dengan posisi dan \textit{velocity} acak dalam domain yang valid
+			\item \texttt{evaluateFitness(particle)}: Menghitung fitness satu partikel menggunakan formula: \texttt{w1 × adjacencyViolations + w2 × attackingViolations}
+			\item \texttt{updateVelocity(particle, pBest, nBest)}: Memperbarui \textit{velocity} partikel menggunakan formula PSO yang diadaptasi untuk ruang diskret: $v = \omega \cdot v + c_1 \cdot r_1 \cdot (pBest - x) + c_2 \cdot r_2 \cdot (nBest - x)$
+			\item \texttt{updatePosition(particle)}: Memperbarui posisi partikel berdasarkan \textit{velocity} dengan mekanisme \textit{swap} probabilistik
+			\item \texttt{computeXplusOne(x, vPlusOne, boolean[], nBest)}: Menghitung posisi baru partikel berdasarkan \textit{velocity} dan \textit{neighborhood best}
+			\item \texttt{findNeighborhoodBest(index)}: Mencari partikel dengan fitness terbaik dalam \textit{neighborhood} (topologi ring atau global)
+			\item \texttt{getSteps()}: Mengembalikan jumlah iterasi yang dilakukan
+		\end{itemize}
+		
+		\item \textbf{Particle} (kelas internal dari \texttt{PSOSolver})  
+		Kelas ini mewakili satu kandidat solusi dalam PSO. Setiap partikel memiliki posisi, \textit{velocity}, nilai fitness, dan \textit{personal best}. Karena partikel sepenuhnya dikelola oleh \texttt{PSOSolver}, relasinya ditunjukkan dengan komposisi (\textit{black diamond}).
+		
+		\textit{Metode utama:}
+		\begin{itemize}
+			\item \texttt{Particle(size)}: Konstruktor yang menginisialisasi partikel dengan array \texttt{position} dan \texttt{velocity} sesuai jumlah warna
+			\item \texttt{getPosition()}, \texttt{setPosition()}: Mengakses dan mengubah posisi partikel (array indeks posisi untuk setiap warna)
+			\item \texttt{getVelocity()}, \texttt{setVelocity()}: Mengakses dan mengubah \textit{velocity} partikel (array probabilitas pertukaran)
+			\item \texttt{getPBest()}, \texttt{setPBest()}: Mengakses dan mengubah posisi \textit{personal best}
+			\item \texttt{updateFitness(value)}: Memperbarui nilai fitness saat ini
+			\item \texttt{updatePBest()}: Memperbarui \textit{personal best} jika fitness saat ini lebih baik
+			\item \texttt{clone()}: Membuat salinan independen dari partikel untuk keperluan komparasi atau backup
+		\end{itemize}
+		
+	\end{itemize}
+	
+	Relasi antar kelas dalam diagram dapat diringkas sebagai berikut:
+	\begin{itemize}
+		\item \texttt{Board} \textbf{mengandung} banyak \texttt{Cell}.
+		\item \texttt{BacktrackingSolverAC3} \textbf{bergantung pada} \texttt{Board} untuk membaca struktur domain.
+		\item \texttt{PSOSolver} juga \textbf{bergantung pada} \texttt{Board} karena menggunakan informasi warna dan posisi sel.
+		\item \texttt{PSOSolver} \textbf{memiliki komposisi} terhadap kelas \texttt{Particle}, yang menunjukkan bahwa \texttt{Particle} tidak berdiri sendiri dan hanya ada sebagai bagian internal dari proses PSO.
+	\end{itemize}
+	
+	Dengan demikian, Gambar~\ref{fig:cDiagram} menggambarkan arsitektur lengkap sistem Colored Queens beserta algoritma pencarian yang digunakan, serta menunjukkan pembagian tanggung jawab masing-masing kelas dalam proses penyelesaian masalah.
+	\subsubsection{\textit{Low-fidelity mockup} dari antarmuka aplikasi web}
+	Bagian ini menyajikan rancangan antarmuka awal dari sistem \textit{Colored Queens}. \textit{Mockup} ini bertujuan untuk menggambarkan struktur halaman, letak komponen utama, serta alur interaksi pengguna secara sederhana tanpa mempertimbangkan aspek visual akhir. Desain dapat berubah pada implementasi \textit{high-fidelity} atau tahap pengembangan berikutnya.
+	
+	\begin{enumerate}
+		\item \textbf{Halaman Utama}
+		
+		Halaman \ref{fig:mockup_homepage} merupakan titik masuk pertama ketika pengguna mengunjungi situs \textit{Colored Queens}. Pengguna diperkenalkan dengan tampilan sederhana yang berfokus pada tombol utama untuk memulai permainan.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/homepage.png}
+			\caption{Tampilan halaman utama ketika pengguna pertama kali mengunjungi situs \textit{Colored Queens}. Pengguna dapat mengklik tombol "Play!" untuk memulai permainan.}
+			\label{fig:mockup_homepage}
+		\end{figure}
+		
+		\item \textbf{Pemilihan Tingkat Kesulitan}
+		
+		Setelah menekan tombol \textit{Play}, pengguna diarahkan menuju halaman pemilihan tingkat kesulitan \ref{fig:mockup_levelSelector}. Pemilihan tingkat ini menentukan ukuran papan dan tingkat kompleksitas persoalan yang akan dihadapi pemain.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/levelSelector.png}
+			\caption{Halaman pemilihan tingkat kesulitan yang memungkinkan pengguna memilih level sebelum mulai bermain.}
+			\label{fig:mockup_levelSelector}
+		\end{figure}
+		
+		\item \textbf{Halaman Level / Papan Permainan}
+		
+		Pada halaman \ref{fig:mockup_game}, pengguna berinteraksi langsung dengan papan permainan \textit{Colored Queens}. Pengguna dapat menempatkan atau memindahkan bidak menteri untuk menyelesaikan \textit{puzzle}.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/level.png}
+			\caption{Tampilan halaman permainan yang menampilkan papan \textit{Colored Queens} sesuai tingkat kesulitan yang dipilih.}
+			\label{fig:mockup_game}
+		\end{figure}
+		
+		\item \textbf{\textit{Hint} / Petunjuk}
+		
+		Fitur \textit{hint} memberikan bantuan kepada pemain berupa highlight atau informasi posisi yang perlu diperhatikan. Fitur ini dapat memperlihatkan langkah potensial atau koreksi atas penempatan yang salah. Contoh dari fitur ini dapat dilihat pada gambar \ref{fig:mockup_hint1}, \ref{fig:mockup_hint2}, dan \ref{fig:mockup_solved_by_solver}.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/hint1.png}
+			\caption{Contoh tampilan \textit{hint} pertama yang memberikan petunjuk pada pemain mengenai posisi tertentu yang merupakan penempatan tepat salah satu bidak menteri.}
+			\label{fig:mockup_hint1}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/hint2.png}
+			\caption{Contoh tampilan \textit{hint} kedua yang memperbaiki kesalahan penempatan bidak menteri oleh pemain.}
+			\label{fig:mockup_hint2}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/solved_by_solver.png}
+			\caption{Papan permainan yang telah diselesaikan menggunakan solver bawaan sistem sebagai bagian dari fitur bantuan.}
+			\label{fig:mockup_solved_by_solver}
+		\end{figure}
+		
+		\item \textbf{\textit{Warning} / Peringatan}
+		
+		Ketika pemain melakukan langkah yang melanggar aturan \textit{Colored Queens}, sistem akan menampilkan peringatan visual. Peringatan ini membantu pemain memahami jenis pelanggaran (bersebelahan, horizontal, vertikal, atau warna sama). Contoh dari fitur ini dapat dilihat pada gambar \ref{fig:mockup_warning_adjacent}, \ref{fig:mockup_warning_horizontal}, \ref{fig:mockup_warning_vertical}, dan \ref{fig:mockup_warning_color}.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/warning_adjacent.png}
+			\caption{Peringatan ketika dua \textit{queen} ditempatkan bersebelahan.}
+			\label{fig:mockup_warning_adjacent}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/warning_horizontal.png}
+			\caption{Peringatan ketika dua \textit{queen} berada pada baris yang sama.}
+			\label{fig:mockup_warning_horizontal}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/warning_vertical.png}
+			\caption{Peringatan ketika dua \textit{queen} berada pada kolom yang sama.}
+			\label{fig:mockup_warning_vertical}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/warning_color.png}
+			\caption{Peringatan ketika terdapat dua \textit{queen} dengan warna yang sama.}
+			\label{fig:mockup_warning_color}
+		\end{figure}
+		
+		\item \textbf{Halaman Menang}
+		
+		Setelah pemain berhasil menyelesaikan puzzle, halaman kemenangan \ref{fig:mockup_win} akan ditampilkan sebagai umpan balik positif dan indikator bahwa semua aturan telah dipenuhi.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{/mockup/win.png}
+			\caption{Tampilan halaman kemenangan setelah pemain menyelesaikan puzzle \textit{Colored Queens}.}
+			\label{fig:mockup_win}
+		\end{figure}
+		
+	\end{enumerate}
+	
+	\subsection{Menyusun dokumentasi tugas akhir untuk tahap TA 1.}
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}\\
+	Bagian latar belakang, dasar teori dan analisis dapat diambil dari dokumen ini. Dasar teoru dapat diambil dari bagian \ref{dasarteori} sedangkan bagian analisis dapat diambil dari bagian \ref{analisis1} dan \ref{analisis2}.
+	
+	\subsection{Mengimplementasikan Solver menggunakan algoritma Backtracking murni yang tidak terintegrasi dengan algoritma AC-3 sebagai tolok ukur}
+	{\bf Status :} Ditambah di semester ini.\\
+	{\bf Hasil :}\\
+	Untuk merepresentasikan \textit{puzzle} \textit{Colored Queens} secara terstruktur, sistem dilengkapi dengan kelas Board dan Cell yang digunakan untuk menyimpan konfigurasi papan dan properti setiap sel. Pemisahan model ini mempermudah proses validasi kendala, pembacaan pola warna, serta integrasi \textit{solver} dengan antarmuka pengguna. Keduanya berperan dalam jalannya algoritma pencarian, serta membangun dan mengevaluasi solusi.
+	\begin{lstlisting}[language=Java, caption={Kelas \texttt{Board} untuk merepresentasikan papan \textit{Colored Queens}}, label={lst:boardCode}]
+		public class Board {
+			private int size;
+			private Map<String, List<int[]>> colorMap = new HashMap<>();
+			private Map<String, String> colorSymbolMap = new HashMap<>();
 			
-			# Base URL
-			BASE_URL = "https://www.playqueensgame.com/puzzles/{size}x{size}/{level}"
-			
-			# Define board sizes and number of levels
-			board_levels = {
-				7: 50,
-				8: 130,
-				9: 110,
-				10: 60,
-				11: 50
+			public Board(int size, List<Cell> cells) {
+				this.size = size;
+				buildColorMap(cells);
+				buildColorSymbols();
 			}
 			
-			# Create output folder
-			os.makedirs("boards", exist_ok=True)
-			
-			# Launch browser
-			driver = webdriver.Chrome()
-			
-			for size, max_level in board_levels.items():
-			for level in range(1, max_level + 1):
-			url = BASE_URL.format(size=size, level=level)
-			driver.get(url)
-			time.sleep(2)  # allow page to load
-			
-			# Extract cells
-			cells = driver.find_elements(By.CSS_SELECTOR, "div[data-row][data-col]")
-			board = []
-			for cell in cells:
-			row = int(cell.get_attribute("data-row"))
-			col = int(cell.get_attribute("data-col"))
-			color = cell.value_of_css_property("background-color")
-			board.append({
-				"row": row,
-				"col": col,
-				"color": color
-			})
-			
-			# Sort for consistency
-			board.sort(key=lambda c: (c["row"], c["col"]))
-			
-			# Save JSON
-			filename = f"boards/{size}x{size}_level{level}.json"
-			with open(filename, "w") as f:
-			json.dump(board, f, indent=2)
-			
-			print(f"Saved {filename}")
-			
-			driver.quit()
-			print("All boards extracted!")
-		
-		\end{lstlisting}
-		
-		\begin{lstlisting} [caption={Papan $20 \times 20$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A')}, label={lst:20x20board}] 
-			J J J J J J J G G G G G E E E E I I I I
-			J J J J J J J G G G G E E E E E I I I I
-			J J J J J J J G G G G E E E E E I I I I
-			D D D J J J J G G E E E E E R R R I I I
-			D D D D D D D D G H E R R R R R R I I I
-			D D D D D D U U H H H H P P R R R O I I
-			D D D D D U U U H H H H P P P P P O O I
-			D D D D U U U U H H H H H P P O O O O O
-			D D D D S U U U U H H H H P P O O O O O
-			M D S S S U U U U U H H H P K K K O O O
-			M M S S S S U U U F H H H K K K K K K K
-			M S S S S S S F F F L H K K K K K K K K
-			M M M S S S F F F F L L L K K K K K K K
-			M M M S S T F F F L L L L L K K K K C C
-			M B B B T T L L L L L L L L L K K C C C
-			B B B B T T T L L L L L L L A A C C C C
-			B B B T T T T T N L L L L A A A C C C C
-			B B B T T T T N N N N N A A A A C C C C
-			B B B T T T N N N N N N A A A A A C C C
-			B B B T T T N N N N N A A A A A A A C C
-		\end{lstlisting}
-		
-		\begin{lstlisting} [caption={Papan $30 \times 30$ valid (setiap warna dilambangkan sebagai sebuah karakter yang dimulai dari kode ASCII 'A')}, label={lst:30x30board}]
-			I I I I I I I ^ ^ ^ ^ F F F W W W W W W V V V V V V V V V V
-			I I I I I I ^ ^ ^ ^ ^ F F F F W W W W V V V V V V V V V V V
-			I I I I _ _ ^ ^ ^ ^ ^ F F F F F W W V V V V V V V V V V V V
-			I I I I _ _ _ ^ ^ ^ ^ F F F F F F W V V V V V V V V V V V Z
-			I I I _ _ _ _ ^ ^ ^ ^ ^ F F O O O O V V V V V V V V V Z Z Z
-			I I _ _ _ _ _ _ ^ ^ ^ O O O O O O O O V V V V V V Z Z Z Z Z
-			I _ _ _ _ _ _ _ ^ ^ D [ [ O O C C C C C V V V V Z Z Z Z Z Z
-			I _ _ _ _ _ _ _ ^ ^ D [ [ [ C C C C C C C V R R Z Z Z Z Z Z
-			_ _ _ _ _ _ _ D D D D [ [ [ C C C C C C C R R R Z Z Z Z Z Z
-			\ _ _ G G G G G D D D D [ [ C C C C U U R R R R Z Z Z Z Z Z
-			\ \ G G G G G G G D D D [ [ [ C C C U U R R R R Z Z Z Z Z Z
-			\ \ G G G G G G G D D D [ [ [ C C U U U R R R R R P Z Z Z Z
-			\ \ \ \ G G G G G G D D [ [ [ U U U U U R R R R R P P Z Z Z
-			\ \ \ \ \ G G G G G D D [ U U U U U U U U R R R P P P Z Z Z
-			\ \ \ \ \ \ G G G G D D [ [ U U U U U U U R R P P P P P P P
-			\ \ \ \ \ \ G G G B D D [ [ U U U U U U U R R P P P ] ] ] ]
-			\ \ \ \ \ \ \ B B B T T T T U Y Y U Y U S S L L L ] ] ] ] ]
-			M M \ \ \ \ \ B B B B T T T Y Y Y Y Y S S S L L L L ] ] ] ]
-			M M M M M M B B B B T T T T Y Y Y Y Y S S S S L L L ] ] ] ]
-			M M M M M M B B B B T T T T Y Y Y Y Y Y S S S L L L ] ] H H
-			M M M M M B B B B B T T T T Y Y Y Y Y Y S S S L L L ] H H H
-			M M M X X B B B B B T T T T T Y Y Y Y Y Y Y A A L L H H H H
-			M M X X X X B B B B T T T T T T Y Y Y Y Y Y A A A H H H H H
-			X X X X X X B B B T T T T T T N N Y Y Y Y A A A A H H H H H
-			X X X X X X X B B T T T T T N N N N Y A A A A A A A H H H H
-			X X X X X X X J B T T T T T N N N N N A A A A A A A A K K K
-			X X X X E E J J J J T T N N N N N N N N A A A A A A K K K K
-			E E E E E E E J J J J N N N N N N N N N N A A A A A K K K K
-			E E E E E E E J J J J J N N N N N N N N N A A A A A K K K K
-			E E E E E J J J J J J J J N N N N N N N N A A A A A K K K K
-		\end{lstlisting}
-		
-		\item \textbf{Melakukan pemodelan masalah Colored Queens ke dalam bentuk CSP agar dapat diproses oleh algoritma pencarian.}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-		
-		Pemodelan permainan Colored Queens sebagai \textit{Constraint Satisfaction Problem} (CSP) dilakukan untuk memastikan bahwa aturan permainan dapat diproses secara konsisten oleh algoritma Backtracking maupun Particle Swarm Optimization (PSO). Pemodelan ini dilakukan dengan mengidentifikasi tiga komponen utama dalam CSP, yaitu variabel, domain atau ruang solusi, dan kendala sebagai berikut:
-		
-		\begin{enumerate}
-			\item \textbf{Variabel} \\
-			Setiap warna pada papan diperlakukan sebagai sebuah variabel. Masing-masing variabel harus ditempatkan tepat satu menteri pada salah satu sel yang termasuk ke dalam sektor warna tersebut.
-			
-			\item \textbf{Ruang Solusi} \\
-			Ruang solusi untuk setiap variabel merupakan himpunan seluruh sel yang memiliki warna yang sesuai dengan variabel tersebut. Dengan demikian, setiap variabel memiliki domain yang berbeda tergantung pada posisi warna di papan.
-			
-			\item \textbf{Kendala (Constraints)} \\
-			Aturan permainan diterjemahkan menjadi sejumlah kendala yang harus dipenuhi secara bersamaan:
-			\begin{itemize}
-				\item Tidak boleh ada dua menteri yang bersebelahan secara horizontal, vertikal, maupun diagonal.
-				\item Setiap warna hanya boleh berisi satu menteri.
-				\item Serangan diagonal tidak dihitung, sehingga dua menteri dapat berada pada garis diagonal yang sama selama tidak bersebelahan.
-				\item Serangan horizontal dan vertikal tetap berlaku, sehingga dua menteri tidak boleh berada pada baris atau kolom yang sama.
-			\end{itemize}
-		\end{enumerate}
-		
-		\textbf{Contoh sederhana:}  
-		
-		Misalkan papan 4x4 dengan 4 warna berbeda (R, B, G, Y) dan setiap warna membentuk sektor yang tersebar di papan seperti pada \textsuperscript{\ref{lst:4x4example}}
-		
-		\begin{lstlisting}[caption={papan 4x4 dengan 4 warna berbeda (R, B, G, Y)}, label={lst:4x4example}, basicstyle=\ttfamily, frame=single]
-			R B B B
-			R R B Y
-			G Y Y Y
-			G G G Y
-		\end{lstlisting}
-		
-		Papan \cq \textsuperscript{\ref{lst:4x4example}} dapat direpresentasikan sebagai CSP dengan ketentuan berikut:
-		\begin{itemize}
-			\item Variabel: R, B, G, Y
-			\item Domain variabel: Semua sel dengan warna yang sesuai
-			\begin{itemize}
-				\item R: \{(1,1), (2,1), (2,2)\}
-				\item B: \{(1,2), (1,3), (1,4), (2,3)\}
-				\item G: \{(3,1), (4,1), (4,2), (4,3)\}
-				\item Y: \{(2,4), (3,2), (3,3), (3,4), (4,4)\}
-			\end{itemize}
-			\item Tujuan: Menempatkan satu menteri per warna tanpa melanggar kendala
-		\end{itemize}
-		
-		
-		\begin{lstlisting}[caption={Contoh solusi valid dari \textsuperscript{\ref{lst:4x4example}}}, basicstyle=\ttfamily, frame=single]
-			- - Q -
-			Q - - -
-			- - - Q
-			- Q - -
-		\end{lstlisting}
-		
-		Keterangan:
-		\begin{itemize}
-			\item 'Q' menandakan posisi menteri pada papan.
-			\item Setiap menteri berada di sel dengan warna yang berbeda (satu per variabel/warna).
-			\item Tidak ada dua menteri yang bersebelahan atau berada pada baris/kolom yang sama.
-		\end{itemize}
-		
-		Dengan pemodelan CSP tersebut, seluruh aturan permainan dapat dinyatakan secara terstruktur sehingga solver dapat melakukan pemeriksaan dan pencarian solusi dengan cara yang konsisten dan sistematis.
-				
-		\item \textbf{Melakukan analisis kebutuhan perangkat lunak, baik fungsional maupun non-fungsional, termasuk kebutuhan solver dan antarmuka pengguna.}\\
-		\label{analisis1}
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-		
-		Berdasarkan hasil analisis dan diskusi mengenai proses bisnis tugas akhir ini, dihasilkan dua \textit{flowchart} yang menggambarkan fungsi-fungsi utama dari sistem yang akan dibangun. Sebuah aplikasi berbasis web akan dikembangkan dengan fungsi utama menyediakan sarana untuk memainkan permainan \cq dengan fitur \textit{solver} otomatis yang dapat memberikan solusi valid ketika pemain mengalami kesulitan, seperti yang digambarkan pada \textit{flowchart} \ref{fig:flowchart1}. Sistem juga menyediakan fitur perbandingan kinerja antara algoritma Backtracking dan PSO, dengan alur seperti yang ditunjukkan pada \textit{flowchart} \ref{fig:flowchart2}.
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.9\linewidth]{flowchart2.png}
-			\caption{\textit{Flowchart} dari proses bisnis pertama, yaitu permainan \cq yang berbasis web dan dapat memberikan solusi yang valid kepada pemain dengan memanggil \textit{solver} yang memanfaatkan algoritma backtracking}
-			\label{fig:flowchart1}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=1\linewidth]{flowchart.png}
-			\caption{\textit{Flowchart} dari proses bisnis kedua, yaitu membandingkan performa dua algoritma berbeda, \textit{Backtracking} dan PSO, dalam menyelesaikan masalah \cq.}
-			\label{fig:flowchart2}
-		\end{figure}
-		
-		\begin{enumerate}
-			\item \textbf{Kebutuhan Fungsional Sistem} \\
-			Untuk membangun permainan \cq, sistem akan dibangun dengan arsitektur berbasis web, menggunakan \textit{frontend} React dan \textit{backend} Spring Boot. \textit{Frontend} bertugas menampilkan papan permainan, menerima input pengguna, memberikan umpan balik visual secara real-time, dan menyediakan antarmuka interaktif untuk bermain atau menguji solusi. \textit{Backend} menjalankan \textit{solver} Java yang mengimplementasikan algoritma Backtracking degan AC-3 dan Particle Swarm Optimization (PSO), serta menangani logika validasi.
-			
-			\item \textbf{Situs Web dan Pemilihan Papan} \\
-			Aplikasi akan mengelompokkan papan-papan yang dapat dimainkan berdasarkan ukuran agar mudah dinavigasikan. Pemain juga dapat memilih papan secara acak dari daftar tersebut dan halaman web akan menampilkan papan yang sesuai dengan pilihan pemain.
-			
-			\item \textbf{Mengambil data papan dari JSON} \\
-			Ketika pemain memilih salah satu papan untuk dimainkan, \textit{Frontend} aplikasi web akan mengambil keseluruhan data papan dari file JSON yang tersedia setelah menjalankan \textit{web scraper}, seperti yang dijelaskan di bagian \ref{scraper}, lalu memprosesnya menjadi papan berwarna yang dapat ditampilkan dan dimainkan.
-			
-			\item \textbf{Adaptasi Algoritma Backtracking dengan AC-3} \\
-			Algoritma Backtracking standar untuk Colored Queens menggunakan pendekatan rekursif untuk menempatkan setiap menteri berdasarkan warna pada papan. Agar lebih efisien, algoritma ini akan digabungkan dengan \textit{Arc Consistency Algorithm 3} (AC-3) untuk menyempitkan ruang solusi sebelum dan selama pencarian.
-			
-			\textbf{Proses Backtracking dengan AC-3:}
-			\begin{enumerate}
-				\item \textbf{Inisialisasi:} Setiap warna direpresentasikan sebagai variabel, dan domainnya adalah semua posisi yang valid dalam warna tersebut.
-				\item \textbf{Preprocessing AC-3:} Jalankan AC-3 untuk mengeliminasi posisi yang jelas tidak mungkin, misalnya karena konflik adjacency atau serangan langsung.
-				\item \textbf{Rekursi Backtracking:} 
-				\begin{itemize}
-					\item Pilih variabel warna berikutnya.
-					\item Coba setiap posisi dalam domain yang tersisa.
-					\item Jika posisi valid (tidak melanggar adjacency atau aturan serangan):
-					\begin{itemize}
-						\item Tempatkan menteri pada posisi tersebut.
-						\item Jalankan AC-3 lagi untuk memperbarui domain variabel lain.
-						\item Lanjutkan ke variabel warna berikutnya secara rekursif.
-					\end{itemize}
-					\item Jika tidak ada posisi valid, mundur (\textit{backtrack}) ke variabel sebelumnya dan coba posisi lain.
-				\end{itemize}
-				\item \textbf{Kondisi berhenti:} Semua warna telah ditempatkan tanpa konflik → solusi valid ditemukan.
-			\end{enumerate}
-			
-			\item \textbf{Adaptasi Algoritma PSO} \\
-			PSO biasanya digunakan untuk optimasi kontinu. Agar dapat diterapkan pada masalah diskret seperti Colored Queens, beberapa modifikasi dilakukan:
-			\begin{enumerate}
-				\item \textbf{Representasi Partikel:} Setiap partikel adalah solusi kandidat, direpresentasikan sebagai array integer di mana elemen ke-$i$ menunjukkan posisi ke-$n$ dari warna $i$.
-				\item \textbf{Velocity Diskret:} Velocity yang semula berupa jarak perpindahan kontinu diubah menjadi probabilitas pertukaran posisi dengan \textit{neighborhood best} (nBest). Misalnya, partikel $[2,2,4,1]$ dengan velocity $[0.3,0.5,0.4,0.6]$ berarti elemen ke-1 yang bernilai 2 memiliki kemungkinan 0.3 untuk diubah menjadi nilai yang sesuai di nBest.
-				\item \textbf{Update Velocity:} Velocity diperbarui menggunakan rumus standar PSO:
-				\[
-				v[i] = \omega \cdot v[i] + c_1 \cdot r_1 \cdot \Delta_p[i] + c_2 \cdot r_2 \cdot \Delta_n[i]
-				\]
-				di mana $\Delta_p[i]$ dan $\Delta_n[i]$ adalah nilai boolean yang menunjukkan apakah posisi saat ini berbeda dari pBest/nBest, dan $c_1,c_2,r_1,r_2$ mengikuti nilai konvensional PSO.
-				\item \textbf{Update Partikel:} Setiap partikel akan diperbarui berdasarkan \textit{velocity} barunya yang sudah dihitung dengan cara mengambil nilai acak untuk setiap elemen $i$. Apabila nilai acak $<$ \textit{velocity}, elemen tersebut akan mengubah nilainya sesuai dengan elemen pada posisi yang sama di nBest. Apabila nilai acak $>$ \textit{velocity}, elemen tidak akan mengalami perubahan.
-				\item \textbf{Fungsi Fitness:} \textit{Fitness} dihitung untuk meminimalkan pelanggaran adjacency dan serangan dengan:
-				\[
-				\text{fitness} = w_1 \cdot \text{adjacencyViolation} + w_2 \cdot \text{attackingViolation}
-				\]
-				
-				dimana nilai \textit{Fitness} yang optimal adalah 0.
-			\end{enumerate}
-			\textbf{Contoh iterasi PSO} \\
-			Contoh iterasi ini menggunakan papan\textsuperscript{\ref{lst:4x4example}} dengan parameter $\omega = 0.7$, $c_1 = 2$, $c_2 = 2$, $r_1 = 0.2$, dan $r_2 = 0.2$. nBest juga ditetapkan sebagai $[2,1,3,4]$ dan pBest sebagai $[2,3,3,2]$. Bobot dari pelanggaran ditetapkan sebagai $w_1 (adjacency) = 2$ dan $w_2 (attacking) = 1$
-			\begin{enumerate}[label=\arabic*.]
-				\item Inisialisasi partikel secara acak, sebagai contoh $[2,4,3,3]$ yang dapat dibaca sebagai:
-					\begin{itemize}
-						\item R → posisi ke-2 = $(2,1)$
-						\item B → posisi ke-1 = $(2,3)$
-						\item G → posisi ke-3 = $(4,2)$
-						\item Y → posisi ke-3 = $(3,3)$
-					\end{itemize}
-				dengan \textit{velocity} awal sebagai $[0.3,0.5,0.4,0.6]$
-				\item Hitung \textit{velocity} baru dengan menghitung: 
-					\begin{itemize}
-						\item $0.7 \cdot 0.3 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 0 = 0.21$
-						\item $0.7 \cdot 0.5 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 1 = 0.75$
-						\item $0.7 \cdot 0.4 + 2.0 \cdot 0.2 \cdot 0 + 2.0 \cdot 0.2 \cdot 0 = 0.28$
-						\item $0.7 \cdot 0.6 + 2.0 \cdot 0.2 \cdot 1 + 2.0 \cdot 0.2 \cdot 0 = 0.82$
-					\end{itemize}
-					Maka $(v + 1) = [0.21,0.75,0.28,0.82]$
-				\item Hitung posisi baru partikel tersebut dengan cara mengambil nilai acak untuk setiap elemen:
-					\begin{itemize}
-						\item Elemen 1 → $0.3 > 0.21 \therefore$ tidak terjadi perubahan.
-						\item Elemen 2 → $0.78 > 0.75 \therefore$ tidak terjadi perubahan
-						\item Elemen 3 → $0.4 > 0.28 \therefore$ tidak terjadi perubahan.
-						\item Elemen 4 → $0.45 < 0.82 \therefore$ nilai berubah sesuai dengan nBest (4).
-					\end{itemize}
-					Maka $x + (v + 1) = [2,4,3,4]$
-				\item Hitung fitness untuk kondisi partikel sekarang berdasarkan posisi bidak menteri:
-					\begin{itemize}
-						\item Bidak 1 → $(2,1)$\\
-						Adjacency Violation dengan Bidak 2
-						\item Bidak 2 → $(1,2)$\\
-						Adjacency Violation dengan Bidak 1 \\
-						Attacking Violation dengan bidak 3
-						\item Bidak 3 → $(4,2)$\\
-						Attacking Violation dengan bidak 2
-						\item Bidak 4 → $(3,4)$\\
-						Maka fitness partikel ini adalah:
-						\[
-						\text{fitness} = 2 \cdot 2 + 1 \cdot 2 = 6
-						\]
-					\end{itemize}
-				\item Evaluasi pBest dan nBest
-					\begin{itemize}
-						\item Fitness pBest = 10 
-						\item Fitness nBest = 8
-						\item Current Fitness = 6
-						
-						Karena current fitness < nbest, kedua pBest dan nBest ditukar dengan partikel sekarang. Sehingga nBest = pBest = $[0.21,0.75,0.28,0.82]$ dan Fitness nBest = Fitness pBest = 6
-					\end{itemize}
-				
-			\end{enumerate}
-			
-			\item \textbf{Optimasi menggunakan \textit{BitSet}}
-			\begin{itemize}
-				\item Untuk meningkatkan efisiensi, baik Backtracking maupun PSO memanfaatkan \textit{bitset} untuk memantau baris, kolom, dan warna yang sudah ditempati.
-				\item Pengecekan konflik dapat dilakukan dalam waktu konstan $O(1)$ menggunakan operasi logika bitwise.
-				\item \textit{Bitset} juga memungkinkan perhitungan adjacency violation secara cepat dengan operasi AND/OR pada \textit{mask} bit.
-			\end{itemize}
-			
-			\item \textbf{Integrasi Web dan Solver} \\
-			Pada sistem ini, papan permainan Colored Queens sepenuhnya di-render oleh React di sisi klien. Pengguna dapat menempatkan menteri, memindahkan bidak, dan menerima umpan balik secara real-time mengenai pelanggaran aturan atau saran langkah, tanpa memerlukan komunikasi dengan \textit{backend}. Hal ini memastikan pengalaman bermain yang interaktif dan responsif.
-			
-			Fitur \textit{solver} (menggunakan Backtracking atau PSO) hanya akan dipanggil melalui \textit{backend} Spring Boot ketika pengguna menekan tombol \textit{Solve} untuk papan berukuran hingga 11×11. Backend akan memproses perhitungan, mengembalikan solusi beserta informasi tambahan seperti langkah-langkah penempatan menteri dan status validasi. React kemudian akan menampilkan solusi ini pada papan secara visual.
-			
-			Untuk papan yang lebih besar (20×20 dan 30×30), \textit{solver} tidak dijalankan secara real-time. Sebagai gantinya, solusi telah disiapkan sebelumnya dan hanya ditampilkan oleh frontend, sehingga pengguna tetap dapat melihat hasil tanpa menunggu proses komputasi yang berat.
-			
-			Dengan arsitektur ini, interaksi normal pengguna tetap cepat dan sepenuhnya client-side, sedangkan operasi komputasi berat dialihkan ke server hanya ketika diperlukan.
-			
-			\item \textbf{Perbandingan Kinerja Algoritma} \\
-			Agar proses penelitian lebih cepat dan efisien, perbandingan kinerja algoritma tidak dilakukan melalui antarmuka web, melainkan menggunakan \textit{Command Line Interface} (CLI). Pendekatan ini memungkinkan perubahan \textit{hyperparameter} dengan mudah dan eksekusi pengujian secara otomatis tanpa \textit{overhead rendering} antarmuka grafis, sehingga waktu eksekusi murni dari algoritma dapat diukur dengan lebih akurat.
-		\end{enumerate}
-		
-		
-		
-		\item \textbf{Merancang arsitektur sistem serta antarmuka pengguna untuk aplikasi Colored Queens Solver.}\\
-		\label{analisis2}
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-		
-		\begin{enumerate}
-			\item \textbf{Arsitektur sistem dalam bentuk \textit{Class Diagram}} \\
-				\begin{figure}[H]
-					\centering
-					\includegraphics[width=1.1\linewidth]{cDiagram.png}
-					\caption{\textit{Class Diagram} dari \textit{solver} \cq yang akan dibangun pada tugas akhir ini}
-					\label{fig:cDiagram}
-				\end{figure}
-				
-				\newpage
-				Gambar \ref{fig:cDiagram} menunjukkan diagram kelas utama yang digunakan dalam implementasi sistem \cq beserta kedua \textit{solver} yang dikembangkan. Diagram ini memberikan gambaran umum mengenai struktur kelas, atribut penting, metode inti, serta relasi antar komponen yang menyusun arsitektur sistem.
-				
-				Secara keseluruhan, terdapat empat kelas utama, yaitu \texttt{Cell}, \texttt{Board}, \texttt{BacktrackingSolverAC3}, dan \texttt{PSOSolver}, dengan satu kelas internal tambahan yaitu \texttt{Particle} yang merupakan bagian dari \texttt{PSOSolver}. Berikut adalah penjelasan tiap elemen dan hubungan antar kelas dalam diagram.
-				
-				\begin{itemize}
-					\item \textbf{Cell}  
-					Kelas ini merepresentasikan sebuah sel pada papan. Setiap sel memiliki koordinat baris dan kolom, serta nilai warna dalam format RGB. Kelas ini berfungsi sebagai unit data dasar yang kemudian dikelompokkan oleh kelas \texttt{Board}.
-					
-					\item \textbf{Board}  
-					Kelas ini mengelola struktur papan dan memetakan setiap warna ke daftar sel yang ditempati. \texttt{Board} membangun \textit{colorMap} dan \textit{colorSymbolMap}, serta menyediakan metode untuk memperoleh sel berdasarkan warna dan menampilkan papan. Kelas ini menjadi dependensi utama bagi kedua algoritma \textit{solver}.
-					
-					\item \textbf{BacktrackingSolverAC3}  
-					Kelas ini mengimplementasikan algoritma \textit{Backtracking} yang diperkaya dengan propagasi kendala AC-3. Di dalamnya terdapat struktur optimisasi seperti \textit{bitset}, \textit{prune stack}, dan matriks okupansi. Kelas ini bergantung pada \texttt{Board} untuk memperoleh domain warna dan posisi sel, lalu melakukan pencarian solusi secara deterministik.
-					
-					\item \textbf{PSOSolver}  
-					Kelas ini mengimplementasikan algoritma \textit{Particle Swarm Optimization} (PSO) yang telah dimodifikasi untuk permasalahan diskret Colored Queens. PSO bekerja dengan membangkitkan populasi partikel, memperbarui velocity, memindahkan posisi partikel, menghitung \textit{fitness}, serta menentukan \textit{global best}. Kelas ini juga bergantung pada \texttt{Board} untuk mendapatkan domain posisi tiap warna.
-					
-					\item \textbf{Particle} (kelas internal dari \texttt{PSOSolver})  
-					Kelas ini mewakili satu kandidat solusi dalam PSO. Setiap partikel memiliki posisi, velocity, nilai fitness, dan \textit{personal best}. Karena partikel sepenuhnya dikelola oleh PSOSolver, relasinya ditunjukkan dengan komposisi (\textit{black diamond}).
-					
-				\end{itemize}
-				
-				Relasi antar kelas dalam diagram dapat diringkas sebagai berikut:
-				\begin{itemize}
-					\item \texttt{Board} \textbf{mengandung} banyak \texttt{Cell}.
-					\item \texttt{BacktrackingSolverAC3} \textbf{bergantung pada} \texttt{Board} untuk membaca struktur domain.
-					\item \texttt{PSOSolver} juga \textbf{bergantung pada} \texttt{Board} karena menggunakan informasi warna dan posisi sel.
-					\item \texttt{PSOSolver} \textbf{memiliki komposisi} terhadap kelas \texttt{Particle}, yang menunjukkan bahwa \texttt{Particle} tidak berdiri sendiri dan hanya ada sebagai bagian internal dari proses PSO.
-				\end{itemize}
-				
-				Dengan demikian, Gambar~\ref{fig:cDiagram} menggambarkan arsitektur lengkap sistem Colored Queens beserta algoritma pencarian yang digunakan, serta menunjukkan pembagian tanggung jawab masing-masing kelas dalam proses penyelesaian masalah.
-			\item \textbf{\textit{Low-fidelity mockup} dari antarmuka aplikasi web} \\
-				Bagian ini menyajikan aancangan antarmuka awal dari sistem \cq. \textit{Mockup} ini bertujuan untuk menggambarkan struktur halaman, letak komponen utama, serta alur interaksi pengguna secara sederhana tanpa mempertimbangkan aspek visual akhir. Desain dapat berubah pada implementasi \textit{high-fidelity} atau tahap pengembangan berikutnya.
-				
-			\begin{enumerate}
-				\item \textbf{Halaman Utama}
-				
-				Halaman \ref{fig:mockup_homepage} merupakan titik masuk pertama ketika pengguna mengunjungi situs \cq. Pengguna diperkenalkan dengan tampilan sederhana yang berfokus pada tombol utama untuk memulai permainan.
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/homepage.png}
-					\caption{Tampilan halaman utama ketika pengguna pertama kali mengunjungi situs \cq. Pengguna dapat mengklik tombol "Play!" untuk memulai permainan.}
-					\label{fig:mockup_homepage}
-				\end{figure}
-				
-				\item \textbf{Pemilihan Tingkat Kesulitan}
-				
-				Setelah menekan tombol \textit{Play}, pengguna diarahkan menuju halaman pemilihan tingkat kesulitan \ref{fig:mockup_levelSelector}. Pemilihan tingkat ini menentukan ukuran papan dan tingkat kompleksitas persoalan yang akan dihadapi pemain.
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/levelSelector.png}
-					\caption{Halaman pemilihan tingkat kesulitan yang memungkinkan pengguna memilih level sebelum mulai bermain.}
-					\label{fig:mockup_levelSelector}
-				\end{figure}
-				
-				\item \textbf{Halaman Level / Papan Permainan}
-				
-				Pada halaman \ref{fig:mockup_game}, pengguna berinteraksi langsung dengan papan permainan \cq. Pengguna dapat menempatkan atau memindahkan bidak menteri untuk menyelesaikan \textit{puzzle}.
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/level.png}
-					\caption{Tampilan halaman permainan yang menampilkan papan \cq sesuai tingkat kesulitan yang dipilih.}
-					\label{fig:mockup_game}
-				\end{figure}
-				
-				\item \textbf{\textit{Hint} / Petunjuk}
-				
-				Fitur \textit{hint} memberikan bantuan kepada pemain berupa highlight atau informasi posisi yang perlu diperhatikan. Fitur ini dapat memperlihatkan langkah potensial atau koreksi atas penempatan yang salah. Contoh dari fitur ini dapat dilihat pada gambar \ref{fig:mockup_hint1}, \ref{fig:mockup_hint2}, dan \ref{fig:mockup_solved_by_solver}.
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/hint1.png}
-					\caption{Contoh tampilan \textit{hint} pertama yang memberikan petunjuk pada pemain mengenai posisi tertentu yang merupakan penempatan tepat salah satu bidak menteri.}
-					\label{fig:mockup_hint1}
-				\end{figure}
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/hint2.png}
-					\caption{Contoh tampilan \textit{hint} kedua yang memperbaiki kesalahan penempatan bidak menteri oleh pemain.}
-					\label{fig:mockup_hint2}
-				\end{figure}
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/solved_by_solver.png}
-					\caption{Papan permainan yang telah diselesaikan menggunakan solver bawaan sistem sebagai bagian dari fitur bantuan.}
-					\label{fig:mockup_solved_by_solver}
-				\end{figure}
-				
-				\item \textbf{\textit{Warning} / Peringatan}
-				
-				Ketika pemain melakukan langkah yang melanggar aturan \cq, sistem akan menampilkan peringatan visual. Peringatan ini membantu pemain memahami jenis pelanggaran (bersebelahan, horizontal, vertikal, atau warna sama). Contoh dari fitur ini dapat dilihat pada gambar \ref{fig:mockup_warning_adjacent}, \ref{fig:mockup_warning_horizontal}, \ref{fig:mockup_warning_vertical}, dan \ref{fig:mockup_warning_color}.
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/warning_adjacent.png}
-					\caption{Peringatan ketika dua \textit{queen} ditempatkan bersebelahan.}
-					\label{fig:mockup_warning_adjacent}
-				\end{figure}
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/warning_horizontal.png}
-					\caption{Peringatan ketika dua \textit{queen} berada pada baris yang sama.}
-					\label{fig:mockup_warning_horizontal}
-				\end{figure}
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/warning_vertical.png}
-					\caption{Peringatan ketika dua \textit{queen} berada pada kolom yang sama.}
-					\label{fig:mockup_warning_vertical}
-				\end{figure}
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/warning_color.png}
-					\caption{Peringatan ketika terdapat dua \textit{queen} dengan warna yang sama.}
-					\label{fig:mockup_warning_color}
-				\end{figure}
-				
-				\item \textbf{Halaman Menang}
-				
-				Setelah pemain berhasil menyelesaikan puzzle, halaman kemenangan \ref{fig:mockup_win} akan ditampilkan sebagai umpan balik positif dan indikator bahwa semua aturan telah dipenuhi.
-				
-				\begin{figure}
-					\centering
-					\includegraphics[width=1\linewidth]{/mockup/win.png}
-					\caption{Tampilan halaman kemenangan setelah pemain menyelesaikan puzzle \cq.}
-					\label{fig:mockup_win}
-				\end{figure}
-				
-			\end{enumerate}
-				
-				
-				
-		\end{enumerate}
-		
-		\item \textbf{Menyusun dokumentasi tugas akhir untuk tahap TA 1.}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-		
-		Bagian latar belakang, dasar teori dan analisis dapat diambil dari dokumen ini. Dasar teoru dapat diambil dari bagian \ref{dasarteori} sedangkan bagian analisis dapat diambil dari bagian \ref{analisis1} dan \ref{analisis2}.
-		
-		
-		\item \textbf{Mengimplementasikan Solver menggunakan algoritma Backtracking murni yang tidak terintegrasi dengan algoritma AC-3 sebagai tolok ukur}\\
-		{\bf Status :} Ditambah di semester ini \\
-		{\bf Hasil :}
-		
-		Untuk merepresentasikan \textit{puzzle} \cq secara terstruktur, sistem dilengkapi dengan kelas Board dan Cell yang digunakan untuk menyimpan konfigurasi papan dan properti setiap sel. Pemisahan model ini mempermudah proses validasi kendala, pembacaan pola warna, serta integrasi \textit{solver} dengan antarmuka pengguna. Keduanya berperan dalam jalannya algoritma pencarian, serta membangun dan mengevaluasi solusi.
-		\begin{lstlisting}[language=Java, caption={Kelas \texttt{Board} untuk merepresentasikan papan \cq}, label={lst:boardCode}]
-			public class Board {
-				private int size;
-				private Map<String, List<int[]>> colorMap = new HashMap<>();
-				private Map<String, String> colorSymbolMap = new HashMap<>();
-				
-				public Board(int size, List<Cell> cells) {
-					this.size = size;
-					buildColorMap(cells);
-					buildColorSymbols();
+			//memetakan setiap posisi warna ke dalam map
+			private void buildColorMap(List<Cell> cells) {
+				for (Cell cell : cells) {
+					String colorKey = String.format("%d,%d,%d", cell.getR(), cell.getG(), cell.getB());
+					colorMap.computeIfAbsent(colorKey, k -> new ArrayList<>())
+					.add(new int[]{cell.getRow(), cell.getCol()});
 				}
-				
-				//memetakan setiap posisi warna ke dalam map
-				private void buildColorMap(List<Cell> cells) {
-					for (Cell cell : cells) {
-						String colorKey = String.format("%d,%d,%d", cell.getR(), cell.getG(), cell.getB());
-						colorMap.computeIfAbsent(colorKey, k -> new ArrayList<>())
-						.add(new int[]{cell.getRow(), cell.getCol()});
-					}
-				}
-				
-				//menggunakan huruf (A,B,C,D, dst.) untuk memodelkan warna RGB yang unik
-				private void buildColorSymbols() {
-					char symbol = 'A';
-					for (String color : colorMap.keySet()) {
-						if (symbol == 'Q') {
-							symbol++;
-						}
-						colorSymbolMap.put(color, String.valueOf(symbol));
+			}
+			
+			//menggunakan huruf (A,B,C,D, dst.) untuk memodelkan warna RGB yang unik
+			private void buildColorSymbols() {
+				char symbol = 'A';
+				for (String color : colorMap.keySet()) {
+					if (symbol == 'Q') {
 						symbol++;
 					}
-				}
-				
-				public int getSize() {
-					return size;
-				}
-				
-				public Map<String, List<int[]>> getColorMap() {
-					return colorMap;
-				}
-				
-				public Map<String, String> getColorSymbolMap() {
-					return colorSymbolMap;
-				}
-				
-				//mengembalikan semua cell yang merupakan suatu warna
-				public List<int[]> getCellsByColor(String colorKey) {
-					return colorMap.getOrDefault(colorKey, Collections.emptyList());
-				}
-				
-				//mengembalikan huruf yang merepresentasikan suatu key RGB
-				public String getSymbolForColor(String colorKey) {
-					return colorSymbolMap.getOrDefault(colorKey, "?");
-				}
-				
-				//print dalam format huruf
-				public void printSymbolBoard() {
-					String[][] grid = new String[size][size];
-					for (Map.Entry<String, List<int[]>> entry : colorMap.entrySet()) {
-						String symbol = getSymbolForColor(entry.getKey());
-						for (int[] cell : entry.getValue()) {
-							grid[cell[0]][cell[1]] = symbol;
-						}
-					}
-					
-					for (int r = 0; r < size; r++) {
-						for (int c = 0; c < size; c++) {
-							System.out.print((grid[r][c] != null ? grid[r][c] : ".") + " ");
-						}
-						System.out.println();
-					}
-				}
-				
-				//logging
-				public void printColorSummary() {
-					System.out.println("Board color distribution:");
-					for (String color : colorMap.keySet()) {
-						String symbol = getSymbolForColor(color);
-						System.out.printf("Color %s (%s) -> %d cells%n",
-						color, symbol, colorMap.get(color).size());
-					}
-					System.out.println("Board size: " + size);
-					System.out.println("Unique colors: " + colorMap.size());
+					colorSymbolMap.put(color, String.valueOf(symbol));
+					symbol++;
 				}
 			}
-		\end{lstlisting}
-		
-		\begin{lstlisting}[language=Java, caption={Kelas \texttt{Cell} untuk merepresentasikan satu kotak di dalam papan \cq yang menyimpan posisi dan warna kotak tersebut}, label={lst:cellCode}]
-			//Merepresentasikan 1 cell/kotak dalam permainan colored queens untuk memudahkan memasukkan data ke dalam Map di dalam object Board
-			public class Cell {
-				//menyimpan posisi dan warna dari kotak
-				private int row;
-				private int col;
-				private int r;
-				private int g;
-				private int b;
-				
-				public Cell(int row, int col, int r, int g, int b) {
-					this.row = row;
-					this.col = col;
-					this.r = r;
-					this.g = g;
-					this.b = b;
+			
+			public int getSize() {
+				return size;
+			}
+			
+			public Map<String, List<int[]>> getColorMap() {
+				return colorMap;
+			}
+			
+			public Map<String, String> getColorSymbolMap() {
+				return colorSymbolMap;
+			}
+			
+			//mengembalikan semua cell yang merupakan suatu warna
+			public List<int[]> getCellsByColor(String colorKey) {
+				return colorMap.getOrDefault(colorKey, Collections.emptyList());
+			}
+			
+			//mengembalikan huruf yang merepresentasikan suatu key RGB
+			public String getSymbolForColor(String colorKey) {
+				return colorSymbolMap.getOrDefault(colorKey, "?");
+			}
+			
+			//print dalam format huruf
+			public void printSymbolBoard() {
+				String[][] grid = new String[size][size];
+				for (Map.Entry<String, List<int[]>> entry : colorMap.entrySet()) {
+					String symbol = getSymbolForColor(entry.getKey());
+					for (int[] cell : entry.getValue()) {
+						grid[cell[0]][cell[1]] = symbol;
+					}
 				}
 				
-				// Getter dan setter
-				public int getRow() { 
-					return row; 
-				}
-				
-				public void setRow(int row) { 
-					this.row = row; 
-				}
-				
-				public int getCol() { 
-					return col; 
-				}
-				
-				public void setCol(int col) { 
-					this.col = col; 
-				}
-				
-				public int getR() { 
-					return r; 
-				}
-				
-				public void setR(int r) { 
-					this.r = r; 
-				}
-				
-				public int getG() { 
-					return g; 
-				}
-				
-				public void setG(int g) { 
-					this.g = g; 
-				}
-				
-				public int getB() { 
-					return b; 
-				}
-				public void setB(int b) { 
-					this.b = b; 
-				}
-				
-				@Override
-				public String toString() {
-					return String.format("Cell[row=%d, col=%d, rgb=(%d,%d,%d)]", row, col, r, g, b);
+				for (int r = 0; r < size; r++) {
+					for (int c = 0; c < size; c++) {
+						System.out.print((grid[r][c] != null ? grid[r][c] : ".") + " ");
+					}
+					System.out.println();
 				}
 			}
-		\end{lstlisting}
-		
-		Sebelum mengintegrasikan AC-3 sebagai mekanisme penyempitan ruang solusi ataupun optimasi menggunakan \texttt{BitSet}, sebuah solver Backtracking murni untuk dijadikan \textit{baseline} dalam pengukuran kinerja. Implementasi awal ini menjalankan proses pencarian secara eksploratif tanpa bantuan propagasi kendala tambahan, sehingga karakteristik performanya dapat menjadi pembanding langsung terhadap versi yang telah diperkuat dengan AC-3.
-		\begin{lstlisting}[language=java, caption={Solver \textit{backtracking} murni yang diimplementasikan tanpa optimasi apapun, termasuk propagasi kendala atau penggunaan \texttt{BitSet}}, label={lst:btPureCode}]
-			public class BacktrackingSolver {
-				private Board board;
-				private int size;
-				private Map<String, List<int[]>> colorCells;
-				private List<String> colors;
-				private int[] solution;       //solution[colorIndex] = index in color's cell list
-				private boolean[][] occupied; //tracks queen positions
-				private long steps;
-				private long backtracks;
-				private long startTime;
+			
+			//logging
+			public void printColorSummary() {
+				System.out.println("Board color distribution:");
+				for (String color : colorMap.keySet()) {
+					String symbol = getSymbolForColor(color);
+					System.out.printf("Color %s (%s) -> %d cells%n",
+					color, symbol, colorMap.get(color).size());
+				}
+				System.out.println("Board size: " + size);
+				System.out.println("Unique colors: " + colorMap.size());
+			}
+		}
+	\end{lstlisting}
+	
+	\begin{lstlisting}[language=Java, caption={Kelas \texttt{Cell} untuk merepresentasikan satu kotak di dalam papan \textit{Colored Queens} yang menyimpan posisi dan warna kotak tersebut}, label={lst:cellCode}]
+		//Merepresentasikan 1 cell/kotak dalam permainan colored queens untuk memudahkan memasukkan data ke dalam Map di dalam object Board
+		public class Cell {
+			//menyimpan posisi dan warna dari kotak
+			private int row;
+			private int col;
+			private int r;
+			private int g;
+			private int b;
+			
+			public Cell(int row, int col, int r, int g, int b) {
+				this.row = row;
+				this.col = col;
+				this.r = r;
+				this.g = g;
+				this.b = b;
+			}
+			
+			// Getter dan setter
+			public int getRow() { 
+				return row; 
+			}
+			
+			public void setRow(int row) { 
+				this.row = row; 
+			}
+			
+			public int getCol() { 
+				return col; 
+			}
+			
+			public void setCol(int col) { 
+				this.col = col; 
+			}
+			
+			public int getR() { 
+				return r; 
+			}
+			
+			public void setR(int r) { 
+				this.r = r; 
+			}
+			
+			public int getG() { 
+				return g; 
+			}
+			
+			public void setG(int g) { 
+				this.g = g; 
+			}
+			
+			public int getB() { 
+				return b; 
+			}
+			public void setB(int b) { 
+				this.b = b; 
+			}
+			
+			@Override
+			public String toString() {
+				return String.format("Cell[row=%d, col=%d, rgb=(%d,%d,%d)]", row, col, r, g, b);
+			}
+		}
+	\end{lstlisting}
+	
+	Sebelum mengintegrasikan AC-3 sebagai mekanisme penyempitan ruang solusi ataupun optimasi menggunakan \texttt{BitSet}, sebuah solver Backtracking murni untuk dijadikan \textit{baseline} dalam pengukuran kinerja. Implementasi awal ini menjalankan proses pencarian secara eksploratif tanpa bantuan propagasi kendala tambahan, sehingga karakteristik performanya dapat menjadi pembanding langsung terhadap versi yang telah diperkuat dengan AC-3.
+	\begin{lstlisting}[language=java, caption={Solver \textit{backtracking} murni yang diimplementasikan tanpa optimasi apapun, termasuk propagasi kendala atau penggunaan \texttt{BitSet}}, label={lst:btPureCode}]
+		public class BacktrackingSolver {
+			private Board board;
+			private int size;
+			private Map<String, List<int[]>> colorCells;
+			private List<String> colors;
+			private int[] solution;       //solution[colorIndex] = index in color's cell list
+			private boolean[][] occupied; //tracks queen positions
+			private long steps;
+			private long backtracks;
+			private long startTime;
+			
+			public BacktrackingSolver(Board board) {
+				this.board = board;
+				this.size = board.getSize();
+				this.colorCells = board.getColorMap();
+				this.colors = new ArrayList<>(colorCells.keySet());
+				this.solution = new int[colors.size()];
+				Arrays.fill(solution, -1);
+				this.occupied = new boolean[size][size];
+				this.steps = 0;
+				this.backtracks = 0;
+			}
+			
+			//memanggil fungsi rekursif
+			public boolean solve() {
+				System.out.println("Starting solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
+				startTime = System.currentTimeMillis();
+				boolean result = placeQueens(0); //hasil fungsi rekursif disimpan di sini
+				long endTime = System.currentTimeMillis();
 				
-				public BacktrackingSolver(Board board) {
-					this.board = board;
-					this.size = board.getSize();
-					this.colorCells = board.getColorMap();
-					this.colors = new ArrayList<>(colorCells.keySet());
-					this.solution = new int[colors.size()];
-					Arrays.fill(solution, -1);
-					this.occupied = new boolean[size][size];
-					this.steps = 0;
-					this.backtracks = 0;
+				System.out.println("\nSolver stats:");
+				System.out.println("Steps: " + steps);
+				System.out.println("Backtracks: " + backtracks);
+				System.out.println("Time: " + (endTime - startTime) + " ms");
+				System.out.println("Solution found: " + result);
+				
+				return result;
+			}
+			
+			//fungsi backtracking utama
+			private boolean placeQueens(int colorIndex) {
+				if (colorIndex == colors.size()) {
+					return true; //base case
 				}
 				
-				//memanggil fungsi rekursif
-				public boolean solve() {
-					System.out.println("Starting solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
-					startTime = System.currentTimeMillis();
-					boolean result = placeQueens(0); //hasil fungsi rekursif disimpan di sini
-					long endTime = System.currentTimeMillis();
-					
-					System.out.println("\nSolver stats:");
-					System.out.println("Steps: " + steps);
-					System.out.println("Backtracks: " + backtracks);
-					System.out.println("Time: " + (endTime - startTime) + " ms");
-					System.out.println("Solution found: " + result);
-					
-					return result;
-				}
+				//berbeda dengan N-Queens, domain 1 queen merupakan daerah warna itu sendiri, bukan satu kolom/baris agar tidak perlu mengecek "color constraint" di setiap step
+				String color = colors.get(colorIndex);
+				List<int[]> cells = colorCells.get(color);
 				
-				//fungsi backtracking utama
-				private boolean placeQueens(int colorIndex) {
-					if (colorIndex == colors.size()) {
-						return true; //base case
-					}
-					
-					//berbeda dengan N-Queens, domain 1 queen merupakan daerah warna itu sendiri, bukan satu kolom/baris agar tidak perlu mengecek "color constraint" di setiap step
-					String color = colors.get(colorIndex);
-					List<int[]> cells = colorCells.get(color);
-					
-					steps++;
+				steps++;
+				
+				
+				//mencoba setiap cell yang berwarna sama
+				for (int i = 0; i < cells.size(); i++) {
+					int row = cells.get(i)[0];
+					int col = cells.get(i)[1];
 					
 					
-					//mencoba setiap cell yang berwarna sama
-					for (int i = 0; i < cells.size(); i++) {
-						int row = cells.get(i)[0];
-						int col = cells.get(i)[1];
+					//jika posisi valid
+					if (isValid(row, col)) {
+						solution[colorIndex] = i;
+						occupied[row][col] = true;
 						
 						
-						//jika posisi valid
-						if (isValid(row, col)) {
-							solution[colorIndex] = i;
-							occupied[row][col] = true;
-							
-							
-							//lanjutkan untuk warna sebelumnya
-							if (placeQueens(colorIndex + 1)) {
-								return true;
-							}
-							
-							backtracks++;
-							solution[colorIndex] = -1;
-							occupied[row][col] = false;
+						//lanjutkan untuk warna sebelumnya
+						if (placeQueens(colorIndex + 1)) {
+							return true;
 						}
+						
+						backtracks++;
+						solution[colorIndex] = -1;
+						occupied[row][col] = false;
 					}
-					
+				}
+				
+				return false;
+			}
+			
+			private boolean isValid(int row, int col) {
+				//mengecek apakah cell tersebut sudah ada menteri atau belum
+				if (occupied[row][col]) {
 					return false;
 				}
 				
-				private boolean isValid(int row, int col) {
-					//mengecek apakah cell tersebut sudah ada menteri atau belum
-					if (occupied[row][col]) {
+				//mengecek semua cell horizontal dan vertikal
+				for (int i = 0; i < size; i++) {
+					if (occupied[row][i] || occupied[i][col]) {
 						return false;
 					}
-					
-					//mengecek semua cell horizontal dan vertikal
-					for (int i = 0; i < size; i++) {
-						if (occupied[row][i] || occupied[i][col]) {
-							return false;
-						}
-					}
-					
-					//mengecek apakah ada bidak yang bersebelahan (8 mata angin)
-					int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
-					for (int[] d : dirs) {
-						int r = row + d[0];
-						int c = col + d[1];
-						if (r >= 0 && r < size && c >= 0 && c < size && occupied[r][c]) {
-							return false;
-						}
-					}
-					
-					return true;
 				}
 				
-				//print hasil akhir papan dengan Q menandakan Bidak menteri
-				private void printBoard() {
-					System.out.println("Board state:");
-					String[][] grid = new String[size][size];
-					
-					for (Map.Entry<String, List<int[]>> entry : colorCells.entrySet()) {
-						String symbol = board.getSymbolForColor(entry.getKey());
-						for (int[] cell : entry.getValue()) {
-							grid[cell[0]][cell[1]] = symbol;
-						}
+				//mengecek apakah ada bidak yang bersebelahan (8 mata angin)
+				int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
+				for (int[] d : dirs) {
+					int r = row + d[0];
+					int c = col + d[1];
+					if (r >= 0 && r < size && c >= 0 && c < size && occupied[r][c]) {
+						return false;
 					}
-					
-					for (int r = 0; r < size; r++) {
-						for (int c = 0; c < size; c++) {
-							if (occupied[r][c]) {
-								grid[r][c] = "Q";
-							}
-						}
-					}
-					
-					System.out.print("   ");
-					for (int c = 0; c < size; c++) {
-						System.out.print(c + " ");
-					}
-					System.out.println();
-					
-					for (int r = 0; r < size; r++) {
-						System.out.print(r + "  ");
-						for (int c = 0; c < size; c++) {
-							System.out.print((grid[r][c] != null ? grid[r][c] : ".") + " ");
-						}
-						System.out.println();
-					}
-					System.out.println();
 				}
 				
-				//Print posisi akhir semua bidak menteri dalam bentuk per baris
-				public void printSolution() {
-					if (solution[0] == -1) {
-						System.out.println("No solution found!");
-						return;
-					}
-					
-					System.out.println("Final solution:");
-					for (int i = 0; i < colors.size(); i++) {
-						String color = colors.get(i);
-						String symbol = board.getSymbolForColor(color);
-						int[] cell = colorCells.get(color).get(solution[i]);
-						System.out.println("Color " + symbol + " at [" + cell[0] + "," + cell[1] + "]");
-					}
-					
-					printBoard();
-				}
-				
-				public long getSteps() {
-					return steps;
-				}
-				public long getBacktracks() {
-					return backtracks;
-				}
+				return true;
 			}
-		\end{lstlisting}
+			
+			//print hasil akhir papan dengan Q menandakan Bidak menteri
+			private void printBoard() {
+				System.out.println("Board state:");
+				String[][] grid = new String[size][size];
+				
+				for (Map.Entry<String, List<int[]>> entry : colorCells.entrySet()) {
+					String symbol = board.getSymbolForColor(entry.getKey());
+					for (int[] cell : entry.getValue()) {
+						grid[cell[0]][cell[1]] = symbol;
+					}
+				}
+				
+				for (int r = 0; r < size; r++) {
+					for (int c = 0; c < size; c++) {
+						if (occupied[r][c]) {
+							grid[r][c] = "Q";
+						}
+					}
+				}
+				
+				System.out.print("   ");
+				for (int c = 0; c < size; c++) {
+					System.out.print(c + " ");
+				}
+				System.out.println();
+				
+				for (int r = 0; r < size; r++) {
+					System.out.print(r + "  ");
+					for (int c = 0; c < size; c++) {
+						System.out.print((grid[r][c] != null ? grid[r][c] : ".") + " ");
+					}
+					System.out.println();
+				}
+				System.out.println();
+			}
+			
+			//Print posisi akhir semua bidak menteri dalam bentuk per baris
+			public void printSolution() {
+				if (solution[0] == -1) {
+					System.out.println("No solution found!");
+					return;
+				}
+				
+				System.out.println("Final solution:");
+				for (int i = 0; i < colors.size(); i++) {
+					String color = colors.get(i);
+					String symbol = board.getSymbolForColor(color);
+					int[] cell = colorCells.get(color).get(solution[i]);
+					System.out.println("Color " + symbol + " at [" + cell[0] + "," + cell[1] + "]");
+				}
+				
+				printBoard();
+			}
+			
+			public long getSteps() {
+				return steps;
+			}
+			public long getBacktracks() {
+				return backtracks;
+			}
+		}
+	\end{lstlisting}
+	
+	
+	Setelah implementasi solver Backtracking murni selesai, dilakukan pengujian khusus pada papan berukuran besar, yaitu $20 \times 20$\textsuperscript{\ref{lst:20x20boardBaseline}}dan $30 \times 30$\textsuperscript{\ref{lst:30x30boardBaseline}}, untuk mengevaluasi batas kemampuan pendekatan ini tanpa bantuan teknik penyempitan ruang solusi. Pengujian ini bertujuan untuk menunjukkan bagaimana kompleksitas eksponensial backtracking berdampak langsung pada waktu eksekusi ketika ukuran papan meningkat secara signifikan.
+	\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, caption={Tolok ukur untuk papan $20 \times 20$}, label={lst:20x20boardBaseline}]
+		Solver stats:
+		Steps: 118401240766
+		Backtracks: 118401240746
+		Time: 24638023 ms
+		Solution found: true
+		Final solution:
+		Color A at [15,14]
+		Color B at [14,1]
+		Color C at [17,16]
+		Color D at [3,0]
+		Color E at [0,12]
+		Color F at [10,9]
+		Color G at [1,7]
+		Color H at [5,8]
+		Color I at [6,19]
+		Color J at [2,3]
+		Color K at [11,17]
+		Color L at [16,10]
+		Color M at [12,2]
+		Color N at [18,11]
+		Color O at [8,18]
+		Color P at [7,13]
+		Color R at [4,15]
+		Color S at [13,4]
+		Color T at [19,5]
+		Color U at [9,6]
+		Board state:
+		0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+		0  J J J J J J J G G G G G Q E E E I I I I
+		1  J J J J J J J Q G G G E E E E E I I I I
+		2  J J J Q J J J G G G G E E E E E I I I I
+		3  Q D D J J J J G G E E E E E R R R I I I
+		4  D D D D D D D D G H E R R R R Q R I I I
+		5  D D D D D D U U Q H H H P P R R R O I I
+		6  D D D D D U U U H H H H P P P P P O O Q
+		7  D D D D U U U U H H H H H Q P O O O O O
+		8  D D D D S U U U U H H H H P P O O O Q O
+		9  M D S S S U Q U U U H H H P K K K O O O
+		10  M M S S S S U U U Q H H H K K K K K K K
+		11  M S S S S S S F F F L H K K K K K Q K K
+		12  M M Q S S S F F F F L L L K K K K K K K
+		13  M M M S Q T F F F L L L L L K K K K C C
+		14  M Q B B T T L L L L L L L L L K K C C C
+		15  B B B B T T T L L L L L L L Q A C C C C
+		16  B B B T T T T T N L Q L L A A A C C C C
+		17  B B B T T T T N N N N N A A A A Q C C C
+		18  B B B T T T N N N N N Q A A A A A C C C
+		19  B B B T T Q N N N N N A A A A A A A C C
 		
 		
-		Setelah implementasi solver Backtracking murni selesai, dilakukan pengujian khusus pada papan berukuran besar, yaitu $20 \times 20$\textsuperscript{\ref{lst:20x20boardBaseline}}dan $30 \times 30$\textsuperscript{\ref{lst:30x30boardBaseline}}, untuk mengevaluasi batas kemampuan pendekatan ini tanpa bantuan teknik penyempitan ruang solusi. Pengujian ini bertujuan untuk menunjukkan bagaimana kompleksitas eksponensial backtracking berdampak langsung pada waktu eksekusi ketika ukuran papan meningkat secara signifikan.
-		\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, caption={Tolok ukur untuk papan $20 \times 20$}, label={lst:20x20boardBaseline}]
-			Solver stats:
-			Steps: 118401240766
-			Backtracks: 118401240746
-			Time: 24638023 ms
-			Solution found: true
-			Final solution:
-			Color A at [15,14]
-			Color B at [14,1]
-			Color C at [17,16]
-			Color D at [3,0]
-			Color E at [0,12]
-			Color F at [10,9]
-			Color G at [1,7]
-			Color H at [5,8]
-			Color I at [6,19]
-			Color J at [2,3]
-			Color K at [11,17]
-			Color L at [16,10]
-			Color M at [12,2]
-			Color N at [18,11]
-			Color O at [8,18]
-			Color P at [7,13]
-			Color R at [4,15]
-			Color S at [13,4]
-			Color T at [19,5]
-			Color U at [9,6]
-			Board state:
-			0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
-			0  J J J J J J J G G G G G Q E E E I I I I
-			1  J J J J J J J Q G G G E E E E E I I I I
-			2  J J J Q J J J G G G G E E E E E I I I I
-			3  Q D D J J J J G G E E E E E R R R I I I
-			4  D D D D D D D D G H E R R R R Q R I I I
-			5  D D D D D D U U Q H H H P P R R R O I I
-			6  D D D D D U U U H H H H P P P P P O O Q
-			7  D D D D U U U U H H H H H Q P O O O O O
-			8  D D D D S U U U U H H H H P P O O O Q O
-			9  M D S S S U Q U U U H H H P K K K O O O
-			10  M M S S S S U U U Q H H H K K K K K K K
-			11  M S S S S S S F F F L H K K K K K Q K K
-			12  M M Q S S S F F F F L L L K K K K K K K
-			13  M M M S Q T F F F L L L L L K K K K C C
-			14  M Q B B T T L L L L L L L L L K K C C C
-			15  B B B B T T T L L L L L L L Q A C C C C
-			16  B B B T T T T T N L Q L L A A A C C C C
-			17  B B B T T T T N N N N N A A A A Q C C C
-			18  B B B T T T N N N N N Q A A A A A C C C
-			19  B B B T T Q N N N N N A A A A A A A C C
-			
-			
-			BUILD SUCCESSFUL in 6h 50m 39s
-		\end{lstlisting}
+		BUILD SUCCESSFUL in 6h 50m 39s
+	\end{lstlisting}
+	
+	\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, caption={Tolok ukur untuk papan $30 \times 30$}, label={lst:30x30boardBaseline}]
+		Solver stats:
+		Steps: 429459387595
+		Backtracks: 429459387565
+		Time: 175308806 ms
+		Solution found: true
+		Final solution:
+		Color A at [21,22]
+		Color B at [15,9]
+		Color C at [6,15]
+		Color D at [7,10]
+		Color E at [26,4]
+		Color F at [0,11]
+		Color G at [9,3]
+		Color H at [19,28]
+		Color I at [1,0]
+		Color J at [27,7]
+		Color K at [28,26]
+		Color L at [18,23]
+		Color M at [22,1]
+		Color N at [29,13]
+		Color O at [4,16]
+		Color P at [11,25]
+		Color R at [10,21]
+		Color S at [20,20]
+		Color T at [23,12]
+		Color U at [14,19]
+		Color V at [3,24]
+		Color W at [2,17]
+		Color X at [25,2]
+		Color Y at [24,18]
+		Color Z at [13,27]
+		Color [ at [12,14]
+		Color \ at [16,5]
+		Color ] at [17,29]
+		Color ^ at [5,8]
+		Color _ at [8,6]
+		Board state:
+		0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+		0  I I I I I I I ^ ^ ^ ^ Q F F W W W W W W V V V V V V V V V V
+		1  Q I I I I I ^ ^ ^ ^ ^ F F F F W W W W V V V V V V V V V V V
+		2  I I I I _ _ ^ ^ ^ ^ ^ F F F F F W Q V V V V V V V V V V V V
+		3  I I I I _ _ _ ^ ^ ^ ^ F F F F F F W V V V V V V Q V V V V Z
+		4  I I I _ _ _ _ ^ ^ ^ ^ ^ F F O O Q O V V V V V V V V V Z Z Z
+		5  I I _ _ _ _ _ _ Q ^ ^ O O O O O O O O V V V V V V Z Z Z Z Z
+		6  I _ _ _ _ _ _ _ ^ ^ D [ [ O O Q C C C C V V V V Z Z Z Z Z Z
+		7  I _ _ _ _ _ _ _ ^ ^ Q [ [ [ C C C C C C C V R R Z Z Z Z Z Z
+		8  _ _ _ _ _ _ Q D D D D [ [ [ C C C C C C C R R R Z Z Z Z Z Z
+		9  \ _ _ Q G G G G D D D D [ [ C C C C U U R R R R Z Z Z Z Z Z
+		10  \ \ G G G G G G G D D D [ [ [ C C C U U R Q R R Z Z Z Z Z Z
+		11  \ \ G G G G G G G D D D [ [ [ C C U U U R R R R R Q Z Z Z Z
+		12  \ \ \ \ G G G G G G D D [ [ Q U U U U U R R R R R P P Z Z Z
+		13  \ \ \ \ \ G G G G G D D [ U U U U U U U U R R R P P P Q Z Z
+		14  \ \ \ \ \ \ G G G G D D [ [ U U U U U Q U R R P P P P P P P
+		15  \ \ \ \ \ \ G G G Q D D [ [ U U U U U U U R R P P P ] ] ] ]
+		16  \ \ \ \ \ Q \ B B B T T T T U Y Y U Y U S S L L L ] ] ] ] ]
+		17  M M \ \ \ \ \ B B B B T T T Y Y Y Y Y S S S L L L L ] ] ] Q
+		18  M M M M M M B B B B T T T T Y Y Y Y Y S S S S Q L L ] ] ] ]
+		19  M M M M M M B B B B T T T T Y Y Y Y Y Y S S S L L L ] ] Q H
+		20  M M M M M B B B B B T T T T Y Y Y Y Y Y Q S S L L L ] H H H
+		21  M M M X X B B B B B T T T T T Y Y Y Y Y Y Y Q A L L H H H H
+		22  M Q X X X X B B B B T T T T T T Y Y Y Y Y Y A A A H H H H H
+		23  X X X X X X B B B T T T Q T T N N Y Y Y Y A A A A H H H H H
+		24  X X X X X X X B B T T T T T N N N N Q A A A A A A A H H H H
+		25  X X Q X X X X J B T T T T T N N N N N A A A A A A A A K K K
+		26  X X X X Q E J J J J T T N N N N N N N N A A A A A A K K K K
+		27  E E E E E E E Q J J J N N N N N N N N N N A A A A A K K K K
+		28  E E E E E E E J J J J J N N N N N N N N N A A A A A Q K K K
+		29  E E E E E J J J J J J J J Q N N N N N N N A A A A A K K K K
 		
-		\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, caption={Tolok ukur untuk papan $30 \times 30$}, label={lst:30x30boardBaseline}]
-			Solver stats:
-			Steps: 429459387595
-			Backtracks: 429459387565
-			Time: 175308806 ms
-			Solution found: true
-			Final solution:
-			Color A at [21,22]
-			Color B at [15,9]
-			Color C at [6,15]
-			Color D at [7,10]
-			Color E at [26,4]
-			Color F at [0,11]
-			Color G at [9,3]
-			Color H at [19,28]
-			Color I at [1,0]
-			Color J at [27,7]
-			Color K at [28,26]
-			Color L at [18,23]
-			Color M at [22,1]
-			Color N at [29,13]
-			Color O at [4,16]
-			Color P at [11,25]
-			Color R at [10,21]
-			Color S at [20,20]
-			Color T at [23,12]
-			Color U at [14,19]
-			Color V at [3,24]
-			Color W at [2,17]
-			Color X at [25,2]
-			Color Y at [24,18]
-			Color Z at [13,27]
-			Color [ at [12,14]
-			Color \ at [16,5]
-			Color ] at [17,29]
-			Color ^ at [5,8]
-			Color _ at [8,6]
-			Board state:
-			0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
-			0  I I I I I I I ^ ^ ^ ^ Q F F W W W W W W V V V V V V V V V V
-			1  Q I I I I I ^ ^ ^ ^ ^ F F F F W W W W V V V V V V V V V V V
-			2  I I I I _ _ ^ ^ ^ ^ ^ F F F F F W Q V V V V V V V V V V V V
-			3  I I I I _ _ _ ^ ^ ^ ^ F F F F F F W V V V V V V Q V V V V Z
-			4  I I I _ _ _ _ ^ ^ ^ ^ ^ F F O O Q O V V V V V V V V V Z Z Z
-			5  I I _ _ _ _ _ _ Q ^ ^ O O O O O O O O V V V V V V Z Z Z Z Z
-			6  I _ _ _ _ _ _ _ ^ ^ D [ [ O O Q C C C C V V V V Z Z Z Z Z Z
-			7  I _ _ _ _ _ _ _ ^ ^ Q [ [ [ C C C C C C C V R R Z Z Z Z Z Z
-			8  _ _ _ _ _ _ Q D D D D [ [ [ C C C C C C C R R R Z Z Z Z Z Z
-			9  \ _ _ Q G G G G D D D D [ [ C C C C U U R R R R Z Z Z Z Z Z
-			10  \ \ G G G G G G G D D D [ [ [ C C C U U R Q R R Z Z Z Z Z Z
-			11  \ \ G G G G G G G D D D [ [ [ C C U U U R R R R R Q Z Z Z Z
-			12  \ \ \ \ G G G G G G D D [ [ Q U U U U U R R R R R P P Z Z Z
-			13  \ \ \ \ \ G G G G G D D [ U U U U U U U U R R R P P P Q Z Z
-			14  \ \ \ \ \ \ G G G G D D [ [ U U U U U Q U R R P P P P P P P
-			15  \ \ \ \ \ \ G G G Q D D [ [ U U U U U U U R R P P P ] ] ] ]
-			16  \ \ \ \ \ Q \ B B B T T T T U Y Y U Y U S S L L L ] ] ] ] ]
-			17  M M \ \ \ \ \ B B B B T T T Y Y Y Y Y S S S L L L L ] ] ] Q
-			18  M M M M M M B B B B T T T T Y Y Y Y Y S S S S Q L L ] ] ] ]
-			19  M M M M M M B B B B T T T T Y Y Y Y Y Y S S S L L L ] ] Q H
-			20  M M M M M B B B B B T T T T Y Y Y Y Y Y Q S S L L L ] H H H
-			21  M M M X X B B B B B T T T T T Y Y Y Y Y Y Y Q A L L H H H H
-			22  M Q X X X X B B B B T T T T T T Y Y Y Y Y Y A A A H H H H H
-			23  X X X X X X B B B T T T Q T T N N Y Y Y Y A A A A H H H H H
-			24  X X X X X X X B B T T T T T N N N N Q A A A A A A A H H H H
-			25  X X Q X X X X J B T T T T T N N N N N A A A A A A A A K K K
-			26  X X X X Q E J J J J T T N N N N N N N N A A A A A A K K K K
-			27  E E E E E E E Q J J J N N N N N N N N N N A A A A A K K K K
-			28  E E E E E E E J J J J J N N N N N N N N N A A A A A Q K K K
-			29  E E E E E J J J J J J J J Q N N N N N N N A A A A A K K K K
-			
-			
-			BUILD SUCCESSFUL in 48h 41m 50s
-		\end{lstlisting}
 		
- 	\end{enumerate}
+		BUILD SUCCESSFUL in 48h 41m 50s
+	\end{lstlisting}
+		
 	
 	\section{Pencapaian Rencana Kerja}
 	Langkah-langkah kerja yang berhasil diselesaikan dalam Tugas Akhir 1 ini adalah sebagai berikut:
