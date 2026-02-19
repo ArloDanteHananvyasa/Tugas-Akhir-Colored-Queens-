@@ -13,11 +13,7 @@ BASE_URL = "https://www.playqueensgame.com/puzzles/{size}x{size}/{level}"
 
 # Define board sizes and number of levels
 board_levels = {
-    7: 50,
-    8: 130,
-    9: 110,
-    10: 60,
-    11: 50
+    7: 1
 }
 
 # Create output folder
