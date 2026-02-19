@@ -59,15 +59,13 @@ class Particle {
     public void setPBestFitness(double pBestFitness) {
         this.pBestFitness = pBestFitness;
     }
-
 }
 
-public class PSOSolver {
+public class PSOSolverTest {
     private Board board;
     private int size;
     private Map<String, List<int[]>> colorCells;
     private List<String> colors;
-    private int[] solution;
 
     private int nIterations;
     private int nParticles;
@@ -84,40 +82,37 @@ public class PSOSolver {
     private double w1;
     private double w2;
     
-    private Random random;
-
     private int maxStagnation;
     
-    public PSOSolver(Board board, int nIterations, int nParticles, double c1, double c2, int nNeighborhood, double inertia, double w1, double w2, int maxStagnation) {
+    private Random random;
+    
+    private long executionTime;
+    private int finalAttackingViolations;
+    private int finalAdjacencyViolations;
+    
+    public PSOSolverTest(Board board, int nIterations, int nParticles, double c1, double c2, int nNeighborhood, double inertia, double w1, double w2, int maxStagnation) {
         this.board = board;
         this.size = this.board.getSize();
         
         this.colorCells = this.board.getColorMap();
         this.colors = new ArrayList<>(this.colorCells.keySet());
 
-        this.solution = new int[colors.size()];
-        Arrays.fill(solution, -1);
-
-        //main hyperparameters
         this.nIterations = nIterations;
         this.nParticles = nParticles;
         this.nNeighborhood = nNeighborhood;
 
-        //create the initial 
         this.particles = new ArrayList<>();
 
-        //coeficients
         this.c1 = c1;
         this.c2 = c2;
         this.inertia = inertia;
 
-        //fitness weights
         this.w1 = w1;
         this.w2 = w2;
         
-        this.random = new Random();
-
         this.maxStagnation = maxStagnation;
+        
+        this.random = new Random();
     }
 
     private void generateParticles() {
@@ -135,7 +130,6 @@ public class PSOSolver {
         int idx = 0;
         for (String s : this.colors) {
             int domain = colorCells.get(s).size();
-
             newSolution[idx] = random.nextInt(domain);
             idx++;
         }
@@ -154,19 +148,12 @@ public class PSOSolver {
     }
 
     private void initialize() {
-        
-        //1. generate the initial particles
         this.generateParticles();
-
-        //2. separate into neighborhoods
         this.generateNeighborhoods();
-
-        //3. intial fitness calculation
         this.calculateInitialFitness();
     }
 
     private void generateNeighborhoods() {
-        
         this.neighborhoods = new ArrayList<List<Integer>>(nNeighborhood);
         this.nBests = new int[this.nNeighborhood];
 
@@ -178,8 +165,6 @@ public class PSOSolver {
     }
 
     public List<List<Integer>> partitionList(List<Integer> list, int n) {
-        //split the particles into neighborhoods
-        //set equal amounts of particles in each neighborhood
         List<List<Integer>> result = new ArrayList<>(n);
 
         int size = list.size();
@@ -304,38 +289,24 @@ public class PSOSolver {
     }
 
     public void solve() {
-        System.out.println("Starting PSO solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
-        System.out.println("Parameters: iterations=" + nIterations + ", particles=" + nParticles + 
-                         ", neighborhoods=" + nNeighborhood + ", c1=" + c1 + ", c2=" + c2 + 
-                         ", inertia=" + inertia + ", w1=" + w1 + ", w2=" + w2 +
-                         ", maxStagnation=" + maxStagnation);
-        
         long startTime = System.currentTimeMillis();
         
-        //initialize the population
         initialize();
 
-        //track the global best fitness across all neighborhoods for stagnation detection
         double globalBestFitness = getLowestNBestFitness();
         int stagnationCounter = 0;
 
         for (int i = 1; i <= this.nIterations; i++) {
-            //update the velocity
             updateVelocity();
-
-            //update particles and their fitness
             updateParticles();
 
-            //check if solution exists
             if (checkNbest() != -1) {
                 long endTime = System.currentTimeMillis();
-                System.out.println("\nSolution found at iteration " + i);
-                System.out.println("Time: " + (endTime - startTime) + " ms");
-                printSolution(checkNbest());
+                this.executionTime = endTime - startTime;
+                storeFinalViolations(checkNbest());
                 return;
             }
 
-            //check for stagnation across all neighborhoods
             double currentBestFitness = getLowestNBestFitness();
             if (currentBestFitness < globalBestFitness) {
                 globalBestFitness = currentBestFitness;
@@ -346,17 +317,33 @@ public class PSOSolver {
 
             if (stagnationCounter >= maxStagnation) {
                 long endTime = System.currentTimeMillis();
-                System.out.println("\nEarly termination: no improvement for " + maxStagnation + " iterations");
-                System.out.println("Time: " + (endTime - startTime) + " ms");
-                printSolution(checkLowestNBest());
+                this.executionTime = endTime - startTime;
+                storeFinalViolations(checkLowestNBest());
                 return;
             }
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.println("\nNo perfect solution found after " + nIterations + " iterations");
-        System.out.println("Time: " + (endTime - startTime) + " ms");
-        printSolution(checkLowestNBest());
+        this.executionTime = endTime - startTime;
+        storeFinalViolations(checkLowestNBest());
+    }
+
+    private void storeFinalViolations(int particleIdx) {
+        Particle p = this.particles.get(particleIdx);
+        
+        boolean[][] occupied = new boolean[this.size][this.size];
+        int[] positions = p.getCandidate();
+        
+        for (int i = 0; i < this.colors.size(); i++) {
+            String color = this.colors.get(i);
+            List<int[]> cells = this.colorCells.get(color);
+            int cellIdx = positions[i];
+            int[] cell = cells.get(cellIdx);
+            occupied[cell[0]][cell[1]] = true;
+        }
+        
+        this.finalAttackingViolations = calculateAttackingViolation(p);
+        this.finalAdjacencyViolations = calculateAdjacencyViolation(p, occupied);
     }
 
     private double getLowestNBestFitness() {
@@ -466,72 +453,46 @@ public class PSOSolver {
         }
     }
 
-    private void printBoard(boolean[][] occupied) {
-        System.out.println("Board state:");
-        String[][] grid = new String[size][size];
-
-        for (Map.Entry<String, List<int[]>> entry : colorCells.entrySet()) {
-            String symbol = board.getSymbolForColor(entry.getKey());
-            for (int[] cell : entry.getValue()) {
-                grid[cell[0]][cell[1]] = symbol;
-            }
+    public List<int[]> getSolutionCoordinates() {
+        int bestIdx = checkNbest();
+        if (bestIdx == -1) {
+            bestIdx = checkLowestNBest();
         }
-
-        for (int r = 0; r < size; r++) {
-            for (int c = 0; c < size; c++) {
-                if (occupied[r][c]) {
-                    grid[r][c] = "Q";
-                }
-            }
-        }
-
-        System.out.print("   ");
-        for (int c = 0; c < size; c++) {
-            System.out.print(c + " ");
-        }
-        System.out.println();
-
-        for (int r = 0; r < size; r++) {
-            System.out.print(r + "  ");
-            for (int c = 0; c < size; c++) {
-                System.out.print((grid[r][c] != null ? grid[r][c] : ".") + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    private void printSolution(int particleIdx) {
-        if (particleIdx == -1) {
-            System.out.println("No solution found!");
-            return;
-        }
-
-        Particle p = this.particles.get(particleIdx);
+        
+        Particle p = this.particles.get(bestIdx);
         int[] positions = p.getCandidate();
-        double fitness = p.getFitness();
         
-        boolean isValid = (fitness == 0.0);
-        
-        if (isValid) {
-            System.out.println("\n=== VALID SOLUTION FOUND ===");
-        } else {
-            System.out.println("\n=== BEST SOLUTION (NOT VALID) ===");
-            System.out.println("Fitness: " + fitness);
-        }
-        
-        System.out.println("Final solution:");
-        
-        boolean[][] occupied = new boolean[this.size][this.size];
-        
+        List<int[]> coords = new ArrayList<>();
         for (int i = 0; i < colors.size(); i++) {
             String color = colors.get(i);
-            String symbol = board.getSymbolForColor(color);
             int[] cell = colorCells.get(color).get(positions[i]);
-            System.out.println("Color " + symbol + " at [" + cell[0] + "," + cell[1] + "]");
-            occupied[cell[0]][cell[1]] = true;
+            coords.add(new int[]{cell[0], cell[1]});
         }
+        return coords;
+    }
 
-        printBoard(occupied);
+    public long getExecutionTime() {
+        return executionTime;
+    }
+
+    public boolean isValid() {
+        int bestIdx = checkNbest();
+        return bestIdx != -1;
+    }
+
+    public double getFitness() {
+        int bestIdx = checkNbest();
+        if (bestIdx == -1) {
+            bestIdx = checkLowestNBest();
+        }
+        return this.particles.get(bestIdx).getFitness();
+    }
+
+    public int getAttackingViolations() {
+        return finalAttackingViolations;
+    }
+
+    public int getAdjacencyViolations() {
+        return finalAdjacencyViolations;
     }
 }
