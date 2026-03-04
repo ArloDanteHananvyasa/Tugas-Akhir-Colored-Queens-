@@ -1,0 +1,28 @@
+======= PARAMETER SET SUMMARY: LNeighborhoods =======
+Parameters: iterations=100000, particles=5000, neighborhoods=50, c1=1.0, c2=1.0, inertia=0.7, w1=1.0, w2=1.0, maxStagnation=500
+
+=== SUCCESS RATES ===
+Board Size | PSO Valid Solutions | Backtracking Valid Solutions
+-----------+--------------------+-----------------------------
+7x7        | 23/30 (76.67%)     | 30/30 (100.00%)
+8x8        | 7/30 (23.33%)      | 30/30 (100.00%)
+9x9        | 2/30 (6.67%)       | 30/30 (100.00%)
+10x10      | 2/30 (6.67%)       | 30/30 (100.00%)
+11x11      | 0/30 (0.00%)       | 30/30 (100.00%)
+20x20      | 0/1 (0.00%)        | N/A
+30x30      | 0/1 (0.00%)        | N/A
+-----------+--------------------+-----------------------------
+TOTAL      | 34/152 (22.37%)    | 150/150 (100.00%)
+
+=== AVERAGE SOLVE TIMES ===
+Board Size | PSO Avg Time | Backtracking Avg Time | Time Ratio (PSO/BT)
+-----------+-------------+----------------------+--------------------
+7x7        | 614ms        | 0ms                   | N/A
+8x8        | 2108ms       | 0ms                   | N/A
+9x9        | 2878ms       | 0ms                   | N/A
+10x10      | 3103ms       | 0ms                   | N/A
+11x11      | 4004ms       | 1ms                   | 4004.0x slower
+20x20      | 8729ms       | N/A                   | N/A
+30x30      | 11860ms      | N/A                   | N/A
+
+End of Summary
