@@ -1,0 +1,28 @@
+======= PARAMETER SET SUMMARY: c1 =======
+Parameters: iterations=100000, particles=5000, neighborhoods=100, c1=1.5, c2=1.0, inertia=0.7, w1=1.0, w2=1.0, maxStagnation=500
+
+=== SUCCESS RATES ===
+Board Size | PSO Valid Solutions | Backtracking Valid Solutions
+-----------+--------------------+-----------------------------
+7x7        | 21/30 (70.00%)     | 30/30 (100.00%)
+8x8        | 5/30 (16.67%)      | 30/30 (100.00%)
+9x9        | 4/30 (13.33%)      | 30/30 (100.00%)
+10x10      | 1/30 (3.33%)       | 30/30 (100.00%)
+11x11      | 0/30 (0.00%)       | 30/30 (100.00%)
+20x20      | 0/1 (0.00%)        | N/A
+30x30      | 0/1 (0.00%)        | N/A
+-----------+--------------------+-----------------------------
+TOTAL      | 31/152 (20.39%)    | 150/150 (100.00%)
+
+=== AVERAGE SOLVE TIMES ===
+Board Size | PSO Avg Time | Backtracking Avg Time | Time Ratio (PSO/BT)
+-----------+-------------+----------------------+--------------------
+7x7        | 818ms        | 0ms                   | N/A
+8x8        | 2597ms       | 0ms                   | N/A
+9x9        | 2573ms       | 0ms                   | N/A
+10x10      | 3147ms       | 0ms                   | N/A
+11x11      | 4430ms       | 2ms                   | 2215.0x slower
+20x20      | 7861ms       | N/A                   | N/A
+30x30      | 13139ms      | N/A                   | N/A
+
+End of Summary

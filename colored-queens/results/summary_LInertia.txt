@@ -1,0 +1,28 @@
+======= PARAMETER SET SUMMARY: LInertia =======
+Parameters: iterations=100000, particles=5000, neighborhoods=100, c1=1.0, c2=1.0, inertia=0.4, w1=1.0, w2=1.0, maxStagnation=500
+
+=== SUCCESS RATES ===
+Board Size | PSO Valid Solutions | Backtracking Valid Solutions
+-----------+--------------------+-----------------------------
+7x7        | 26/30 (86.67%)     | 30/30 (100.00%)
+8x8        | 9/30 (30.00%)      | 30/30 (100.00%)
+9x9        | 6/30 (20.00%)      | 30/30 (100.00%)
+10x10      | 1/30 (3.33%)       | 30/30 (100.00%)
+11x11      | 0/30 (0.00%)       | 30/30 (100.00%)
+20x20      | 0/1 (0.00%)        | N/A
+30x30      | 0/1 (0.00%)        | N/A
+-----------+--------------------+-----------------------------
+TOTAL      | 42/152 (27.63%)    | 150/150 (100.00%)
+
+=== AVERAGE SOLVE TIMES ===
+Board Size | PSO Avg Time | Backtracking Avg Time | Time Ratio (PSO/BT)
+-----------+-------------+----------------------+--------------------
+7x7        | 373ms        | 0ms                   | N/A
+8x8        | 2082ms       | 0ms                   | N/A
+9x9        | 2349ms       | 0ms                   | N/A
+10x10      | 3181ms       | 0ms                   | N/A
+11x11      | 4520ms       | 2ms                   | 2260.0x slower
+20x20      | 8604ms       | N/A                   | N/A
+30x30      | 12504ms      | N/A                   | N/A
+
+End of Summary
