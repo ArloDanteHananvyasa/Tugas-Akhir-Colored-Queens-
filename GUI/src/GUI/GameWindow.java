@@ -17,19 +17,21 @@ import javax.swing.Timer;
 
 public class GameWindow extends JFrame {
 
+    private SwingWorker<int[][], Void> currentWorker;
     private int currentSize;
     private int currentLevel;
     private Board board;
     private int[][] solution; // solution[i] = [row, col] for color i
     private boolean[][] queenPlaced;
     private boolean timerStarted = false;
-    private int secondsElapsed = 0;
     private Timer gameTimer;
     private JLabel timerLabel;
     private JLabel sizeLabel;
     private JLabel levelLabel;
     private BoardPanel boardPanel;
     private JComboBox<String> levelDropdown;
+
+    private long startTime;
 
     private static final Map<Integer, Integer> MAX_LEVELS = new LinkedHashMap<>();
     static {
@@ -119,9 +121,9 @@ public class GameWindow extends JFrame {
         timerLabel = new JLabel("00:00:000");
         timerLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        gameTimer = new Timer(100, e -> {
-            secondsElapsed += 100;
-            timerLabel.setText(formatTime(secondsElapsed));
+        gameTimer = new Timer(20, e -> {
+            long elapsed = System.currentTimeMillis() - startTime;
+            timerLabel.setText(formatTime((int) elapsed));
         });
 
         // hint button
@@ -144,8 +146,17 @@ public class GameWindow extends JFrame {
         boardPanel = new BoardPanel();
         boardPanel.setBackground(Color.WHITE);
 
+        JPanel legendPanel = createLegend();
+        legendPanel.setPreferredSize(new Dimension(500, 0));
+
+        JPanel leftSpacer = new JPanel();
+        leftSpacer.setPreferredSize(new Dimension(500, 0));
+        leftSpacer.setBackground(Color.WHITE);
+
         add(topPanel, BorderLayout.NORTH);
         add(boardPanel, BorderLayout.CENTER);
+        add(legendPanel, BorderLayout.EAST);
+        add(leftSpacer, BorderLayout.WEST);
         add(bottomPanel, BorderLayout.SOUTH);
 
         // load the board
@@ -159,7 +170,7 @@ public class GameWindow extends JFrame {
         // stop timer
         if (gameTimer.isRunning()) gameTimer.stop();
         timerStarted = false;
-        secondsElapsed = 0;
+        startTime = 0;
         timerLabel.setText("00:00:000");
 
         // update labels
@@ -174,19 +185,24 @@ public class GameWindow extends JFrame {
             List<Cell> cells = BoardImporter.importBoard(size, level);
             board = new Board(size, cells);
             queenPlaced = new boolean[size][size];
+
+            if (currentWorker != null && !currentWorker.isDone()) {
+                currentWorker.cancel(true);
+            }
+
             solution = null;
 
             boardPanel.setBoard(board, queenPlaced);
+            boardPanel.setErrorHighlight(null);
+            boardPanel.revalidate();
             boardPanel.repaint();
 
-            // run solver in background (not for 20x20 and 30x30)
             if (size == 20) {
                 solution = PRELOADED_20x20;
             } else if (size == 30) {
                 solution = PRELOADED_30x30;
             } else {
-                //multithreading so the window doesn't freeze during the solver call
-                SwingWorker<int[][], Void> worker = new SwingWorker<>() {
+                currentWorker = new SwingWorker<>() {
                     @Override
                     protected int[][] doInBackground() {
                         BacktrackingSolverAC3 solver = new BacktrackingSolverAC3(board);
@@ -197,13 +213,15 @@ public class GameWindow extends JFrame {
                     @Override
                     protected void done() {
                         try {
-                            solution = get();
+                            if (!isCancelled()) {
+                                solution = get();
+                            }
                         } catch (Exception e) {
                             System.err.println("Solver error: " + e.getMessage());
                         }
                     }
                 };
-                worker.execute();
+                currentWorker.execute();
             }
 
         } catch (Exception e) {
@@ -233,18 +251,31 @@ public class GameWindow extends JFrame {
             JOptionPane.showMessageDialog(this, "Hint not ready yet, please wait.");
             return;
         }
-        // find a color that doesn't have a queen placed yet and reveal one correct placement
-        for (int[] pos : solution) {
-            if (!queenPlaced[pos[0]][pos[1]]) {
-                queenPlaced[pos[0]][pos[1]] = true;
-                if (!timerStarted) {
-                    timerStarted = true;
-                    gameTimer.start();
+
+        List<String> colors = new ArrayList<>(board.getColorMap().keySet());
+
+        for (int i = 0; i < solution.length; i++) {
+            int[] correctPos = solution[i];
+            String color = colors.get(i);
+            List<int[]> colorCells = board.getColorMap().get(color);
+
+            // skip if correct position already has a queen
+            boolean correctAlreadyPlaced = queenPlaced[correctPos[0]][correctPos[1]];
+            if (correctAlreadyPlaced) continue;
+
+            // check if player placed a wrong queen on this color region
+            int[] wrongPos = null;
+            for (int[] cell : colorCells) {
+                if (queenPlaced[cell[0]][cell[1]]) {
+                    wrongPos = cell;
+                    break;
                 }
-                boardPanel.setQueens(queenPlaced);
-                boardPanel.repaint();
-                return;
             }
+
+            // tell boardPanel to show the hint
+            boardPanel.setHint(correctPos, wrongPos);
+            boardPanel.repaint();
+            return;
         }
     }
 
@@ -263,21 +294,74 @@ public class GameWindow extends JFrame {
         return String.format("%02d:%02d:%03d", minutes, seconds, millis);
     }
 
+    private JPanel createLegend() {
+        JPanel legend = new JPanel();
+        legend.setLayout(new BoxLayout(legend, BoxLayout.Y_AXIS));
+        legend.setBackground(Color.WHITE);
+        legend.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JPanel placedRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+        placedRow.setBackground(Color.WHITE);
+        placedRow.add(createQueenLabel(boardPanel.queenImageBlack));
+        placedRow.add(createQueenLabel(boardPanel.queenImageWhite));
+        JLabel placedText = new JLabel("Placed queens (no difference between them)");
+        placedText.setFont(new Font("Arial", Font.PLAIN, 18));
+        placedRow.add(placedText);
+
+        JPanel errorRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+        errorRow.setBackground(Color.WHITE);
+        errorRow.add(createQueenLabel(boardPanel.queenImageRed));
+        JLabel errorText = new JLabel("Breaks one or more rules");
+        errorText.setFont(new Font("Arial", Font.PLAIN, 18));
+        errorRow.add(errorText);
+
+        legend.add(Box.createVerticalGlue());
+        legend.add(placedRow);
+        legend.add(Box.createRigidArea(new Dimension(0, 15)));
+        legend.add(errorRow);
+        legend.add(Box.createVerticalGlue());
+
+        return legend;
+    }
+
+    private JLabel createQueenLabel(Image img) {
+        JLabel label = new JLabel();
+        if (img != null) {
+            label.setIcon(new ImageIcon(img.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+        }
+        return label;
+    }
+
     // --- Board Panel ---
     private class BoardPanel extends JPanel {
 
         private Color[][] errorHighlight;
 
-        private Image queenImageBlack;
-        private Image queenImageWhite;
-        private Image queenImageRed;
+        Image queenImageBlack;
+        Image queenImageWhite;
+        Image queenImageRed;
 
         private Board board;
         private Color[][] colorGrid;
         private boolean[][] queens;
         private int size;
 
-        public BoardPanel() {}
+        private int[] hintCorrectCell = null;
+        private int[] hintWrongCell = null; 
+
+        public BoardPanel() {
+            try {
+                queenImageBlack = ImageIO.read(new File("assets/queen_black.png"));
+                queenImageWhite = ImageIO.read(new File("assets/queen_white.png"));
+                queenImageRed = ImageIO.read(new File("assets/queen_red.png"));
+                System.out.println("Queen image loaded: " + queenImageBlack);
+            } catch (Exception e) {
+                System.out.println("Queen image failed: " + e.getMessage());
+                queenImageBlack = null;
+                queenImageWhite = null;
+                queenImageRed = null;
+            }
+        }
 
         public void setBoard(Board board, boolean[][] queens) {
             this.board = board;
@@ -293,6 +377,9 @@ public class GameWindow extends JFrame {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+
+                    if (getWidth() == 0 || getHeight() == 0) return;
+
                     int cellSize = Math.min(getWidth(), getHeight()) / size;
                     int totalSize = cellSize * size;
                     int xOffset = (getWidth() - totalSize) / 2;
@@ -309,25 +396,20 @@ public class GameWindow extends JFrame {
                     // start timer on first placement
                     if (!timerStarted && queens[row][col]) {
                         timerStarted = true;
+                        startTime = System.currentTimeMillis();
                         gameTimer.start();
+                    }
+
+                    if (hintCorrectCell != null && hintCorrectCell[0] == row && hintCorrectCell[1] == col) {
+                        clearHint();
+                    } else if (hintWrongCell != null && hintWrongCell[0] == row && hintWrongCell[1] == col) {
+                        clearHint();
                     }
 
                     repaint();
                     checkViolations();
                 }
             });
-
-            try {
-                queenImageBlack = ImageIO.read(new File("assets/queen_black.png"));
-                queenImageWhite = ImageIO.read(new File("assets/queen_white.png"));
-                queenImageRed = ImageIO.read(new File("assets/queen_red.png"));
-                System.out.println("Queen image loaded: " + queenImageBlack);
-            } catch (Exception e) {
-                System.out.println("Queen image failed: " + e.getMessage());
-                queenImageBlack = null;
-                queenImageWhite = null;
-                queenImageRed = null;
-            }
         
         }
 
@@ -396,8 +478,27 @@ public class GameWindow extends JFrame {
                                         cellSize - padding * 2, cellSize - padding * 2, null);
                         }
                     }
+
+                    if (hintCorrectCell != null && hintCorrectCell[0] == row && hintCorrectCell[1] == col) {
+                        g2.setColor(new Color(0, 255, 0, 120));
+                        g2.fillRect(x, y, cellSize, cellSize);
+                        g2.setColor(Color.GREEN.darker());
+                        g2.setStroke(new BasicStroke(3));
+                        g2.drawRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+                        g2.setStroke(new BasicStroke(1));
+                    }
+                    if (hintWrongCell != null && hintWrongCell[0] == row && hintWrongCell[1] == col) {
+                        g2.setColor(new Color(255, 165, 0, 120));
+                        g2.fillRect(x, y, cellSize, cellSize);
+                        g2.setColor(Color.ORANGE.darker());
+                        g2.setStroke(new BasicStroke(3));
+                        g2.drawRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+                        g2.setStroke(new BasicStroke(1));
+                    }
                 }
             }
+
+            
         }
 
         private void checkViolations() {
@@ -456,5 +557,26 @@ public class GameWindow extends JFrame {
             double luminance = (0.299 * c.getRed() + 0.587 * c.getGreen() + 0.114 * c.getBlue()) / 255;
             return luminance < 0.5;
         }
+
+        @Override
+        public Dimension getPreferredSize() {
+            int available = Math.min(
+                GameWindow.this.getHeight() - 150, // subtract top and bottom panels
+                GameWindow.this.getWidth() - 300   // subtract legend space
+            );
+            return new Dimension(available, available);
+        }
+
+        
+        public void setHint(int[] correctCell, int[] wrongCell) {
+            this.hintCorrectCell = correctCell;
+            this.hintWrongCell = wrongCell;
+        }
+
+        public void clearHint() {
+            this.hintCorrectCell = null;
+            this.hintWrongCell = null;
+        }
+
     }
 }

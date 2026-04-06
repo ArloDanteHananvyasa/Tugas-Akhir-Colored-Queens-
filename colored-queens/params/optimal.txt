@@ -1,0 +1,9 @@
+iterations=100000
+particles=50000
+neighborhoods=50
+c1=1.5
+c2=1.0
+inertia=0.4
+w1=1.0
+w2=1.0
+maxStagnation=500
