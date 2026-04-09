@@ -11,15 +11,13 @@ chromedriver_autoinstaller.install()
 # Base URL
 BASE_URL = "https://www.playqueensgame.com/puzzles/{size}x{size}/{level}"
 
-# Define board sizes and number of levels
-board_levels = {
-    7: 125,
-    8: 225,
-    9: 215,
-    10: 150,
-    11: 130,
-    12: 100
+# Define board sizes and their PREVIOUS max levels (what you already have)
+previous_max_levels = {
+    12: 217
 }
+
+# New max level for all boards
+NEW_MAX_LEVEL = 250
 
 # Create output folder
 os.makedirs("boards", exist_ok=True)
@@ -27,8 +25,13 @@ os.makedirs("boards", exist_ok=True)
 # Launch browser
 driver = webdriver.Chrome()
 
-for size, max_level in board_levels.items():
-    for level in range(1, max_level + 1):
+for size, old_max in previous_max_levels.items():
+    # Start from the next level after what you already have
+    start_level = old_max + 1
+    
+    print(f"\n🔍 Scraping {size}x{size} boards from level {start_level} to {NEW_MAX_LEVEL}...")
+    
+    for level in range(start_level, NEW_MAX_LEVEL + 1):
         url = BASE_URL.format(size=size, level=level)
         driver.get(url)
         time.sleep(2)  # allow page to load
@@ -57,4 +60,4 @@ for size, max_level in board_levels.items():
         print(f"✅ Saved {filename}")
 
 driver.quit()
-print("✅ All boards extracted!")
+print("\n✅ All remaining boards extracted!")

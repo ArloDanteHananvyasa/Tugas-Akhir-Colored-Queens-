@@ -35,11 +35,12 @@ public class GameWindow extends JFrame {
 
     private static final Map<Integer, Integer> MAX_LEVELS = new LinkedHashMap<>();
     static {
-        MAX_LEVELS.put(7, 50);
-        MAX_LEVELS.put(8, 130);
-        MAX_LEVELS.put(9, 110);
-        MAX_LEVELS.put(10, 60);
-        MAX_LEVELS.put(11, 50);
+        MAX_LEVELS.put(7, 250);
+        MAX_LEVELS.put(8, 250);
+        MAX_LEVELS.put(9, 250);
+        MAX_LEVELS.put(10, 250);
+        MAX_LEVELS.put(11, 250);
+        MAX_LEVELS.put(12, 250);
         MAX_LEVELS.put(20, 1);
         MAX_LEVELS.put(30, 1);
     }
@@ -93,7 +94,7 @@ public class GameWindow extends JFrame {
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
 
         // size dropdown
-        String[] sizeOptions = {"7x7", "8x8", "9x9", "10x10", "11x11", "20x20", "30x30"};
+        String[] sizeOptions = {"7x7", "8x8", "9x9", "10x10", "11x11", "12x12", "20x20", "30x30"};
         JComboBox<String> sizeDropdown = new JComboBox<>(sizeOptions);
         sizeDropdown.setSelectedItem(size + "x" + size);
         sizeDropdown.setFont(new Font("Arial", Font.PLAIN, 16));
