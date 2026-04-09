@@ -27,7 +27,7 @@ public class LevelSelectorWindow extends JFrame {
 
         diffPanel.add(makeDifficultyGroup("Easy", new int[]{7}));
         diffPanel.add(makeDifficultyGroup("Medium", new int[]{8, 9}));
-        diffPanel.add(makeDifficultyGroup("Hard", new int[]{10, 11}));
+        diffPanel.add(makeDifficultyGroup("Hard", new int[]{10, 11, 12}));
 
         // --- Section 2: Challenge Yourself ---
         JLabel challengeLabel = new JLabel("Challenge Yourself!");

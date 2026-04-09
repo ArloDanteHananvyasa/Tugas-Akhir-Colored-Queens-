@@ -7,345 +7,379 @@ import com.ArloDante.coloredqueens.solver.backtracking.BacktrackingSolverTest;
 import com.ArloDante.coloredqueens.util.BoardImporter;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class Main {
-    public static void main(String[] args) {
-        // Read parameters from parameters.txt
-        String parametersFileName = "optimal.txt";
-        PSOParameters params = readParameters(parametersFileName);
-        
-        // Extract base name from parameters file (e.g., "benchmark" from "benchmark.txt")
-        String paramBaseName = parametersFileName.replace(".txt", "");
-        
-        // Create results directory if it doesn't exist
-        File resultsDir = new File(System.getProperty("user.dir") + "/results");
-        if (!resultsDir.exists()) {
-            resultsDir.mkdir();
-        }
-        
-        // Statistics tracking
-        SummaryStats stats = new SummaryStats();
-        
-        // Test boards from 7x7 to 11x11
-        for (int size = 7; size <= 11; size++) {
-            System.out.println("Testing " + size + "x" + size + " boards...");
-            String outputFile = resultsDir.getPath() + "/results" + size + "x" + size + "_" + paramBaseName + ".txt";
-            testBoardSize(size, params, outputFile, stats);
-            System.out.println("Results saved to " + outputFile);
+
+    static int[] sizes = {7, 8, 9, 10, 11, 12};
+    static int[] largeSizes = {20, 30};
+
+    public static void main(String[] args) throws Exception {
+
+        File paramsDir = new File(System.getProperty("user.dir") + "/params");
+        File[] paramFiles = paramsDir.listFiles((dir, name) -> name.endsWith(".txt"));
+
+        if (paramFiles == null || paramFiles.length == 0) {
+            System.err.println("No parameter files found!");
+            return;
         }
 
-        System.out.println("Testing " + 20 + "x" + 20 + " boards...");
-        String outputFile = resultsDir.getPath() + "/results" + 20 + "x" + 20 + "_" + paramBaseName + ".txt";
-        testBoardSize(20, params, outputFile, stats);
-        System.out.println("Results saved to " + outputFile);
+        File resultsRoot = new File(System.getProperty("user.dir") + "/results");
+        if (!resultsRoot.exists()) resultsRoot.mkdir();
 
-        System.out.println("Testing " + 30 + "x" + 30 + " boards...");
-        outputFile = resultsDir.getPath() + "/results" + 30 + "x" + 30 + "_" + paramBaseName + ".txt";
-        testBoardSize(30, params, outputFile, stats);
-        System.out.println("Results saved to " + outputFile);
-        
-        // Generate summary file
-        String summaryFile = resultsDir.getPath() + "/summary_" + paramBaseName + ".txt";
-        generateSummary(summaryFile, params, stats);
-        System.out.println("\nSummary saved to " + summaryFile);
-        
-        System.out.println("\nAll tests completed!");
+        int threads = 6; // your CPU cores
+        ExecutorService executor = Executors.newFixedThreadPool(threads);
+
+        for (File paramFile : paramFiles) {
+            String paramFileName = paramFile.getName();
+            String paramBaseName = paramFileName.replace(".txt", "");
+
+            System.out.println("\n=== RUNNING PARAM SET: " + paramBaseName + " ===");
+
+            File paramDir = new File(resultsRoot, paramBaseName);
+            if (!paramDir.exists()) paramDir.mkdir();
+
+            PSOParameters params = readParameters(paramFileName);
+
+            List<Future<BatchResult>> futures = new ArrayList<>();
+
+            // ===== MULTITHREADED BATCHES =====
+            for (int size : sizes) {
+                for (int batch = 1; batch <= 5; batch++) {
+
+                    int finalSize = size;
+                    int finalBatch = batch;
+
+                    futures.add(executor.submit(() ->
+                            testBoardBatch(finalSize, finalBatch, params, paramDir, paramBaseName)
+                    ));
+                }
+            }
+
+            // ===== LARGE SIZES (single thread is fine) =====
+            SummaryStats stats = new SummaryStats();
+
+            for (Future<BatchResult> f : futures) {
+                BatchResult result = f.get();
+                stats.merge(result);
+            }
+
+            for (int size : largeSizes) {
+                BatchResult result = testSingleBoard(size, params, paramDir, paramBaseName);
+                stats.merge(result);
+            }
+
+            String summaryFile = paramDir.getPath() + "/summary_" + paramBaseName + ".txt";
+            generateSummary(summaryFile, stats);
+
+            System.out.println("Summary saved to " + summaryFile);
+        }
+
+        executor.shutdown();
+        System.out.println("\nAll experiments completed!");
     }
-    
-    private static void testBoardSize(int size, PSOParameters params, String outputFile, SummaryStats stats) {
+
+    // ================= BATCH =================
+    private static BatchResult testBoardBatch(int size, int batch, PSOParameters params,
+                                              File paramDir, String paramBaseName) {
+
+        String outputFile = paramDir.getPath() +
+                "/results" + size + "x" + size + "_" + paramBaseName + "_batch" + batch + ".txt";
+
+        BatchResult result = new BatchResult(size, batch);
+
+        int start = (batch - 1) * 50 + 1;
+        int end = batch * 50;
+
         try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
-            writer.println("======= " + size + "x" + size + " BOARDS =======");
-            writer.println("PSO Parameters: iterations=" + params.iterations + ", particles=" + params.particles + 
-                          ", neighborhoods=" + params.neighborhoods + ", c1=" + params.c1 + ", c2=" + params.c2 + 
-                          ", inertia=" + params.inertia + ", w1=" + params.w1 + ", w2=" + params.w2 + 
-                          ", maxStagnation=" + params.maxStagnation);
-            writer.println();
-            
-            for (int level = 1; level <= 30; level++) {
+
+            writer.println("======= " + size + "x" + size + " | Batch " + batch + " =======");
+
+            for (int level = start; level <= end; level++) {
                 writer.println("Level " + level + ":");
-                
+
                 try {
                     List<Cell> cells = BoardImporter.importBoard(size, level);
                     Board board = new Board(size, cells);
-                    
-                    // Test Backtracking
-                    if (size != 20 && size != 30) {
-                        BacktrackingSolverTest btSolver = new BacktrackingSolverTest(board);
-                        boolean btSolved = btSolver.solve();
-                        List<int[]> btCoords = btSolver.getSolutionCoordinates();
-                        long btTime = btSolver.getExecutionTime();
-                        
-                        writer.print("  Backtracking: ");
-                        writer.print(formatCoordinates(btCoords));
-                        writer.print(", " + btTime + "ms, ");
-                        writer.println(btSolved ? "valid" : "no solution");
-                        
-                        // Collect stats
-                        stats.addBacktrackingResult(size, btSolved, btTime);
-                    }
-                    
-                    // Test PSO
-                    PSOSolverTest psoSolver = new PSOSolverTest(board, params.iterations, params.particles, 
-                                                                 params.c1, params.c2, params.neighborhoods, 
-                                                                 params.inertia, params.w1, params.w2, 
-                                                                 params.maxStagnation);
+
+                    // ===== BACKTRACKING =====
+                    BacktrackingSolverTest btSolver = new BacktrackingSolverTest(board);
+                    boolean btSolved = btSolver.solve();
+                    List<int[]> btCoords = btSolver.getSolutionCoordinates();
+                    long btTime = btSolver.getExecutionTime();
+
+                    writer.print("  Backtracking: ");
+                    writer.print(formatCoordinates(btCoords));
+                    writer.print(", " + btTime + "ms, ");
+                    writer.println(btSolved ? "valid" : "no solution");
+
+                    result.addBT(btTime);
+
+                    // ===== PSO =====
+                    PSOSolverTest psoSolver = new PSOSolverTest(board,
+                            params.iterations, params.particles,
+                            params.c1, params.c2, params.neighborhoods,
+                            params.inertia, params.w1, params.w2,
+                            params.maxStagnation);
+
                     psoSolver.solve();
+
                     List<int[]> psoCoords = psoSolver.getSolutionCoordinates();
                     long psoTime = psoSolver.getExecutionTime();
-                    boolean psoValid = psoSolver.isValid();
-                    double psoFitness = psoSolver.getFitness();
-                    int psoAdj = psoSolver.getAdjacencyViolations();
-                    int psoAtt = psoSolver.getAttackingViolations();
-                    
+                    boolean valid = psoSolver.isValid();
+                    double fitness = psoSolver.getFitness();
+                    int adj = psoSolver.getAdjacencyViolations();
+                    int att = psoSolver.getAttackingViolations();
+
                     writer.print("  PSO: ");
                     writer.print(formatCoordinates(psoCoords));
                     writer.print(", " + psoTime + "ms, ");
-                    if (psoValid) {
+
+                    if (valid) {
                         writer.println("valid");
                     } else {
-                        writer.println("not valid, fitness = " + psoFitness + " (adj = " + psoAdj + ", att = " + psoAtt + ")");
+                        writer.println("not valid, fitness = " + fitness +
+                                " (adj = " + adj + ", att = " + att + ")");
                     }
-                    
-                    // Collect stats
-                    stats.addPSOResult(size, psoValid, psoTime);
-                    
-                    writer.println();
-                    
+
+                    result.addPSO(valid, psoTime);
+
                 } catch (Exception e) {
-                    writer.println("  Error loading board: " + e.getMessage());
-                    writer.println();
+                    writer.println("  Error: " + e.getMessage());
                 }
-                
-                writer.flush(); // Flush after each level
+
+                writer.println();
+                writer.flush();
             }
-            
+
         } catch (IOException e) {
-            System.err.println("Error writing to output file: " + e.getMessage());
+            System.err.println("Error writing file: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    // ================= SINGLE =================
+    private static BatchResult testSingleBoard(int size, PSOParameters params,
+                                               File paramDir, String paramBaseName) {
+
+        String outputFile = paramDir.getPath() +
+                "/results" + size + "x" + size + "_" + paramBaseName + ".txt";
+
+        BatchResult result = new BatchResult(size, 1);
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
+
+            writer.println("======= " + size + "x" + size + " =======");
+
+            List<Cell> cells = BoardImporter.importBoard(size, 1);
+            Board board = new Board(size, cells);
+
+            PSOSolverTest psoSolver = new PSOSolverTest(board,
+                    params.iterations, params.particles,
+                    params.c1, params.c2, params.neighborhoods,
+                    params.inertia, params.w1, params.w2,
+                    params.maxStagnation);
+
+            psoSolver.solve();
+
+            long psoTime = psoSolver.getExecutionTime();
+            boolean valid = psoSolver.isValid();
+
+            writer.println("PSO: " + psoTime + "ms, " + (valid ? "valid" : "not valid"));
+
+            result.addPSO(valid, psoTime);
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    // ================= SUMMARY =================
+    private static void generateSummary(String outputFile, SummaryStats stats) {
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
+
+            writer.println("=== SUMMARY ===\n");
+
+            for (int size : stats.getSizes()) {
+                writer.println(size + "x" + size + ":");
+
+                List<BatchStats> batches = stats.getBatches(size);
+
+                double totalValid = 0;
+                double totalRuns = 0;
+                long totalTime = 0;
+                long totalBTTime = 0;
+                int totalBTRuns = 0;
+
+                for (int i = 0; i < batches.size(); i++) {
+                    BatchStats b = batches.get(i);
+
+                    double rate = b.psoTotal > 0 ? (b.psoValid * 100.0 / b.psoTotal) : 0;
+
+                    writer.printf("  Batch %d: %.2f%%, PSO Avg = %dms, BT Avg = %s%n",
+                            (i + 1),
+                            rate,
+                            b.getPSOAvg(),
+                            b.btTotal > 0 ? b.getBTAvg() + "ms" : "N/A"
+                    );
+
+                    totalValid += b.psoValid;
+                    totalRuns += b.psoTotal;
+                    totalTime += b.psoTime;
+
+                    totalBTTime += b.btTime;
+                    totalBTRuns += b.btTotal;
+                }
+
+                double meanBatchRate = batches.stream()
+                        .mapToDouble(b -> b.psoTotal > 0 ? (b.psoValid * 1.0 / b.psoTotal) : 0)
+                        .average().orElse(0) * 100;
+
+                long meanBatchTime = (long) batches.stream()
+                        .mapToLong(BatchStats::getPSOAvg)
+                        .average().orElse(0);
+
+                double overallRate = totalRuns > 0 ? (totalValid * 100.0 / totalRuns) : 0;
+                long overallTime = totalRuns > 0 ? totalTime / (long) totalRuns : 0;
+                long overallBTTime = totalBTRuns > 0 ? totalBTTime / totalBTRuns : 0;
+
+                writer.printf("  Mean (batch avg): %.2f%%, %dms%n", meanBatchRate, meanBatchTime);
+                writer.printf("  Overall (all runs): %.2f%%, %dms, BT Avg = %s%n%n",
+                        overallRate,
+                        overallTime,
+                        totalBTRuns > 0 ? overallBTTime + "ms" : "N/A"
+                );
+            }
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
-    
+
+    // ================= UTILS =================
     private static String formatCoordinates(List<int[]> coords) {
         StringBuilder sb = new StringBuilder("{");
         for (int i = 0; i < coords.size(); i++) {
-            int[] coord = coords.get(i);
-            sb.append("[").append(coord[0]).append(",").append(coord[1]).append("]");
-            if (i < coords.size() - 1) {
-                sb.append(", ");
-            }
+            int[] c = coords.get(i);
+            sb.append("[").append(c[0]).append(",").append(c[1]).append("]");
+            if (i < coords.size() - 1) sb.append(", ");
         }
         sb.append("}");
         return sb.toString();
     }
-    
+
     private static PSOParameters readParameters(String filename) {
         PSOParameters params = new PSOParameters();
-        
-        try (BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/params/" + filename))) {
+
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader(System.getProperty("user.dir") + "/params/" + filename))) {
+
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("=");
                 if (parts.length != 2) continue;
-                
+
                 String key = parts[0].trim();
                 String value = parts[1].trim();
 
                 switch (key) {
-                    case "iterations":
-                        params.iterations = Integer.parseInt(value);
-                        break;
-                    case "particles":
-                        params.particles = Integer.parseInt(value);
-                        break;
-                    case "neighborhoods":
-                        params.neighborhoods = Integer.parseInt(value);
-                        break;
-                    case "c1":
-                        params.c1 = Double.parseDouble(value);
-                        break;
-                    case "c2":
-                        params.c2 = Double.parseDouble(value);
-                        break;
-                    case "inertia":
-                        params.inertia = Double.parseDouble(value);
-                        break;
-                    case "w1":
-                        params.w1 = Double.parseDouble(value);
-                        break;
-                    case "w2":
-                        params.w2 = Double.parseDouble(value);
-                        break;
-                    case "maxStagnation":
-                        params.maxStagnation = Integer.parseInt(value);
-                        break;
+                    case "iterations": params.iterations = Integer.parseInt(value); break;
+                    case "particles": params.particles = Integer.parseInt(value); break;
+                    case "neighborhoods": params.neighborhoods = Integer.parseInt(value); break;
+                    case "c1": params.c1 = Double.parseDouble(value); break;
+                    case "c2": params.c2 = Double.parseDouble(value); break;
+                    case "inertia": params.inertia = Double.parseDouble(value); break;
+                    case "w1": params.w1 = Double.parseDouble(value); break;
+                    case "w2": params.w2 = Double.parseDouble(value); break;
+                    case "maxStagnation": params.maxStagnation = Integer.parseInt(value); break;
                 }
             }
+
         } catch (Exception e) {
             System.err.println("Error reading parameters file: " + e.getMessage());
             System.exit(1);
         }
-        
+
         return params;
     }
-    
-    private static void generateSummary(String outputFile, PSOParameters params, SummaryStats stats) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
-            // Extract parameter name from file path
-            String paramName = outputFile.substring(outputFile.lastIndexOf("_") + 1, outputFile.lastIndexOf("."));
-            
-            writer.println("======= PARAMETER SET SUMMARY: " + paramName + " =======");
-            writer.println("Parameters: iterations=" + params.iterations + ", particles=" + params.particles + 
-                          ", neighborhoods=" + params.neighborhoods + ", c1=" + params.c1 + ", c2=" + params.c2 + 
-                          ", inertia=" + params.inertia + ", w1=" + params.w1 + ", w2=" + params.w2 + 
-                          ", maxStagnation=" + params.maxStagnation);
-            writer.println();
-            
-            writer.println("=== SUCCESS RATES ===");
-            writer.println("Board Size | PSO Valid Solutions | Backtracking Valid Solutions");
-            writer.println("-----------+--------------------+-----------------------------");
-            
-            int[] sizes = {7, 8, 9, 10, 11, 20, 30};
-            int totalPSOValid = 0;
-            int totalPSOTests = 0;
-            int totalBTValid = 0;
-            int totalBTTests = 0;
-            
-            for (int size : sizes) {
-                SizeStats sizeStats = stats.getStatsForSize(size);
-                if (sizeStats == null) continue;
-                
-                int psoValid = sizeStats.psoValidCount;
-                int psoTotal = sizeStats.psoTotalCount;
-                double psoPercent = psoTotal > 0 ? (psoValid * 100.0 / psoTotal) : 0;
-                
-                totalPSOValid += psoValid;
-                totalPSOTests += psoTotal;
-                
-                String btInfo;
-                if (size == 20 || size == 30) {
-                    btInfo = "N/A";
-                } else {
-                    int btValid = sizeStats.btValidCount;
-                    int btTotal = sizeStats.btTotalCount;
-                    double btPercent = btTotal > 0 ? (btValid * 100.0 / btTotal) : 0;
-                    btInfo = String.format("%d/%d (%.2f%%)", btValid, btTotal, btPercent);
-                    totalBTValid += btValid;
-                    totalBTTests += btTotal;
-                }
-                
-                writer.printf("%-10s | %-18s | %s%n", 
-                             size + "x" + size, 
-                             String.format("%d/%d (%.2f%%)", psoValid, psoTotal, psoPercent),
-                             btInfo);
-            }
-            
-            writer.println("-----------+--------------------+-----------------------------");
-            writer.printf("%-10s | %-18s | %s%n",
-                         "TOTAL",
-                         String.format("%d/%d (%.2f%%)", totalPSOValid, totalPSOTests, 
-                                      totalPSOTests > 0 ? (totalPSOValid * 100.0 / totalPSOTests) : 0),
-                         totalBTTests > 0 ? String.format("%d/%d (%.2f%%)", totalBTValid, totalBTTests,
-                                                         (totalBTValid * 100.0 / totalBTTests)) : "N/A");
-            writer.println();
-            
-            writer.println("=== AVERAGE SOLVE TIMES ===");
-            writer.println("Board Size | PSO Avg Time | Backtracking Avg Time | Time Ratio (PSO/BT)");
-            writer.println("-----------+-------------+----------------------+--------------------");
-            
-            for (int size : sizes) {
-                SizeStats sizeStats = stats.getStatsForSize(size);
-                if (sizeStats == null) continue;
-                
-                long psoAvg = sizeStats.getPSOAvgTime();
-                
-                String btAvgStr;
-                String ratioStr;
-                if (size == 20 || size == 30) {
-                    btAvgStr = "N/A";
-                    ratioStr = "N/A";
-                } else {
-                    long btAvg = sizeStats.getBTAvgTime();
-                    btAvgStr = btAvg + "ms";
-                    if (btAvg > 0) {
-                        double ratio = (double) psoAvg / btAvg;
-                        ratioStr = String.format("%.1fx slower", ratio);
-                    } else {
-                        ratioStr = "N/A";
-                    }
-                }
-                
-                writer.printf("%-10s | %-12s | %-21s | %s%n",
-                             size + "x" + size,
-                             psoAvg + "ms",
-                             btAvgStr,
-                             ratioStr);
-            }
-            writer.println();
-            
-            writer.println("End of Summary");
-            
-        } catch (IOException e) {
-            System.err.println("Error writing to summary file: " + e.getMessage());
+
+    // ================= DATA =================
+    static class BatchResult {
+        int size, batch;
+        int psoValid = 0, psoTotal = 0;
+        long psoTime = 0;
+        int btTotal = 0;
+        long btTime = 0;
+
+        BatchResult(int size, int batch) {
+            this.size = size;
+            this.batch = batch;
+        }
+
+        void addPSO(boolean valid, long time) {
+            psoTotal++;
+            if (valid) psoValid++;
+            psoTime += time;
+        }
+
+        void addBT(long time) {
+            btTotal++;
+            btTime += time;
         }
     }
-    
+
     static class SummaryStats {
-        private Map<Integer, SizeStats> statsBySize = new HashMap<>();
-        
-        public void addPSOResult(int size, boolean valid, long time) {
-            statsBySize.computeIfAbsent(size, k -> new SizeStats()).addPSOResult(valid, time);
+        Map<Integer, List<BatchStats>> data = new HashMap<>();
+
+        void merge(BatchResult r) {
+            data.computeIfAbsent(r.size, k -> new ArrayList<>());
+            List<BatchStats> list = data.get(r.size);
+
+            while (list.size() < r.batch) list.add(new BatchStats());
+
+            BatchStats b = list.get(r.batch - 1);
+
+            b.psoValid += r.psoValid;
+            b.psoTotal += r.psoTotal;
+            b.psoTime += r.psoTime;
+            b.btTotal += r.btTotal;
+            b.btTime += r.btTime;
         }
-        
-        public void addBacktrackingResult(int size, boolean valid, long time) {
-            statsBySize.computeIfAbsent(size, k -> new SizeStats()).addBTResult(valid, time);
+
+        List<Integer> getSizes() {
+            return new ArrayList<>(data.keySet());
         }
-        
-        public SizeStats getStatsForSize(int size) {
-            return statsBySize.get(size);
-        }
-    }
-    
-    static class SizeStats {
-        int psoValidCount = 0;
-        int psoTotalCount = 0;
-        long psoTotalTime = 0;
-        
-        int btValidCount = 0;
-        int btTotalCount = 0;
-        long btTotalTime = 0;
-        
-        void addPSOResult(boolean valid, long time) {
-            if (valid) psoValidCount++;
-            psoTotalCount++;
-            psoTotalTime += time;
-        }
-        
-        void addBTResult(boolean valid, long time) {
-            if (valid) btValidCount++;
-            btTotalCount++;
-            btTotalTime += time;
-        }
-        
-        long getPSOAvgTime() {
-            return psoTotalCount > 0 ? psoTotalTime / psoTotalCount : 0;
-        }
-        
-        long getBTAvgTime() {
-            return btTotalCount > 0 ? btTotalTime / btTotalCount : 0;
+
+        List<BatchStats> getBatches(int size) {
+            return data.get(size);
         }
     }
-    
+
+    static class BatchStats {
+        int psoValid = 0, psoTotal = 0;
+        long psoTime = 0;
+        int btTotal = 0;
+        long btTime = 0;
+
+        long getPSOAvg() {
+            return psoTotal > 0 ? psoTime / psoTotal : 0;
+        }
+
+        long getBTAvg() {
+            return btTotal > 0 ? btTime / btTotal : 0;
+        }
+    }
+
     static class PSOParameters {
         int iterations;
         int particles;
         int neighborhoods;
-        double c1;
-        double c2;
-        double inertia;
-        double w1;
-        double w2;
+        double c1, c2, inertia, w1, w2;
         int maxStagnation;
     }
 }
