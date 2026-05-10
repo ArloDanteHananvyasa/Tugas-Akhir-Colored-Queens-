@@ -1,0 +1,30 @@
+%versi 3 (22-07-2020)
+\chapter{Landasan Teori}
+\label{chap:teori}
+
+\section{Permasalahan N-Queens}
+\label{sec:Nqueens}
+Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu komputer dan matematika diskrit, dengan sejarah panjang sejak pertama kali diperkenalkan oleh Max Bezzel pada tahun 1848. Pada formulasi dasar permasalahan ini, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Sebagaimana dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut seperti yang tertera pada Gambar {\ref{fig:queenattackpattern}}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{queen_attack_pattern.png}
+	\caption{Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidah menteri.}
+	\label{fig:queenattackpattern}
+\end{figure}
+
+Dari perspektif komputasi, permasalahan ini menarik karena memiliki struktur yang sederhana namun ruang solusinya sangat besar dan tumbuh secara eksponensial. Jika setiap baris diasosiasikan dengan satu menteri, maka setiap menteri memiliki $n$ kemungkinan kolom, menghasilkan ruang solusi awal sebesar $n^n$. Ketika nilai $n$ meningkat, ruang solusi menjadi sangat luas sehingga pencarian solusi tanpa teknik penyempitan ruang menjadi tidak realistis. Sebagai contoh, untuk $n = 20$ saja terdapat $20^{20}$ kemungkinan konfigurasi awal, jumlah yang jauh melampaui kemampuan komputasi brute-force konvensional.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.35\linewidth]{N_queens_wrong.png}
+	\caption{Contoh solusi salah masalah N-Queens pada papan berukuran $8 \times 8$ (8-Queens)}
+	\footnotesize Sumber: \url{https://www.researchgate.net/figure/N-Queen-problem-explanation-with-8-queens-in-a-chessboard-of-8_fig3_372415823}
+	\label{fig:nqueenswrong}
+\end{figure}
+
+Secara struktural, permasalahan N-Queens memiliki tiga komponen kendala utama yang harus dipenuhi secara simultan. Pertama, kendala kolom yang memastikan tidak ada dua menteri pada kolom yang sama. Kedua, kendala diagonal positif yang mencegah konflik pada diagonal dengan gradien positif. Ketiga, kendala diagonal negatif yang mencegah konflik pada diagonal dengan gradien negatif. Ketiga kendala ini membentuk sistem pembatasan yang saling berinteraksi, dan pelanggaran terhadap salah satu kendala mengakibatkan konfigurasi menjadi tidak valid. Pada contoh Gambar \ref{fig:nqueenswrong}, ketiga kendala dilanggar, sehingga menjadi salah satu solusi yang tidak valid untuk permasalahan N-Queens pada papan berukuran $8 \times 8$ (8-Queens). Interaksi kompleks antarkendala inilah yang membuat permasalahan ini dapat dimodelkan menggunakan kerangka kerja formal tertentu, yang akan dibahas lebih lanjut pada bagian berikutnya.
+
+Studi literatur juga menekankan bahwa meskipun solusi untuk N-Queens selalu ada untuk $n \geq 4$, struktur solusinya sangat beragam dan sering kali memiliki pola-pola tertentu yang dapat dimanfaatkan. Misalnya, penelitian yang dilakukan oleh Hoffman, Loessi, dan Moore\footnote{E. J. Hoffman, J. C. Loessi, and R. C. Moore, ``Constructions for the Solution of the m Queens Problem,'' \textit{Mathematics Magazine}, vol. 42, no. 2, hal. 66–72, 1969.} yang dikutip dalam survei komprehensif Bell dan Stevens\footnote{J. Bell and B. Stevens, ``A survey of known results and research areas for n-queens,'' \textit{Discrete Mathematics}, vol. 309, no. 1, hal. 1–31, 2009.} menjelaskan bahwa terdapat konstruksi aritmatika eksplisit yang dapat menghasilkan solusi dalam waktu linier $O(n)$ tanpa perlu melakukan eksplorasi ruang pencarian (\textit{search space}) sama sekali. Namun, pendekatan konstruktif deterministik semacam ini tidak berlaku secara umum untuk seluruh varian N-Queens—terutama yang memiliki kendala ireguler seperti pada \textit{Colored Queens}—sehingga algoritma pencarian tetap menjadi pendekatan yang paling banyak digunakan. Selain itu, jumlah solusi unik untuk N-Queens tumbuh secara eksponensial seiring bertambahnya $n$, dengan pola pertumbuhan yang telah menjadi objek kajian dalam teori kombinatorik.
+
+Secara keseluruhan, pemahaman mendalam mengenai sifat dasar N-Queens, karakteristik ruang pencariannya, struktur kendala yang mendasarinya, serta berbagai teknik algoritmik yang digunakan untuk menyelesaikannya memberikan landasan konseptual kuat sebelum mempelajari varian-varian yang lebih kompleks, termasuk Colored Queens yang menjadi fokus tugas akhir ini.
