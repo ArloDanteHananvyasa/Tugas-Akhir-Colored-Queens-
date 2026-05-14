@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  10 MAY 2026 23:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  15 MAY 2026 00:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -665,16 +665,20 @@ LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 93.
 
 (dosen.tex)
-Package hyperref Info: Option `unicode' set `true' on input line 209.
-Package hyperref Info: Option `colorlinks' set `true' on input line 209.
+
+LaTeX Warning: \include should only be used after \begin{document} on input lin
+e 94.
+
+No file ref.bib.
+Package hyperref Info: Option `unicode' set `true' on input line 210.
+Package hyperref Info: Option `colorlinks' set `true' on input line 210.
 \@nomenclaturefile=\write3
 \openout3 = `skripsi.nlo'.
 
-Package nomencl Info: Writing nomenclature file skripsi.nlo on input line 231.
-
+Package nomencl Info: Writing nomenclature file skripsi.nlo on input line 232.
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
-e 267.
+e 268.
 
 (data.tex
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
@@ -1095,29 +1099,137 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@inbox=\box80
 \enit@count@id=\count371
 \enitdp@description=\count372
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2025/06/16 v2.17y AMS math features
+\@mathmargin=\skip118
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks56
+\ex@=\dimen326
 ))
-(skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Lampiran/lampA.aux)
-(Lampiran/lampB.aux))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen327
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count373
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count374
+\leftroot@=\count375
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count376
+\DOTSCASE@=\count377
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box81
+\strutbox@=\box82
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen328
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count378
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count379
+\dotsspace@=\muskip18
+\c@parentequation=\count380
+\dspbrk@lvl=\count381
+\tag@help=\toks57
+\row@=\count382
+\column@=\count383
+\maxfields@=\count384
+\andhelp@=\toks58
+\eqnshift@=\dimen329
+\alignsep@=\dimen330
+\tagshift@=\dimen331
+\tagwidth@=\dimen332
+\totwidth@=\dimen333
+\lineht@=\dimen334
+\@envbody=\toks59
+\multlinegap=\skip119
+\multlinetaggap=\skip120
+\mathdisplay@stack=\toks60
+LaTeX Info: Redefining \[ on input line 2949.
+LaTeX Info: Redefining \] on input line 2950.
+)
+\@LN@amsmath@ams@eqpen=\count385
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen335
+\captionmargin=\dimen336
+\caption@leftmargin=\dimen337
+\caption@rightmargin=\dimen338
+\caption@width=\dimen339
+\caption@indent=\dimen340
+\caption@parindent=\dimen341
+\caption@hangindent=\dimen342
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count386
+\c@continuedfloat=\count387
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count388
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count389
+)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux
+
+LaTeX Warning: Label `subsec:csp-representasi' multiply defined.
+
+
+LaTeX Warning: Label `subsec:csp-colored-queens' multiply defined.
+
+) (Lampiran/lampA.aux) (Lampiran/lampB.aux))
 \openout1 = `skripsi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 270.
-LaTeX Font Info:    ... okay on input line 270.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 271.
+LaTeX Font Info:    ... okay on input line 271.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1153,13 +1265,13 @@ LaTeX Font Info:    ... okay on input line 270.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 270.
-Package microtype Info: Applying patch `item' on input line 270.
-Package microtype Info: Applying patch `toc' on input line 270.
-Package microtype Info: Applying patch `eqnum' on input line 270.
-Package microtype Info: Applying patch `footnote' on input line 270.
-Package microtype Info: Applying patch `verbatim' on input line 270.
-LaTeX Info: Redefining \microtypesetup on input line 270.
+LaTeX Info: Redefining \microtypecontext on input line 271.
+Package microtype Info: Applying patch `item' on input line 271.
+Package microtype Info: Applying patch `toc' on input line 271.
+Package microtype Info: Applying patch `eqnum' on input line 271.
+Package microtype Info: Applying patch `footnote' on input line 271.
+Package microtype Info: Applying patch `verbatim' on input line 271.
+LaTeX Info: Redefining \microtypesetup on input line 271.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1174,7 +1286,7 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-Package hyperref Info: Link coloring ON on input line 270.
+Package hyperref Info: Link coloring ON on input line 271.
 
 (skripsi.out) (skripsi.out)
 \@outlinefile=\write5
@@ -1184,17 +1296,17 @@ Package hyperref Info: Link coloring ON on input line 270.
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
 i
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count373
-\scratchdimen=\dimen326
-\scratchbox=\box81
-\nofMPsegments=\count374
-\nofMParguments=\count375
-\everyMPshowfont=\toks56
-\MPscratchCnt=\count376
-\MPscratchDim=\dimen327
-\MPnumerator=\count377
-\makeMPintoPDFobject=\count378
-\everyMPtoPDFconversion=\toks57
+\scratchcounter=\count390
+\scratchdimen=\dimen343
+\scratchbox=\box83
+\nofMPsegments=\count391
+\nofMParguments=\count392
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count393
+\MPscratchDim=\dimen344
+\MPnumerator=\count394
+\makeMPintoPDFobject=\count395
+\everyMPtoPDFconversion=\toks62
 )
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
 se.sty
@@ -1206,12 +1318,14 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 g
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count379
-Package tocbasic Info: setting babel extension for `lol' on input line 270.
+\c@lstlisting=\count396
+Package tocbasic Info: setting babel extension for `lol' on input line 271.
 
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 \openout2 = `Bab/bab1.aux'.
 
 (Bab/bab1.tex
@@ -1225,37 +1339,43 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-9.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+3.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
+1.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-9.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
+1.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-29.
+31.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-29.
+31.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 29.
+(Font)              <10.95> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 29.
+(Font)              <8> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 29.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+(Font)              <6> on input line 31.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
 
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1264,7 +1384,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
 
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1279,7 +1399,8 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 
 {C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/User/
-AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}])
+AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/User/AppDa
+ta/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}])
 
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
@@ -1289,11 +1410,11 @@ Package microtype Info: Character `029' is missing
 
  (Bab/bab2.tex
 Bab 2.
-<./Gambar/queen_attack_pattern.png, id=75, 903.375pt x 451.6875pt>
+<./Gambar/queen_attack_pattern.png, id=152, 903.375pt x 451.6875pt>
 File: ./Gambar/queen_attack_pattern.png Graphic file (type png)
 <use ./Gambar/queen_attack_pattern.png>
 Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line 
-11.
+17.
 (pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
 
 
@@ -1302,51 +1423,98 @@ Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line
 
 
 
-{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{
-C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C
-:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <./Gam
+{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/U
+sers/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Us
+ers/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc} <./Gam
 bar/queen_attack_pattern.png (PNG copy)>]
-<./Gambar/N_queens_wrong.png, id=86, 396.48125pt x 395.4775pt>
-File: ./Gambar/N_queens_wrong.png Graphic file (type png)
-<use ./Gambar/N_queens_wrong.png>
-Package pdftex.def Info: ./Gambar/N_queens_wrong.png  used on input line 20.
+<./Gambar/N_queens_correct.png, id=169, 396.48125pt x 395.4775pt>
+File: ./Gambar/N_queens_correct.png Graphic file (type png)
+<use ./Gambar/N_queens_correct.png>
+Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 38.
 (pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-2.
 
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+
+[4]
+
+[5{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc
+} <./Gambar/N_queens_correct.png>]
+<./Gambar/Queens_unsolved.png, id=197, 399.74344pt x 402.75468pt>
+File: ./Gambar/Queens_unsolved.png Graphic file (type png)
+<use ./Gambar/Queens_unsolved.png>
+Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 66.
+(pdftex.def)             Requested size: 211.26028pt x 212.85056pt.
+<./Gambar/Queens_solved.png, id=198, 399.74344pt x 402.75468pt>
+File: ./Gambar/Queens_solved.png Graphic file (type png)
+<use ./Gambar/Queens_solved.png>
+Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 73.
+(pdftex.def)             Requested size: 211.26028pt x 212.85056pt.
+
+
+[6]
+
+[7 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>]
+
+[8]
+
+[9]
+
+[10])
+
+[11] (skripsi.bbl
+
+[12
+
+
+
+]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
+.
+ (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 22.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 22.
+
+Underfull \hbox (badness 2221) in paragraph at lines 26--32
+[]\T1/lmr/m/n/10.95 (+20) Hoffman, E. J., Lo-es-si, J., dan Mo-o-re, R. C. (196
+9) Con-stru-ctions for the so-
+ []
+
+
+Underfull \hbox (badness 2856) in paragraph at lines 26--32
+\T1/lmr/m/n/10.95 (+20) lu-tion of the m qu-e-ens pro-blem.  \T1/lmr/m/it/10.95
+ (+20) Ma-the-ma-ti-cs Ma-ga-zi-ne\T1/lmr/m/n/10.95 (+20) , \T1/lmr/bx/n/10.95 
+(+20) 42\T1/lmr/m/n/10.95 (+20) , 66--72.  [][]$\T1/lmtt/m/n/10.95 https :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--32
+\T1/lmtt/m/n/10.95 / / exp-[]blog . com / algorithm / poj / poj3239-[]solution-
+[]to-[]the-[]n-[]queens-[]puzzle / doc /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--32
+\T1/lmtt/m/n/10.95 Constructions % 20for % 20the % 20Solution % 20of % 20the % 
+20m % 20Queens % 20Problem . pdf$[][]
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 47--50
+[]\T1/lmr/m/n/10.95 (+20) Snyder, T. (2013) Star batt-le ru-les and in-fo.  [][
+]$\T1/lmtt/m/n/10.95 https : / / www . gmpuzzles . com / blog /
+ []
+
 )
 
-[4 <./Gambar/N_queens_wrong.png>]
-
-[5] (skripsi.bbl
-
-[6
-
-
-
-]
-
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-)
-
-[7]
+[13]
 \openout2 = `Lampiran/lampA.aux'.
 
  (Lampiran/lampA.tex
 
-[8
+[14
 
 
 ]
@@ -1382,13 +1550,13 @@ LaTeX Font Info:    Font shape `TS1/fvm/m/it' in size <6> not available
 (Font)              Font shape `TS1/fvm/m/sl' tried instead on input line 15.
 ))
 
-[9{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+[15{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
 \openout2 = `Lampiran/lampB.aux'.
 
 
 (Lampiran/lampB.tex
 
-[10
+[16
 
 
 
@@ -1400,44 +1568,49 @@ Package microtype Info: Character `029' is missing
 (microtype)             Ignoring protrusion settings for this character.
 )
 
-[11] (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Lampiran/lampA.aux)
+[17] (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Lampiran/lampA.aux)
 (Lampiran/lampB.aux))
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: 14A5C4ED0D7583C590FC865201112A7D;1486.
+(rerunfilecheck)             Checksum: A57180240501E144AAE5BFAF84CB291F;5380.
  ) 
 Here is how much of TeX's memory you used:
- 40357 strings out of 468133
- 899783 string characters out of 5431196
- 2161119 words of memory out of 5000000
- 68033 multiletter control sequences out of 15000+600000
- 693951 words of font info for 152 fonts, out of 8000000 for 9000
+ 42727 strings out of 468133
+ 941768 string characters out of 5431196
+ 2193689 words of memory out of 5000000
+ 70245 multiletter control sequences out of 15000+600000
+ 697133 words of font info for 190 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 110i,13n,107p,1480b,2189s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 110i,13n,136p,1183b,2285s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmb8a.pfb><C:/
 Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/Users/
 User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmro8a.pfb><C:/Users/User/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb
-><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb>
-<C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb>
-<C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><
-C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:
-/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/U
-sers/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/User
-s/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/U
-ser/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/User
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/User/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb><C:/Users/User/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/User/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/User/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
-Output written on skripsi.pdf (11 pages, 477341 bytes).
+><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb>
+<C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><
+C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><
+C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><
+C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C
+:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:
+/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/U
+sers/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Use
+rs/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/
+User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Use
+r/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/User
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/User/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/User/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on skripsi.pdf (17 pages, 589451 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
- 99 named destinations out of 1000 (max. 500000)
- 38519 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 497 PDF objects out of 1000 (max. 8388607)
+ 141 named destinations out of 1000 (max. 500000)
+ 40737 words of extra memory for PDF output out of 42996 (max. 10000000)
 
