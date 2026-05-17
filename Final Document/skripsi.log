@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  15 MAY 2026 00:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  17 MAY 2026 23:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1202,14 +1202,8 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count388
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count389
-)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux
-
-LaTeX Warning: Label `subsec:csp-representasi' multiply defined.
-
-
-LaTeX Warning: Label `subsec:csp-colored-queens' multiply defined.
-
-) (Lampiran/lampA.aux) (Lampiran/lampB.aux))
+)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Lampiran/lampA.aux)
+(Lampiran/lampB.aux))
 \openout1 = `skripsi.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 271.
@@ -1410,7 +1404,7 @@ Package microtype Info: Character `029' is missing
 
  (Bab/bab2.tex
 Bab 2.
-<./Gambar/queen_attack_pattern.png, id=152, 903.375pt x 451.6875pt>
+<./Gambar/queen_attack_pattern.png, id=144, 903.375pt x 451.6875pt>
 File: ./Gambar/queen_attack_pattern.png Graphic file (type png)
 <use ./Gambar/queen_attack_pattern.png>
 Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line 
@@ -1427,7 +1421,7 @@ Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line
 sers/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Us
 ers/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc} <./Gam
 bar/queen_attack_pattern.png (PNG copy)>]
-<./Gambar/N_queens_correct.png, id=169, 396.48125pt x 395.4775pt>
+<./Gambar/N_queens_correct.png, id=161, 396.48125pt x 395.4775pt>
 File: ./Gambar/N_queens_correct.png Graphic file (type png)
 <use ./Gambar/N_queens_correct.png>
 Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 38.
@@ -1438,12 +1432,12 @@ Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 38.
 
 [5{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc
 } <./Gambar/N_queens_correct.png>]
-<./Gambar/Queens_unsolved.png, id=197, 399.74344pt x 402.75468pt>
+<./Gambar/Queens_unsolved.png, id=189, 399.74344pt x 402.75468pt>
 File: ./Gambar/Queens_unsolved.png Graphic file (type png)
 <use ./Gambar/Queens_unsolved.png>
 Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 66.
 (pdftex.def)             Requested size: 211.26028pt x 212.85056pt.
-<./Gambar/Queens_solved.png, id=198, 399.74344pt x 402.75468pt>
+<./Gambar/Queens_solved.png, id=190, 399.74344pt x 402.75468pt>
 File: ./Gambar/Queens_solved.png Graphic file (type png)
 <use ./Gambar/Queens_solved.png>
 Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 73.
@@ -1458,18 +1452,57 @@ Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 73.
 
 [9]
 
-[10])
+[10]
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 17
+7.
 
-[11] (skripsi.bbl
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `fvm' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 
-[12
+
+[11{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+
+[12]
+<gambar/AC3_start.png, id=291, 976.64874pt x 915.42pt>
+File: gambar/AC3_start.png Graphic file (type png)
+<use gambar/AC3_start.png>
+Package pdftex.def Info: gambar/AC3_start.png  used on input line 231.
+(pdftex.def)             Requested size: 211.26028pt x 198.01273pt.
+<gambar/AC3_end.png, id=292, 732.48656pt x 686.565pt>
+File: gambar/AC3_end.png Graphic file (type png)
+<use gambar/AC3_end.png>
+Package pdftex.def Info: gambar/AC3_end.png  used on input line 237.
+(pdftex.def)             Requested size: 211.26028pt x 198.00923pt.
+
+
+[13 <./gambar/AC3_start.png> <./gambar/AC3_end.png (PNG copy)>]
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+
+
+LaTeX Warning: Reference `chap:implementasi' on page 14 undefined on input line
+ 271.
 
 
 
-]
+[14]
+
+[15])
+
+[16] (skripsi.bbl
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
 .
- (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -1507,36 +1540,23 @@ Underfull \hbox (badness 1817) in paragraph at lines 47--50
 ]$\T1/lmtt/m/n/10.95 https : / / www . gmpuzzles . com / blog /
  []
 
-)
 
-[13]
+
+[17
+
+
+
+])
+
+[18]
 \openout2 = `Lampiran/lampA.aux'.
 
  (Lampiran/lampA.tex
-
-[14
-
-
-]
 Lampiran A.
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-LaTeX Font Info:    Trying to load font information for T1+fvm on input line 18
-.
-
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
-File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `fvm' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <6> not available
 (Font)              Font shape `T1/fvm/m/sl' tried instead on input line 20.
 LaTeX Font Info:    Trying to load font information for TS1+fvm on input line 2
 5.
-
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\ts1fvm.fd
 File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
 )
@@ -1550,25 +1570,24 @@ LaTeX Font Info:    Font shape `TS1/fvm/m/it' in size <6> not available
 (Font)              Font shape `TS1/fvm/m/sl' tried instead on input line 15.
 ))
 
-[15{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+[19
+
+
+]
 \openout2 = `Lampiran/lampB.aux'.
 
+ (Lampiran/lampB.tex
 
-(Lampiran/lampB.tex
-
-[16
+[20
 
 
 
 
 ]
 Lampiran B.
-Package microtype Info: Character `029' is missing
-(microtype)             in font `T1/lmr/m/sc/10.95'.
-(microtype)             Ignoring protrusion settings for this character.
 )
 
-[17] (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Lampiran/lampA.aux)
+[21] (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Lampiran/lampA.aux)
 (Lampiran/lampB.aux))
  ***********
 LaTeX2e <2025-06-01> patch level 1
@@ -1576,19 +1595,19 @@ L3 programming layer <2025-08-13>
  ***********
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: A57180240501E144AAE5BFAF84CB291F;5380.
+(rerunfilecheck)             Checksum: BB6881E5788234B86520DA30D23CE012;4966.
  ) 
 Here is how much of TeX's memory you used:
- 42727 strings out of 468133
- 941768 string characters out of 5431196
- 2193689 words of memory out of 5000000
- 70245 multiletter control sequences out of 15000+600000
- 697133 words of font info for 190 fonts, out of 8000000 for 9000
+ 42893 strings out of 468133
+ 944083 string characters out of 5431196
+ 2200831 words of memory out of 5000000
+ 70327 multiletter control sequences out of 15000+600000
+ 698848 words of font info for 205 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 110i,13n,136p,1183b,2285s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 110i,13n,136p,1185b,2285s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmb8a.pfb><C:/
 Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/Users/
 User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmro8a.pfb><C:/Users/User/
@@ -1608,9 +1627,9 @@ r/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/User
 ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/User/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on skripsi.pdf (17 pages, 589451 bytes).
+Output written on skripsi.pdf (21 pages, 792604 bytes).
 PDF statistics:
- 497 PDF objects out of 1000 (max. 8388607)
- 141 named destinations out of 1000 (max. 500000)
- 40737 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 604 PDF objects out of 1000 (max. 8388607)
+ 195 named destinations out of 1000 (max. 500000)
+ 40731 words of extra memory for PDF output out of 42996 (max. 10000000)
 

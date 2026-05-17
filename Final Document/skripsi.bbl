@@ -59,4 +59,47 @@ Montanari, U. (1974) Networks of constraints: Fundamental properties and
 \newblock \url{http://cse.unl.edu/~choueiry/Documents/Montanari-74.pdf} Diakses
   14 Mei 2026.
 
+\bibitem{kumar1998}
+Kumar, V. (1998) Algorithms for constraint satisfaction problems: A survey.
+\newblock {\em A.I. Mag}, {\bf  13}.
+
+\bibitem{van2006backtracking}
+Van~Beek, P. (2006) Backtracking search algorithms.
+\newblock {\em Handbook of Constraint Programming},  pp. 85--134. Elsevier.
+\newblock \url{https://cs.uwaterloo.ca/~vanbeek/Publications/survey06.pdf}
+  Diakses: 17 Mei 2026.
+
+\bibitem{mackworth1977consistency}
+Mackworth, A.~K. (1977) Consistency in networks of relations.
+\newblock {\em Artificial intelligence}, {\bf  8}, 99--118.
+\newblock \url{https://www.cs.ubc.ca/~mack/Publications/AI77.pdf} Diakses: 17
+  Mei 2026.
+
+\bibitem{mohr1986arc}
+Mohr, R. dan Henderson, T.~C. (1986) Arc and path consistency revisited.
+\newblock {\em Artificial intelligence}, {\bf  28}, 225--233.
+\newblock \url{https://sci-hub.mk/10.1016/0004-3702%2886%2990083-4} Diakses: 17
+  Mei 2026.
+
+\bibitem{bessiere2006constraint}
+Bessiere, C. (2006) Constraint propagation.
+\newblock {\em Handbook of Constraint Programming},  pp. 29--83. Elsevier.
+\newblock
+  \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
+  Diakses: 17 Mei 2026.
+
+\bibitem{blum2003metaheuristics}
+Blum, C. dan Roli, A. (2003) Metaheuristics in combinatorial optimization:
+  Overview and conceptual comparison.
+\newblock {\em ACM computing surveys (CSUR)}, {\bf  35}, 268--308.
+\newblock \url{https://dl.acm.org/doi/epdf/10.1145/937503.937505}Diakses: 17
+  Mei 2026.
+
+\bibitem{hoos2006local}
+Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
+\newblock {\em Handbook of Constraint Programming},  pp. 245--268. Elsevier.
+\newblock
+  \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
+  Diakses: 17 Mei 2026.
+
 \end{thebibliography}
