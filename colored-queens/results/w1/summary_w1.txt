@@ -1,0 +1,66 @@
+=== SUMMARY ===
+
+20x20:
+  Batch 1: 0.00%, PSO Avg = 6022ms, BT Avg = N/A
+  Mean (batch avg): 0.00%, 6022ms
+  Overall (all runs): 0.00%, 6022ms, BT Avg = N/A
+
+7x7:
+  Batch 1: 80.00%, PSO Avg = 548ms, BT Avg = 0ms
+  Batch 2: 82.00%, PSO Avg = 493ms, BT Avg = 0ms
+  Batch 3: 68.00%, PSO Avg = 862ms, BT Avg = 0ms
+  Batch 4: 78.00%, PSO Avg = 598ms, BT Avg = 0ms
+  Batch 5: 66.00%, PSO Avg = 913ms, BT Avg = 0ms
+  Mean (batch avg): 74.80%, 682ms
+  Overall (all runs): 74.80%, 683ms, BT Avg = 0ms
+
+8x8:
+  Batch 1: 32.00%, PSO Avg = 2024ms, BT Avg = 0ms
+  Batch 2: 22.00%, PSO Avg = 2322ms, BT Avg = 0ms
+  Batch 3: 20.00%, PSO Avg = 2403ms, BT Avg = 0ms
+  Batch 4: 24.00%, PSO Avg = 2274ms, BT Avg = 0ms
+  Batch 5: 28.00%, PSO Avg = 2132ms, BT Avg = 0ms
+  Mean (batch avg): 25.20%, 2231ms
+  Overall (all runs): 25.20%, 2231ms, BT Avg = 0ms
+
+9x9:
+  Batch 1: 2.00%, PSO Avg = 3261ms, BT Avg = 0ms
+  Batch 2: 2.00%, PSO Avg = 3258ms, BT Avg = 0ms
+  Batch 3: 8.00%, PSO Avg = 3071ms, BT Avg = 0ms
+  Batch 4: 0.00%, PSO Avg = 3339ms, BT Avg = 0ms
+  Batch 5: 2.00%, PSO Avg = 3279ms, BT Avg = 0ms
+  Mean (batch avg): 2.80%, 3241ms
+  Overall (all runs): 2.80%, 3242ms, BT Avg = 0ms
+
+10x10:
+  Batch 1: 2.00%, PSO Avg = 3597ms, BT Avg = 0ms
+  Batch 2: 2.00%, PSO Avg = 3608ms, BT Avg = 0ms
+  Batch 3: 0.00%, PSO Avg = 3668ms, BT Avg = 0ms
+  Batch 4: 0.00%, PSO Avg = 3686ms, BT Avg = 0ms
+  Batch 5: 2.00%, PSO Avg = 3589ms, BT Avg = 0ms
+  Mean (batch avg): 1.20%, 3629ms
+  Overall (all runs): 1.20%, 3630ms, BT Avg = 0ms
+
+11x11:
+  Batch 1: 0.00%, PSO Avg = 4133ms, BT Avg = 1ms
+  Batch 2: 0.00%, PSO Avg = 4103ms, BT Avg = 0ms
+  Batch 3: 0.00%, PSO Avg = 4111ms, BT Avg = 1ms
+  Batch 4: 0.00%, PSO Avg = 4104ms, BT Avg = 0ms
+  Batch 5: 0.00%, PSO Avg = 4106ms, BT Avg = 0ms
+  Mean (batch avg): 0.00%, 4111ms
+  Overall (all runs): 0.00%, 4111ms, BT Avg = 0ms
+
+12x12:
+  Batch 1: 0.00%, PSO Avg = 4457ms, BT Avg = 1ms
+  Batch 2: 0.00%, PSO Avg = 4412ms, BT Avg = 1ms
+  Batch 3: 0.00%, PSO Avg = 4349ms, BT Avg = 1ms
+  Batch 4: 0.00%, PSO Avg = 4216ms, BT Avg = 1ms
+  Batch 5: 0.00%, PSO Avg = 3967ms, BT Avg = 0ms
+  Mean (batch avg): 0.00%, 4280ms
+  Overall (all runs): 0.00%, 4280ms, BT Avg = 1ms
+
+30x30:
+  Batch 1: 0.00%, PSO Avg = 9235ms, BT Avg = N/A
+  Mean (batch avg): 0.00%, 9235ms
+  Overall (all runs): 0.00%, 9235ms, BT Avg = N/A
+

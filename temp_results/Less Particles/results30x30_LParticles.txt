@@ -1,0 +1,93 @@
+======= 30x30 BOARDS =======
+PSO Parameters: iterations=100000, particles=3000, neighborhoods=100, c1=1.0, c2=1.0, inertia=0.7, w1=1.0, w2=1.0, maxStagnation=500
+
+Level 1:
+  PSO: {[25,24], [18,8], [7,19], [12,11], [27,0], [4,13], [14,6], [24,28], [2,3], [29,7], [28,27], [21,24], [20,2], [29,16], [4,15], [11,25], [13,23], [16,21], [16,10], [9,18], [5,20], [1,18], [26,1], [17,14], [8,29], [9,12], [13,4], [19,26], [3,9], [2,5]}, 6140ms, not valid, fitness = 9.0 (adj = 1, att = 8)
+
+Level 2:
+  Error loading board: Board file not found: boards/30x30_level2.json
+
+Level 3:
+  Error loading board: Board file not found: boards/30x30_level3.json
+
+Level 4:
+  Error loading board: Board file not found: boards/30x30_level4.json
+
+Level 5:
+  Error loading board: Board file not found: boards/30x30_level5.json
+
+Level 6:
+  Error loading board: Board file not found: boards/30x30_level6.json
+
+Level 7:
+  Error loading board: Board file not found: boards/30x30_level7.json
+
+Level 8:
+  Error loading board: Board file not found: boards/30x30_level8.json
+
+Level 9:
+  Error loading board: Board file not found: boards/30x30_level9.json
+
+Level 10:
+  Error loading board: Board file not found: boards/30x30_level10.json
+
+Level 11:
+  Error loading board: Board file not found: boards/30x30_level11.json
+
+Level 12:
+  Error loading board: Board file not found: boards/30x30_level12.json
+
+Level 13:
+  Error loading board: Board file not found: boards/30x30_level13.json
+
+Level 14:
+  Error loading board: Board file not found: boards/30x30_level14.json
+
+Level 15:
+  Error loading board: Board file not found: boards/30x30_level15.json
+
+Level 16:
+  Error loading board: Board file not found: boards/30x30_level16.json
+
+Level 17:
+  Error loading board: Board file not found: boards/30x30_level17.json
+
+Level 18:
+  Error loading board: Board file not found: boards/30x30_level18.json
+
+Level 19:
+  Error loading board: Board file not found: boards/30x30_level19.json
+
+Level 20:
+  Error loading board: Board file not found: boards/30x30_level20.json
+
+Level 21:
+  Error loading board: Board file not found: boards/30x30_level21.json
+
+Level 22:
+  Error loading board: Board file not found: boards/30x30_level22.json
+
+Level 23:
+  Error loading board: Board file not found: boards/30x30_level23.json
+
+Level 24:
+  Error loading board: Board file not found: boards/30x30_level24.json
+
+Level 25:
+  Error loading board: Board file not found: boards/30x30_level25.json
+
+Level 26:
+  Error loading board: Board file not found: boards/30x30_level26.json
+
+Level 27:
+  Error loading board: Board file not found: boards/30x30_level27.json
+
+Level 28:
+  Error loading board: Board file not found: boards/30x30_level28.json
+
+Level 29:
+  Error loading board: Board file not found: boards/30x30_level29.json
+
+Level 30:
+  Error loading board: Board file not found: boards/30x30_level30.json
+

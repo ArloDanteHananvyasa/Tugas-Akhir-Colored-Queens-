@@ -1,0 +1,28 @@
+======= PARAMETER SET SUMMARY: MMParticles =======
+Parameters: iterations=100000, particles=50000, neighborhoods=200, c1=1.0, c2=1.0, inertia=0.7, w1=1.0, w2=1.0, maxStagnation=500
+
+=== SUCCESS RATES ===
+Board Size | PSO Valid Solutions | Backtracking Valid Solutions
+-----------+--------------------+-----------------------------
+7x7        | 30/30 (100.00%)    | 30/30 (100.00%)
+8x8        | 30/30 (100.00%)    | 30/30 (100.00%)
+9x9        | 21/30 (70.00%)     | 30/30 (100.00%)
+10x10      | 11/30 (36.67%)     | 30/30 (100.00%)
+11x11      | 2/30 (6.67%)       | 30/30 (100.00%)
+20x20      | 0/1 (0.00%)        | N/A
+30x30      | 0/1 (0.00%)        | N/A
+-----------+--------------------+-----------------------------
+TOTAL      | 94/152 (61.84%)    | 150/150 (100.00%)
+
+=== AVERAGE SOLVE TIMES ===
+Board Size | PSO Avg Time | Backtracking Avg Time | Time Ratio (PSO/BT)
+-----------+-------------+----------------------+--------------------
+7x7        | 111ms        | 0ms                   | N/A
+8x8        | 141ms        | 0ms                   | N/A
+9x9        | 9522ms       | 0ms                   | N/A
+10x10      | 22102ms      | 0ms                   | N/A
+11x11      | 41386ms      | 1ms                   | 41386.0x slower
+20x20      | 76724ms      | N/A                   | N/A
+30x30      | 117522ms     | N/A                   | N/A
+
+End of Summary

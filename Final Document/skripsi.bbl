@@ -1,0 +1,105 @@
+\begin{thebibliography}{99}
+
+\bibitem{bell2009survey}
+Bell, J. dan Stevens, B. (2009) A survey of known results and research areas
+  for n-queens.
+\newblock {\em Discrete mathematics}, {\bf  309}, 1--31.
+\newblock
+  \url{https://www.sciencedirect.com/science/article/pii/S0012365X07010394#b20}Diakses:
+  2026-05-10.
+
+\bibitem{glock2022n}
+Glock, S., Munh{\'a}~Correia, D., dan Sudakov, B. (2022) The n-queens
+  completion problem.
+\newblock {\em Research in the Mathematical Sciences}, {\bf  9}, 41.
+\newblock \url{https://link.springer.com/article/10.1007/s40687-022-00335-1}
+  Diakses: 2026-05-10.
+
+\bibitem{russell2010artificial}
+Russell, S.~J. (2010) {\em Artificial intelligence a modern approach}. Pearson
+  Education, Inc.,  New Jersey.
+\newblock , Chapter 6
+  \url{http://repo.darmajaya.ac.id/5272/1/Artificial%20Intelligence-A%20Modern%20Approach%20(3rd%20Edition)%20(%20PDFDrive%20).pdf}
+  Diakses: 2026-05-10.
+
+\bibitem{hoffman1969constructions}
+Hoffman, E.~J., Loessi, J., dan Moore, R.~C. (1969) Constructions for the
+  solution of the m queens problem.
+\newblock {\em Mathematics Magazine}, {\bf  42}, 66--72.
+\newblock
+  \url{https://exp-blog.com/algorithm/poj/poj3239-solution-to-the-n-queens-puzzle/doc/Constructions%20for%20the%20Solution%20of%20the%20m%20Queens%20Problem.pdf}
+  Diakses: 2026-05-14.
+
+\bibitem{gent2017complexity}
+Gent, I.~P., Jefferson, C., dan Nightingale, P. (2017) Complexity of n-queens
+  completion.
+\newblock {\em Journal of Artificial Intelligence Research}, {\bf  59},
+  815--848.
+\newblock \url{https://www.jair.org/index.php/jair/article/view/11079/26262}
+  Diakses: 2026-05-14.
+
+\bibitem{linkedin2024queens}
+{LinkedIn} (2024) Play queens game on linkedin.
+\newblock \url{https://www.linkedin.com/help/linkedin/answer/a6269510}.
+\newblock Diakses: 2026-05-14.
+
+\bibitem{gmpuzzles2013starbattle}
+Snyder, T. (2013) Star battle rules and info.
+\newblock \url{https://www.gmpuzzles.com/blog/star-battle-rules-and-info/}.
+\newblock Diakses: 14 Mei 2026.
+
+\bibitem{ali2026quboformulationgeneralizedlinkedin}
+Ali, A.~M. dan Mencia, E. (2026) A qubo formulation for the generalized
+  linkedin queens and takuzu/tango game.
+
+\bibitem{montanari1974networks}
+Montanari, U. (1974) Networks of constraints: Fundamental properties and
+  applications to picture processing.
+\newblock {\em Information sciences}, {\bf  7}, 95--132.
+\newblock \url{http://cse.unl.edu/~choueiry/Documents/Montanari-74.pdf} Diakses
+  14 Mei 2026.
+
+\bibitem{kumar1998}
+Kumar, V. (1998) Algorithms for constraint satisfaction problems: A survey.
+\newblock {\em A.I. Mag}, {\bf  13}.
+
+\bibitem{van2006backtracking}
+Van~Beek, P. (2006) Backtracking search algorithms.
+\newblock {\em Handbook of Constraint Programming},  pp. 85--134. Elsevier.
+\newblock \url{https://cs.uwaterloo.ca/~vanbeek/Publications/survey06.pdf}
+  Diakses: 17 Mei 2026.
+
+\bibitem{mackworth1977consistency}
+Mackworth, A.~K. (1977) Consistency in networks of relations.
+\newblock {\em Artificial intelligence}, {\bf  8}, 99--118.
+\newblock \url{https://www.cs.ubc.ca/~mack/Publications/AI77.pdf} Diakses: 17
+  Mei 2026.
+
+\bibitem{mohr1986arc}
+Mohr, R. dan Henderson, T.~C. (1986) Arc and path consistency revisited.
+\newblock {\em Artificial intelligence}, {\bf  28}, 225--233.
+\newblock \url{https://sci-hub.mk/10.1016/0004-3702%2886%2990083-4} Diakses: 17
+  Mei 2026.
+
+\bibitem{bessiere2006constraint}
+Bessiere, C. (2006) Constraint propagation.
+\newblock {\em Handbook of Constraint Programming},  pp. 29--83. Elsevier.
+\newblock
+  \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
+  Diakses: 17 Mei 2026.
+
+\bibitem{blum2003metaheuristics}
+Blum, C. dan Roli, A. (2003) Metaheuristics in combinatorial optimization:
+  Overview and conceptual comparison.
+\newblock {\em ACM computing surveys (CSUR)}, {\bf  35}, 268--308.
+\newblock \url{https://dl.acm.org/doi/epdf/10.1145/937503.937505}Diakses: 17
+  Mei 2026.
+
+\bibitem{hoos2006local}
+Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
+\newblock {\em Handbook of Constraint Programming},  pp. 245--268. Elsevier.
+\newblock
+  \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
+  Diakses: 17 Mei 2026.
+
+\end{thebibliography}

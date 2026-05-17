@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: skripsi.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: Bab/bab1.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: Bab/bab2.aux
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+The style file: .sty/compj.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Reallocating 'name_of_file' (item size: 1) to 19 items.
+A level-1 auxiliary file: Lampiran/lampA.aux
+Reallocating 'name_of_file' (item size: 1) to 19 items.
+A level-1 auxiliary file: Lampiran/lampB.aux
+Database file #1: referensi.bib
+I was expecting a `,' or a `}'---line 1153 of file referensi.bib
+ :  
+ :  note={\url{https://www.researchgate.net/publication/2513379_Algorithms_for_Constraint_Satisfaction_Problems_A_Survey} Diakses: 17 Mei 2026}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty address in van2006backtracking
+Warning--empty address in bessiere2006constraint
+Warning--empty address in hoos2006local
+You've used 16 entries,
+            1957 wiz_defined-function locations,
+            647 strings with 7799 characters,
+and the built_in function-call counts, 3499 in all, are:
+= -- 343
+> -- 89
+< -- 3
++ -- 27
+- -- 27
+* -- 257
+:= -- 501
+add.period$ -- 48
+call.type$ -- 16
+change.case$ -- 15
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 170
+empty$ -- 404
+format.name$ -- 27
+if$ -- 819
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 14
+newline$ -- 79
+num.names$ -- 16
+pop$ -- 43
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 66
+stack$ -- 0
+substring$ -- 243
+swap$ -- 39
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 40
+width$ -- 0
+write$ -- 187
+(There was 1 error message)
