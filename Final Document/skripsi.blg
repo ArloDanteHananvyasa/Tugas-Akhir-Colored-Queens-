@@ -21,45 +21,54 @@ I'm skipping whatever remains of this entry
 Warning--empty address in van2006backtracking
 Warning--empty address in bessiere2006constraint
 Warning--empty address in hoos2006local
-You've used 16 entries,
+Warning--empty address in kennedy1995particle
+Warning--empty month in kennedy1995particle
+Warning--empty publisher in kennedy1995particle
+Warning--empty address in hu2003swarm
+Warning--empty month in hu2003swarm
+Warning--empty publisher in hu2003swarm
+Warning--empty address in kennedy1997discrete
+Warning--empty month in kennedy1997discrete
+Warning--empty publisher in kennedy1997discrete
+You've used 19 entries,
             1957 wiz_defined-function locations,
-            647 strings with 7799 characters,
-and the built_in function-call counts, 3499 in all, are:
-= -- 343
-> -- 89
-< -- 3
-+ -- 27
-- -- 27
-* -- 257
-:= -- 501
-add.period$ -- 48
-call.type$ -- 16
-change.case$ -- 15
+            670 strings with 8820 characters,
+and the built_in function-call counts, 4822 in all, are:
+= -- 485
+> -- 117
+< -- 6
++ -- 35
+- -- 35
+* -- 359
+:= -- 661
+add.period$ -- 60
+call.type$ -- 19
+change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 170
-empty$ -- 404
-format.name$ -- 27
-if$ -- 819
+cite$ -- 31
+duplicate$ -- 241
+empty$ -- 536
+format.name$ -- 35
+if$ -- 1147
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 14
-newline$ -- 79
-num.names$ -- 16
-pop$ -- 43
+missing$ -- 17
+newline$ -- 94
+num.names$ -- 19
+pop$ -- 63
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 66
+skip$ -- 114
 stack$ -- 0
-substring$ -- 243
-swap$ -- 39
-text.length$ -- 3
+substring$ -- 355
+swap$ -- 76
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 40
+warning$ -- 12
+while$ -- 52
 width$ -- 0
-write$ -- 187
+write$ -- 227
 (There was 1 error message)
