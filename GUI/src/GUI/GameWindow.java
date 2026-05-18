@@ -74,15 +74,17 @@ public class GameWindow extends JFrame {
         // --- Top Panel ---
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
-        topPanel.setBackground(Color.WHITE);
+        topPanel.setBackground(UITheme.CREAM);
         topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
 
         sizeLabel = new JLabel(size + " x " + size);
-        sizeLabel.setFont(new Font("Arial", Font.BOLD, 28));
+        sizeLabel.setFont(UITheme.serif(Font.BOLD, 32));
+        sizeLabel.setForeground(UITheme.PLUM);
         sizeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         levelLabel = new JLabel("Level " + level);
-        levelLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        levelLabel.setFont(UITheme.font(Font.PLAIN, 20));
+        levelLabel.setForeground(UITheme.TEXT_MUTED);
         levelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         topPanel.add(sizeLabel);
@@ -90,7 +92,7 @@ public class GameWindow extends JFrame {
 
         // --- Bottom Panel ---
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        bottomPanel.setBackground(Color.WHITE);
+        bottomPanel.setBackground(UITheme.CREAM);
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
 
         // size dropdown
@@ -120,7 +122,8 @@ public class GameWindow extends JFrame {
 
         // timer
         timerLabel = new JLabel("00:00:000");
-        timerLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        timerLabel.setFont(UITheme.font(Font.BOLD, 22));
+        timerLabel.setForeground(UITheme.TEXT_DARK);
 
         gameTimer = new Timer(20, e -> {
             long elapsed = System.currentTimeMillis() - startTime;
@@ -128,13 +131,11 @@ public class GameWindow extends JFrame {
         });
 
         // hint button
-        JButton hintButton = new JButton("Hint");
-        hintButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        JButton hintButton = UITheme.roundedButton("Hint", false);
         hintButton.addActionListener(e -> giveHint());
 
         // solve button
-        JButton solveButton = new JButton("Solve");
-        solveButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        JButton solveButton = UITheme.roundedButton("Solve", true);
         solveButton.addActionListener(e -> applySolution());
 
         bottomPanel.add(sizeDropdown);
@@ -145,14 +146,14 @@ public class GameWindow extends JFrame {
 
         // --- Board Panel (placeholder until board loads) ---
         boardPanel = new BoardPanel();
-        boardPanel.setBackground(Color.WHITE);
+        boardPanel.setBackground(UITheme.CREAM);
 
         JPanel legendPanel = createLegend();
         legendPanel.setPreferredSize(new Dimension(500, 0));
 
         JPanel leftSpacer = new JPanel();
         leftSpacer.setPreferredSize(new Dimension(500, 0));
-        leftSpacer.setBackground(Color.WHITE);
+        boardPanel.setBackground(UITheme.CREAM);
 
         add(topPanel, BorderLayout.NORTH);
         add(boardPanel, BorderLayout.CENTER);
@@ -245,6 +246,7 @@ public class GameWindow extends JFrame {
         }
         boardPanel.setQueens(queenPlaced);
         boardPanel.repaint();
+        boardPanel.checkViolations();
     }
 
     private void giveHint() {
@@ -298,11 +300,11 @@ public class GameWindow extends JFrame {
     private JPanel createLegend() {
         JPanel legend = new JPanel();
         legend.setLayout(new BoxLayout(legend, BoxLayout.Y_AXIS));
-        legend.setBackground(Color.WHITE);
+        legend.setBackground(UITheme.CREAM);
         legend.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JPanel placedRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-        placedRow.setBackground(Color.WHITE);
+        placedRow.setBackground(UITheme.CREAM);
         placedRow.add(createQueenLabel(boardPanel.queenImageBlack));
         placedRow.add(createQueenLabel(boardPanel.queenImageWhite));
         JLabel placedText = new JLabel("Placed queens (no difference between them)");
@@ -310,7 +312,7 @@ public class GameWindow extends JFrame {
         placedRow.add(placedText);
 
         JPanel errorRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-        errorRow.setBackground(Color.WHITE);
+        errorRow.setBackground(UITheme.CREAM);
         errorRow.add(createQueenLabel(boardPanel.queenImageRed));
         JLabel errorText = new JLabel("Breaks one or more rules");
         errorText.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -502,7 +504,7 @@ public class GameWindow extends JFrame {
             
         }
 
-        private void checkViolations() {
+        public void checkViolations() {
             errorHighlight = new Color[currentSize][currentSize];
 
             // collect all placed queens
@@ -519,8 +521,13 @@ public class GameWindow extends JFrame {
                     int r1 = placed.get(i)[0], c1 = placed.get(i)[1];
                     int r2 = placed.get(j)[0], c2 = placed.get(j)[1];
 
+                    Color color1 = colorGrid[r1][c1];
+                    Color color2 = colorGrid[r2][c2];
+                    boolean sameColor = color1 != null && color1.equals(color2);
+
                     boolean conflict = (r1 == r2 || c1 == c2 ||
-                        (Math.abs(r1 - r2) <= 1 && Math.abs(c1 - c2) <= 1));
+                        (Math.abs(r1 - r2) <= 1 && Math.abs(c1 - c2) <= 1) ||
+                        sameColor);
 
                     if (conflict) {
                         errorHighlight[r1][c1] = new Color(255, 0, 0, 100);

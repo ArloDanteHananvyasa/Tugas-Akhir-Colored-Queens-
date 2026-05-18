@@ -15,10 +15,10 @@ Glock, S., Munh{\'a}~Correia, D., dan Sudakov, B. (2022) The n-queens
 \newblock \url{https://link.springer.com/article/10.1007/s40687-022-00335-1}
   Diakses: 2026-05-10.
 
-\bibitem{russell2010artificial}
-Russell, S.~J. (2010) {\em Artificial intelligence a modern approach}. Pearson
-  Education, Inc.,  New Jersey.
-\newblock , Chapter 6
+\bibitem{russell2020artificial}
+Russell, S.~J. dan Norvig, P. (2020) {\em Artificial Intelligence: A Modern
+  Approach},  4 edition. Pearson Education, Inc.,  New Jersey.
+\newblock Chapter 6.
   \url{http://repo.darmajaya.ac.id/5272/1/Artificial%20Intelligence-A%20Modern%20Approach%20(3rd%20Edition)%20(%20PDFDrive%20).pdf}
   Diakses: 2026-05-10.
 
@@ -101,5 +101,31 @@ Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
 \newblock
   \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
   Diakses: 17 Mei 2026.
+
+\bibitem{kennedy1995particle}
+Kennedy, J. dan Eberhart, R. (1995) Particle swarm optimization.
+\newblock {\em Proceedings of ICNN'95-international conference on neural
+  networks},  pp. 1942--1948. ieee.
+\newblock
+  \url{https://www.cs.tufts.edu/comp/150GA/homeworks/hw3/_reading6%201995%20particle%20swarming.pdf}
+  Diakses: 18 Mei 2026.
+
+\bibitem{hu2003swarm}
+Hu, X., Eberhart, R.~C., dan Shi, Y. (2003) Swarm intelligence for permutation
+  optimization: a case study of n-queens problem.
+\newblock {\em Proceedings of the 2003 IEEE Swarm Intelligence Symposium.
+  SIS'03 (Cat. No. 03EX706)},  pp. 243--246. IEEE.
+\newblock \url{http://www.swarmintelligence.org/papers/SIS2003Permutation.pdf}
+  Diakses: 18 Mei 2026.
+
+\bibitem{kennedy1997discrete}
+Kennedy, J. dan Eberhart, R.~C. (1997) A discrete binary version of the
+  particle swarm algorithm.
+\newblock {\em 1997 IEEE International conference on systems, man, and
+  cybernetics. Computational cybernetics and simulation},  pp. 4104--4108.
+  ieee.
+\newblock
+  \url{https://www.ahmetcevahircinar.com.tr/wp-content/uploads/2017/02/A_discrete_binary_version_of_the_particle_swarm_algorithm.pdf}
+  Diakses: 18 Mei 2026.
 
 \end{thebibliography}

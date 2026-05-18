@@ -172,22 +172,31 @@ Algoritma sistematis untuk CSP adalah algoritma yang menjamin ditemukannya solus
 
 \textit{Backtracking search} adalah algoritma pencarian berbasis \textit{depth-first search} (DFS) yang membangun solusi CSP secara inkremental, satu variabel dalam satu langkah \cite{russell2020artificial}. Pada setiap langkah, algoritma memilih sebuah variabel yang belum diberi nilai, lalu mencoba setiap nilai dalam domain variabel tersebut secara berurutan. Apabila sebuah nilai tidak melanggar kendala apapun terhadap variabel-variabel yang telah ditetapkan sebelumnya, nilai tersebut ditetapkan dan algoritma melanjutkan ke variabel berikutnya secara rekursif. Apabila tidak ada nilai yang konsisten ditemukan untuk variabel saat ini, algoritma mundur (\textit{backtrack}) ke variabel sebelumnya dan mencoba nilai lain dari domain variabel tersebut.
 
-Pseudocode dasar \textit{backtracking search} diperlihatkan pada Listing \ref{lst:backtracking}.
+Pseudocode dasar \textit{backtracking search} diperlihatkan pada Listing \ref{alg:backtracking-csp}.
 
-\begin{lstlisting}[language=Java, caption={Pseudocode Backtracking Search untuk CSP}, label={lst:backtracking}]
-	function BACKTRACK(assignment, csp):
-		if assignment is complete:
-			return assignment
-		var = SELECT_UNASSIGNED_VARIABLE(csp)
-		for each value in ORDER_DOMAIN_VALUES(var, assignment, csp):
-			if value is consistent with assignment:
-			add {var = value} to assignment
-			result = BACKTRACK(assignment, csp)
-			if result != failure:
-				return result
-				remove {var = value} from assignment
-			return failure
-\end{lstlisting}
+\begin{algorithm}[H]
+	\caption{Backtracking Search untuk CSP}
+	\label{alg:backtracking-csp}
+	\begin{algorithmic}[1]
+		\Function{Backtrack}{$assignment, csp$}
+		\If{$assignment$ lengkap}
+		\State \Return $assignment$
+		\EndIf
+		\State $var \gets$ \Call{SelectUnassignedVariable}{$csp$}
+		\For{setiap $value$ dalam \Call{OrderDomainValues}{$var, assignment, csp$}}
+		\If{$value$ konsisten dengan $assignment$}
+		\State Tambahkan $\{var = value\}$ ke $assignment$
+		\State $result \gets$ \Call{Backtrack}{$assignment, csp$}
+		\If{$result \neq failure$}
+		\State \Return $result$
+		\EndIf
+		\State Hapus $\{var = value\}$ dari $assignment$
+		\EndIf
+		\EndFor
+		\State \Return $failure$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
 
 Keunggulan utama \textit{backtracking search} dibandingkan pencarian \textit{brute-force} naif adalah pemangkasan ruang pencarian (\textit{pruning}) yang terjadi secara otomatis: setiap kali penugasan parsial terdeteksi melanggar kendala, seluruh cabang pencarian di bawahnya dieliminasi tanpa perlu dieksplorasi. Secara formal, kompleksitas waktu terburuk dari \textit{backtracking} pada CSP dengan $n$ variabel dan ukuran domain maksimum $d$ adalah $O(d^n)$ \cite{kumar1998}. Meskipun tetap eksponensial, angka ini jauh lebih kecil dibandingkan pencarian lengkap yang mengevaluasi seluruh $d^n$ kombinasi tanpa pemangkasan.
 
@@ -200,18 +209,27 @@ Meskipun heuristik-heuristik tersebut dapat mengurangi jumlah \textit{backtrack}
 
 \textit{Forward checking} adalah teknik propagasi kendala yang diintegrasikan ke dalam \textit{backtracking search} untuk mendeteksi kegagalan lebih awal \cite{van2006backtracking}. Ide dasarnya adalah: setiap kali sebuah variabel $x_i$ diberi nilai $v$, algoritma segera memeriksa seluruh variabel yang belum diberi nilai dan terhubung dengan $x_i$ melalui suatu kendala, lalu menghapus dari domain variabel-variabel tersebut semua nilai yang tidak konsisten dengan penugasan $x_i = v$. Proses ini dilakukan secara langsung pada saat penugasan, bukan menunggu hingga variabel-variabel tersebut giliran diproses.
 
-Pseudocode \textit{forward checking} diperlihatkan pada Listing \ref{lst:forwardchecking}.
+Pseudocode \textit{forward checking} diperlihatkan pada Listing \ref{alg:forwardchecking}.
 
-\begin{lstlisting}[language=Java, caption={Pseudocode Forward Checking}, label={lst:forwardchecking}]
-	function FORWARD_CHECK(var, value, assignment, csp):
-	for each unassigned variable Y constrained with var:
-		for each v in Domain(Y):
-			if v is inconsistent with value given constraint(var, Y):
-				remove v from Domain(Y)
-			if Domain(Y) is empty:
-				return failure
-			return success
-\end{lstlisting}
+\begin{algorithm}[H]
+	\caption{Forward Checking}
+	\label{alg:forwardchecking}
+	\begin{algorithmic}[1]
+		\Function{ForwardCheck}{$var, value, assignment, csp$}
+		\For{setiap variabel $Y$ yang belum ditugaskan dan memiliki kendala dengan $var$}
+		\For{setiap $v \in D_Y$}
+		\If{$v$ tidak konsisten dengan $value$ berdasarkan kendala $(var, Y)$}
+		\State Hapus $v$ dari $D_Y$
+		\EndIf
+		\EndFor
+		\If{$D_Y$ kosong}
+		\State \Return $failure$
+		\EndIf
+		\EndFor
+		\State \Return $success$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
 
 Keuntungan langsung dari \textit{forward checking} adalah kemampuannya untuk mendeteksi \textit{domain wipeout} --- yaitu kondisi di mana domain suatu variabel yang belum ditugaskan menjadi kosong --- jauh sebelum variabel tersebut giliran diproses oleh rekursi. Apabila \textit{domain wipeout} terdeteksi, algoritma dapat segera melakukan \textit{backtrack} tanpa perlu mengeksplorasi cabang-cabang yang dipastikan tidak produktif. Dengan demikian, \textit{forward checking} mengurangi kedalaman pohon pencarian yang perlu dijelajahi sebelum kegagalan ditemukan.
 
@@ -243,28 +261,42 @@ Namun, \textit{forward checking} memiliki keterbatasan fundamental: teknik ini h
 
 Sebuah CSP dikatakan \textit{arc-consistent} secara keseluruhan apabila seluruh \textit{arc} di dalamnya bersifat \textit{arc-consistent}. Perbedaan utama dengan \textit{forward checking} terletak pada cakupan pemeriksaan: \textit{forward checking} hanya memeriksa konsistensi antara variabel yang baru ditugaskan dengan variabel lain, sedangkan \textit{arc consistency} memeriksa konsistensi antara \textit{seluruh} pasangan variabel, termasuk antarsesama variabel yang belum ditugaskan \cite{russell2020artificial}.
 
-Algoritma AC-3 (\textit{Arc Consistency Algorithm \#3}), yang diperkenalkan oleh Mackworth \cite{mackworth1977consistency}, merupakan algoritma standar untuk menegakkan \textit{arc consistency}. AC-3 mengelola sebuah antrean $Q$ yang berisi seluruh \textit{arc} yang perlu diperiksa konsistensinya. Untuk setiap \textit{arc} $(x_i, x_j)$ yang diambil dari antrean, fungsi \textsc{Revise} memeriksa apakah ada nilai dalam $D_i$ yang tidak memiliki \textit{support} di $D_j$; nilai-nilai tanpa \textit{support} dihapus dari $D_i$. Apabila $D_i$ berubah (ada penghapusan), maka seluruh \textit{arc} $(x_k, x_i)$ untuk setiap tetangga $x_k$ dari $x_i$ (selain $x_j$) ditambahkan kembali ke antrean, karena penghapusan nilai dari $D_i$ berpotensi membuat beberapa nilai di $D_k$ kehilangan \textit{support}-nya. Proses berlanjut hingga antrean kosong (\textit{arc consistency} tercapai) atau domain suatu variabel menjadi kosong (inkonsistensi terdeteksi). Pseudocode AC-3 diperlihatkan pada Listing \ref{lst:ac3}.
+Algoritma AC-3 (\textit{Arc Consistency Algorithm \#3}), yang diperkenalkan oleh Mackworth \cite{mackworth1977consistency}, merupakan algoritma standar untuk menegakkan \textit{arc consistency}. AC-3 mengelola sebuah antrean $Q$ yang berisi seluruh \textit{arc} yang perlu diperiksa konsistensinya. Untuk setiap \textit{arc} $(x_i, x_j)$ yang diambil dari antrean, fungsi \textsc{Revise} memeriksa apakah ada nilai dalam $D_i$ yang tidak memiliki \textit{support} di $D_j$; nilai-nilai tanpa \textit{support} dihapus dari $D_i$. Apabila $D_i$ berubah (ada penghapusan), maka seluruh \textit{arc} $(x_k, x_i)$ untuk setiap tetangga $x_k$ dari $x_i$ (selain $x_j$) ditambahkan kembali ke antrean, karena penghapusan nilai dari $D_i$ berpotensi membuat beberapa nilai di $D_k$ kehilangan \textit{support}-nya. Proses berlanjut hingga antrean kosong (\textit{arc consistency} tercapai) atau domain suatu variabel menjadi kosong (inkonsistensi terdeteksi). Pseudocode AC-3 diperlihatkan pada Listing \ref{alg:ac3}.
 
-\begin{lstlisting}[language=Java, caption={Pseudocode Algoritma AC-3}, label={lst:ac3}]
-	function AC3(csp):
-	Q = {all arcs (Xi, Xj) in csp}
-	while Q is not empty:
-		(Xi, Xj) = REMOVE_FROM_QUEUE(Q)
-		if REVISE(csp, Xi, Xj):
-		if Domain(Xi) is empty:
-			return false
-		for each Xk that is a neighbor of Xi, Xk != Xj:
-			add (Xk, Xi) to Q
-		return true
-	
-	function REVISE(csp, Xi, Xj):
-	revised = false
-	for each v in Domain(Xi):
-		if no value w in Domain(Xj) satisfies constraint(Xi, Xj):
-			remove v from Domain(Xi)
-			revised = true
-		return revised
-\end{lstlisting}
+\begin{algorithm}[H]
+	\caption{Algoritma AC-3}
+	\label{alg:ac3}
+	\begin{algorithmic}[1]
+		\Function{AC3}{$csp$}
+		\State $Q \gets$ seluruh busur $(X_i, X_j)$ dalam $csp$
+		\While{$Q$ tidak kosong}
+		\State $(X_i, X_j) \gets$ \Call{RemoveFromQueue}{$Q$}
+		\If{\Call{Revise}{$csp, X_i, X_j$}}
+		\If{$D_{X_i}$ kosong}
+		\State \Return \textbf{false}
+		\EndIf
+		\For{setiap $X_k$ tetangga $X_i$, $X_k \neq X_j$}
+		\State Tambahkan $(X_k, X_i)$ ke $Q$
+		\EndFor
+		\EndIf
+		\EndWhile
+		\State \Return \textbf{true}
+		\EndFunction
+		
+		\vspace{0.5em}
+		
+		\Function{Revise}{$csp, X_i, X_j$}
+		\State $revised \gets$ \textbf{false}
+		\For{setiap $v \in D_{X_i}$}
+		\If{tidak ada nilai $w \in D_{X_j}$ yang memenuhi kendala $(X_i, X_j)$}
+		\State Hapus $v$ dari $D_{X_i}$
+		\State $revised \gets$ \textbf{true}
+		\EndIf
+		\EndFor
+		\State \Return $revised$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
 
 Kompleksitas waktu AC-3 adalah $O(cd^3)$, di mana $c$ adalah jumlah kendala (\textit{arc}) dan $d$ adalah ukuran maksimum domain \cite{mackworth1977consistency}. Analisisnya adalah sebagai berikut: setiap \textit{arc} dapat dimasukkan ke dalam antrean paling banyak $d$ kali (karena setiap kali \textit{arc} diproses ulang, setidaknya satu nilai telah dihapus dari domain terkait), dan setiap pemanggilan fungsi \textsc{Revise} memerlukan waktu $O(d^2)$ untuk memeriksa setiap pasangan nilai. Meskipun terdapat algoritma yang lebih efisien seperti AC-4 dengan kompleksitas optimal $O(cd^2)$ \cite{mohr1986arc}, AC-3 tetap menjadi pilihan yang paling banyak digunakan dalam praktik karena kesederhanaan implementasinya dan \textit{overhead} per-operasi yang rendah.
 
@@ -290,8 +322,6 @@ Secara umum, \textit{metaheuristic} dapat diklasifikasikan berdasarkan beberapa 
 
 Dalam konteks penyelesaian \textit{Constraint Satisfaction Problem} (CSP), penggunaan \textit{metaheuristic} memerlukan reformulasi masalah dari paradigma ``cari penugasan yang memenuhi seluruh kendala'' menjadi paradigma ``minimisasi jumlah pelanggaran kendala'' \cite{hoos2006local}. Dengan kata lain, CSP ditransformasikan menjadi \textit{Constraint Optimization Problem} (COP) di mana fungsi objektif (\textit{fitness function}) mengukur seberapa banyak kendala yang dilanggar oleh suatu solusi kandidat. Solusi valid dalam CSP asli berkorespondensi dengan solusi yang memiliki nilai \textit{fitness} nol --- yaitu, tidak ada kendala yang dilanggar. Reformulasi ini memungkinkan penerapan \textit{metaheuristic} yang pada awalnya dirancang untuk masalah optimasi kontinu ke permasalahan kombinatorik diskrit seperti \textit{Colored Queens}, meskipun diperlukan adaptasi representasi solusi dan operator pencarian sebagaimana akan dibahas pada bagian berikutnya.
 
-\subsubsection{Particle Swarm Optimization}
-\label{subsubsec:pso}
 \subsubsection{Particle Swarm Optimization (PSO)}
 \label{subsubsec:pso}
 
@@ -319,7 +349,7 @@ Persamaan \ref{eq:pso-velocity} menggabungkan tiga komponen pergerakan: (1) \tex
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{gambar/pso_single.png}
+	\includegraphics[width=0.5\textwidth]{gambar/pso_single.png}
 	\caption{Ilustrasi perpindahan satu partikel berdasarkan \textit{velocity} baru yang dipengaruhi oleh \textit{personal best} dan \textit{global best}.}
 	\label{fig:pso-single}
 	% Sumber: https://www.baeldung.com/cs/pso
@@ -327,7 +357,7 @@ Persamaan \ref{eq:pso-velocity} menggabungkan tiga komponen pergerakan: (1) \tex
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\textwidth]{gambar/psoflow.png}
+	\includegraphics[width=0.4\textwidth]{gambar/psoflow.png}
 	\caption{Diagram alir algoritma PSO.}
 	\label{fig:pso-flowchart}
 \end{figure}
