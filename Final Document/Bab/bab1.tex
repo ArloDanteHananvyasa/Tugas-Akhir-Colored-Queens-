@@ -28,16 +28,53 @@ Selanjutnya, tujuan dari tugas akhir ini dapat dirumuskan sebagai berikut:
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
+
+Untuk menjaga fokus dan ruang lingkup penelitian, berikut adalah batasan-batasan yang diterapkan dalam tugas akhir ini:
+
+\begin{enumerate}
+	\item Permainan yang menjadi objek penelitian adalah \textit{Colored Queens} dengan aturan sebagaimana didefinisikan pada Bagian \ref{subsec:colored-queens-definisi}, yaitu: satu menteri per sektor warna, satu menteri per baris, satu menteri per kolom, dan tidak ada dua menteri yang bertetangga secara langsung dalam delapan arah.
+	\item Ukuran papan yang digunakan dalam pengujian berkisar dari $7 \times 7$ hingga $30 \times 30$. Papan berukuran lebih kecil dari $7 \times 7$ tidak diuji karena kompleksitasnya terlalu rendah untuk menunjukkan perbedaan kinerja antaralgoritma, sedangkan papan berukuran lebih besar dari $30 \times 30$ tidak diuji karena keterbatasan ketersediaan data.
+	\item Dataset puzzle bersumber dari situs \textit{playqueensgame.com} dan diperoleh melalui proses \textit{web scraping}. Validitas dan keunikan solusi setiap puzzle bergantung pada sumber data tersebut.
+	\item Algoritma penyelesaian yang diimplementasikan dan dibandingkan terbatas pada dua pendekatan: \textit{backtracking} dengan \textit{forward checking} dan AC-3 sebagai pendekatan deterministik, serta \textit{Particle Swarm Optimization} (PSO) diskrit sebagai pendekatan \textit{metaheuristic}. Algoritma penyelesaian lainnya tidak dibahas.
+	\item Aplikasi permainan dibangun menggunakan Java Swing (JFrame) sebagai \textit{desktop application}. Aplikasi tidak berbasis web dan tidak dirancang untuk penggunaan \textit{multiplatform}.
+	\item Solver yang diintegrasikan ke dalam aplikasi permainan hanya solver \textit{backtracking}. Solver PSO digunakan secara terpisah untuk keperluan eksperimen dan perbandingan.
+	\item Pengujian kinerja dilakukan pada satu lingkungan perangkat keras yang konsisten. Hasil pengujian dapat bervariasi pada perangkat keras yang berbeda.
+\end{enumerate}
 
 \section{Metodologi}
 \label{sec:metlit}
-Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
 
-\dtext{9}
+Metodologi yang digunakan dalam penelitian ini terdiri atas tahapan-tahapan berikut:
+
+\begin{enumerate}
+	\item \textbf{Studi literatur.} Melakukan kajian terhadap teori dan penelitian terdahulu yang berkaitan dengan permasalahan N-Queens dan variannya, pemodelan \textit{Constraint Satisfaction Problem} (CSP), algoritma \textit{backtracking} beserta teknik pemangkasan (\textit{forward checking} dan AC-3), serta algoritma \textit{Particle Swarm Optimization} dan adaptasinya untuk domain diskrit.
+	
+	\item \textbf{Pengumpulan data.} Mengumpulkan dataset puzzle \textit{Colored Queens} dari situs \textit{playqueensgame.com} melalui \textit{web scraping} menggunakan \textit{Selenium WebDriver}. Dataset mencakup 250 level untuk setiap ukuran papan standar ($7 \times 7$ hingga $12 \times 12$) serta masing-masing 1 level untuk ukuran $20 \times 20$ dan $30 \times 30$, sehingga totalnya berjumlah 1.502 puzzle.
+	
+	\item \textbf{Pemodelan permasalahan.} Memodelkan permasalahan \textit{Colored Queens} sebagai \textit{Constraint Satisfaction Problem} dengan mendefinisikan variabel, domain, dan kendala yang sesuai dengan aturan permainan.
+	
+	\item \textbf{Perancangan dan implementasi algoritma.} Merancang dan mengimplementasikan dua solver secara terpisah: solver \textit{backtracking} dengan \textit{forward checking} dan AC-3, serta solver PSO diskrit dengan topologi \textit{neighborhood} dan fungsi \textit{fitness} berbasis penalti pelanggaran kendala.
+	
+	\item \textbf{Perancangan dan implementasi aplikasi.} Merancang dan mengimplementasikan aplikasi permainan \textit{Colored Queens} berbasis Java Swing yang mengintegrasikan solver \textit{backtracking} untuk fitur \textit{hint} dan \textit{auto-solve}, serta menyediakan antarmuka interaktif bagi pengguna.
+	
+	\item \textbf{Pengujian dan analisis.} Menjalankan kedua solver pada seluruh dataset dengan berbagai konfigurasi parameter, kemudian menganalisis dan membandingkan kinerja berdasarkan metrik waktu eksekusi, tingkat keberhasilan, jumlah langkah/iterasi, dan nilai \textit{fitness} akhir.
+	
+	\item \textbf{Penarikan kesimpulan.} Menyusun kesimpulan berdasarkan hasil analisis perbandingan serta mengidentifikasi kelebihan, keterbatasan, dan arah pengembangan dari masing-masing pendekatan.
+\end{enumerate}
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
+
+Tugas akhir ini disusun dalam lima bab dengan sistematika sebagai berikut:
+
+\begin{enumerate}
+	\item \textbf{Bab 1 Pendahuluan.} Memuat latar belakang permasalahan, rumusan masalah, tujuan penelitian, batasan masalah, metodologi, dan sistematika pembahasan.
+	
+	\item \textbf{Bab 2 Landasan Teori.} Membahas teori-teori yang mendasari penelitian, meliputi permasalahan N-Queens dan variannya (\textit{Colored Queens}), \textit{Constraint Satisfaction Problem} (CSP), algoritma \textit{backtracking} beserta teknik \textit{forward checking} dan AC-3, serta \textit{Particle Swarm Optimization} dan adaptasinya untuk domain diskrit.
+	
+	\item \textbf{Bab 3 Metodologi Penelitian.} Menjelaskan gambaran umum penelitian, pemodelan permasalahan \textit{Colored Queens} sebagai CSP, perancangan kedua algoritma solver, perancangan perangkat lunak dan antarmuka pengguna, serta skenario dan metode pengujian yang digunakan.
+	
+	\item \textbf{Bab 4 Hasil dan Pembahasan.} Menyajikan hasil pengujian kedua solver pada seluruh dataset, analisis pengaruh variasi parameter PSO terhadap kinerja, perbandingan langsung antara solver \textit{backtracking} dan PSO, serta implementasi aplikasi permainan.
+	
+	\item \textbf{Bab 5 Penutup.} Memuat kesimpulan yang menjawab rumusan masalah berdasarkan hasil analisis, serta saran untuk pengembangan lebih lanjut.
+\end{enumerate}
