@@ -231,7 +231,7 @@ Pseudocode \textit{forward checking} diperlihatkan pada Listing \ref{alg:forward
 	\end{algorithmic}
 \end{algorithm}
 
-Keuntungan langsung dari \textit{forward checking} adalah kemampuannya untuk mendeteksi \textit{domain wipeout} --- yaitu kondisi di mana domain suatu variabel yang belum ditugaskan menjadi kosong --- jauh sebelum variabel tersebut giliran diproses oleh rekursi. Apabila \textit{domain wipeout} terdeteksi, algoritma dapat segera melakukan \textit{backtrack} tanpa perlu mengeksplorasi cabang-cabang yang dipastikan tidak produktif. Dengan demikian, \textit{forward checking} mengurangi kedalaman pohon pencarian yang perlu dijelajahi sebelum kegagalan ditemukan.
+Keuntungan langsung dari \textit{forward checking} adalah kemampuannya untuk mendeteksi \textit{domain wipeout}, yaitu kondisi di mana domain suatu variabel yang belum ditugaskan menjadi kosong, jauh sebelum variabel tersebut giliran diproses oleh rekursi. Apabila \textit{domain wipeout} terdeteksi, algoritma dapat segera melakukan \textit{backtrack} tanpa perlu mengeksplorasi cabang-cabang yang dipastikan tidak produktif. Dengan demikian, \textit{forward checking} mengurangi kedalaman pohon pencarian yang perlu dijelajahi sebelum kegagalan ditemukan.
 
 Dalam konteks \textit{Colored Queens}, \textit{forward checking} bekerja sebagai berikut: ketika sebuah menteri ditempatkan pada posisi $(r, c)$ di sektor warna tertentu, algoritma segera memindai domain seluruh sektor warna yang belum diproses dan menghapus setiap posisi yang berada pada baris $r$, kolom $c$, atau sel-sel yang bertetangga (\textit{adjacent}) dengan $(r, c)$. Mengingat \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete} sebagaimana dibahas pada Bagian \ref{subsec:csp-colored-queens}, setiap penugasan memengaruhi domain seluruh variabel lainnya, sehingga \textit{forward checking} memberikan dampak reduksi yang substansial pada setiap langkah.
 
@@ -308,7 +308,7 @@ Dalam konteks penyelesaian CSP berbasis \textit{backtracking}, AC-3 digunakan se
 \subsubsection{Konsep Umum Metaheuristic}
 \label{subsubsec:metaheuristic-konsep}
 
-\textit{Metaheuristic} adalah kerangka kerja algoritma tingkat tinggi yang dirancang untuk memandu proses pencarian solusi pada masalah optimasi yang ruang pencariannya terlalu besar atau terlalu kompleks untuk dijelajahi secara sistematis \cite{blum2003metaheuristics}. Istilah ini berasal dari gabungan kata Yunani \textit{meta} (``di atas'') dan \textit{heuriskein} (``menemukan''), yang secara harfiah berarti ``strategi pencarian tingkat tinggi.'' Berbeda dengan algoritma sistematis yang dibahas pada Bagian \ref{subsec:algoritma-sistematis}, \textit{metaheuristic} bersifat \textit{incomplete}: tidak ada jaminan bahwa solusi optimal --- atau bahkan solusi valid sekalipun --- akan selalu ditemukan. Sebagai gantinya, \textit{metaheuristic} menawarkan kemampuan untuk menavigasi ruang solusi yang sangat besar secara efisien, dengan harapan menemukan solusi yang cukup baik dalam waktu yang jauh lebih singkat dibandingkan pencarian eksak.
+\textit{Metaheuristic} adalah kerangka kerja algoritma tingkat tinggi yang dirancang untuk memandu proses pencarian solusi pada masalah optimasi yang ruang pencariannya terlalu besar atau terlalu kompleks untuk dijelajahi secara sistematis \cite{blum2003metaheuristics}. Istilah ini berasal dari gabungan kata Yunani \textit{meta} (``di atas'') dan \textit{heuriskein} (``menemukan''), yang secara harfiah berarti ``strategi pencarian tingkat tinggi.'' Berbeda dengan algoritma sistematis yang dibahas pada Bagian \ref{subsec:algoritma-sistematis}, \textit{metaheuristic} bersifat \textit{incomplete}: tidak ada jaminan bahwa solusi optimal, atau bahkan solusi valid sekalipun, akan selalu ditemukan. Sebagai gantinya, \textit{metaheuristic} menawarkan kemampuan untuk menavigasi ruang solusi yang sangat besar secara efisien, dengan harapan menemukan solusi yang cukup baik dalam waktu yang jauh lebih singkat dibandingkan pencarian eksak.
 
 Karakteristik utama yang membedakan \textit{metaheuristic} dari pencarian lokal sederhana (\textit{simple local search}) adalah adanya mekanisme untuk menghindari jebakan \textit{local optimum} \cite{blum2003metaheuristics}. Pencarian lokal sederhana, seperti \textit{hill climbing}, rentan terjebak pada solusi yang optimal secara lokal tetapi bukan optimal secara global, karena algoritma berhenti begitu tidak ada tetangga yang lebih baik dari solusi saat ini. \textit{Metaheuristic} mengatasi keterbatasan ini melalui berbagai mekanisme, antara lain penerimaan solusi yang sementara lebih buruk (seperti pada \textit{Simulated Annealing}), penggunaan memori terhadap solusi-solusi yang telah dikunjungi (seperti pada \textit{Tabu Search}), atau pemanfaatan populasi solusi yang berinteraksi satu sama lain (seperti pada \textit{Genetic Algorithm} dan \textit{Particle Swarm Optimization}).
 
@@ -320,7 +320,7 @@ Secara umum, \textit{metaheuristic} dapat diklasifikasikan berdasarkan beberapa 
 	\item \textbf{Terinspirasi alam vs non-terinspirasi alam.} Banyak \textit{metaheuristic} terinspirasi dari fenomena biologis atau fisika, seperti evolusi genetik (GA), perilaku kawanan (PSO), dan pendinginan logam (\textit{Simulated Annealing}). Meskipun inspirasi alam memberikan intuisi yang berguna, efektivitas algoritma pada akhirnya bergantung pada mekanisme komputasional yang mendasarinya, bukan pada kesetiaan terhadap analogi biologis.
 \end{enumerate}
 
-Dalam konteks penyelesaian \textit{Constraint Satisfaction Problem} (CSP), penggunaan \textit{metaheuristic} memerlukan reformulasi masalah dari paradigma ``cari penugasan yang memenuhi seluruh kendala'' menjadi paradigma ``minimisasi jumlah pelanggaran kendala'' \cite{hoos2006local}. Dengan kata lain, CSP ditransformasikan menjadi \textit{Constraint Optimization Problem} (COP) di mana fungsi objektif (\textit{fitness function}) mengukur seberapa banyak kendala yang dilanggar oleh suatu solusi kandidat. Solusi valid dalam CSP asli berkorespondensi dengan solusi yang memiliki nilai \textit{fitness} nol --- yaitu, tidak ada kendala yang dilanggar. Reformulasi ini memungkinkan penerapan \textit{metaheuristic} yang pada awalnya dirancang untuk masalah optimasi kontinu ke permasalahan kombinatorik diskrit seperti \textit{Colored Queens}, meskipun diperlukan adaptasi representasi solusi dan operator pencarian sebagaimana akan dibahas pada bagian berikutnya.
+Dalam konteks penyelesaian \textit{Constraint Satisfaction Problem} (CSP), penggunaan \textit{metaheuristic} memerlukan reformulasi masalah dari paradigma ``cari penugasan yang memenuhi seluruh kendala'' menjadi paradigma ``minimisasi jumlah pelanggaran kendala'' \cite{hoos2006local}. Dengan kata lain, CSP ditransformasikan menjadi \textit{Constraint Optimization Problem} (COP) di mana fungsi objektif (\textit{fitness function}) mengukur seberapa banyak kendala yang dilanggar oleh suatu solusi kandidat. Solusi valid dalam CSP asli berkorespondensi dengan solusi yang memiliki nilai \textit{fitness} nol, yaitu tidak ada kendala yang dilanggar. Reformulasi ini memungkinkan penerapan \textit{metaheuristic} yang pada awalnya dirancang untuk masalah optimasi kontinu ke permasalahan kombinatorik diskrit seperti \textit{Colored Queens}, meskipun diperlukan adaptasi representasi solusi dan operator pencarian sebagaimana akan dibahas pada bagian berikutnya.
 
 \subsubsection{Particle Swarm Optimization (PSO)}
 \label{subsubsec:pso}
@@ -406,26 +406,30 @@ Dari segi penggunaan memori, algoritma \textit{backtracking} bekerja pada satu c
 
 Tabel \ref{tab:complete-vs-meta} merangkum perbandingan kedua kategori pendekatan.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{lp{5.5cm}p{5.5cm}}
 	\caption{Perbandingan algoritma \textit{complete} dan \textit{metaheuristic}}
-	\label{tab:complete-vs-meta}
-	\begin{tabular}{|l|p{5.5cm}|p{5.5cm}|}
-		\hline
-		\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
-		\hline
-		Jaminan solusi & Ya --- menemukan solusi jika ada, membuktikan ketiadaan jika tidak ada & Tidak --- dapat gagal menemukan solusi yang ada \\
-		\hline
-		Kompleksitas waktu & Eksponensial terburuk $O(d^n)$, namun propagasi kendala mereduksi secara signifikan & Terkontrol oleh parameter (iterasi $\times$ partikel), namun tanpa jaminan kualitas \\
-		\hline
-		Penggunaan memori & Polinomial $O(nd)$ & Polinomial $O(Pn)$ \\
-		\hline
-		Skalabilitas & Menurun pada instansi besar akibat ledakan kombinatorik & Lebih stabil, namun kualitas solusi menurun \\
-		\hline
-		Determinisme & Deterministik (hasil konsisten) & Stokastik (hasil bervariasi antareksekusi) \\
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:complete-vs-meta} \\
+	\toprule
+	\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Jaminan solusi & Ya - menemukan solusi jika ada, membuktikan ketiadaan jika tidak ada & Tidak - dapat gagal menemukan solusi yang ada \\
+	\midrule
+	Kompleksitas waktu & Eksponensial terburuk $O(d^n)$, namun propagasi kendala mereduksi secara signifikan & Terkontrol oleh parameter (iterasi $\times$ partikel), namun tanpa jaminan kualitas \\
+	\midrule
+	Penggunaan memori & Polinomial $O(nd)$ & Polinomial $O(Pn)$ \\
+	\midrule
+	Skalabilitas & Menurun pada instansi besar akibat ledakan kombinatorik & Lebih stabil, namun kualitas solusi menurun \\
+	\midrule
+	Determinisme & Deterministik (hasil konsisten) & Stokastik (hasil bervariasi antareksekusi) \\
+	\bottomrule
+\end{longtable}
 
 \subsection{Backtracking+FC+AC-3 vs PSO untuk Colored Queens}
 \label{subsec:perbandingan-bt-pso}
@@ -445,4 +449,4 @@ Pemilihan \textit{backtracking} dengan \textit{forward checking} dan AC-3 sebaga
 
 Pemilihan PSO sebagai pendekatan \textit{metaheuristic} didasarkan pada pertimbangan berikut. Pertama, PSO memiliki struktur yang relatif sederhana dengan sedikit parameter dibandingkan \textit{metaheuristic} lainnya seperti \textit{Genetic Algorithm} yang memerlukan operator \textit{crossover} dan \textit{mutation} \cite{kennedy1995particle}. Kedua, adaptasi PSO untuk masalah diskrit telah menunjukkan hasil yang menjanjikan pada masalah N-Queens tradisional \cite{hu2003swarm}, sehingga menarik untuk mengevaluasi efektivitasnya pada varian \textit{Colored Queens} yang memiliki kendala tambahan. Ketiga, topologi \textit{local best} (lBest) yang digunakan memberikan mekanisme natural untuk menjaga diversitas populasi dan mengurangi risiko konvergensi prematur, yang merupakan pertimbangan penting pada masalah dengan banyak \textit{local optima}.
 
-Perbandingan kedua pendekatan ini diharapkan memberikan wawasan mengenai \textit{trade-off} antara kelengkapan solusi dan efisiensi waktu pada permasalahan \textit{Colored Queens} dengan berbagai ukuran papan, mulai dari ukuran kecil ($7 \times 7$) hingga besar ($30 \times 30$). Hasil pengujian dan analisis empiris akan disajikan pada Bab \ref{chap:pengujian}.
+Perbandingan kedua pendekatan ini diharapkan memberikan wawasan mengenai \textit{trade-off} antara kelengkapan solusi dan efisiensi waktu pada permasalahan \textit{Colored Queens} dengan berbagai ukuran papan, mulai dari ukuran kecil ($7 \times 7$) hingga besar ($30 \times 30$). Hasil pengujian dan analisis empiris akan disajikan pada Bab \ref{chap:implementasi}.

@@ -1,0 +1,32 @@
+\babel@toc {bahasa}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidak menteri.}}{5}{figure.caption.3}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Contoh solusi valid permasalahan 8-Queens. Panah hijau menandakan jangkauan serangan salah satu menteri; tidak ada menteri lain yang berada pada baris, kolom, ataupun diagonal yang sama.}}{7}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Contoh papan permainan \textit {Colored Queens} berukuran $8 \times 8$ dengan 8 sektor warna. Setiap sektor membentuk wilayah terhubung, dan solusi menempatkan tepat satu menteri per baris, kolom, dan sektor warna tanpa ada dua menteri yang bertetangga.}}{9}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Contoh propagasi AC-3 pada \textit {constraint graph} dengan lima variabel. Sebelum propagasi (a), domain variabel masih lebar. Setelah AC-3 diterapkan (b), nilai-nilai yang tidak memiliki \textit {support} dieliminasi, menghasilkan domain yang jauh lebih kecil.}}{16}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ilustrasi perpindahan satu partikel berdasarkan \textit {velocity} baru yang dipengaruhi oleh \textit {personal best} dan \textit {global best}.}}{20}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Diagram alir algoritma PSO.}}{20}{figure.caption.14}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Alur kerja penelitian secara keseluruhan.}}{26}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Arsitektur sistem yang menunjukkan hubungan antara modul data, modul solver, dan modul antarmuka.}}{44}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Alur interaksi pengguna pada aplikasi \textit {Colored Queens}.}}{46}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Rancangan halaman utama (\textit {Homepage}).}}{47}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Rancangan halaman pemilihan level (\textit {Level Selector}).}}{48}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Rancangan halaman permainan (\textit {Game Window}).}}{48}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Tampilan papan setelah solver menerapkan solusi lengkap.}}{49}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Tampilan peringatan pelanggaran kendala \textit {adjacency}.}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Tampilan peringatan pelanggaran kendala kesamaan warna.}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Tampilan peringatan pelanggaran kendala baris.}}{50}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Tampilan peringatan pelanggaran kendala kolom.}}{51}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Tampilan fitur \textit {hint}: sorotan posisi yang benar.}}{51}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Tampilan fitur \textit {hint}: sorotan posisi salah dan posisi benar.}}{52}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Rancangan tampilan kemenangan.}}{52}{figure.caption.35}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Hasil 1}}{81}{figure.caption.58}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Hasil 2}}{81}{figure.caption.59}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Hasil 3}}{81}{figure.caption.60}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Hasil 4}}{81}{figure.caption.61}%

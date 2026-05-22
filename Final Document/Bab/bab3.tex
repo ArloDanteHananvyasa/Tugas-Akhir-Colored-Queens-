@@ -4,7 +4,7 @@
 \section{Gambaran Umum Penelitian}
 \label{sec:gambaran-umum}
 
-Tugas akhir ini bertujuan untuk merancang, mengimplementasikan, dan membandingkan dua pendekatan algoritmik dalam menyelesaikan permasalahan \textit{Colored Queens}: pendekatan berbasis pencarian sistematis menggunakan \textit{Backtracking} yang diperkuat dengan \textit{Forward Checking} dan AC-3 sebagaimana dibahas pada Bagian \ref{sec:backtracking}, serta pendekatan berbasis \textit{metaheuristic} menggunakan \textit{Particle Swarm Optimization} (PSO) diskrit sebagaimana dibahas pada Bagian \ref{sec:pso}. Selain kedua solver tersebut, Tugas akhir ini juga mencakup perancangan dan implementasi sebuah aplikasi permainan berbasis antarmuka grafis yang berfungsi sebagai platform visualisasi dan pengujian.
+Tugas akhir ini bertujuan untuk merancang, mengimplementasikan, dan membandingkan dua pendekatan algoritmik dalam menyelesaikan permasalahan \textit{Colored Queens}: pendekatan berbasis pencarian sistematis menggunakan \textit{Backtracking} yang diperkuat dengan \textit{Forward Checking} dan AC-3 sebagaimana dibahas pada Bagian \ref{subsubsec:backtracking}, serta pendekatan berbasis \textit{metaheuristic} menggunakan \textit{Particle Swarm Optimization} (PSO) diskrit sebagaimana dibahas pada Bagian \ref{subsubsec:pso}. Selain kedua solver tersebut, Tugas akhir ini juga mencakup perancangan dan implementasi sebuah aplikasi permainan berbasis antarmuka grafis yang berfungsi sebagai platform visualisasi dan pengujian.
 
 Secara garis besar, sistem yang dibangun terdiri atas tiga komponen utama. Pertama, modul \textit{data loader} yang bertugas membaca dan mengurai berkas puzzle dalam format JSON ke dalam struktur papan yang dapat diproses oleh solver. Kedua, modul solver yang mengimplementasikan kedua algoritma pencarian secara terpisah dan independen. Ketiga, modul antarmuka pengguna yang dibangun menggunakan Java Swing dan JFrame, yang menampilkan papan permainan secara visual serta memungkinkan pengguna untuk berinteraksi secara langsung maupun mengaktifkan solver secara otomatis.
 
@@ -34,7 +34,7 @@ Berikut adalah penjelasan setiap proses pada Gambar \ref{fig:alur-sistem}:
 	
 	\item \textbf{Solusi valid akan ditampilkan.} Solusi berupa pasangan koordinat penempatan menteri untuk setiap sektor warna ditampilkan. Pada konteks aplikasi, solusi dirender pada papan melalui \texttt{GameWindow} (Bagian \ref{subsec:antarmuka}). Pada konteks eksperimen, solusi beserta metrik kinerja dicatat ke dalam berkas hasil.
 	
-	\item \textbf{Melakukan perbandingan dan evaluasi.} Metrik dari kedua solver diagregasi dan dibandingkan berdasarkan waktu eksekusi, tingkat keberhasilan, dan karakteristik pencarian pada berbagai ukuran papan dan konfigurasi parameter. Skenario pengujian dibahas pada Bagian \ref{sec:skenario-pengujian} dan hasil analisis disajikan pada Bab \ref{chap:hasil}.
+	\item \textbf{Melakukan perbandingan dan evaluasi.} Metrik dari kedua solver diagregasi dan dibandingkan berdasarkan waktu eksekusi, tingkat keberhasilan, dan karakteristik pencarian pada berbagai ukuran papan dan konfigurasi parameter. Skenario pengujian dibahas pada Bagian \ref{sec:skenario-pengujian} dan hasil analisis disajikan pada Bab \ref{chap:implementasi}.
 \end{enumerate}
 
 \section{Pemodelan Permasalahan \textit{Colored Queens} sebagai CSP}
@@ -110,14 +110,14 @@ Dalam implementasi, ketiga kendala di atas diperiksa sekaligus melalui satu fung
 
 Sebuah solusi valid dari permasalahan \textit{Colored Queens} yang dimodelkan sebagai CSP adalah sebuah penugasan lengkap $A = \{X_{c_1} \mapsto s_1,\; X_{c_2} \mapsto s_2,\; \dots,\; X_{c_n} \mapsto s_n\}$ di mana $s_i \in D_{c_i}$ untuk setiap $i$, dan tidak ada pasangan $(s_i, s_j)$ dengan $i \neq j$ yang melanggar ketiga kendala yang telah didefinisikan pada Bagian \ref{subsec:definisi-constraint}.
 
-Dalam implementasi solver \textit{backtracking}, solusi disimpan sebagai array integer \texttt{solution[]} berindeks variabel (warna), di mana \texttt{solution[i]} menyimpan \textit{indeks} sel terpilih dalam daftar domain warna ke-$i$. Koordinat aktual sel kemudian dapat diperoleh dengan \texttt{colorCells.get(colors.get(i)).get(solution[i])}. Representasi berbasis indeks ini dipilih karena lebih efisien secara memori dan memudahkan operasi pemangkasan domain berbasis \texttt{BitSet}.
+Dalam implementasi solver \textit{backtracking}, solusi disimpan sebagai array integer \texttt{solution[]} berindeks variabel (warna), di mana \texttt{solution[i]} menyimpan \textit{indeks} sel terpilih dalam daftar domain warna ke-$i$. Koordinat aktual sel kemudian dapat diperoleh dengan \path{colorCells.get(colors.get(i)).get(solution[i])}. Representasi berbasis indeks ini dipilih karena lebih efisien secara memori dan memudahkan operasi pemangkasan domain berbasis \texttt{BitSet}.
 
 Untuk keperluan antarmuka, solusi dikonversi ke dalam format matriks dua dimensi \texttt{int[][] result} berukuran $n \times 2$, di mana \texttt{result[i][0]} dan \texttt{result[i][1]} masing-masing menyimpan koordinat baris dan kolom menteri untuk warna ke-$i$. Format ini kemudian digunakan oleh \texttt{GameWindow} untuk merender posisi menteri pada tampilan papan.
 
 \section{Perancangan Algoritma \textit{Backtracking} dengan \textit{Forward Checking} dan AC-3}
 \label{sec:perancangan-backtracking}
 
-Bagian ini menjelaskan perancangan dan implementasi algoritma pencarian sistematis yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}. Algoritma ini menggabungkan \textit{backtracking} sebagai kerangka pencarian utama dengan dua mekanisme pemangkasan ruang pencarian, yaitu \textit{forward checking} dan AC-3, yang landasan teorinya telah dibahas pada Bagian \ref{sec:backtracking}. Penjelasan dimulai dari alur dasar pencarian dan pemeriksaan kendala, dilanjutkan dengan mekanisme pemangkasan yang menjadi inti efisiensi algoritma.
+Bagian ini menjelaskan perancangan dan implementasi algoritma pencarian sistematis yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}. Algoritma ini menggabungkan \textit{backtracking} sebagai kerangka pencarian utama dengan dua mekanisme pemangkasan ruang pencarian, yaitu \textit{forward checking} dan AC-3, yang landasan teorinya telah dibahas pada Bagian \ref{subsubsec:backtracking}. Penjelasan dimulai dari alur dasar pencarian dan pemeriksaan kendala, dilanjutkan dengan mekanisme pemangkasan yang menjadi inti efisiensi algoritma.
 
 \subsection{Alur Dasar \textit{Backtracking}}
 \label{subsec:alur-backtracking}
@@ -207,7 +207,7 @@ Dampak \textit{forward checking} bersifat langsung: hanya sel-sel yang berkonfli
 \subsubsection{Propagasi AC-3}
 \label{subsubsec:propagasi-ac3}
 
-Setelah \textit{forward checking} selesai, algoritma melanjutkan dengan propagasi busur AC-3 untuk menegakkan konsistensi busur antara seluruh pasang variabel yang belum ditugaskan. Sebagaimana dijelaskan pada Bagian \ref{subsec:ac3}, AC-3 bekerja dengan memelihara sebuah antrean busur dan memeriksa apakah setiap nilai dalam domain suatu variabel memiliki \textit{support} yang konsisten di variabel lain.
+Setelah \textit{forward checking} selesai, algoritma melanjutkan dengan propagasi busur AC-3 untuk menegakkan konsistensi busur antara seluruh pasang variabel yang belum ditugaskan. Sebagaimana dijelaskan pada Bagian \ref{subsubsec:ac3}, AC-3 bekerja dengan memelihara sebuah antrean busur dan memeriksa apakah setiap nilai dalam domain suatu variabel memiliki \textit{support} yang konsisten di variabel lain.
 
 Dalam konteks implementasi ini, antrean awal diinisialisasi dengan seluruh pasang busur $(i, j)$ untuk $i \neq j$ di antara variabel-variabel yang belum ditugaskan (indeks $> placedColorIdx$). Untuk setiap busur $(\textit{from}, \textit{to})$ yang diambil dari antrean, fungsi \texttt{Revise} memeriksa setiap sel yang masih valid dalam domain variabel \textit{to}. Sebuah sel $s_{\textit{to}}$ dinyatakan \textit{supported} apabila terdapat setidaknya satu sel $s_{\textit{from}}$ dalam domain variabel \textit{from} yang tidak berkonflik dengan $s_{\textit{to}}$. Selain itu, $s_{\textit{to}}$ juga diperiksa terhadap seluruh menteri yang telah ditempatkan sebelumnya: apabila $s_{\textit{to}}$ berkonflik dengan salah satu menteri yang sudah ada, maka \textit{support} dibatalkan.
 
@@ -281,18 +281,18 @@ Deteksi kegagalan dini dilakukan melalui fungsi \texttt{anyColorExhausted}, yang
 \subsection{Strategi Pemilihan Variabel}
 \label{subsec:strategi-variabel}
 
-Urutan pemrosesan variabel dalam algoritma \textit{backtracking} dapat berpengaruh signifikan terhadap efisiensi pencarian. Sebagaimana dibahas pada Bagian \ref{subsec:backtracking-heuristic}, heuristik seperti \textit{Minimum Remaining Values} (MRV) memilih variabel dengan domain terkecil terlebih dahulu, dengan tujuan mendeteksi kegagalan sedini mungkin dan mengurangi faktor percabangan pada tingkat awal pohon pencarian \cite{russell2020artificial}.
+Urutan pemrosesan variabel dalam algoritma \textit{backtracking} dapat berpengaruh signifikan terhadap efisiensi pencarian. Sebagaimana dibahas pada Bagian \ref{subsubsec:backtracking} mengenai heuristik pemilihan variabel, \textit{Minimum Remaining Values} (MRV) memilih variabel dengan domain terkecil terlebih dahulu, dengan tujuan mendeteksi kegagalan sedini mungkin dan mengurangi faktor percabangan pada tingkat awal pohon pencarian \cite{russell2020artificial}.
 
 Dalam implementasi ini, urutan pemrosesan variabel tidak ditentukan oleh heuristik dinamis, melainkan mengikuti urutan insersi warna pada struktur \texttt{LinkedHashMap} yang dibangun oleh \texttt{BoardImporter} saat membaca berkas JSON. Urutan ini bersifat tetap sepanjang eksekusi solver dan ditentukan oleh urutan kemunculan warna dalam berkas data papan. Konsekuensinya, variabel diproses dalam urutan statis yang sama untuk setiap eksekusi pada papan yang sama, sehingga algoritma bersifat deterministik.
 
 Keputusan untuk tidak menggunakan heuristik dinamis seperti MRV didasarkan pada pertimbangan kesederhanaan implementasi. Penerapan MRV memerlukan evaluasi ulang ukuran domain seluruh variabel yang belum ditugaskan pada setiap tingkat rekursi, yang menambahkan \textit{overhead} sebesar $O(n)$ per tingkat. Meskipun \textit{overhead} ini relatif kecil dibandingkan biaya propagasi kendala, manfaatnya pada permasalahan \textit{Colored Queens} tidak selalu signifikan karena ukuran domain antarvariabel pada tahap awal pencarian cenderung tidak jauh berbeda—selisihnya bergantung pada luas sektor warna yang umumnya tidak terlalu bervariasi pada papan berukuran kecil hingga menengah.
 
-Namun demikian, ketiadaan heuristik pemilihan variabel dapat menjadi kelemahan pada papan berukuran besar yang memiliki variasi ukuran sektor warna yang signifikan. Pada kasus tersebut, pemrosesan sektor warna dengan domain besar di awal pencarian dapat menghasilkan faktor percabangan yang tinggi dan memperlambat konvergensi. Potensi peningkatan efisiensi melalui penerapan heuristik pemilihan variabel dicatat sebagai salah satu arah pengembangan pada Bab \ref{chap:penutup}.
+Namun demikian, ketiadaan heuristik pemilihan variabel dapat menjadi kelemahan pada papan berukuran besar yang memiliki variasi ukuran sektor warna yang signifikan. Pada kasus tersebut, pemrosesan sektor warna dengan domain besar di awal pencarian dapat menghasilkan faktor percabangan yang tinggi dan memperlambat konvergensi. Potensi peningkatan efisiensi melalui penerapan heuristik pemilihan variabel dicatat sebagai salah satu arah pengembangan pada Bab \ref{chap:kesimpulan}.
 
 \section{Perancangan Algoritma \textit{Particle Swarm Optimization} Diskrit}
 \label{sec:perancangan-pso}
 
-Bagian ini menjelaskan perancangan dan implementasi algoritma \textit{Particle Swarm Optimization} (PSO) diskrit yang digunakan sebagai pendekatan \textit{metaheuristic} untuk menyelesaikan permasalahan \textit{Colored Queens}. Landasan teori PSO, termasuk formulasi kontinu asli dan adaptasi diskritnya, telah dibahas pada Bagian \ref{sec:pso}. Penjelasan pada bagian ini berfokus pada bagaimana konsep-konsep tersebut diadaptasi secara konkret untuk struktur permasalahan \textit{Colored Queens}.
+Bagian ini menjelaskan perancangan dan implementasi algoritma \textit{Particle Swarm Optimization} (PSO) diskrit yang digunakan sebagai pendekatan \textit{metaheuristic} untuk menyelesaikan permasalahan \textit{Colored Queens}. Landasan teori PSO, termasuk formulasi kontinu asli dan adaptasi diskritnya, telah dibahas pada Bagian \ref{subsubsec:pso}. Penjelasan pada bagian ini berfokus pada bagaimana konsep-konsep tersebut diadaptasi secara konkret untuk struktur permasalahan \textit{Colored Queens}.
 
 \subsection{Representasi Partikel}
 \label{subsec:representasi-partikel}
@@ -328,18 +328,18 @@ Kedua komponen digabungkan melalui penjumlahan berbobot:
 	\label{eq:fitness}
 \end{equation}
 
-di mana $\mathbf{x}$ adalah vektor posisi partikel, $V_{\textit{attacking}}$ adalah jumlah pelanggaran baris/kolom, $V_{\textit{adjacency}}$ adalah jumlah pelanggaran \textit{adjacency}, dan $w_1$, $w_2$ adalah bobot yang menentukan kontribusi relatif masing-masing komponen. Pemisahan menjadi dua komponen berbobot memungkinkan eksplorasi pengaruh prioritas penalti terhadap konvergensi algoritma, yang akan dianalisis pada Bab \ref{chap:hasil}.
+di mana $\mathbf{x}$ adalah vektor posisi partikel, $V_{\textit{attacking}}$ adalah jumlah pelanggaran baris/kolom, $V_{\textit{adjacency}}$ adalah jumlah pelanggaran \textit{adjacency}, dan $w_1$, $w_2$ adalah bobot yang menentukan kontribusi relatif masing-masing komponen. Pemisahan menjadi dua komponen berbobot memungkinkan eksplorasi pengaruh prioritas penalti terhadap konvergensi algoritma, yang akan dianalisis pada Bab \ref{chap:implementasi}.
 
 Perlu dicatat bahwa kendala \textit{one queen per color} tidak perlu diperiksa dalam fungsi \textit{fitness}, karena representasi partikel sebagaimana didefinisikan pada Bagian \ref{subsec:representasi-partikel} menjamin bahwa setiap sektor warna memiliki tepat satu menteri. Demikian pula, kendala diagonal tak terbatas yang ada pada N-Queens klasik tidak dievaluasi karena bukan merupakan kendala pada \textit{Colored Queens} (lihat Bagian \ref{subsec:definisi-constraint}).
 
 \subsection{Topologi \textit{Neighborhood}}
 \label{subsec:topologi-neighborhood}
 
-Implementasi ini menggunakan topologi \textit{local best} (lBest) sebagaimana dibahas pada Bagian \ref{subsec:pso-topologi}, di mana partikel hanya berinteraksi dengan partikel lain dalam \textit{neighborhood} yang sama. Pendekatan ini dipilih sebagai alternatif dari topologi \textit{global best} (gBest) yang menghubungkan seluruh partikel ke satu \textit{best} tunggal, dengan tujuan menjaga diversitas populasi dan mengurangi risiko konvergensi prematur menuju \textit{local optimum} \cite{kennedy1995particle}.
+Implementasi ini menggunakan topologi \textit{local best} (lBest) sebagaimana dibahas pada Bagian \ref{subsubsec:pso}, di mana partikel hanya berinteraksi dengan partikel lain dalam \textit{neighborhood} yang sama. Pendekatan ini dipilih sebagai alternatif dari topologi \textit{global best} (gBest) yang menghubungkan seluruh partikel ke satu \textit{best} tunggal, dengan tujuan menjaga diversitas populasi dan mengurangi risiko konvergensi prematur menuju \textit{local optimum} \cite{kennedy1995particle}.
 
 Populasi dipartisi menjadi $N_{\textit{neighborhood}}$ kelompok pada saat inisialisasi, sebagaimana dijelaskan pada Bagian \ref{subsec:inisialisasi-populasi}. Setiap \textit{neighborhood} memelihara secara independen satu \textit{neighborhood best} (\texttt{nBest}), yaitu indeks partikel dengan nilai \textit{fitness} terendah di dalam kelompok tersebut. Nilai \texttt{nBest} diperbarui setiap kali sebuah partikel dalam \textit{neighborhood} mencapai \textit{fitness} yang lebih rendah dari \texttt{nBest} saat ini.
 
-Komposisi \textit{neighborhood} bersifat statis sepanjang eksekusi: partisi yang ditentukan pada saat inisialisasi tidak berubah selama proses optimasi berlangsung. Konsekuensi dari desain ini adalah bahwa pertukaran informasi antarkelompok \textit{neighborhood} tidak terjadi secara langsung. Setiap sub-populasi berevolusi secara semi-independen menuju solusi terbaiknya masing-masing. Meskipun pendekatan ini efektif dalam menjaga diversitas, ketiadaan mekanisme pertukaran informasi antarkelompok dapat memperlambat konvergensi pada kasus di mana solusi optimal memerlukan kombinasi komponen dari \textit{neighborhood} yang berbeda. Potensi peningkatan melalui mekanisme pengacakan ulang \textit{neighborhood} pada saat stagnasi dicatat sebagai arah pengembangan pada Bab \ref{chap:penutup}.
+Komposisi \textit{neighborhood} bersifat statis sepanjang eksekusi: partisi yang ditentukan pada saat inisialisasi tidak berubah selama proses optimasi berlangsung. Konsekuensi dari desain ini adalah bahwa pertukaran informasi antarkelompok \textit{neighborhood} tidak terjadi secara langsung. Setiap sub-populasi berevolusi secara semi-independen menuju solusi terbaiknya masing-masing. Meskipun pendekatan ini efektif dalam menjaga diversitas, ketiadaan mekanisme pertukaran informasi antarkelompok dapat memperlambat konvergensi pada kasus di mana solusi optimal memerlukan kombinasi komponen dari \textit{neighborhood} yang berbeda. Potensi peningkatan melalui mekanisme pengacakan ulang \textit{neighborhood} pada saat stagnasi dicatat sebagai arah pengembangan pada Bab \ref{chap:kesimpulan}.
 
 \subsection{Mekanisme Pembaruan Kecepatan dan Posisi}
 \label{subsec:mekanisme-update}
@@ -473,45 +473,49 @@ Pseudocode alur utama PSO dengan ketiga kondisi terminasi diperlihatkan pada Alg
 	\end{algorithmic}
 \end{algorithm}
 
-Perlu dicatat bahwa pada kondisi terminasi kedua dan ketiga, solusi yang dilaporkan dapat bersifat tidak valid (memiliki \textit{fitness} $> 0$). Dalam konteks pengujian, kasus-kasus tersebut dicatat sebagai kegagalan dan menjadi bagian dari metrik tingkat keberhasilan yang dianalisis pada Bab \ref{chap:hasil}.
+Perlu dicatat bahwa pada kondisi terminasi kedua dan ketiga, solusi yang dilaporkan dapat bersifat tidak valid (memiliki \textit{fitness} $> 0$). Dalam konteks pengujian, kasus-kasus tersebut dicatat sebagai kegagalan dan menjadi bagian dari metrik tingkat keberhasilan yang dianalisis pada Bab \ref{chap:implementasi}.
 
 \subsection{Parameter PSO}
 \label{subsec:parameter-pso}
 
 Perilaku algoritma PSO sangat dipengaruhi oleh konfigurasi parameternya. Dalam implementasi ini, terdapat sembilan parameter yang dapat dikonfigurasi melalui berkas teks yang dibaca pada saat eksekusi. Tabel \ref{tab:parameter-pso} merangkum seluruh parameter beserta deskripsinya.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{llp{7cm}}
 	\caption{Parameter algoritma PSO}
-	\label{tab:parameter-pso}
-	\begin{tabular}{|l|l|p{7cm}|}
-		\hline
-		\textbf{Parameter} & \textbf{Simbol} & \textbf{Deskripsi} \\
-		\hline
-		Jumlah iterasi & $I_{\max}$ & Batas maksimum iterasi sebelum terminasi \\
-		\hline
-		Jumlah partikel & $P$ & Ukuran populasi \\
-		\hline
-		Jumlah \textit{neighborhood} & $N_{\textit{nh}}$ & Jumlah kelompok dalam topologi lBest \\
-		\hline
-		Koefisien kognitif & $c_1$ & Bobot pengaruh \textit{personal best} pada kecepatan \\
-		\hline
-		Koefisien sosial & $c_2$ & Bobot pengaruh \textit{neighborhood best} pada kecepatan \\
-		\hline
-		Inersia & $w$ & Bobot kecepatan sebelumnya \\
-		\hline
-		Bobot pelanggaran baris/kolom & $w_1$ & Bobot komponen \textit{attacking violations} pada fungsi \textit{fitness} \\
-		\hline
-		Bobot pelanggaran \textit{adjacency} & $w_2$ & Bobot komponen \textit{adjacency violations} pada fungsi \textit{fitness} \\
-		\hline
-		Batas stagnasi & $S_{\max}$ & Jumlah iterasi tanpa perbaikan sebelum terminasi dini \\
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:parameter-pso} \\
+	\toprule
+	\textbf{Parameter} & \textbf{Simbol} & \textbf{Deskripsi} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Parameter} & \textbf{Simbol} & \textbf{Deskripsi} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Jumlah iterasi & $I_{\max}$ & Batas maksimum iterasi sebelum terminasi \\
+	\midrule
+	Jumlah partikel & $P$ & Ukuran populasi \\
+	\midrule
+	Jumlah \textit{neighborhood} & $N_{\textit{nh}}$ & Jumlah kelompok dalam topologi lBest \\
+	\midrule
+	Koefisien kognitif & $c_1$ & Bobot pengaruh \textit{personal best} pada kecepatan \\
+	\midrule
+	Koefisien sosial & $c_2$ & Bobot pengaruh \textit{neighborhood best} pada kecepatan \\
+	\midrule
+	Inersia & $w$ & Bobot kecepatan sebelumnya \\
+	\midrule
+	Bobot pelanggaran baris/kolom & $w_1$ & Bobot komponen \textit{attacking violations} pada fungsi \textit{fitness} \\
+	\midrule
+	Bobot pelanggaran \textit{adjacency} & $w_2$ & Bobot komponen \textit{adjacency violations} pada fungsi \textit{fitness} \\
+	\midrule
+	Batas stagnasi & $S_{\max}$ & Jumlah iterasi tanpa perbaikan sebelum terminasi dini \\
+	\bottomrule
+\end{longtable}
 
 Untuk keperluan pengujian, sebuah konfigurasi \textit{benchmark} ditetapkan sebagai \textit{baseline} yang menjadi titik acuan seluruh eksperimen. Konfigurasi ini menggunakan nilai $P = 5000$, $N_{\textit{nh}} = 100$, $c_1 = 1{,}0$, $c_2 = 1{,}0$, $w = 0{,}7$, $w_1 = 1{,}0$, $w_2 = 1{,}0$, $I_{\max} = 100000$, dan $S_{\max} = 500$. Pemilihan nilai-nilai \textit{benchmark} ini didasarkan pada nilai-nilai umum yang digunakan dalam litementerir PSO \cite{kennedy1995particle} serta penyesuaian awal terhadap karakteristik permasalahan \textit{Colored Queens}.
 
-Strategi pengujian menggunakan pendekatan \textit{one-factor-at-a-time}: pada setiap eksperimen, satu parameter divariasikan sementara parameter lainnya tetap pada nilai \textit{benchmark}. Pendekatan ini memungkinkan identifikasi pengaruh individual setiap parameter terhadap kinerja algoritma. Variasi yang diuji mencakup jumlah partikel ($P \in \{3000, 8000, 50000\}$), jumlah \textit{neighborhood} ($N_{\textit{nh}} \in \{50, 200\}$), koefisien inersia ($w \in \{0{,}4,\; 0{,}9\}$), koefisien kognitif ($c_1 = 1{,}5$), koefisien sosial ($c_2 = 1{,}5$), bobot pelanggaran baris/kolom ($w_1 = 2{,}0$), dan bobot pelanggaran \textit{adjacency} ($w_2 = 2{,}0$). Selain itu, sebuah konfigurasi \textit{optimal} disusun dengan menggabungkan nilai-nilai terbaik yang teridentifikasi dari eksperimen individual, yaitu $P = 50000$, $N_{\textit{nh}} = 50$, $c_1 = 1{,}5$, dan $w = 0{,}4$, dengan parameter lainnya pada nilai \textit{benchmark}. Rincian skenario pengujian dan analisis hasil disajikan pada Bagian \ref{sec:skenario-pengujian} dan Bab \ref{chap:hasil}.
+Strategi pengujian menggunakan pendekatan \textit{one-factor-at-a-time}: pada setiap eksperimen, satu parameter divariasikan sementara parameter lainnya tetap pada nilai \textit{benchmark}. Pendekatan ini memungkinkan identifikasi pengaruh individual setiap parameter terhadap kinerja algoritma. Variasi yang diuji mencakup jumlah partikel ($P \in \{3000, 8000, 50000\}$), jumlah \textit{neighborhood} ($N_{\textit{nh}} \in \{50, 200\}$), koefisien inersia ($w \in \{0{,}4,\; 0{,}9\}$), koefisien kognitif ($c_1 = 1{,}5$), koefisien sosial ($c_2 = 1{,}5$), bobot pelanggaran baris/kolom ($w_1 = 2{,}0$), dan bobot pelanggaran \textit{adjacency} ($w_2 = 2{,}0$). Selain itu, sebuah konfigurasi \textit{optimal} disusun dengan menggabungkan nilai-nilai terbaik yang teridentifikasi dari eksperimen individual, yaitu $P = 50000$, $N_{\textit{nh}} = 50$, $c_1 = 1{,}5$, dan $w = 0{,}4$, dengan parameter lainnya pada nilai \textit{benchmark}. Rincian skenario pengujian dan analisis hasil disajikan pada Bagian \ref{sec:skenario-pengujian} dan Bab \ref{chap:implementasi}.
 
 \section{Perancangan Perangkat Lunak}
 \label{sec:perancangan-pl}
@@ -523,7 +527,7 @@ Sistem dibangun menggunakan arsitektur modular yang memisahkan tiga tanggung jaw
 
 Modul pertama adalah modul data, yang terdiri atas kelas \texttt{Cell} dan \texttt{Board} dalam paket \texttt{objects} serta kelas \texttt{BoardImporter} dalam paket \texttt{util}. Kelas \texttt{Cell} merepresentasikan satu sel pada papan dengan atribut koordinat dan warna RGB. Kelas \texttt{Board} mengagregasi seluruh sel ke dalam pemetaan warna-ke-posisi menggunakan \texttt{LinkedHashMap} dan menyediakan antarmuka bagi solver untuk mengakses struktur papan. Kelas \texttt{BoardImporter} bertanggung jawab membaca berkas JSON dan mengonstruksi daftar objek \texttt{Cell} yang kemudian diserahkan kepada \texttt{Board}.
 
-Modul kedua adalah modul solver, yang terdiri atas dua kelas dalam paket terpisah: \texttt{BacktrackingSolverAC3} dalam paket \texttt{solver.backtracking} dan \texttt{PSOSolver} dalam paket \texttt{solver.PSO}. Kedua kelas menerima objek \texttt{Board} sebagai masukan dan menghasilkan solusi berupa koordinat penempatan menteri untuk setiap warna. Kedua solver tidak memiliki ketergantungan terhadap modul antarmuka, sehingga dapat dieksekusi secara mandiri melalui \textit{command line} untuk keperluan pengujian.
+Modul kedua adalah modul solver, yang terdiri atas dua kelas dalam paket terpisah: \path{BacktrackingSolverAC3} dalam paket \texttt{solver.backtracking} dan \texttt{PSOSolver} dalam paket \texttt{solver.PSO}. Kedua kelas menerima objek \texttt{Board} sebagai masukan dan menghasilkan solusi berupa koordinat penempatan menteri untuk setiap warna. Kedua solver tidak memiliki ketergantungan terhadap modul antarmuka, sehingga dapat dieksekusi secara mandiri melalui \textit{command line} untuk keperluan pengujian.
 
 Modul ketiga adalah modul antarmuka dalam paket \texttt{GUI}, yang terdiri atas empat kelas: \texttt{Main} sebagai titik masuk aplikasi, \texttt{Homepage} sebagai halaman utama, \texttt{LevelSelectorWindow} sebagai halaman pemilihan level, dan \texttt{GameWindow} sebagai halaman permainan utama. Kelas \texttt{UITheme} menyediakan konstanta visual (palet warna, font, komponen tombol) yang digunakan secara konsisten di seluruh antarmuka.
 
@@ -531,7 +535,6 @@ Diagram hubungan antarmodul diperlihatkan pada Gambar \ref{fig:arsitektur}.
 
 \begin{figure}[H]
 	\centering
-	% TODO: ganti dengan diagram arsitektur yang sebenarnya
 	\includegraphics[width=0.85\linewidth]{cDiagram.png}
 	\caption{Arsitektur sistem yang menunjukkan hubungan antara modul data, modul solver, dan modul antarmuka.}
 	\label{fig:arsitektur}
@@ -542,36 +545,35 @@ Diagram hubungan antarmodul diperlihatkan pada Gambar \ref{fig:arsitektur}.
 
 Struktur program diorganisasi ke dalam empat paket Java yang mencerminkan pembagian modul pada arsitektur sistem. Tabel \ref{tab:struktur-program} merangkum seluruh kelas beserta tanggung jawab utamanya.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{llp{6.5cm}}
 	\caption{Struktur kelas dalam sistem}
-	\label{tab:struktur-program}
-	\begin{tabular}{|l|l|p{6.5cm}|}
-		\hline
-		\textbf{Paket} & \textbf{Kelas} & \textbf{Tanggung Jawab} \\
-		\hline
-		\texttt{app} & \texttt{Main} & Titik masuk aplikasi; menginisialisasi \texttt{Homepage} pada \textit{Event Dispatch Thread} \\
-		\hline
-		\multirow{2}{*}{\texttt{objects}} & \texttt{Cell} & Representasi satu sel papan (koordinat + warna RGB) \\
-		\cline{2-3}
-		& \texttt{Board} & Representasi papan keseluruhan; pemetaan warna ke daftar posisi sel \\
-		\hline
-		\texttt{util} & \texttt{BoardImporter} & Pembacaan dan penguraian berkas JSON papan \\
-		\hline
-		\multirow{2}{*}{\texttt{solver}} & \texttt{BacktrackingSolverAC3} & Solver berbasis \textit{backtracking} dengan \textit{forward checking} dan AC-3 \\
-		\cline{2-3}
-		& \texttt{PSOSolver} & Solver berbasis PSO diskrit (termasuk kelas \texttt{Particle}) \\
-		\hline
-		\multirow{4}{*}{\texttt{GUI}} & \texttt{Homepage} & Halaman utama dengan tombol navigasi \\
-		\cline{2-3}
-		& \texttt{LevelSelectorWindow} & Halaman pemilihan ukuran papan dan level \\
-		\cline{2-3}
-		& \texttt{GameWindow} & Halaman permainan utama; menampilkan papan, mengintegrasikan solver, dan mengelola interaksi pengguna \\
-		\cline{2-3}
-		& \texttt{UITheme} & Konstanta visual (palet warna, font, komponen tombol) \\
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:struktur-program} \\
+	\toprule
+	\textbf{Paket} & \textbf{Kelas} & \textbf{Tanggung Jawab} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Paket} & \textbf{Kelas} & \textbf{Tanggung Jawab} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	\texttt{app} & \texttt{Main} & Titik masuk aplikasi; menginisialisasi \texttt{Homepage} pada \textit{Event Dispatch Thread} \\
+	\midrule
+	\multirow{2}{*}{\texttt{objects}} & \texttt{Cell} & Representasi satu sel papan (koordinat + warna RGB) \\
+	& \texttt{Board} & Representasi papan keseluruhan; pemetaan warna ke daftar posisi sel \\
+	\midrule
+	\texttt{util} & \texttt{BoardImporter} & Pembacaan dan penguraian berkas JSON papan \\
+	\midrule
+	\multirow{2}{*}{\texttt{solver}} & \texttt{BacktrackingSolverAC3} & Solver berbasis \textit{backtracking} dengan \textit{forward checking} dan AC-3 \\
+	& \texttt{PSOSolver} & Solver berbasis PSO diskrit (termasuk kelas \texttt{Particle}) \\
+	\midrule
+	\multirow{4}{*}{\texttt{GUI}} & \texttt{Homepage} & Halaman utama dengan tombol navigasi \\
+	& \texttt{LevelSelectorWindow} & Halaman pemilihan ukuran papan dan level \\
+	& \texttt{GameWindow} & Halaman permainan utama; menampilkan papan, mengintegrasikan solver, dan mengelola interaksi pengguna \\
+	& \texttt{UITheme} & Konstanta visual (palet warna, font, komponen tombol) \\
+	\bottomrule
+\end{longtable}
 
 \subsection{Antarmuka Pengguna}
 \label{subsec:antarmuka}
@@ -778,24 +780,28 @@ Penjelasan elemen pada Gambar \ref{fig:mockup-win}:
 
 Tabel \ref{tab:teknologi} merangkum teknologi dan pustaka yang digunakan dalam pengembangan sistem.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{lp{9cm}}
 	\caption{Teknologi yang digunakan}
-	\label{tab:teknologi}
-	\begin{tabular}{|l|p{9cm}|}
-		\hline
-		\textbf{Teknologi} & \textbf{Penggunaan} \\
-		\hline
-		Java (JDK 23) & Bahasa pemrograman utama untuk seluruh modul \\
-		\hline
-		Java Swing / JFrame & \textit{Framework} antarmuka grafis untuk rendering papan, navigasi, dan interaksi pengguna \\
-		\hline
-		\texttt{org.json} & Pustaka untuk penguraian berkas JSON papan \\
-		\hline
-		JSON & Format penyimpanan data papan (\texttt{NxN\_levelM.json}) \\
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:teknologi} \\
+	\toprule
+	\textbf{Teknologi} & \textbf{Penggunaan} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Teknologi} & \textbf{Penggunaan} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Java (JDK 23) & Bahasa pemrograman utama untuk seluruh modul \\
+	\midrule
+	Java Swing / JFrame & \textit{Framework} antarmuka grafis untuk rendering papan, navigasi, dan interaksi pengguna \\
+	\midrule
+	\texttt{org.json} & Pustaka untuk penguraian berkas JSON papan \\
+	\midrule
+	JSON & Format penyimpanan data papan (\texttt{NxN\_levelM.json}) \\
+	\bottomrule
+\end{longtable}
 
 Pemilihan Java Swing sebagai \text it{framework} antarmuka didasarkan pada kemudahan implementasi dan ketersediaannya sebagai bagian dari \textit{Java Standard Edition} tanpa memerlukan dependensi eksternal tambahan. Meskipun Swing merupakan teknologi yang lebih lama dibandingkan alternatif seperti JavaFX, kemampuannya untuk merender grid berwarna dan menangani interaksi klik pengguna cukup memadai untuk kebutuhan visualisasi papan \textit{Colored Queens}.
 
@@ -807,32 +813,36 @@ Pemilihan Java Swing sebagai \text it{framework} antarmuka didasarkan pada kemud
 
 Pengujian dilakukan pada delapan ukuran papan \textit{Colored Queens}. Untuk ukuran standar ($7 \times 7$ hingga $12 \times 12$), masing-masing memiliki 250 level puzzle yang diuji secara keseluruhan. Untuk ukuran besar ($20 \times 20$ dan $30 \times 30$), masing-masing hanya memiliki satu level. Tabel \ref{tab:dataset} merangkum seluruh dataset yang digunakan.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{ccc}
 	\caption{Dataset puzzle yang digunakan dalam pengujian}
-	\label{tab:dataset}
-	\begin{tabular}{|c|c|c|}
-		\hline
-		\textbf{Ukuran Papan} & \textbf{Kategori} & \textbf{Jumlah Level} \\
-		\hline
-		$7 \times 7$ & \textit{Easy} & 250 \\
-		\hline
-		$8 \times 8$ & \textit{Medium} & 250 \\
-		\hline
-		$9 \times 9$ & \textit{Medium} & 250 \\
-		\hline
-		$10 \times 10$ & \textit{Hard} & 250 \\
-		\hline
-		$11 \times 11$ & \textit{Hard} & 250 \\
-		\hline
-		$12 \times 12$ & \textit{Hard} & 250 \\
-		\hline
-		$20 \times 20$ & \textit{Challenge} & 1 \\
-		\hline
-		$30 \times 30$ & \textit{Challenge} & 1 \\
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:dataset} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Kategori} & \textbf{Jumlah Level} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Kategori} & \textbf{Jumlah Level} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	$7 \times 7$ & \textit{Easy} & 250 \\
+	\midrule
+	$8 \times 8$ & \textit{Medium} & 250 \\
+	\midrule
+	$9 \times 9$ & \textit{Medium} & 250 \\
+	\midrule
+	$10 \times 10$ & \textit{Hard} & 250 \\
+	\midrule
+	$11 \times 11$ & \textit{Hard} & 250 \\
+	\midrule
+	$12 \times 12$ & \textit{Hard} & 250 \\
+	\midrule
+	$20 \times 20$ & \textit{Challenge} & 1 \\
+	\midrule
+	$30 \times 30$ & \textit{Challenge} & 1 \\
+	\bottomrule
+\end{longtable}
 
 Total dataset untuk ukuran standar berjumlah 1.500 puzzle ($6 \times 250$), ditambah 2 puzzle untuk ukuran besar, sehingga keseluruhan dataset mencakup 1.502 puzzle. Seluruh data papan bersumber dari permainan \textit{LinkedIn Queens} dan disimpan dalam format JSON. Variasi ukuran papan dipilih untuk menguji skalabilitas kedua algoritma: papan berukuran kecil ($7 \times 7$ hingga $9 \times 9$) memiliki ruang pencarian yang relatif terbatas, sedangkan papan berukuran besar ($20 \times 20$ dan $30 \times 30$) menghadirkan tantangan kombinatorik yang signifikan.
 
@@ -857,42 +867,46 @@ Pengujian dirancang dalam tiga kelompok skenario yang masing-masing menguji aspe
 
 \textbf{Skenario 2: Pengujian variasi parameter PSO.} Solver PSO dijalankan dengan 13 konfigurasi parameter sebagaimana dirangkum pada Tabel \ref{tab:skenario-pso}. Setiap konfigurasi dijalankan pada seluruh dataset. Untuk ukuran standar, 250 level per ukuran dieksekusi dalam 5 \textit{batch} yang masing-masing berisi 50 level. Eksekusi \textit{batch} dilakukan secara paralel menggunakan \texttt{ExecutorService} dengan 6 \textit{thread} untuk mempercepat proses pengujian. Untuk ukuran besar ($20 \times 20$ dan $30 \times 30$), hanya PSO yang dijalankan (tanpa \textit{backtracking}) karena waktu komputasi solver deterministik pada ukuran tersebut tidak praktis. Hasil setiap konfigurasi diagregasi per \textit{batch} dan per ukuran papan untuk menghasilkan metrik rata-rata waktu eksekusi dan tingkat keberhasilan.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{lp{4cm}p{5.5cm}}
 	\caption{Konfigurasi pengujian PSO}
-	\label{tab:skenario-pso}
-	\begin{tabular}{|l|p{4cm}|p{5.5cm}|}
-		\hline
-		\textbf{Nama Konfigurasi} & \textbf{Parameter yang Diubah} & \textbf{Nilai} \\
-		\hline
-		Benchmark & (baseline) & $P{=}5000$, $N_{\textit{nh}}{=}100$, $c_1{=}1{,}0$, $c_2{=}1{,}0$, $w{=}0{,}7$, $w_1{=}1{,}0$, $w_2{=}1{,}0$ \\
-		\hline
-		LParticles & Jumlah partikel & $P = 3000$ \\
-		\hline
-		MParticles & Jumlah partikel & $P = 8000$ \\
-		\hline
-		MMParticles & Jumlah partikel & $P = 50000$ \\
-		\hline
-		LNeighborhoods & Jumlah \textit{neighborhood} & $N_{\textit{nh}} = 50$ \\
-		\hline
-		MNeighborhoods & Jumlah \textit{neighborhood} & $N_{\textit{nh}} = 200$ \\
-		\hline
-		LInertia & Koefisien inersia & $w = 0{,}4$ \\
-		\hline
-		MInertia & Koefisien inersia & $w = 0{,}9$ \\
-		\hline
-		c1 & Koefisien kognitif & $c_1 = 1{,}5$ \\
-		\hline
-		c2 & Koefisien sosial & $c_2 = 1{,}5$ \\
-		\hline
-		w1 & Bobot \textit{attacking} & $w_1 = 2{,}0$ \\
-		\hline
-		w2 & Bobot \textit{adjacency} & $w_2 = 2{,}0$ \\
-		\hline
-		Optimal & Kombinasi terbaik & $P{=}50000$, $N_{\textit{nh}}{=}50$, $c_1{=}1{,}5$, $w{=}0{,}4$ \\
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:skenario-pso} \\
+	\toprule
+	\textbf{Nama Konfigurasi} & \textbf{Parameter yang Diubah} & \textbf{Nilai} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Nama Konfigurasi} & \textbf{Parameter yang Diubah} & \textbf{Nilai} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Benchmark & (baseline) & $P{=}5000$, $N_{\textit{nh}}{=}100$, $c_1{=}1{,}0$, $c_2{=}1{,}0$, $w{=}0{,}7$, $w_1{=}1{,}0$, $w_2{=}1{,}0$ \\
+	\midrule
+	LParticles & Jumlah partikel & $P = 3000$ \\
+	\midrule
+	MParticles & Jumlah partikel & $P = 8000$ \\
+	\midrule
+	MMParticles & Jumlah partikel & $P = 50000$ \\
+	\midrule
+	LNeighborhoods & Jumlah \textit{neighborhood} & $N_{\textit{nh}} = 50$ \\
+	\midrule
+	MNeighborhoods & Jumlah \textit{neighborhood} & $N_{\textit{nh}} = 200$ \\
+	\midrule
+	LInertia & Koefisien inersia & $w = 0{,}4$ \\
+	\midrule
+	MInertia & Koefisien inersia & $w = 0{,}9$ \\
+	\midrule
+	c1 & Koefisien kognitif & $c_1 = 1{,}5$ \\
+	\midrule
+	c2 & Koefisien sosial & $c_2 = 1{,}5$ \\
+	\midrule
+	w1 & Bobot \textit{attacking} & $w_1 = 2{,}0$ \\
+	\midrule
+	w2 & Bobot \textit{adjacency} & $w_2 = 2{,}0$ \\
+	\midrule
+	Optimal & Kombinasi terbaik & $P{=}50000$, $N_{\textit{nh}}{=}50$, $c_1{=}1{,}5$, $w{=}0{,}4$ \\
+	\bottomrule
+\end{longtable}
 
 \textbf{Skenario 3: Perbandingan \textit{Backtracking} vs PSO.} Hasil solver \textit{backtracking} dan konfigurasi PSO terbaik (Optimal) dibandingkan secara langsung pada seluruh ukuran papan standar, dengan fokus pada waktu eksekusi dan tingkat keberhasilan. Perbandingan ini bertujuan untuk mengidentifikasi kelebihan dan keterbatasan masing-masing pendekatan pada skala permasalahan yang berbeda.
 
@@ -901,23 +915,27 @@ Pengujian dirancang dalam tiga kelompok skenario yang masing-masing menguji aspe
 
 Seluruh pengujian dilakukan pada satu mesin dengan spesifikasi yang ditunjukkan pada Tabel \ref{tab:lingkungan}. Penggunaan satu lingkungan pengujian yang konsisten memastikan bahwa perbedaan waktu eksekusi antarkonfigurasi tidak dipengaruhi oleh variasi perangkat keras.
 
-\begin{table}[H]
-	\centering
+\begin{longtable}{ll}
 	\caption{Spesifikasi lingkungan pengujian}
-	\label{tab:lingkungan}
-	\begin{tabular}{|l|l|}
-		\hline
-		\textbf{Komponen} & \textbf{Spesifikasi} \\
-		\hline
-		Sistem Operasi & Windows 11 Home
-		\hline
-		Prosesor & Intel i5-12400F
-		\hline
-		Memori (RAM) & 32GB DDR4 @ 3200 MHz
-		\hline
-		Java Version & 23
-		\hline
-		IDE & Visual Studio Code 
-		\hline
-	\end{tabular}
-\end{table}
+	\label{tab:lingkungan} \\
+	\toprule
+	\textbf{Komponen} & \textbf{Spesifikasi} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Komponen} & \textbf{Spesifikasi} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Sistem Operasi & Windows 11 Home \\
+	\midrule
+	Prosesor & Intel i5-12400F \\
+	\midrule
+	Memori (RAM) & 32GB DDR4 @ 3200 MHz \\
+	\midrule
+	Java Version & 23 \\
+	\midrule
+	IDE & Visual Studio Code \\
+	\bottomrule
+\end{longtable}

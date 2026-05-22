@@ -1,0 +1,26 @@
+\chapter{Kesimpulan dan Saran}
+\label{chap:kesimpulan}
+
+\section{Kesimpulan}
+\label{sec:kesimpulan}
+
+Berdasarkan hasil implementasi, pengujian, dan analisis yang telah dilakukan terhadap dua pendekatan penyelesaian permasalahan \textit{Colored Queens} — yaitu \textit{backtracking} dengan \textit{Forward Checking} dan AC-3, serta \textit{Particle Swarm Optimization} (PSO) diskrit — dapat ditarik beberapa kesimpulan.
+
+Algoritma \textit{backtracking} dengan \textit{Forward Checking} dan propagasi kendala AC-3 terbukti mampu menyelesaikan seluruh instansi permasalahan \textit{Colored Queens} yang diujikan, mulai dari ukuran $7 \times 7$ hingga $30 \times 30$, dengan tingkat keberhasilan 100\%. Kombinasi kedua mekanisme tersebut secara signifikan mempersempit ruang pencarian melalui eliminasi nilai-nilai domain yang tidak konsisten sebelum penelusuran dilanjutkan, sehingga menghasilkan waktu penyelesaian yang cepat dan deterministik bahkan pada ukuran papan yang besar.
+
+Sebaliknya, pendekatan PSO diskrit yang dirancang dengan representasi permutasi posisi ratu per warna, fungsi \textit{fitness} berbasis pelanggaran kendala, dan topologi \textit{neighborhood} lokal (lBest), tidak mampu secara konsisten menemukan solusi yang valid untuk seluruh instansi yang diujikan. Pada papan berukuran kecil ($7 \times 7$ hingga $9 \times 9$), PSO berhasil menemukan solusi dengan konfigurasi parameter yang tepat, namun pada papan berukuran $10 \times 10$ ke atas, PSO mengalami stagnasi dan kegagalan konvergensi yang signifikan. Hal ini mengonfirmasi bahwa PSO sebagai pendekatan \textit{metaheuristik} berbasis populasi kurang sesuai untuk permasalahan CSP dengan kendala keras seperti \textit{Colored Queens}, di mana struktur kendala yang ketat justru dapat dieksploitasi secara efektif oleh propagasi kendala.
+
+Perbandingan kedua pendekatan menunjukkan bahwa \textit{backtracking} dengan FC+AC-3 secara keseluruhan unggul dalam hal keandalan, kecepatan, dan skalabilitas. Meskipun pengaruh parameter PSO terhadap kualitas solusi terbukti signifikan — dengan peningkatan jumlah partikel dan pengurangan jumlah \textit{neighborhood} memberikan dampak positif terbesar pada kemampuan eksplorasi — kombinasi parameter optimal sekalipun tidak mampu menjamin keberhasilan pada instansi berukuran besar. Dengan demikian, untuk permasalahan \textit{Colored Queens} secara khusus dan permasalahan CSP dengan kendala keras secara umum, pendekatan berbasis propagasi kendala terbukti jauh lebih efektif dibandingkan pendekatan \textit{metaheuristik}.
+
+\section{Saran}
+\label{sec:saran}
+
+Berdasarkan temuan dan keterbatasan yang diidentifikasi dalam penelitian ini, beberapa saran untuk pengembangan selanjutnya dapat dikemukakan.
+
+Pertama, penelitian selanjutnya dapat mengeksplorasi pendekatan \textit{hybrid} yang menggabungkan kekuatan propagasi kendala dengan metaheuristik, misalnya menggunakan PSO untuk menghasilkan solusi awal yang kemudian diperbaiki oleh \textit{backtracking}, atau menerapkan propagasi kendala sebagai mekanisme perbaikan \textit{fitness} dalam PSO. Pendekatan semacam ini berpotensi mengatasi kelemahan konvergensi PSO pada permasalahan dengan kendala keras.
+
+Kedua, mengingat keterbatasan PSO yang ditemukan, penelitian selanjutnya dapat membandingkan PSO dengan metaheuristik lain seperti \textit{Simulated Annealing}, \textit{Genetic Algorithm}, atau \textit{Tabu Search}, guna menilai apakah kelemahan yang ditemukan bersifat umum pada seluruh pendekatan \textit{metaheuristik}, atau merupakan karakteristik spesifik PSO pada permasalahan ini.
+
+Ketiga, pengembangan heuristik pemilihan variabel yang lebih adaptif dapat menjadi arah penelitian yang menjanjikan. Implementasi \textit{backtracking} dalam penelitian ini menggunakan pengurutan warna berdasarkan ukuran domain secara statik. Heuristik dinamis yang memperbarui urutan pemilihan variabel secara adaptif selama proses pencarian berpotensi mengurangi jumlah \textit{backtrack} lebih lanjut.
+
+Keempat, pengujian pada instansi yang lebih beragam perlu dilakukan. Penelitian ini dibatasi hingga ukuran $30 \times 30$ dengan satu instansi untuk ukuran besar, sehingga penelitian selanjutnya sebaiknya mencakup lebih banyak instansi dengan variasi tata letak warna yang berbeda guna memperoleh gambaran statistik yang lebih komprehensif. Selain itu, cakupan permasalahan dapat diperluas ke varian lain seperti \textit{Star Battle} dengan aturan $k$ bintang per baris, kolom, dan region, atau ke permasalahan CSP lain yang memiliki struktur serupa.

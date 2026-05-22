@@ -1,0 +1,605 @@
+\chapter{Implementasi dan Pengujian}
+\label{chap:hasil}
+
+\section{Implementasi}
+\label{sec:implementasi}
+
+Bagian ini menjelaskan realisasi dari rancangan sistem yang telah dibahas pada Bab \ref{chap:metodologi}. Penjelasan difokuskan pada keputusan-keputusan teknis yang diambil selama proses pengembangan serta kesesuaian antara implementasi dengan rancangan. Kode sumber lengkap seluruh kelas disertakan pada Lampiran~\ref{lampiran:kode-sumber}; bagian ini hanya menyajikan potongan kode yang relevan untuk mengilustrasikan aspek-aspek implementasi yang penting.
+
+\subsection{Implementasi Solver \textit{Backtracking} dengan \textit{Forward Checking} dan AC-3}
+\label{subsec:impl-backtracking}
+
+Solver \textit{backtracking} diimplementasikan dalam kelas \texttt{BacktrackingSolverAC3} pada paket \texttt{solver.backtracking}. Kelas ini merealisasikan rancangan yang telah dijabarkan pada Bagian~\ref{sec:perancangan-backtracking}, mencakup alur rekursif \textit{depth-first}, pemangkasan domain melalui \textit{forward checking} dan AC-3, serta mekanisme \textit{undo} berbasis \textit{pruneStack}. Seluruh kode sumber kelas ini disajikan pada Lampiran~\ref{lampiran:backtracking-solver}.
+
+\subsubsection{Struktur Data Domain}
+
+Keputusan implementasi utama pada solver ini adalah penggunaan \texttt{BitSet} dari pustaka standar Java untuk merepresentasikan domain setiap variabel. Setiap warna memiliki satu objek \texttt{BitSet} yang disimpan dalam \texttt{Map<String, BitSet> validCells}, di mana bit ke-$i$ bernilai \texttt{true} apabila sel ke-$i$ dalam daftar sel warna tersebut masih merupakan kandidat valid. Pendekatan ini dipilih karena dua alasan. Pertama, operasi pemangkasan (\texttt{clear}) dan pemulihan (\texttt{set}) pada satu bit memiliki kompleksitas $O(1)$, yang jauh lebih efisien dibandingkan operasi \texttt{add}/\texttt{remove} pada struktur \texttt{List} atau \texttt{Set}. Kedua, iterasi atas sel-sel yang masih valid dapat dilakukan secara efisien melalui \texttt{nextSetBit()}, yang melewati blok-blok bit bernilai nol tanpa memeriksa satu per satu.
+
+Selain \texttt{BitSet}, sebuah array integer \texttt{colorCellCount[]} digunakan sebagai pencacah ukuran domain yang terpisah. Meskipun ukuran domain secara teoritis dapat diperoleh melalui \texttt{BitSet.cardinality()}, metode tersebut memiliki kompleksitas $O(n/64)$ karena harus menghitung jumlah bit pada setiap \textit{word} internal. Pencacah terpisah memungkinkan pemeriksaan \texttt{anyColorExhausted()} berjalan dalam $O(n)$ terhadap jumlah warna, bukan $O(n \cdot d/64)$ di mana $d$ adalah ukuran domain rata-rata.
+
+\subsubsection{Mekanisme \textit{Undo} dengan \textit{PruneStack}}
+
+Setiap operasi pemangkasan, baik yang berasal dari \textit{forward checking} maupun AC-3, dicatat sebagai objek \texttt{PruneAction} yang menyimpan identitas warna dan indeks sel yang dipangkas. Objek-objek ini ditumpuk pada sebuah \texttt{Stack<PruneAction>} yang bersifat global sepanjang satu proses pencarian. Sebelum pemangkasan dimulai pada setiap tingkat rekursi, posisi \textit{stack} saat ini dicatat sebagai \textit{checkpoint} melalui variabel \texttt{pruneStartPos}. Potongan kode berikut menunjukkan bagaimana mekanisme ini diintegrasikan ke dalam alur rekursif utama:
+
+\begin{lstlisting}[language=Java, caption=Integrasi \textit{checkpoint} dan \textit{undo} pada alur rekursif utama]
+	int pruneStartPos = pruneStack.size();
+	
+	// Forward-check
+	forwardCheck(row, col, colorIndex);
+	
+	// AC-3 arc propagation among future colors
+	Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
+	for (int i = colorIndex + 1; i < colors.size(); i++) {
+		for (int j = colorIndex + 1; j < colors.size(); j++) {
+			if (i != j) queue.add(new Pair<>(i, j));
+		}
+	}
+	propagateArcs(queue);
+	
+	if (anyColorExhausted(colorIndex)) {
+		undoPrunes(pruneStartPos);
+		occupied[row][col] = false;
+		solution[colorIndex] = -1;
+		backtracks++;
+		continue;
+	}
+\end{lstlisting}
+
+Apabila pencarian pada cabang saat ini gagal, fungsi \texttt{undoPrunes(pruneStartPos)} mengembalikan seluruh bit yang telah dipangkas sejak \textit{checkpoint}, memulihkan domain ke kondisi sebelum penugasan. Pendekatan berbasis \textit{stack} ini menghindari kebutuhan untuk menyalin seluruh struktur \texttt{BitSet} pada setiap tingkat rekursi, yang akan memerlukan memori tambahan sebesar $O(n \cdot d)$ per tingkat.
+
+\subsubsection{Pemeriksaan Konflik \textit{Inline}}
+
+Fungsi pemeriksaan konflik, sebagaimana dirancang pada Bagian~\ref{subsec:pemeriksaan-constraint}, diimplementasikan dalam dua bentuk. Bentuk pertama adalah metode \texttt{conflicts(int[] cell1, int[] cell2)} yang digunakan oleh prosedur \texttt{revise()} pada tahap AC-3. Bentuk kedua adalah pemeriksaan \textit{inline} yang disisipkan langsung ke dalam badan perulangan \texttt{forwardCheck()} tanpa pemanggilan metode terpisah, sebagaimana ditunjukkan pada potongan kode berikut:
+
+\begin{lstlisting}[language=Java, caption=Pemeriksaan konflik \textit{inline} pada \textit{forward checking}]
+	boolean conflict = (row == r2 || col == c2 || 
+	Math.abs(row - r2) <= 1 && Math.abs(col - c2) <= 1);
+\end{lstlisting}
+
+Keputusan untuk menyisipkan pemeriksaan secara \textit{inline} pada \textit{forward checking} didasarkan pada pertimbangan bahwa \textit{forward checking} dipanggil pada setiap tingkat rekursi dan mengiterasi seluruh sel valid dari setiap variabel yang belum ditugaskan. Penghematan \textit{overhead} pemanggilan metode pada jalur kritis ini dapat berdampak signifikan pada waktu eksekusi keseluruhan, terutama pada papan berukuran besar.
+
+\subsubsection{Inisialisasi Antrean AC-3}
+
+Implementasi propagasi AC-3 menginisialisasi antrean busur dengan seluruh pasangan $(i, j)$ untuk $i \neq j$ di antara variabel yang belum ditugaskan (indeks $> \texttt{colorIndex}$). Jumlah busur awal yang dimasukkan ke dalam antrean adalah $(n - k)(n - k - 1)$, di mana $k$ adalah jumlah variabel yang telah ditugaskan. Pada tahap awal pencarian ($k = 0$) untuk papan $12 \times 12$, jumlah ini mencapai $12 \times 11 = 132$ busur, yang berkurang secara kuadratik seiring bertambahnya variabel yang telah ditugaskan.
+
+Apabila fungsi \texttt{revise()} berhasil memangkas domain suatu variabel, busur-busur yang melibatkan variabel tersebut sebagai \textit{supporter} ditambahkan kembali ke antrean untuk diperiksa ulang. Proses ini berlanjut hingga antrean kosong atau ditemukan \textit{domain wipeout}. Implementasi ini sesuai dengan spesifikasi AC-3 standar sebagaimana dibahas pada Bagian~\ref{subsec:ac3}, dengan adaptasi bahwa pemeriksaan \textit{support} juga memperhitungkan posisi menteri yang telah ditempatkan pada variabel-variabel sebelumnya.
+
+\subsection{Implementasi Solver PSO Diskrit}
+\label{subsec:impl-pso}
+
+Solver PSO diskrit diimplementasikan dalam dua kelas pada paket \texttt{solver.PSO}: kelas \texttt{Particle} yang merepresentasikan satu partikel, dan kelas \texttt{PSOSolver} yang mengelola populasi dan menjalankan proses optimasi. Implementasi ini merealisasikan rancangan yang telah dijabarkan pada Bagian~\ref{sec:perancangan-pso}. Seluruh kode sumber kedua kelas disajikan pada Lampiran~\ref{lampiran:pso-solver}.
+
+\subsubsection{Struktur Kelas \texttt{Particle}}
+
+Setiap partikel dienkapsulasi dalam kelas \texttt{Particle} yang menyimpan empat atribut utama: array integer \texttt{candidate[]} sebagai posisi saat ini, array \texttt{double[]} \texttt{velocity} sebagai probabilitas perubahan per dimensi, array integer \texttt{pBest[]} sebagai posisi terbaik individual, dan nilai \texttt{pBestFitness} bertipe \texttt{double}. Pemisahan \texttt{Particle} sebagai kelas tersendiri dari \texttt{PSOSolver} dipilih untuk menjaga enkapsulasi data partikel dan memudahkan pengelolaan populasi melalui \texttt{List<Particle>}.
+
+\subsubsection{Fungsi \textit{Fitness}}
+
+Fungsi \textit{fitness} diimplementasikan dalam metode \texttt{calculateFitness()} yang memanggil dua sub-fungsi secara berurutan: \texttt{calculateAttackingViolation()} dan \texttt{calculateAdjacencyViolation()}. Potongan kode berikut menunjukkan penghitungan \textit{fitness} keseluruhan:
+
+\begin{lstlisting}[language=Java, caption=Penghitungan fungsi \textit{fitness}]
+	int attackingViolations = calculateAttackingViolation(candidate);
+	int adjacencyViolations = calculateAdjacencyViolation(candidate, occupied);
+	
+	double fitness = w1 * attackingViolations + w2 * adjacencyViolations;
+\end{lstlisting}
+
+Penghitungan \textit{attacking violations} memeriksa setiap pasangan menteri dan menghitung jumlah pasangan yang berbagi baris atau kolom yang sama. Iterasi dilakukan dengan indeks $i < j$ untuk menghindari penghitungan ganda. Penghitungan \textit{adjacency violations} menggunakan pendekatan berbeda: untuk setiap menteri, delapan sel tetangga diperiksa terhadap matriks \texttt{occupied[][]}. Karena pendekatan ini menghitung setiap pasangan bertetangga dua kali (sekali dari perspektif masing-masing menteri), hasil akhir dibagi dua melalui pembagian integer, sebagaimana ditunjukkan pada potongan kode berikut:
+
+\begin{lstlisting}[language=Java, caption=Penghitungan \textit{adjacency violations} dengan koreksi penghitungan ganda]
+	int[][] dirs = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
+	
+	for (int i = 0; i < this.colors.size(); i++) {
+		String color = this.colors.get(i);
+		List<int[]> cells = this.colorCells.get(color);
+		int cellIdx = positions[i];
+		int[] cell = cells.get(cellIdx);
+		
+		int row = cell[0];
+		int col = cell[1];
+		
+		for (int[] d : dirs) {
+			int r = row + d[0];
+			int c = col + d[1];
+			
+			if (r >= 0 && r < this.size && c >= 0 && c < this.size) {
+				if (occupied[r][c]) {
+					count++;
+				}
+			}
+		}
+	}
+	
+	return count/2;
+\end{lstlisting}
+
+Pembagian integer pada baris terakhir bersifat aman karena \texttt{count} selalu bernilai genap --- setiap pasangan menteri yang bertetangga berkontribusi tepat dua kali pada pencacah (masing-masing satu dari perspektif setiap menteri dalam pasangan tersebut).
+
+\subsubsection{Partisi \textit{Neighborhood}}
+
+Pembentukan topologi \textit{local best} diimplementasikan dalam metode \texttt{generateNeighborhoods()}, yang mengacak daftar indeks partikel menggunakan \texttt{Collections.shuffle()} kemudian mempartisinya menjadi $N_{\textit{nh}}$ sublista dengan ukuran seimbang. Distribusi ukuran kelompok ditangani melalui mekanisme \textit{remainder}: apabila $P$ tidak habis dibagi $N_{\textit{nh}}$, sisa partikel didistribusikan satu per satu ke kelompok-kelompok pertama. Dengan demikian, perbedaan ukuran antarkelompok tidak pernah melebihi satu partikel, sebagaimana ditunjukkan pada potongan kode berikut:
+
+\begin{lstlisting}[language=Java, caption=Distribusi ukuran kelompok \textit{neighborhood}]
+	int baseSize = size / n;
+	int remainder = size % n;
+	
+	for (int i = 0; i < n; i++) {
+		int groupSize = baseSize + (i < remainder ? 1 : 0);
+		// ...
+	}
+\end{lstlisting}
+
+Setiap \textit{neighborhood} memelihara satu indeks \texttt{nBest} yang menunjuk pada partikel dengan \textit{fitness} terbaik dalam kelompok tersebut. Partisi bersifat tetap sepanjang eksekusi; tidak ada mekanisme pengacakan ulang \textit{neighborhood} pada saat stagnasi terdeteksi.
+
+\subsubsection{Pembaruan Kecepatan dan Posisi Diskrit}
+
+Pembaruan kecepatan dan posisi diimplementasikan dalam dua metode terpisah: \texttt{updateVelocity()} dan \texttt{updateParticles()}. Pada setiap iterasi, seluruh kecepatan diperbarui terlebih dahulu, kemudian posisi diperbarui berdasarkan kecepatan baru tersebut.
+
+Pada pembaruan kecepatan, indikator perbedaan $\delta$ dihitung sebagai nilai biner (0 atau 1) berdasarkan kesamaan posisi saat ini dengan \texttt{pBest} dan \texttt{nBest} pada setiap dimensi. Hasil perhitungan di-\textit{clamp} pada interval $[0, 1]$ untuk mempertahankan interpretasi probabilistik, sebagaimana dirancang pada Bagian~\ref{subsubsec:update-velocity}:
+
+\begin{lstlisting}[language=Java, caption=Pembaruan kecepatan diskrit dengan \textit{clamping}]
+	int pBestDiff = (currentPosition[j] != pBestPosition[j]) ? 1 : 0;
+	int nBestDiff = (currentPosition[j] != nBestPosition[j]) ? 1 : 0;
+	
+	newVelocity[j] = this.inertia * velocity[j] 
+	+ this.c1 * r1 * pBestDiff 
+	+ this.c2 * r2 * nBestDiff;
+	
+	if (newVelocity[j] < 0.0) newVelocity[j] = 0.0;
+	if (newVelocity[j] > 1.0) newVelocity[j] = 1.0;
+\end{lstlisting}
+
+Pada pembaruan posisi, kecepatan digunakan sebagai probabilitas untuk mengadopsi posisi \textit{nBest}. Untuk setiap dimensi, bilangan acak $r \in [0, 1)$ dibangkitkan; apabila 
+$r < v_j$, posisi pada dimensi tersebut diubah menjadi posisi \textit{nBest}:
+
+\begin{lstlisting}[language=Java, caption=Pembaruan posisi diskrit berbasis probabilitas]
+	for (int j = 0; j < newPosition.length; j++) {
+		double rand = random.nextDouble(1.0);
+		
+		if (rand < velocity[j]) {
+			newPosition[j] = nBestPosition[j];
+		}
+	}
+\end{lstlisting}
+
+Implementasi ini sesuai dengan rancangan pada Bagian~\ref{subsubsec:update-position}, di mana \textit{nBest} merupakan satu-satunya target perpindahan posisi, sementara pengaruh \textit{pBest} masuk secara tidak langsung melalui komponen kognitif pada formula kecepatan.
+
+\subsubsection{Terminasi dan Deteksi Stagnasi}
+
+Tiga kondisi terminasi sebagaimana dirancang pada Bagian~\ref{subsec:stagnasi-terminasi} diimplementasikan dalam \textit{loop} utama metode \texttt{solve()}. Pertama, pada setiap akhir iterasi, metode \texttt{checkNbest()} memeriksa apakah salah satu \textit{nBest} memiliki \textit{fitness} bernilai nol. Kedua, \textit{loop} utama dibatasi oleh \texttt{nIterations} ($I_{\max}$). Ketiga, sebuah pencacah stagnasi melacak jumlah iterasi berturut-turut tanpa perbaikan \textit{fitness} terbaik global; apabila pencacah ini mencapai \texttt{maxStagnation} ($S_{\max}$), pencarian dihentikan secara dini.
+
+Apabila tidak ada solusi valid yang ditemukan pada saat terminasi, solver melaporkan partikel dengan \textit{fitness} terendah melalui metode \texttt{checkLowestNBest()} beserta nilai \textit{fitness}-nya, yang menunjukkan jumlah pelanggaran kendala yang tersisa. Dalam konteks pengujian, kasus-kasus tersebut dicatat sebagai kegagalan dan menjadi bagian dari metrik tingkat keberhasilan yang dianalisis pada Bagian~\ref{sec:analisis}.
+
+\subsection{Implementasi Antarmuka Pengguna}
+\label{subsec:impl-antarmuka}
+
+Antarmuka pengguna diimplementasikan menggunakan Java Swing dan JFrame sesuai dengan rancangan pada Bagian~\ref{subsec:antarmuka}. Implementasi terdiri atas empat kelas dalam paket \texttt{GUI}: \texttt{Homepage}, \texttt{LevelSelectorWindow}, \texttt{GameWindow}, dan \texttt{UITheme}. Seluruh kode sumber kelas-kelas ini disajikan pada Lampiran~\ref{lampiran:gui}. Bagian ini menjelaskan aspek-aspek implementasi yang relevan, dengan fokus pada integrasi solver dan mekanisme interaksi pengguna.
+
+\subsubsection{Navigasi Antarlayar}
+
+Navigasi antar ketiga layar (\texttt{Homepage} $\rightarrow$ \texttt{LevelSelectorWindow} $\rightarrow$ \texttt{GameWindow}) diimplementasikan dengan mekanisme sederhana: setiap tombol navigasi membuat \textit{instance} baru dari kelas tujuan dan menutup jendela saat ini melalui \texttt{dispose()}. Pendekatan ini dipilih karena kesederhanaannya dan kesesuaiannya dengan alur aplikasi yang bersifat linier sebagaimana diilustrasikan pada Gambar~\ref{fig:alur-app}.
+
+Pada \texttt{GameWindow}, dua komponen \texttt{JComboBox} (untuk ukuran papan dan nomor level) memungkinkan pengguna berpindah level tanpa kembali ke halaman pemilihan. Setiap perubahan pada \textit{dropdown} memicu pemanggilan metode \texttt{loadBoard()} yang memuat papan baru dan memulai ulang solver di latar belakang.
+
+\subsubsection{Integrasi Solver dengan Antarmuka}
+
+Keputusan implementasi terpenting pada modul antarmuka adalah eksekusi solver secara asinkron menggunakan \texttt{SwingWorker}. Ketika sebuah papan dimuat, solver \textit{backtracking} dijalankan pada \textit{thread} terpisah agar antarmuka tetap responsif selama proses pencarian berlangsung. Potongan kode berikut menunjukkan mekanisme ini:
+
+\begin{lstlisting}[language=Java, caption=Eksekusi solver secara asinkron menggunakan \texttt{SwingWorker}]
+	currentWorker = new SwingWorker<>() {
+		@Override
+		protected int[][] doInBackground() {
+			BacktrackingSolverAC3 solver = new BacktrackingSolverAC3(board);
+			solver.solve();
+			return solver.getSolutionAsGrid();
+		}
+		
+		@Override
+		protected void done() {
+			try {
+				if (!isCancelled()) {
+					solution = get();
+				}
+			} catch (Exception e) {
+				System.err.println("Solver error: " + e.getMessage());
+			}
+		}
+	};
+	currentWorker.execute();
+\end{lstlisting}
+
+Solusi yang dihasilkan disimpan dalam variabel \texttt{solution} bertipe \texttt{int[][]} dan digunakan oleh dua fitur: \textit{Hint} dan \textit{Solve}. Apabila pengguna mengakses salah satu fitur sebelum solver selesai, dialog peringatan ditampilkan. Untuk papan berukuran $20 \times 20$ dan $30 \times 30$, solusi disimpan secara \textit{hardcoded} dalam konstanta \texttt{PRELOADED\_20x20} dan \texttt{PRELOADED\_30x30} karena waktu komputasi solver pada ukuran tersebut tidak praktis untuk eksekusi secara \textit{on-the-fly}.
+
+\subsubsection{Rendering Papan}
+
+Papan permainan dirender oleh kelas dalam \texttt{BoardPanel} yang merupakan subkelas dari \texttt{JPanel}. Metode \texttt{paintComponent()} menggambar tiga lapisan secara berurutan: (1) latar belakang berwarna untuk setiap sel berdasarkan data warna RGB dari objek \texttt{Board}, (2) garis grid hitam sebagai pembatas antarsel, dan (3) ikon menteri pada sel-sel yang telah ditempati. Ukuran sel dihitung secara dinamis berdasarkan dimensi jendela (\texttt{Math.min(getWidth(), getHeight()) / size}), sehingga papan tetap proporsional pada berbagai ukuran jendela.
+
+Pemilihan warna ikon menteri dilakukan secara adaptif berdasarkan luminansi latar belakang sel. Fungsi \texttt{isDark()} menghitung luminansi menggunakan formula standar ($0{,}299R + 0{,}587G + 0{,}114B$); apabila luminansi di bawah 0,5, ikon putih digunakan, dan sebaliknya ikon hitam digunakan. Menteri yang terlibat dalam pelanggaran kendala ditampilkan dengan ikon merah.
+
+\subsubsection{Pemeriksaan Pelanggaran dan Fitur \textit{Hint}}
+
+Metode \texttt{checkViolations()} dipanggil setiap kali pengguna menempatkan atau menghapus menteri. Metode ini memeriksa seluruh pasangan menteri yang telah ditempatkan terhadap empat jenis konflik: baris yang sama, kolom yang sama, \textit{adjacency}, dan kesamaan sektor warna. Pasangan yang berkonflik ditandai melalui matriks \texttt{errorHighlight[][]} yang dirender sebagai overlay berwarna merah semi-transparan pada sel-sel yang bersangkutan.
+
+Fitur \textit{hint} diimplementasikan dalam metode \texttt{giveHint()}, yang membandingkan penempatan menteri oleh pengguna dengan solusi yang telah dihitung. Untuk sektor warna pertama yang belum memiliki menteri pada posisi yang benar, sistem memberikan petunjuk visual berupa sorotan hijau pada posisi yang benar. Apabila pengguna telah menempatkan menteri pada posisi yang salah dalam sektor warna tersebut, sorotan oranye ditampilkan pada menteri yang salah sebagai indikator korektif.
+
+Kondisi kemenangan diperiksa setelah setiap penempatan: apabila jumlah menteri yang ditempatkan sama dengan ukuran papan dan seluruh posisi sesuai dengan solusi, pencacah waktu dihentikan dan dialog kemenangan ditampilkan.
+
+Tangkapan layar hasil implementasi antarmuka pada setiap layar diperlihatkan pada Gambar~\ref{fig:ss-homepage} hingga Gambar~\ref{fig:ss-gamewindow}.
+
+% TODO: Tambahkan tangkapan layar hasil implementasi
+% \begin{figure}[H]
+	%     \centering
+	%     \includegraphics[width=0.75\linewidth]{screenshots/homepage.png}
+	%     \caption{Tangkapan layar halaman utama (\textit{Homepage}).}
+	%     \label{fig:ss-homepage}
+	% \end{figure}
+%
+% \begin{figure}[H]
+	%     \centering
+	%     \includegraphics[width=0.75\linewidth]{screenshots/levelselector.png}
+	%     \caption{Tangkapan layar halaman pemilihan level.}
+	%     \label{fig:ss-levelselector}
+	% \end{figure}
+%
+% \begin{figure}[H]
+	%     \centering
+	%     \includegraphics[width=0.75\linewidth]{screenshots/gamewindow.png}
+	%     \caption{Tangkapan layar halaman permainan utama.}
+	%     \label{fig:ss-gamewindow}
+	% \end{figure}
+	
+\subsection{Implementasi Kerangka Pengujian}
+\label{subsec:impl-pengujian}
+
+\subsection{Implementasi Kerangka Pengujian}
+\label{subsec:impl-pengujian}
+
+Selain aplikasi permainan dan kedua solver, sistem juga mencakup sebuah kerangka pengujian terpisah yang digunakan untuk menjalankan eksperimen secara otomatis pada seluruh dataset. Kerangka ini diimplementasikan dalam kelas \texttt{Main} pada paket \texttt{app} yang berbeda dari titik masuk aplikasi permainan. Seluruh kode sumber kelas ini disajikan pada Lampiran~\ref{lampiran:kerangka-pengujian}.
+
+Kerangka pengujian membaca seluruh berkas parameter PSO dari direktori \texttt{params/}, di mana setiap berkas mendefinisikan satu konfigurasi eksperimen (seperti \texttt{benchmark.txt}, \texttt{optimal.txt}, dan sebagainya). Untuk setiap konfigurasi, seluruh puzzle pada ukuran standar ($7 \times 7$ hingga $12 \times 12$) dieksekusi dalam 5 \textit{batch} yang masing-masing berisi 50 level. Pada setiap level dalam satu \textit{batch}, kedua solver dijalankan secara berurutan: solver \textit{backtracking} terlebih dahulu, kemudian solver PSO dengan parameter dari berkas konfigurasi. Untuk setiap eksekusi, kerangka mencatat waktu eksekusi, validitas solusi, posisi penempatan menteri, serta metrik tambahan berupa nilai \textit{fitness} akhir, jumlah \textit{adjacency violations}, dan jumlah \textit{attacking violations} untuk PSO.
+
+Eksekusi \textit{batch} dilakukan secara paralel menggunakan \texttt{ExecutorService} dengan 6 \textit{thread}. Setiap \textit{batch} disubmit sebagai satu \texttt{Callable} yang independen, sehingga beberapa \textit{batch} dari ukuran papan yang berbeda dapat berjalan secara bersamaan. Potongan kode berikut menunjukkan mekanisme paralelisasi ini:
+
+\begin{lstlisting}[language=Java, caption=Paralelisasi eksekusi \textit{batch} menggunakan \texttt{ExecutorService}]
+	int threads = 6;
+	ExecutorService executor = Executors.newFixedThreadPool(threads);
+	
+	for (int size : sizes) {
+		for (int batch = 1; batch <= 5; batch++) {
+			int finalSize = size;
+			int finalBatch = batch;
+			
+			futures.add(executor.submit(() ->
+			testBoardBatch(finalSize, finalBatch, params, paramDir, paramBaseName)
+			));
+		}
+	}
+\end{lstlisting}
+
+Dengan 6 ukuran papan dan 5 \textit{batch} per ukuran, total terdapat 30 \textit{batch} yang dijadwalkan ke \textit{thread pool} berukuran 6. Paralelisasi dilakukan pada tingkat \textit{batch} (bukan pada tingkat puzzle individual) karena setiap eksekusi PSO memerlukan alokasi memori yang signifikan untuk populasi partikel, terutama pada konfigurasi dengan jumlah partikel besar ($P = 50000$).
+
+Untuk ukuran papan besar ($20 \times 20$ dan $30 \times 30$), pengujian dilakukan secara berbeda. Setiap ukuran hanya memiliki satu level yang dijalankan sebagai \textit{batch} tunggal pada \textit{thread} utama setelah seluruh \textit{batch} paralel selesai. Pada ukuran ini, hanya solver PSO yang dijalankan melalui kerangka pengujian; solver \textit{backtracking} tidak disertakan karena waktu komputasinya yang tidak praktis. Pengujian \textit{backtracking} pada papan besar dilakukan secara terpisah sebagaimana akan dibahas pada Bagian~\ref{subsec:hasil-backtracking}.
+
+Hasil setiap \textit{batch} ditulis ke dalam berkas teks terpisah yang mencatat hasil per-level, kemudian diagregasi ke dalam berkas ringkasan per konfigurasi yang memuat rata-rata waktu eksekusi dan tingkat keberhasilan per ukuran papan dan per \textit{batch}.
+
+\section{Hasil Pengujian}
+\label{sec:hasil-pengujian}
+
+Bagian ini menyajikan hasil pengujian berdasarkan ketiga skenario yang telah didefinisikan pada Bagian~\ref{subsec:skenario-pengujian-sub}. Data disajikan dalam bentuk tabel dan grafik tanpa interpretasi mendalam; analisis dan pembahasan dilakukan pada Bagian~\ref{sec:analisis}.
+
+\subsection{Hasil Pengujian \textit{Backtracking}}
+\label{subsec:hasil-backtracking}
+
+Solver \textit{backtracking} dengan \textit{forward checking} dan AC-3 dijalankan pada seluruh 1.500 puzzle ukuran standar ($7 \times 7$ hingga $12 \times 12$) sebagai bagian dari kerangka pengujian yang dibahas pada Bagian~\ref{subsec:impl-pengujian}. Karena solver bersifat deterministik, setiap puzzle hanya dijalankan satu kali. Seluruh puzzle berhasil diselesaikan, menghasilkan tingkat keberhasilan 100\% pada semua ukuran papan standar. Tabel~\ref{tab:hasil-bt} merangkum hasil pengujian.
+
+\begin{longtable}{cccc}
+	\caption{Hasil pengujian solver \textit{backtracking} dengan FC dan AC-3 pada ukuran standar}
+	\label{tab:hasil-bt} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Jumlah Puzzle} & \textbf{Tingkat Keberhasilan} & \textbf{Rata-rata Waktu (ms)} \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Jumlah Puzzle} & \textbf{Tingkat Keberhasilan} & \textbf{Rata-rata Waktu (ms)} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	$7 \times 7$   & 250 & 100\% & 0 \\
+	$8 \times 8$   & 250 & 100\% & 0 \\
+	$9 \times 9$   & 250 & 100\% & 0 \\
+	$10 \times 10$ & 250 & 100\% & 0 \\
+	$11 \times 11$ & 250 & 100\% & 1 \\
+	$12 \times 12$ & 250 & 100\% & 1 \\
+\end{longtable}
+
+Hasil menunjukkan bahwa solver \textit{backtracking} menyelesaikan seluruh puzzle pada ukuran standar dalam waktu yang sangat singkat: rata-rata 0 ms untuk papan berukuran $7 \times 7$ hingga $10 \times 10$, dan rata-rata 1 ms untuk papan berukuran $11 \times 11$ dan $12 \times 12$. Waktu 0 ms pada ukuran kecil mengindikasikan bahwa resolusi pencacah waktu (\texttt{System.currentTimeMillis()}, resolusi $\sim$1 ms) tidak cukup halus untuk mengukur durasi eksekusi yang sebenarnya pada papan-papan tersebut.
+
+Untuk papan berukuran besar, solver \textit{backtracking} dengan \textit{forward checking} 
+dan AC-3 dijalankan secara terpisah di luar kerangka pengujian paralel. Tabel~\ref{tab:hasil-bt-besar} 
+merangkum hasilnya.
+
+\begin{longtable}{cccc}
+	\caption{Hasil pengujian solver \textit{backtracking} dengan FC dan AC-3 pada ukuran besar}
+	\label{tab:hasil-bt-besar} \\
+	\toprule
+	\textbf{Ukuran} & \textbf{Waktu Eksekusi (ms)} & \textbf{\textit{Steps}} & \textbf{\textit{Backtracks}} \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Ukuran} & \textbf{Waktu Eksekusi (ms)} & \textbf{\textit{Steps}} & \textbf{\textit{Backtracks}} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	$20 \times 20$ & [WAKTU] & [STEPS] & [BACKTRACKS] \\
+	$30 \times 30$ & [WAKTU] & [STEPS] & [BACKTRACKS] \\
+\end{longtable}
+
+\subsection{Hasil Pengujian Variasi Parameter PSO}
+\label{subsec:hasil-pso}
+
+Solver PSO diskrit dijalankan dengan 13 konfigurasi parameter sebagaimana didefinisikan pada Tabel~\ref{tab:skenario-pso}. Setiap konfigurasi dijalankan pada seluruh 1.500 puzzle ukuran standar (5 \textit{batch} $\times$ 50 level $\times$ 6 ukuran) serta pada masing-masing satu puzzle untuk ukuran $20 \times 20$ dan $30 \times 30$. Hasil diagregasi ke dalam dua metrik utama: tingkat keberhasilan (\textit{success rate}) dan rata-rata waktu eksekusi.
+
+\subsubsection{Tingkat Keberhasilan}
+
+Tabel~\ref{tab:pso-sr} menyajikan tingkat keberhasilan keseluruhan (\textit{overall}) untuk setiap konfigurasi pada setiap ukuran papan standar. Nilai yang dicetak tebal menandakan tingkat keberhasilan tertinggi untuk ukuran papan yang bersangkutan.
+
+\begin{longtable}{lrrrrrr}
+	\caption{Tingkat keberhasilan PSO (\%) per konfigurasi dan ukuran papan}
+	\label{tab:pso-sr} \\
+	\toprule
+	\textbf{Konfigurasi} & $\mathbf{7 \times 7}$ & $\mathbf{8 \times 8}$ & $\mathbf{9 \times 9}$ & $\mathbf{10 \times 10}$ & $\mathbf{11 \times 11}$ & $\mathbf{12 \times 12}$ \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Konfigurasi} & $\mathbf{7 \times 7}$ & $\mathbf{8 \times 8}$ & $\mathbf{9 \times 9}$ & $\mathbf{10 \times 10}$ & $\mathbf{11 \times 11}$ & $\mathbf{12 \times 12}$ \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Benchmark      & 67,20 & 22,80 &  5,60 &  1,20 & 0,80 & 0,00 \\
+	LParticles     & 42,80 & 12,40 &  3,20 &  0,40 & 0,00 & 0,00 \\
+	MParticles     & 87,60 & 42,00 & 10,80 &  1,20 & 0,00 & 0,00 \\
+	MMParticles    & \textbf{100,00} & \textbf{94,40} & 61,20 & 26,80 & 8,00 & 0,40 \\
+	LNeighborhoods & 82,00 & 31,20 &  7,60 &  2,80 & 0,00 & 0,00 \\
+	MNeighborhoods & 55,20 & 19,20 &  0,80 &  0,40 & 0,00 & 0,00 \\
+	LInertia       & 80,00 & 35,60 &  8,80 &  0,40 & 0,40 & 0,00 \\
+	MInertia       & 64,80 & 18,40 &  2,00 &  0,00 & 0,00 & 0,00 \\
+	c1             & 66,00 & 29,60 &  6,00 &  0,40 & 0,00 & 0,00 \\
+	c2             & 52,40 & 15,20 &  4,00 &  0,00 & 0,00 & 0,00 \\
+	w1             & 74,80 & 25,20 &  2,80 &  1,20 & 0,00 & 0,00 \\
+	w2             & 67,60 & 24,40 &  2,80 &  2,00 & 0,00 & 0,00 \\
+	Optimal        & 99,20 & \textbf{94,40} & \textbf{62,00} & \textbf{37,60} & \textbf{13,60} & \textbf{5,20} \\
+\end{longtable}
+
+Seluruh konfigurasi menunjukkan pola penurunan tingkat keberhasilan yang konsisten seiring bertambahnya ukuran papan. Pada papan $7 \times 7$, mayoritas konfigurasi mencapai tingkat keberhasilan di atas 50\%, dengan konfigurasi MMParticles dan Optimal mencapai 100\% dan 99,20\%. Namun, pada papan $12 \times 12$, hanya dua konfigurasi yang berhasil menemukan solusi: MMParticles (0,40\%) dan Optimal (5,20\%).
+
+Untuk ukuran papan besar ($20 \times 20$ dan $30 \times 30$), seluruh 13 konfigurasi mencatat tingkat keberhasilan 0\%. Mengingat bahwa konfigurasi terbaik (Optimal) hanya mencapai 5,20\% pada papan $12 \times 12$ dan bahkan pada papan $11 \times 11$ hanya 13,60\%, kegagalan total pada ukuran yang jauh lebih besar merupakan hasil yang konsisten dengan tren penurunan yang diamati.
+
+\subsubsection{Rata-rata Waktu Eksekusi}
+
+Tabel~\ref{tab:pso-time} menyajikan rata-rata waktu eksekusi (dalam milidetik) untuk setiap konfigurasi. Waktu ini mencakup seluruh eksekusi, baik yang berhasil maupun yang gagal (terminasi karena batas iterasi atau stagnasi).
+
+\begin{longtable}{lrrrrrr}
+	\caption{Rata-rata waktu eksekusi PSO (ms) per konfigurasi dan ukuran papan}
+	\label{tab:pso-time} \\
+	\toprule
+	\textbf{Konfigurasi} & $\mathbf{7 \times 7}$ & $\mathbf{8 \times 8}$ & $\mathbf{9 \times 9}$ & $\mathbf{10 \times 10}$ & $\mathbf{11 \times 11}$ & $\mathbf{12 \times 12}$ \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Konfigurasi} & $\mathbf{7 \times 7}$ & $\mathbf{8 \times 8}$ & $\mathbf{9 \times 9}$ & $\mathbf{10 \times 10}$ & $\mathbf{11 \times 11}$ & $\mathbf{12 \times 12}$ \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Benchmark      &    893 &  2.317 &  3.157 &  3.632 &  4.091 &  4.280 \\
+	LParticles     &    903 &  1.561 &  1.940 &  2.204 &  2.471 &  2.585 \\
+	MParticles     &    565 &  2.801 &  4.824 &  5.862 &  6.657 &  6.886 \\
+	MMParticles    &    134 &  2.065 & 14.866 & 30.632 & 43.186 & 47.264 \\
+	LNeighborhoods &    492 &  2.063 &  3.075 &  3.562 &  4.099 &  4.270 \\
+	MNeighborhoods &  1.226 &  2.470 &  3.355 &  3.708 &  4.143 &  4.303 \\
+	LInertia       &    540 &  1.941 &  3.059 &  3.668 &  4.097 &  4.255 \\
+	MInertia       &    947 &  2.434 &  3.276 &  3.676 &  4.121 &  4.293 \\
+	c1             &    912 &  2.119 &  3.143 &  3.657 &  4.121 &  4.273 \\
+	c2             &  1.282 &  2.538 &  3.194 &  3.667 &  4.116 &  4.294 \\
+	w1             &    683 &  2.231 &  3.242 &  3.630 &  4.111 &  4.280 \\
+	w2             &    869 &  2.259 &  3.239 &  3.601 &  4.109 &  4.253 \\
+	Optimal        &    377 &  2.047 & 14.615 & 26.157 & 40.442 & 44.868 \\
+\end{longtable}
+
+Terdapat korelasi terbalik antara waktu eksekusi dan tingkat keberhasilan pada konfigurasi dengan jumlah partikel besar: MMParticles dan Optimal memiliki tingkat keberhasilan tertinggi, namun juga memiliki waktu eksekusi yang jauh lebih lama pada papan berukuran $9 \times 9$ ke atas. Sebagai contoh, konfigurasi Optimal memerlukan rata-rata 44.868 ms ($\approx$ 45 detik) pada papan $12 \times 12$, dibandingkan dengan 4.280 ms ($\approx$ 4 detik) pada konfigurasi Benchmark. Sebaliknya, konfigurasi LParticles memiliki waktu eksekusi tercepat pada papan berukuran $8 \times 8$ ke atas, namun dengan tingkat keberhasilan yang paling rendah.
+
+\subsubsection{Ringkasan Pengaruh Per Parameter}
+
+Untuk memudahkan identifikasi pengaruh masing-masing parameter, Tabel~\ref{tab:pso-ringkasan-param} merangkum perbandingan antara nilai rendah dan tinggi setiap parameter terhadap konfigurasi Benchmark pada papan $7 \times 7$ dan $9 \times 9$ sebagai representasi ukuran kecil dan menengah.
+
+\begin{longtable}{llrrrrr}
+	\caption{Ringkasan pengaruh parameter terhadap tingkat keberhasilan (\%)}
+	\label{tab:pso-ringkasan-param} \\
+	\toprule
+	\textbf{Parameter} & \textbf{Konfigurasi} & \textbf{Nilai} & \multicolumn{2}{c}{\textbf{SR (\%)}} & \multicolumn{2}{c}{\textbf{Waktu (ms)}} \\
+	\cmidrule(lr){4-5} \cmidrule(lr){6-7}
+	& & & $7 \times 7$ & $9 \times 9$ & $7 \times 7$ & $9 \times 9$ \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Parameter} & \textbf{Konfigurasi} & \textbf{Nilai} & \multicolumn{2}{c}{\textbf{SR (\%)}} & \multicolumn{2}{c}{\textbf{Waktu (ms)}} \\
+	\cmidrule(lr){4-5} \cmidrule(lr){6-7}
+	& & & $7 \times 7$ & $9 \times 9$ & $7 \times 7$ & $9 \times 9$ \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	\multirow{3}{*}{Jumlah partikel ($P$)}
+	& LParticles  & 3.000  & 42,80 &  3,20 &   903 & 1.940 \\
+	& Benchmark   & 5.000  & 67,20 &  5,60 &   893 & 3.157 \\
+	& MMParticles & 50.000 & 100,00 & 61,20 &   134 & 14.866 \\
+	\midrule
+	\multirow{3}{*}{\textit{Neighborhood} ($N_{\textit{nh}}$)}
+	& LNeighborhoods & 50  & 82,00 & 7,60 & 492 & 3.075 \\
+	& Benchmark      & 100 & 67,20 & 5,60 & 893 & 3.157 \\
+	& MNeighborhoods & 200 & 55,20 & 0,80 & 1.226 & 3.355 \\
+	\midrule
+	\multirow{3}{*}{Inersia ($w$)}
+	& LInertia  & 0,4 & 80,00 & 8,80 & 540 & 3.059 \\
+	& Benchmark & 0,7 & 67,20 & 5,60 & 893 & 3.157 \\
+	& MInertia  & 0,9 & 64,80 & 2,00 & 947 & 3.276 \\
+	\midrule
+	\multirow{2}{*}{Kognitif ($c_1$)}
+	& Benchmark & 1,0 & 67,20 & 5,60 & 893 & 3.157 \\
+	& c1        & 1,5 & 66,00 & 6,00 & 912 & 3.143 \\
+	\midrule
+	\multirow{2}{*}{Sosial ($c_2$)}
+	& Benchmark & 1,0 & 67,20 & 5,60 & 893 & 3.157 \\
+	& c2        & 1,5 & 52,40 & 4,00 & 1.282 & 3.194 \\
+	\midrule
+	\multirow{2}{*}{Bobot \textit{attacking} ($w_1$)}
+	& Benchmark & 1,0 & 67,20 & 5,60 & 893 & 3.157 \\
+	& w1        & 2,0 & 74,80 & 2,80 & 683 & 3.242 \\
+	\midrule
+	\multirow{2}{*}{Bobot \textit{adjacency} ($w_2$)}
+	& Benchmark & 1,0 & 67,20 & 5,60 & 893 & 3.157 \\
+	& w2        & 2,0 & 67,60 & 2,80 & 869 & 3.239 \\
+\end{longtable}
+
+Dari Tabel~\ref{tab:pso-ringkasan-param}, parameter yang memberikan pengaruh paling signifikan terhadap tingkat keberhasilan adalah jumlah partikel ($P$): peningkatan dari 5.000 ke 50.000 menaikkan tingkat keberhasilan dari 5,60\% menjadi 61,20\% pada papan $9 \times 9$. Jumlah \textit{neighborhood} dan koefisien inersia juga menunjukkan pengaruh yang terukur, di mana nilai yang lebih kecil ($N_{\textit{nh}} = 50$ dan $w = 0{,}4$) menghasilkan kinerja yang lebih baik. Sebaliknya, variasi koefisien kognitif ($c_1$), sosial ($c_2$), dan bobot \textit{fitness} ($w_1$, $w_2$) memberikan pengaruh yang relatif kecil terhadap kinerja keseluruhan.
+
+\subsection{Hasil Perbandingan \textit{Backtracking} vs PSO}
+\label{subsec:hasil-perbandingan}
+
+Bagian ini membandingkan secara langsung hasil solver \textit{backtracking} dengan \textit{forward checking} dan AC-3 terhadap konfigurasi PSO terbaik (Optimal) pada seluruh ukuran papan. Konfigurasi Optimal dipilih sebagai representasi PSO karena menggabungkan nilai-nilai parameter terbaik yang teridentifikasi dari eksperimen individual pada Bagian~\ref{subsec:hasil-pso}, yaitu $P = 50000$, $N_{\textit{nh}} = 50$, $c_1 = 1{,}5$, dan $w = 0{,}4$.
+
+Tabel~\ref{tab:perbandingan-sr} menyajikan perbandingan tingkat keberhasilan kedua solver pada ukuran papan standar.
+
+\begin{longtable}{lrr}
+	\caption{Perbandingan tingkat keberhasilan (\%) \textit{Backtracking} vs PSO Optimal}
+	\label{tab:perbandingan-sr} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Backtracking (FC+AC-3)} & \textbf{PSO Optimal} \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Backtracking (FC+AC-3)} & \textbf{PSO Optimal} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	$7 \times 7$   & 100,00 & 99,20 \\
+	$8 \times 8$   & 100,00 & 94,40 \\
+	$9 \times 9$   & 100,00 & 62,00 \\
+	$10 \times 10$ & 100,00 & 37,60 \\
+	$11 \times 11$ & 100,00 & 13,60 \\
+	$12 \times 12$ & 100,00 &  5,20 \\
+\end{longtable}
+
+Solver \textit{backtracking} mempertahankan tingkat keberhasilan 100\% pada seluruh ukuran papan, sesuai dengan sifat pencarian lengkap (\textit{complete}) yang menjamin ditemukannya solusi apabila solusi tersebut ada. Konfigurasi PSO Optimal mencapai tingkat keberhasilan yang mendekati \textit{backtracking} pada papan $7 \times 7$ 
+(99,20\%), namun menurun secara tajam seiring bertambahnya ukuran papan hingga hanya 5,20\% pada papan $12 \times 12$.
+
+Tabel~\ref{tab:perbandingan-time} menyajikan perbandingan rata-rata waktu eksekusi kedua solver.
+
+\begin{longtable}{lrr}
+	\caption{Perbandingan rata-rata waktu eksekusi (ms) \textit{Backtracking} vs PSO Optimal}
+	\label{tab:perbandingan-time} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Backtracking (FC+AC-3)} & \textbf{PSO Optimal} \\
+	\midrule
+	\endfirsthead
+	\caption[]{(lanjutan)} \\
+	\toprule
+	\textbf{Ukuran Papan} & \textbf{Backtracking (FC+AC-3)} & \textbf{PSO Optimal} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	$7 \times 7$   &  0 &     377 \\
+	$8 \times 8$   &  0 &   2.047 \\
+	$9 \times 9$   &  0 &  14.615 \\
+	$10 \times 10$ &  0 &  26.157 \\
+	$11 \times 11$ &  1 &  40.442 \\
+	$12 \times 12$ &  1 &  44.868 \\
+\end{longtable}
+
+Perbedaan waktu eksekusi antara kedua solver sangat signifikan. Solver \textit{backtracking} menyelesaikan seluruh puzzle dalam waktu kurang dari 2 ms, sedangkan konfigurasi PSO Optimal memerlukan waktu ratusan milidetik hingga puluhan detik. Pada papan $12 \times 12$, rasio waktu eksekusi mencapai sekitar 1:44.868 — PSO memerlukan waktu hampir 45.000 kali lebih lama dibandingkan \textit{backtracking}, dengan tingkat keberhasilan yang jauh lebih rendah.
+
+Perlu dicatat bahwa rata-rata waktu PSO mencakup seluruh eksekusi termasuk yang gagal (terminasi karena batas iterasi atau stagnasi). Eksekusi yang gagal cenderung memakan waktu lebih lama karena harus menunggu hingga seluruh iterasi selesai atau kondisi stagnasi tercapai, sehingga rata-rata waktu pada ukuran papan dengan tingkat keberhasilan rendah mencerminkan waktu terminasi maksimum lebih dari waktu pencarian solusi yang sesungguhnya.
+
+
+\section{Analisis dan Pembahasan}
+\label{sec:analisis}
+
+Bagian ini menginterpretasikan hasil pengujian yang telah disajikan pada Bagian~\ref{sec:hasil-pengujian} dan menghubungkannya dengan landasan teori pada Bab~\ref{chap:landasan-teori} serta rancangan pada Bab~\ref{chap:metodologi}.
+
+\subsection{Analisis Skalabilitas \textit{Backtracking}}
+\label{subsec:analisis-backtracking}
+
+Hasil pengujian pada Tabel~\ref{tab:hasil-bt} menunjukkan bahwa solver \textit{backtracking} dengan \textit{forward checking} dan AC-3 menyelesaikan seluruh 1.500 puzzle pada ukuran standar dengan tingkat keberhasilan 100\% dan waktu eksekusi rata-rata di bawah 2 ms. Temuan ini mengonfirmasi efektivitas propagasi kendala pada permasalahan \textit{Colored Queens}, sebagaimana diprediksi secara teoretis pada Bagian~\ref{subsec:perbandingan-bt-pso}.
+
+Kunci dari efisiensi ini terletak pada interaksi antara struktur kendala \textit{Colored Queens} dan mekanisme propagasi domain. Sebagaimana dibahas pada Bagian~\ref{subsec:csp-colored-queens}, \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete}: setiap pasangan variabel (sektor warna) terhubung oleh setidaknya satu kendala (baris, kolom, atau \textit{adjacency}). Implikasi dari graf kendala yang \textit{complete} ini adalah bahwa setiap penugasan menteri pada satu sektor warna memicu propagasi ke \textit{seluruh} sektor warna lainnya, bukan hanya ke tetangga tertentu. \textit{Forward checking} menghapus posisi-posisi yang berkonflik langsung dengan penugasan baru, dan AC-3 melanjutkan dengan mendeteksi inkonsistensi tidak langsung yang muncul akibat penyempitan domain secara berantai.
+
+Dampak propagasi ini dapat diilustrasikan secara kuantitatif. Pada papan $n \times n$, penempatan satu menteri pada posisi $(r, k)$ langsung mengeliminasi: (1) seluruh posisi pada baris $r$ dan kolom $k$ dari domain variabel lain, serta (2) hingga 8 posisi bertetangga dari domain setiap variabel yang memiliki sel pada area tersebut. Untuk papan $12 \times 12$ dengan rata-rata ukuran domain $\bar{d} \approx 12$ sel per warna, penugasan pertama dapat memangkas sebagian besar domain variabel lainnya, sehingga penugasan berikutnya beroperasi pada ruang pencarian yang sudah jauh menyempit. Efek kumulatif dari propagasi ini menjelaskan mengapa solver mampu menemukan seluruh solusi dalam waktu sub-milidetik meskipun kompleksitas terburuk \textit{backtracking} tanpa propagasi adalah $O(d^n)$ \textcolor{red}{[CITE: kumar1998]}.
+
+\subsection{Analisis Pengaruh Parameter PSO}
+\label{subsec:analisis-pso}
+
+Hasil pengujian pada Tabel~\ref{tab:pso-sr} dan Tabel~\ref{tab:pso-time} memperlihatkan bahwa kinerja PSO pada permasalahan \textit{Colored Queens} sangat sensitif terhadap konfigurasi parameter, dengan beberapa parameter memiliki pengaruh yang dominan dan parameter lainnya relatif marginal.
+
+\subsubsection{Jumlah Partikel ($P$)}
+
+Jumlah partikel merupakan parameter yang paling berpengaruh terhadap tingkat keberhasilan. Peningkatan dari $P = 3.000$ (LParticles) ke $P = 50.000$ (MMParticles) menaikkan tingkat keberhasilan dari 42,80\% menjadi 100\% pada papan $7 \times 7$, dan dari 3,20\% menjadi 61,20\% pada papan $9 \times 9$. Pada papan $12 \times 12$, hanya konfigurasi dengan $P = 50.000$ yang berhasil menemukan solusi (0,40\%), sementara seluruh konfigurasi dengan $P \leq 8.000$ mencatat kegagalan total.
+
+Pengaruh jumlah partikel ini dapat dijelaskan dari perspektif eksplorasi ruang pencarian. PSO merupakan algoritma berbasis populasi di mana setiap partikel mewakili satu titik sampel dalam ruang solusi \textcolor{red}{[CITE: kennedy1995particle — Particle Swarm Optimization, Kennedy \& Eberhart, 1995]}. Pada permasalahan CSP yang \textit{tight} (rasio solusi terhadap ruang pencarian sangat kecil), probabilitas satu partikel diinisialisasi dekat dengan solusi valid berbanding lurus dengan jumlah partikel. Untuk papan $12 \times 12$, ruang pencarian memiliki ukuran $\prod_{i=1}^{12} |D_{c_i}|$ yang bernilai sangat besar, sehingga diperlukan populasi yang masif untuk menjangkau area yang mengandung solusi.
+
+Namun, peningkatan jumlah partikel memiliki \textit{trade-off} yang signifikan terhadap waktu eksekusi. Setiap iterasi PSO memiliki kompleksitas $O(P \cdot n)$ untuk pembaruan kecepatan dan posisi, ditambah $O(P \cdot n^2)$ untuk evaluasi \textit{fitness} (penghitungan pelanggaran antara seluruh pasangan menteri). Konfigurasi MMParticles memerlukan rata-rata 47.264 ms pada papan $12 \times 12$, lebih dari 10 kali lipat dibandingkan konfigurasi Benchmark (4.280 ms), meskipun tingkat keberhasilan hanya naik dari 0\% ke 0,40\%. Hal ini mengindikasikan bahwa peningkatan jumlah partikel pada ukuran besar mulai mengalami \textit{diminishing returns}: biaya komputasi per iterasi meningkat secara linier terhadap $P$, namun probabilitas menemukan solusi tidak meningkat dengan laju yang sama.
+
+\subsubsection{Jumlah \textit{Neighborhood} ($N_{\textit{nh}}$)}
+
+Pengurangan jumlah \textit{neighborhood} dari 100 (Benchmark) ke 50 (LNeighborhoods) meningkatkan tingkat keberhasilan pada seluruh ukuran papan: dari 67,20\% ke 82,00\% pada $7 \times 7$, dan dari 1,20\% ke 2,80\% pada $10 \times 10$. Sebaliknya, peningkatan ke 200 (MNeighborhoods) menurunkan kinerja secara konsisten.
+
+Temuan ini konsisten dengan teori topologi kawanan yang dibahas pada Bagian~\ref{subsec:topologi-kawanan}. Dengan jumlah \textit{neighborhood} yang lebih kecil, setiap kelompok memiliki lebih banyak partikel, sehingga \textit{nBest} dalam setiap kelompok cenderung memiliki \textit{fitness} yang lebih baik. Hal ini meningkatkan kualitas informasi yang dibagikan antarpartikel dalam kelompok melalui komponen sosial pada formula kecepatan. Sebaliknya, \textit{neighborhood} yang terlalu besar (200 kelompok dari 5.000 partikel = 25 partikel per kelompok) mengurangi keragaman informasi dalam setiap kelompok dan melemahkan daya dorong menuju area yang menjanjikan.
+
+Di sisi lain, \textit{neighborhood} yang lebih kecil juga berarti lebih sedikit \textit{nBest} yang berbeda. Dengan 50 kelompok, hanya terdapat 50 \textit{nBest} yang berfungsi sebagai \textit{attractor}, sedangkan dengan 200 kelompok terdapat 200 \textit{attractor}. Jumlah \textit{attractor} yang lebih sedikit mengurangi fragmentasi pencarian dan memungkinkan partikel terkonsentrasi pada area-area yang lebih menjanjikan, namun dengan risiko konvergensi prematur yang lebih tinggi. Pada permasalahan \textit{Colored Queens} yang memiliki sedikit solusi valid, konsentrasi pencarian terbukti lebih menguntungkan dibandingkan diversifikasi berlebihan.
+
+\subsubsection{Koefisien Inersia ($w$)}
+
+Penurunan koefisien inersia dari 0,7 (Benchmark) ke 0,4 (LInertia) meningkatkan tingkat keberhasilan pada papan $7 \times 7$ dari 67,20\% menjadi 80,00\% dan pada papan $9 \times 9$ dari 5,60\% menjadi 8,80\%. Peningkatan ke 0,9 (MInertia) berdampak negatif, menurunkan tingkat keberhasilan menjadi 64,80\% pada $7 \times 7$ dan 2,00\% pada $9 \times 9$.
+
+Koefisien inersia mengendalikan keseimbangan antara eksplorasi dan eksploitasi sebagaimana dibahas pada Bagian~\ref{subsec:parameter-pso}. Nilai inersia yang tinggi ($w = 0{,}9$) menyebabkan partikel mempertahankan kecepatan sebelumnya dengan bobot yang besar, sehingga cenderung bergerak melampaui area yang menjanjikan tanpa mengeksploitasinya secara memadai. Sebaliknya, inersia yang rendah ($w = 0{,}4$) memberikan bobot yang lebih besar pada komponen kognitif dan sosial, yang mengarahkan partikel secara lebih agresif menuju \textit{pBest} dan \textit{nBest}. Pada permasalahan CSP dengan \textit{fitness landscape} yang memiliki banyak \textit{plateau} (area luas dengan \textit{fitness} serupa) dan \textit{basin of attraction} yang sempit menuju solusi valid, eksploitasi yang lebih agresif terbukti lebih efektif.
+
+\subsubsection{Koefisien Kognitif ($c_1$) dan Sosial ($c_2$)}
+
+Variasi koefisien kognitif ($c_1 = 1{,}5$ vs 1,0) memberikan pengaruh yang sangat kecil: tingkat keberhasilan pada $7 \times 7$ berubah dari 67,20\% menjadi 66,00\%, dan pada $9 \times 9$ dari 5,60\% menjadi 6,00\%. Peningkatan koefisien sosial ($c_2 = 1{,}5$) justru menurunkan kinerja secara lebih terukur, dari 67,20\% menjadi 52,40\% pada $7 \times 7$.
+
+Asimetri pengaruh antara $c_1$ dan $c_2$ ini dapat ditelusuri dari mekanisme pembaruan posisi pada implementasi. Sebagaimana dibahas pada Bagian~\ref{subsubsec:update-position}, posisi baru partikel hanya dipengaruhi oleh \textit{nBest} (bukan \textit{pBest} secara langsung) — kecepatan $v_j$ digunakan sebagai probabilitas adopsi posisi \textit{nBest} per dimensi. Peningkatan $c_2$ memperbesar komponen sosial dalam formula kecepatan, yang pada gilirannya meningkatkan probabilitas adopsi \textit{nBest}. Apabila \textit{nBest} belum mendekati solusi valid, adopsi yang terlalu agresif justru menghilangkan keragaman populasi dan menyebabkan konvergensi prematur menuju solusi yang kurang optimal. Sementara itu, peningkatan $c_1$ memiliki efek yang lebih lemah karena pengaruh \textit{pBest} hanya masuk secara tidak langsung melalui kecepatan, bukan melalui adopsi posisi.
+
+\subsubsection{Bobot \textit{Fitness} ($w_1$ dan $w_2$)}
+
+Variasi bobot \textit{attacking} ($w_1 = 2{,}0$) menaikkan tingkat keberhasilan pada $7 \times 7$ dari 67,20\% menjadi 74,80\%, namun menurunkannya pada $9 \times 9$ dari 5,60\% menjadi 2,80\%. Variasi bobot \textit{adjacency} ($w_2 = 2{,}0$) menunjukkan pola serupa: sedikit peningkatan pada $7 \times 7$ (67,60\%) namun penurunan pada $9 \times 9$ (2,80\%).
+
+Peningkatan salah satu bobot secara efektif memperbesar gradien \textit{fitness} pada jenis pelanggaran yang bersangkutan, mendorong partikel untuk memprioritaskan penyelesaian jenis pelanggaran tersebut. Pada papan kecil, prioritasi pelanggaran baris/kolom ($w_1 = 2{,}0$) sedikit membantu karena pelanggaran jenis ini lebih mudah diselesaikan dan memberikan sinyal arah yang jelas. Namun pada papan yang lebih besar, ketidakseimbangan bobot dapat mengarahkan pencarian ke area yang bebas dari satu jenis pelanggaran namun masih memiliki pelanggaran jenis lain, sehingga secara keseluruhan tidak membantu konvergensi menuju solusi valid. Hasil ini menunjukkan bahwa bobot seimbang ($w_1 = w_2 = 1{,}0$) merupakan pilihan yang cukup baik sebagai \textit{baseline}.
+
+
+\subsection{Analisis Perbandingan Kedua Pendekatan}
+\label{subsec:analisis-perbandingan}
+
+Hasil perbandingan pada Tabel~\ref{tab:perbandingan-sr} dan Tabel~\ref{tab:perbandingan-time} menunjukkan dominasi solver \textit{backtracking} yang sangat jelas atas PSO pada permasalahan \textit{Colored Queens}. Dominasi ini bersifat absolut pada kedua dimensi evaluasi: \textit{backtracking} mencapai 100\% tingkat keberhasilan pada seluruh ukuran dengan waktu sub-milidetik, sedangkan PSO Optimal hanya mendekati kinerja setara pada papan terkecil ($7 \times 7$: 99,20\%) dan menurun tajam pada ukuran yang lebih besar.
+
+Perbedaan kinerja yang sangat signifikan ini bukan merupakan artefak dari implementasi yang kurang optimal, melainkan mencerminkan perbedaan fundamental antara kedua paradigma pencarian ketika diterapkan pada struktur spesifik permasalahan \textit{Colored Queens}. Tiga faktor utama menjelaskan dominasi \textit{backtracking}.
+
+\textbf{Pertama, pemanfaatan struktur kendala.} Solver \textit{backtracking} dengan \textit{forward checking} dan AC-3 secara langsung memanfaatkan hubungan antarkendala untuk memangkas ruang pencarian secara proaktif. Setiap penugasan baru segera memicu propagasi yang mengeliminasi ketidakkonsistenan dari domain variabel-variabel yang belum ditugaskan. PSO, sebaliknya, memperlakukan masalah sebagai optimasi \textit{black-box}: fungsi \textit{fitness} hanya memberikan umpan balik berupa \textit{jumlah} pelanggaran tanpa informasi mengenai \textit{sumber} atau \textit{arah} perbaikan. Partikel tidak mengetahui kendala mana yang dilanggar atau bagaimana menggerakkan satu dimensi untuk mengurangi pelanggaran tanpa menimbulkan pelanggaran baru pada dimensi lain \textcolor{red}{[CITE: russell2020artificial — Artificial Intelligence: A Modern Approach, Russell \& Norvig, 2020]}.
+
+\textbf{Kedua, sifat ruang pencarian \textit{Colored Queens}.} Permasalahan \textit{Colored Queens} memiliki karakteristik CSP yang \textit{tight}: jumlah solusi valid relatif sangat kecil dibandingkan ukuran ruang pencarian total. Hal ini menyulitkan pendekatan stokastik karena probabilitas sebuah partikel ``mendarat'' pada atau di dekat solusi valid sangat rendah. Lebih jauh, \textit{fitness landscape} dari \textit{Colored Queens} memiliki karakteristik yang merugikan PSO: perubahan pada satu dimensi (penempatan satu menteri) dapat secara drastis mengubah jumlah pelanggaran pada dimensi lain, menghasilkan \textit{landscape} yang \textit{rugged} dengan banyak \textit{local optima} \textcolor{red}{[CITE: engelbrecht2007computational — Computational Intelligence: An Introduction, Engelbrecht, 2007]}.
+
+Bukti empiris dari karakteristik ini terlihat pada data per-level. Sebagai contoh, pada berkas hasil pengujian konfigurasi Optimal untuk papan $9 \times 9$ (Lampiran~\ref{lampiran:hasil-detail}), eksekusi yang gagal secara konsisten berakhir dengan \textit{fitness} = 1,0 yang terdiri dari 0 \textit{adjacency violations} dan 1 \textit{attacking violation}. Pola ini menunjukkan bahwa PSO mampu mengeliminasi pelanggaran \textit{adjacency} secara efektif, namun terjebak dalam konfigurasi di mana sisa satu pelanggaran baris/kolom tidak dapat diselesaikan tanpa memperkenalkan pelanggaran baru. \textit{Landscape} pada kondisi ini memiliki \textit{basin of attraction} yang sangat sempit: perbaikan pada satu dimensi memerlukan perubahan simultan yang tepat pada satu atau lebih dimensi lain, yang sangat tidak mungkin dicapai melalui pergerakan probabilistik partikel.
+
+\textbf{Ketiga, efisiensi pencarian deterministik vs stokastik pada CSP.} Algoritma \textit{backtracking} membangun solusi secara inkremental, memvalidasi setiap langkah, dan segera mundur ketika inkonsistensi terdeteksi. Pendekatan ini memastikan bahwa setiap langkah pencarian menuju solusi parsial yang masih mungkin diperluas menjadi solusi lengkap. PSO, sebaliknya, bekerja dengan solusi lengkap yang seringkali melanggar banyak kendala secara simultan, dan bergantung pada proses stokastik untuk secara bertahap mengurangi pelanggaran. Pada CSP dengan kendala yang saling bergantung secara ketat, perbaikan inkremental melalui pergerakan stokastik sangat rentan terhadap terjadinya \textit{cycling}: perbaikan pada satu dimensi memperburuk dimensi lain, sehingga \textit{fitness} berosilasi tanpa konvergensi \textcolor{red}{[CITE: michalewicz2004solve — How to Solve It: Modern Heuristics, Michalewicz \& Fogel, 2004]}.
+
+Meskipun demikian, hasil ini tidak meniadakan potensi PSO sebagai pendekatan penyelesaian CSP secara umum. Keunggulan PSO terletak pada kemampuannya untuk memberikan solusi \textit{approximate} dalam waktu yang terkontrol oleh parameter, serta tidak memerlukan pemodelan eksplisit dari struktur kendala. Pada permasalahan di mana solusi sempurna tidak diperlukan (misalnya masalah optimasi dengan kendala lunak), atau di mana struktur 
+kendala terlalu kompleks untuk dieksploitasi secara efektif oleh propagasi, pendekatan \textit{metaheuristic} dapat menjadi alternatif yang kompetitif \textcolor{red}{[CITE: blum2003metaheuristics — Metaheuristics in Combinatorial Optimization: Overview and Conceptual Comparison, Blum \& Roli, 2003]}. Namun, untuk permasalahan \textit{Colored Queens} yang merupakan CSP dengan kendala keras dan \textit{constraint graph} yang \textit{complete}, pendekatan berbasis propagasi kendala terbukti jauh lebih sesuai.
