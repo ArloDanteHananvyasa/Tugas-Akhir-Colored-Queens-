@@ -50,12 +50,6 @@ public class Homepage extends JFrame {
             dispose();
         });
 
-        // little footer credit (optional, deletable)
-        JLabel footer = new JLabel("Final Project · Backtracking + AC-3 vs. Discrete PSO");
-        footer.setFont(UITheme.font(Font.ITALIC, 14));
-        footer.setForeground(UITheme.TAUPE);
-        footer.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         panel.add(Box.createVerticalGlue());
         panel.add(queenIcon);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -65,7 +59,6 @@ public class Homepage extends JFrame {
         panel.add(Box.createRigidArea(new Dimension(0, 50)));
         panel.add(startButton);
         panel.add(Box.createVerticalGlue());
-        panel.add(footer);
         panel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         setContentPane(panel);
