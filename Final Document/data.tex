@@ -82,9 +82,9 @@
 % aktifkan salah satu mode di bawah ini :
 %=============================================================================
 %\mode{bimbingan} 		% untuk keperluan bimbingan
-\mode{sidang} 			% untuk sidang 1
+%\mode{sidang} 			% untuk sidang 1
 %\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
-%\mode{final} 			% untuk mencetak buku skripsi 
+\mode{final} 			% untuk mencetak buku skripsi 
 %=============================================================================
 %\mode{sidangakhir}
 
@@ -210,8 +210,8 @@
 %=============================================================================
 \namanpm{Arlo Dante Hananvyasa}{6182201010}
 \tanggal{10}{5}{2026}         %isi bulan dengan angka
-\pembimbing{\HUH}    
-%\penguji{\GDK}{\RDL}
+\pembimbing{\HUH}{}   
+\penguji{\GDK}{\RDL}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -227,8 +227,8 @@
 % - gunakan \texorpdfstring{\\}{} untuk pindah ke baris baru
 % - judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
 %=============================================================================
-\judulINA{<<Judul Bahasa Indonesia>>}
-\judulENG{<<Judul Bahasa Inggris>>}
+\judulINA{Pembangunan Perangkat Lunak Permainan \textit{Colored Queens} dan Perbandingan Solver \textit{Backtracking} dengan \textit{Particle Swarm Optimization}}
+\judulENG{Development of a \textit{Colored Queens} Game Application and Comparative Analysis of \textit{Backtracking} and \textit{Particle Swarm Optimization} Solvers}
 %_____________________________________________________________________________
 %=============================================================================
 % 								BAGIAN X
@@ -240,8 +240,8 @@
 % - hilangkan tanda << & >>, dan isi sesuai dengan data anda
 % - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
 %=============================================================================
-\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>>}
-\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>>} 
+\abstrakINA{\textit{Colored Queens} adalah \textit{puzzle} logika berbasis papan yang dipopulerkan oleh LinkedIn, di mana pemain menempatkan tepat satu menteri pada setiap baris, kolom, dan sektor warna tanpa ada dua menteri yang bertetangga dalam delapan arah. Tugas akhir ini mengimplementasikan dan membandingkan dua pendekatan untuk menyelesaikannya: \textit{backtracking} dengan \textit{forward checking} dan AC-3 sebagai pendekatan deterministik, serta \textit{Particle Swarm Optimization} (PSO) diskrit sebagai pendekatan \textit{metaheuristic}. Selain itu, dikembangkan aplikasi permainan berbasis \textit{desktop} menggunakan Java Swing yang mengintegrasikan solver \textit{backtracking} sebagai mesin \textit{hint} dan \textit{auto-solve}. Pengujian dilakukan pada 1.502 puzzle berukuran $7 \times 7$ hingga $30 \times 30$. \textit{Backtracking} dengan FC+AC-3 menyelesaikan seluruh 1.500 puzzle ukuran standar dengan tingkat keberhasilan 100\% dan waktu rata-rata kurang dari 2 ms; pada papan $20 \times 20$ dan $30 \times 30$, algoritma ini secara teoretis tetap akan menemukan solusi sebagai algoritma \textit{complete}, namun waktu komputasinya tidak praktis. PSO menunjukkan penurunan tajam dari 99,20\% pada papan $7 \times 7$ menjadi hanya 5,20\% pada $12 \times 12$, dan gagal sepenuhnya pada ukuran besar. Hasil ini mengonfirmasi bahwa untuk CSP berkendala ketat seperti \textit{Colored Queens}, propagasi kendala jauh lebih efektif dibandingkan pendekatan \textit{metaheuristic}.}
+\abstrakENG{\textit{Colored Queens} is a logic-based board puzzle popularized by LinkedIn, where the player places exactly one queen in each row, column, and colored region of an $n \times n$ board with no two queens adjacent in any of eight directions. This thesis implements and compares two approaches to solving it: backtracking with forward checking and AC-3 as a deterministic approach, and discrete Particle Swarm Optimization (PSO) as a metaheuristic. A desktop application was also developed in Java Swing, integrating the backtracking solver as the engine for hint and auto-solve features. Testing was conducted on 1,502 puzzles ranging from $7 \times 7$ to $30 \times 30$. Backtracking with FC+AC-3 solved all 1,500 standard-size puzzles with a 100\% success rate and an average execution time under 2 ms; on $20 \times 20$ and $30 \times 30$ boards, the algorithm is theoretically guaranteed to find a solution as a complete algorithm, but the computation time is impractical. PSO showed a sharp decline from 99.20\% on $7 \times 7$ boards to only 5.20\% on $12 \times 12$, and failed entirely on larger boards. These results confirm that for 	tightly-constrained CSPs such as Colored Queens, constraint propagation is far more effective than a metaheuristic approach.} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -253,8 +253,8 @@
 % - kunciENG: keywords in english
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
-\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+\kunciINA{\textit{Colored Queens}, \textit{constraint satisfaction problem}, \textit{backtracking}, \textit{forward checking}, AC-3, \textit{particle swarm optimization}, \textit{puzzle} logika.}
+\kunciENG{Colored Queens, constraint satisfaction problem, backtracking, forward checking, AC-3, particle swarm optimization, logic puzzle.}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -297,12 +297,12 @@
 %                 digambar langsung di atas pdf (fill&sign via acrobat, tanda
 %                 tangan dapat dibuat dengan mouse atau stylus)
 %=============================================================================
-%\ttd{digital}
+\ttd{digital}
 %\ttd{gambar}
 %\ttd{meterai}
 %\ttd{kosong}
 %=============================================================================
-\ttd{meterai}
+%\ttd{meterai}
 
 %_____________________________________________________________________________
 %=============================================================================
@@ -317,9 +317,9 @@
 % apakah harus mengisi ``no" atau ``yes". Default = no 
 % Untuk mahasiswa Informatika = yes
 %=============================================================================
-%\ttddosen{yes}
+\ttddosen{yes}
 %=============================================================================
-\ttddosen{no}
+%\ttddosen{no}
 
 %_____________________________________________________________________________
 %=============================================================================

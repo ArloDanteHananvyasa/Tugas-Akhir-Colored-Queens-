@@ -30,6 +30,8 @@ public class GameWindow extends JFrame {
     private JLabel levelLabel;
     private BoardPanel boardPanel;
     private JComboBox<String> levelDropdown;
+    private boolean suppressDropdownEvents = false;
+    private JComboBox<String> sizeDropdown;
 
     private long startTime;
 
@@ -97,10 +99,11 @@ public class GameWindow extends JFrame {
 
         // size dropdown
         String[] sizeOptions = {"7x7", "8x8", "9x9", "10x10", "11x11", "12x12", "20x20", "30x30"};
-        JComboBox<String> sizeDropdown = new JComboBox<>(sizeOptions);
+        sizeDropdown = new JComboBox<>(sizeOptions);
         sizeDropdown.setSelectedItem(size + "x" + size);
         sizeDropdown.setFont(new Font("Arial", Font.PLAIN, 16));
         sizeDropdown.addActionListener(e -> {
+            if (suppressDropdownEvents) return;
             String selected = (String) sizeDropdown.getSelectedItem();
             int newSize = Integer.parseInt(selected.replace("x" + selected.split("x")[1], ""));
             loadBoard(newSize, 1);
@@ -112,6 +115,7 @@ public class GameWindow extends JFrame {
         levelDropdown.setSelectedItem("Level " + level);
         levelDropdown.setFont(new Font("Arial", Font.PLAIN, 16));
         levelDropdown.addActionListener(e -> {
+            if (suppressDropdownEvents) return;
             if (levelDropdown.getSelectedItem() == null) return;
             String selected = (String) levelDropdown.getSelectedItem();
             int newLevel = Integer.parseInt(selected.replace("Level ", ""));
@@ -179,9 +183,20 @@ public class GameWindow extends JFrame {
         sizeLabel.setText(size + " x " + size);
         levelLabel.setText("Level " + level);
 
-        // update level dropdown
+        // update both dropdowns without triggering their listeners
+        ActionListener[] sizeListeners = sizeDropdown.getActionListeners();
+        ActionListener[] levelListeners = levelDropdown.getActionListeners();
+        for (ActionListener al : sizeListeners)  sizeDropdown.removeActionListener(al);
+        for (ActionListener al : levelListeners) levelDropdown.removeActionListener(al);
+
+        sizeDropdown.setSelectedItem(size + "x" + size);
         populateLevelDropdown(size);
         levelDropdown.setSelectedItem("Level " + level);
+
+        for (ActionListener al : sizeListeners)  sizeDropdown.addActionListener(al);
+        for (ActionListener al : levelListeners) levelDropdown.addActionListener(al);
+
+        for (ActionListener al : levelListeners) levelDropdown.addActionListener(al);
 
         try {
             List<Cell> cells = BoardImporter.importBoard(size, level);
@@ -333,6 +348,111 @@ public class GameWindow extends JFrame {
             label.setIcon(new ImageIcon(img.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
         }
         return label;
+    }
+
+    private void showWinDialog() {
+        JDialog dialog = new JDialog(this, true); // modal
+        dialog.setUndecorated(true);
+        dialog.setSize(480, 320);
+        dialog.setLocationRelativeTo(this);
+
+        // rounded card body
+        JPanel card = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                                    RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(UITheme.CARD);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 28, 28);
+                g2.setColor(UITheme.TAUPE);
+                g2.setStroke(new BasicStroke(1.5f));
+                g2.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, 28, 28);
+                g2.dispose();
+            }
+        };
+        card.setOpaque(false);
+        card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
+        card.setBorder(BorderFactory.createEmptyBorder(36, 40, 30, 40));
+
+        // queen icon (reuse the asset)
+        JLabel icon = new JLabel();
+        icon.setAlignmentX(Component.CENTER_ALIGNMENT);
+        if (boardPanel.queenImageBlack != null) {
+            icon.setIcon(new ImageIcon(boardPanel.queenImageBlack
+                    .getScaledInstance(72, 72, Image.SCALE_SMOOTH)));
+        }
+
+        JLabel title = new JLabel("Congratulations!");
+        title.setFont(UITheme.serif(Font.BOLD, 34));
+        title.setForeground(UITheme.PLUM);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel sub = new JLabel("You solved it in " + timerLabel.getText());
+        sub.setFont(UITheme.font(Font.PLAIN, 18));
+        sub.setForeground(UITheme.TEXT_MUTED);
+        sub.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // figure out what comes next
+        int[] next = getNextSizeLevel(currentSize, currentLevel);
+
+        JButton ok = UITheme.roundedButton("Nice!", false);
+        ok.setMaximumSize(new Dimension(150, 48));
+        ok.addActionListener(e -> dialog.dispose());
+
+        JPanel buttonRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 14, 0));
+        buttonRow.setOpaque(false);
+        buttonRow.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonRow.setMaximumSize(new Dimension(400, 56));
+
+        if (next != null) {
+            JButton nextButton = UITheme.roundedButton("Next Level", true);
+            nextButton.setMaximumSize(new Dimension(170, 48));
+            nextButton.addActionListener(e -> {
+                dialog.dispose();
+                loadBoard(next[0], next[1]);
+            });
+            buttonRow.add(ok);
+            buttonRow.add(nextButton);
+        } else {
+            ok.setText("You finished everything!");
+            ok.setMaximumSize(new Dimension(280, 48));
+            buttonRow.add(ok);
+        }
+
+        // assemble — order matters
+        card.add(icon);
+        card.add(Box.createRigidArea(new Dimension(0, 16)));
+        card.add(title);
+        card.add(Box.createRigidArea(new Dimension(0, 8)));
+        card.add(sub);
+        card.add(Box.createRigidArea(new Dimension(0, 28)));
+        card.add(buttonRow);
+
+        dialog.setContentPane(card);
+        dialog.setBackground(new Color(0, 0, 0, 0));
+        dialog.setVisible(true);
+    }
+
+    // returns {nextSize, nextLevel}, or null if there is no next board
+    private int[] getNextSizeLevel(int size, int level) {
+        int max = MAX_LEVELS.getOrDefault(size, 1);
+
+        // still levels left in the current size
+        if (level < max) {
+            return new int[]{size, level + 1};
+        }
+
+        // finished this size — advance to the next size in order
+        List<Integer> sizeOrder = new ArrayList<>(MAX_LEVELS.keySet());
+        int idx = sizeOrder.indexOf(size);
+        if (idx >= 0 && idx < sizeOrder.size() - 1) {
+            int nextSize = sizeOrder.get(idx + 1);
+            return new int[]{nextSize, 1};
+        }
+
+        // was the very last size at its last level — nothing left
+        return null;
     }
 
     // --- Board Panel ---
@@ -549,9 +669,7 @@ public class GameWindow extends JFrame {
                 }
                 if (matchesSolution) {
                     gameTimer.stop();
-                    SwingUtilities.invokeLater(() -> {
-                        JOptionPane.showMessageDialog(this, "Congratulations! You solved it!");
-                    });
+                    SwingUtilities.invokeLater(GameWindow.this::showWinDialog);
                 }
             }
         }
@@ -587,4 +705,6 @@ public class GameWindow extends JFrame {
         }
 
     }
+
+
 }
