@@ -34,7 +34,7 @@ Berikut adalah penjelasan setiap proses pada Gambar \ref{fig:alur-sistem}:
 	
 	\item \textbf{Solusi valid akan ditampilkan.} Solusi berupa pasangan koordinat penempatan menteri untuk setiap sektor warna ditampilkan. Pada konteks aplikasi, solusi dirender pada papan melalui \texttt{GameWindow} (Bagian \ref{subsec:antarmuka}). Pada konteks eksperimen, solusi beserta metrik kinerja dicatat ke dalam berkas hasil.
 	
-	\item \textbf{Melakukan perbandingan dan evaluasi.} Metrik dari kedua solver diagregasi dan dibandingkan berdasarkan waktu eksekusi, tingkat keberhasilan, dan karakteristik pencarian pada berbagai ukuran papan dan konfigurasi parameter. Skenario pengujian dibahas pada Bagian \ref{sec:skenario-pengujian} dan hasil analisis disajikan pada Bab \ref{chap:implementasi}.
+	\item \textbf{Melakukan perbandingan dan evaluasi.} Metrik dari kedua solver diagregasi dan dibandingkan berdasarkan waktu eksekusi, tingkat keberhasilan, dan karakteristik pencarian pada berbagai ukuran papan dan konfigurasi parameter. Skenario pengujian dibahas pada Bagian \ref{sec:skenario-pengujian} dan hasil analisis disajikan pada Bab \ref{chap:hasil}.
 \end{enumerate}
 
 \section{Pemodelan Permasalahan \textit{Colored Queens} sebagai CSP}
@@ -367,7 +367,7 @@ Studi kasus ini mengilustrasikan bagaimana sinergi antara \textit{forward checki
 \section{Analisis Algoritma \textit{Particle Swarm Optimization}}
 \label{sec:analisis-pso}
 
-Bagian ini menjelaskan analisis algoritmik dari pendekatan kedua yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}, yaitu \textit{Particle Swarm Optimization} (PSO) dalam varian diskrit. Berbeda dengan \textit{backtracking} yang menjamin penemuan solusi melalui pencarian sistematis, PSO merupakan algoritma stokastik berbasis populasi yang mencari solusi melalui pergerakan kolektif partikel-partikel pada ruang pencarian. Landasan teori PSO klasik dan adaptasinya untuk ruang pencarian diskrit telah dibahas pada Bagian~\ref{subsubsec:pso} dan Bagian~\ref{subsubsec:discrete-pso}. Analisis disajikan melalui dua diagram alur, yaitu mekanisme pembaruan kecepatan dan posisi setiap partikel, kemudian alur utama algoritma yang menjalankan pembaruan tersebut secara iteratif hingga salah satu kondisi terminasi tercapai. Diagram pembaruan partikel disajikan terlebih dahulu agar pembaca dapat memahami unit komputasi inti dari PSO sebelum melihat keseluruhan alur. Rincian implementasi masing-masing komponen dibahas pada Bab~\ref{chap:perancangan}.
+Bagian ini menjelaskan analisis algoritmik dari pendekatan kedua yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}, yaitu \textit{Particle Swarm Optimization} (PSO) dalam varian diskrit. Berbeda dengan \textit{backtracking} yang menjamin penemuan solusi melalui pencarian sistematis, PSO merupakan algoritma stokastik berbasis populasi yang mencari solusi melalui pergerakan kolektif partikel-partikel pada ruang pencarian. Landasan teori PSO klasik dan adaptasinya untuk ruang pencarian diskrit telah dibahas pada Bagian~\ref{subsubsec:pso}. Analisis disajikan melalui dua diagram alur, yaitu mekanisme pembaruan kecepatan dan posisi setiap partikel, kemudian alur utama algoritma yang menjalankan pembaruan tersebut secara iteratif hingga salah satu kondisi terminasi tercapai. Diagram pembaruan partikel disajikan terlebih dahulu agar pembaca dapat memahami unit komputasi inti dari PSO sebelum melihat keseluruhan alur. Rincian implementasi masing-masing komponen dibahas pada Bab~\ref{chap:perancangan}.
 
 \subsection{Pembaruan Kecepatan dan Posisi Partikel}
 \label{subsec:flow-particle-update}
@@ -383,7 +383,7 @@ Mekanisme pembaruan kecepatan dan posisi merupakan inti komputasi PSO yang dijal
 
 \subsubsection{Iterasi atas \textit{Neighborhood}}
 
-Prosedur dimulai dengan mengiterasi seluruh kelompok \textit{neighborhood} yang telah dibentuk pada tahap inisialisasi populasi. Setiap \textit{neighborhood} adalah himpunan partikel yang berbagi informasi mengenai posisi terbaik kolektifnya (\textit{nBest}), sehingga partikel-partikel dalam satu kelompok bergerak dipandu oleh referensi yang sama. Penggunaan topologi \textit{neighborhood} dipilih atas pertimbangan yang dijabarkan pada Bagian~\ref{subsec:topologi-pso}. Apabila seluruh \textit{neighborhood} telah diproses, prosedur berakhir.
+Prosedur dimulai dengan mengiterasi seluruh kelompok \textit{neighborhood} yang telah dibentuk pada tahap inisialisasi populasi. Setiap \textit{neighborhood} adalah himpunan partikel yang berbagi informasi mengenai posisi terbaik kolektifnya (\textit{nBest}), sehingga partikel-partikel dalam satu kelompok bergerak dipandu oleh referensi yang sama. Penggunaan topologi \textit{neighborhood} dipilih atas pertimbangan yang dijabarkan pada Bagian~\ref{subsubsec:pso}. Apabila seluruh \textit{neighborhood} telah diproses, prosedur berakhir.
 
 \subsubsection{Iterasi atas Partikel dalam \textit{Neighborhood}}
 

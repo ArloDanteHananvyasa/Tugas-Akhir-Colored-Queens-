@@ -9,7 +9,26 @@ Permasalahan \textit{N-Queens} merupakan salah satu permasalahan klasik dalam il
 
 Seiring perkembangan penelitian, bermunculan berbagai variasi dari N-Queens yang memperkenalkan kendala tambahan sehingga meningkatkan kompleksitas komputasional secara signifikan. Gent, Jefferson, dan Nightingale \cite{gent2017complexity} membuktikan bahwa varian \textit{N-Queens Completion}, yaitu menyelesaikan konfigurasi parsial yang sudah diberikan sebelumnya, tergolong NP-Complete dan \#P-Complete. Temuan ini mengonfirmasi bahwa variasi-variasi N-Queens dengan kendala tambahan atau struktur papan yang tidak beraturan memiliki kompleksitas teoritis yang setara dengan permasalahan-permasalahan sulit klasik dalam ilmu komputer, sehingga tidak dapat diselesaikan oleh konstruksi aritmatika sederhana dan memerlukan pendekatan algoritmik berbasis pencarian.
 
-Salah satu variasi yang menarik perhatian luas belakangan ini adalah \textit{Colored Queens}, sebuah \textit{puzzle} logika berbasis papan yang dipopulerkan melalui permainan \textit{Queens} pada platform LinkedIn \cite{linkedin2024queens}. Secara struktural, permainan ini memiliki kedekatan dengan \textit{Star Battle}, \textit{puzzle} penempatan yang pertama kali dirancang oleh Hans Eendebak untuk \textit{World Puzzle Championship} tahun 2003 \cite{gmpuzzles2013starbattle}. Dalam \textit{Colored Queens}, sebuah papan berukuran $n \times n$ dibagi menjadi $n$ buah sektor berwarna dengan bentuk yang umumnya tidak beraturan. Tujuan permainan adalah menempatkan tepat satu menteri pada setiap sektor, setiap baris, dan setiap kolom, dengan tambahan bahwa tidak ada dua menteri yang boleh bertetangga secara langsung dalam delapan arah. Kendala adjacency yang bersifat lokal ini, dikombinasikan dengan sektor warna yang berbentuk ireguler, menciptakan ruang pencarian yang secara struktural jauh berbeda dari N-Queens klasik dan tidak dapat diselesaikan dengan teknik konstruktif standar.
+Salah satu variasi yang menarik perhatian luas belakangan ini adalah \textit{Colored Queens}, sebuah \textit{puzzle} logika berbasis papan yang dipopulerkan melalui permainan \textit{Queens} pada platform LinkedIn \cite{linkedin2024queens}. Secara struktural, permainan ini memiliki kedekatan dengan \textit{Star Battle}, \textit{puzzle} penempatan yang pertama kali dirancang oleh Hans Eendebak untuk \textit{World Puzzle Championship} tahun 2003 \cite{gmpuzzles2013starbattle}. Dalam \textit{Colored Queens}, sebuah papan berukuran $n \times n$ dibagi menjadi $n$ buah sektor berwarna dengan bentuk yang umumnya tidak beraturan. Tujuan permainan adalah menempatkan tepat satu menteri pada setiap sektor, setiap baris, dan setiap kolom, dengan tambahan bahwa tidak ada dua menteri yang boleh bertetangga secara langsung dalam delapan arah, sebagaimana diilustrasikan pada Gambar~\ref{fig:colored-queens-example}. Kendala adjacency yang bersifat lokal ini, dikombinasikan dengan sektor warna yang berbentuk ireguler, menciptakan ruang pencarian yang secara struktural jauh berbeda dari N-Queens klasik dan tidak dapat diselesaikan dengan teknik konstruktif standar.
+
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}[b]{0.35\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{./bt/19.png}
+		\caption{Konfigurasi awal}
+		\label{fig:colored-queens-unsolved}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.35\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{./bt/31.png}
+		\caption{Konfigurasi solusi valid}
+		\label{fig:colored-queens-solved}
+	\end{subfigure}
+	\caption{Contoh papan permainan \textit{Colored Queens} berukuran $7 \times 7$: (a) konfigurasi awal dengan tujuh sektor warna berbentuk ireguler; (b) konfigurasi solusi valid yang memenuhi seluruh kendala permainan.}
+	\label{fig:colored-queens-example}
+\end{figure}
 
 Dari sudut pandang akademis, \textit{Colored Queens} merupakan topik yang relatif baru dan masih sangat kurang dikaji secara formal. Sejauh tinjauan pustaka yang dilakukan, satu-satunya publikasi ilmiah yang secara langsung memformulasikan permainan LinkedIn Queens adalah karya Mata Ali dan Mencia \cite{ali2026quboformulationgeneralizedlinkedin}, yang mengajukan formulasi \textit{Quadratic Unconstrained Binary Optimization} (QUBO) untuk menyelesaikannya pada perangkat keras kuantum. Belum terdapat kajian yang memodelkan \textit{Colored Queens} secara eksplisit sebagai \textit{Constraint Satisfaction Problem} (CSP) dan menyelesaikannya menggunakan teknik-teknik CSP klasik, maupun kajian yang membandingkan pendekatan deterministik dengan pendekatan \textit{metaheuristic} pada permasalahan ini.
 
@@ -79,16 +98,18 @@ Metodologi yang digunakan dalam penelitian ini terdiri atas tahapan-tahapan beri
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
 
-Tugas akhir ini disusun dalam lima bab dengan sistematika sebagai berikut:
+Tugas akhir ini disusun dalam enam bab dengan sistematika sebagai berikut:
 
 \begin{enumerate}
 	\item \textbf{Bab 1 Pendahuluan.} Memuat latar belakang permasalahan, rumusan masalah, tujuan penelitian, batasan masalah, metodologi, dan sistematika pembahasan.
 	
-	\item \textbf{Bab 2 Landasan Teori.} Membahas teori-teori yang mendasari penelitian, meliputi permasalahan N-Queens dan variannya (\textit{Colored Queens}), \textit{Constraint Satisfaction Problem} (CSP), algoritma \textit{backtracking} beserta teknik \textit{forward checking} dan AC-3, serta \textit{Particle Swarm Optimization} dan adaptasinya untuk domain diskrit.
+	\item \textbf{Bab 2 Dasar Teori.} Membahas teori-teori yang mendasari penelitian, meliputi permasalahan N-Queens dan variannya, \textit{Colored Queens Problem}, \textit{Constraint Satisfaction Problem} (CSP), serta teknik penyelesaian CSP yang mencakup \textit{backtracking}, \textit{forward checking}, AC-3, dan \textit{Particle Swarm Optimization} beserta adaptasinya untuk domain diskrit.
 	
-	\item \textbf{Bab 3 Metodologi Penelitian.} Menjelaskan gambaran umum penelitian, pemodelan permasalahan \textit{Colored Queens} sebagai CSP, perancangan kedua algoritma solver, perancangan perangkat lunak dan antarmuka pengguna, serta skenario dan metode pengujian yang digunakan.
+	\item \textbf{Bab 3 Analisis.} Menyajikan analisis masalah, pemodelan permasalahan \textit{Colored Queens} sebagai CSP, serta analisis algoritmik mendalam terhadap kedua pendekatan solver, yaitu \textit{backtracking} dengan \textit{forward checking} dan AC-3 serta \textit{Particle Swarm Optimization} diskrit, beserta studi kasus untuk kedua pendekatan.
 	
-	\item \textbf{Bab 4 Implementasi dan Pengujian.} Membahas implementasi aplikasi permainan yang menggunakan solver \textit{backtracking}, implementasi lingkungan pengujian untuk solver \textit{backtracking} dan PSO, serta hasil pengujian dan analisis performa kedua metode pada seluruh dataset.
+	\item \textbf{Bab 4 Perancangan.} Membahas perancangan perangkat lunak, meliputi desain kelas dengan pseudocode untuk setiap komponen, perancangan antarmuka pengguna, serta teknologi yang digunakan dalam pembangunan perangkat lunak.
 	
-	\item \textbf{Bab 5 Kesimpulan dan Saran} Memuat kesimpulan yang menjawab rumusan masalah berdasarkan hasil analisis, serta saran untuk pengembangan lebih lanjut.
+	\item \textbf{Bab 5 Implementasi dan Pengujian.} Membahas implementasi perangkat lunak dan kedua solver, skenario serta metode pengujian, hasil pengujian, dan analisis pembahasan terhadap kinerja kedua pendekatan pada seluruh dataset.
+	
+	\item \textbf{Bab 6 Kesimpulan dan Saran.} Memuat kesimpulan yang menjawab rumusan masalah berdasarkan hasil analisis, serta saran untuk pengembangan lebih lanjut.
 \end{enumerate}

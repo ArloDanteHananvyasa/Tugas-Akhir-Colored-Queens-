@@ -1,18 +1,14 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.20)  1 JUN 2026 00:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  2 JUN 2026 01:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./skripsi.tex
 (skripsi.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2025-10-24>
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/base\repo
-rt.cls
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-08-13>
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2025/01/22 v1.4n Standard LaTeX document class
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/base\size
-11.clo
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
 File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count275
@@ -28,65 +24,49 @@ File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/babel\b
-abel.sty
-Package: babel 2025/10/22 v25.14 The multilingual framework for LuaLaTeX, pdfLa
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2025/08/03 v25.12 The multilingual framework for LuaLaTeX, pdfLa
 TeX and XeLaTeX
 \babel@savecnt=\count284
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2050.
+ne 2045.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2052.
+ne 2047.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2054.
+e 2049.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2055.
+e 2050.
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2056.
+on input line 2051.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2058.
+on input line 2053.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2083.
+on input line 2078.
 \U@D=\dimen149
 \l@unhyphenated=\language79
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/babel\t
-xtbabel.def)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count285
-
-
-Package babel Warning: Configuration files are deprecated, as
-(babel)                they can break document portability.
-(babel)                Reported on input line 4172.
 
 *************************************
 * Local config file bblopts.cfg used
 *
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bbl
-opts.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/babel/l
-ocale/id\babel-bahasa.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\bahasa.
+ldf
+Language: bahasa 2025/06/01 v1.0n Bahasa Indonesia support from the babel syste
+m
 
-Package babel Warning: Name 'bahasa' is deprecated.
-(babel)                Use 'indonesian' instead.
-(babel)                Reported on input line 19.
-
-)
-Package babel Info: Importing font and identification data for bahasa
-(babel)             from babel-id.ini. Reported on input line 4295.
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/babel-ind
-onesian\indonesian.ldf
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\indones
+ian.ldf
 Language: indonesian 2025/06/01 v1.0n Bahasa Indonesia support from the babel s
 ystem
-))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmoder
-n.sty
+)))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -121,31 +101,25 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/base\font
-enc.sty
-Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
 6.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.
-fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/geometry\
-geometry.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\
-keyval.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/iftex\i
-fvtex.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/iftex\i
-ftex.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count286
@@ -161,33 +135,30 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layoutvoffset=\dimen157
 \Gm@dimlist=\toks18
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/geometry\
-geometry.cfg))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
-\microtype.sty
-Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+Package: microtype 2025/07/09 v3.2b Micro-typographical refinements (RS)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\
-etoolbox.sty
-Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count289
 )
 \MT@toks=\toks19
 \MT@tempbox=\box53
 \MT@count=\count290
-LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
-LaTeX Info: Redefining \leftprotrusion on input line 1085.
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
+LaTeX Info: Redefining \leftprotrusion on input line 1088.
 \MT@prot@toks=\toks20
-LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \rightprotrusion on input line 1107.
 LaTeX Info: Redefining \textls on input line 1449.
 \MT@outer@kern=\dimen158
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count291
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
-\microtype-pdftex.def
-File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdft
+ex.def
+File: microtype-pdftex.def 2025/07/09 v3.2b Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
@@ -195,36 +166,30 @@ LaTeX Info: Redefining \lslig on input line 944.
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
-\microtype.cfg
-File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+File: microtype.cfg 2025/07/09 v3.2b microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\li
-psum.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/l3package
-s/l3keys2e\l3keys2e.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\
-expl3.sty
-Package: expl3 2025-10-24 L3 programming layer (loader) 
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3ke
+ys2e.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-08-13 L3 programming layer (loader) 
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/l3backend
-\l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
+ex.def
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count292
 ))
-Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \g__lipsum_par_int=\count293
 \l__lipsum_a_int=\count294
 \l__lipsum_b_int=\count295
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\li
-psum.ltd.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/abstract\
-abstract.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/abstract\abstract.sty
 Package: abstract 2009/06/08 v1.2a configurable abstracts
 \abstitleskip=\skip52
 \absleftindent=\skip53
@@ -232,8 +197,7 @@ Package: abstract 2009/06/08 v1.2a configurable abstracts
 \absparindent=\skip55
 \absparsep=\skip56
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\t
-ocloft.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has chapter divisions on input line 51.
 \cftparskip=\skip57
@@ -273,17 +237,14 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cfttabindent=\skip89
 \cfttabnumwidth=\skip90
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/tocbibind
-\tocbibind.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tocbibind\tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
 Package tocbibind Info: The document has chapter divisions on input line 50.
 
 
 Package tocbibind Note: Using chapter style headings, unless overridden.
 
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\
-fancyhdr.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 
 \f@nch@headwidth=\skip91
@@ -301,9 +262,7 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthC=\skip103
 \f@nch@widthR=\skip104
 \@temptokenb=\toks21
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\
-titlesec.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box54
 \beforetitleunit=\skip105
@@ -315,8 +274,7 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidthlast=\dimen162
 \titlewidthfirst=\dimen163
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/float\flo
-at.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count298
 \float@exts=\toks23
@@ -324,88 +282,73 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks24
 \@floatcapt=\box56
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/setspace\
-setspace.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\
-hyperref.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys
-\kvsetkeys.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/kvdefin
-ekeys\kvdefinekeys.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinek
+eys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pdfesca
-pe\pdfescape.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.st
+y
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds
-\ltxcmds.sty
+ (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pdftexc
-mds\pdftexcmds.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.
+sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/infware
-rr\infwarerr.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.st
+y
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\h
-ycolor.sty
+)) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\
-nameref.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/refcount\
-refcount.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/gettitl
-estring\gettitlestring.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitl
+estring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions
-\kvoptions.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count299
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/stringe
-nc\stringenc.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.st
+y
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \@linkdim=\dimen164
 \Hy@linkcounter=\count300
 \Hy@pagecounter=\count301
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\
-pd1enc.def
+ (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/intcalc
-\intcalc.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count302
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\
-puenc.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -422,20 +365,18 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
 \c@Hy@tempcnt=\count303
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/url\url.s
-ty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4801.
 \XeTeXLinkMargin=\dimen165
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/bitset\
-bitset.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/bigintc
-alc\bigintcalc.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.
+sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -455,18 +396,17 @@ Package hyperref Info: PDF/A mode OFF on input line 6108.
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\
-hpdftex.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
 File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
 \Fld@listcount=\count308
 \c@bookmark@seq@number=\count309
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/rerunfile
-check\rerunfilecheck.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfile
+check.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/uniquec
-ounter\uniquecounter.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniqueco
+unter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -474,9 +414,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip107
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lineno\li
-neno.sty
-Package: lineno 2026/03/08 line numbers on paragraphs v5.9
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lineno\lineno.sty
+Package: lineno 2025/05/13 line numbers on paragraphs v5.5
 \linenopenalty=\count310
 \output=\toks25
 \linenoprevgraf=\count311
@@ -492,224 +431,72 @@ Package: lineno 2026/03/08 line numbers on paragraphs v5.9
 \bframesep=\dimen172
 \bframebox=\box57
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/emptypage
-\emptypage.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/emptypage\emptypage.sty
 Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty 
 pages
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\
-graphicx.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\
-graphics.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\
-trig.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics-
-cfg\graphics.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cf
+g
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics-
-def\pdftex.def
-File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen173
 \Gin@req@width=\dimen174
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/listings\
-listings.sty \lstset,
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
 \lst@mode=\count317
- 
-new hook `InitVars',
-
-new hook `EndGroup',
-
-new hook `ExitVars',
-
-new hook `ModeTrue',
-
-new hook `EOL',
 \lst@gtempboxa=\box58
 \lst@token=\toks26
 \lst@length=\count318
-
-new hook `InitVarsBOL',
 \lst@currlwidth=\dimen175
 \lst@column=\count319
 \lst@pos=\count320
 \lst@lostspace=\dimen176
 \lst@width=\dimen177
-basewidth, 
-new hook `FontAdjust',
-fontadjust, 
-new hook `PostOutput',
-
-new hook `OutputBox',
-
-new hook `InitBOL',
-columns, flexiblecolumns,
 \lst@newlines=\count321
- 
-new hook `OnNewLine',
-emptylines, 
-new hook `OnEmptyLine',
-identifierstyle, 
-new hook `EmptyStyle',
-
-new hook `OutputOther',
-
-new hook `Output',
-tabsize, showtabs, tab, showspaces, keepspaces, 
-new hook `Init',
-formfeed, upquote, SelectCharTable, MoreSelectCharTable,
-
-new hook `SetLanguage',
-extendedchars, useoutput, rescanchars, alsoletter, alsodigit, alsoother,
-
-new hook `SelectCharTable',
-excludedelims, delim, moredelim, deletedelim, literate, basicstyle,
-inputencoding, multicols, 
-new hook `EveryLine',
 \lst@lineno=\count322
-print, firstline, lastline, 
-new hook `PreSet',
-nolol, linerange, consecutivenumbers, rangeprefix, rangesuffix,
-rangebeginprefix, rangebeginsuffix, rangeendprefix, rangeendsuffix,
-includerangemarker, 
-new hook `DeInit',
-captionpos, abovecaptionskip, belowcaptionskip, label, title, caption,
-
-new hook `TextStyle',
-\lstlistingname, \lstlistingnamestyle, numberbychapter, boxpos, float,
-floatplacement, aboveskip, belowskip, everydisplay, 
-new hook `DisplayStyle',
-
-new hook `PreInit',
-
-new hook `EveryPar',
-showlines,
 \lst@maxwidth=\dimen178
- 
-new hook `InitVarsEOL',
-gobble, name, \lstlistlistingname, \lstlistoflistings, inputpath,
-\lstnewenvironment, fancyvrb,
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/listings\
-lstpatch.sty
-File: lstpatch.sty 2025/10/06 1.11 (Carsten Heinz)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/listings\
-lstmisc.sty
-File: lstmisc.sty 2025/10/06 1.11 (Carsten Heinz)
- 
-Define lst-aspect `strings': string, morestring, deletestring, stringstyle,
-showstringspaces, 
-new hook `ExcludeDelims',
-
-Allocs: none
-
-Define lst-aspect `comments': comment, morecomment, deletecomment,
-commentstyle, 
-new hook `AfterBeginComment',
-
-Allocs: none
-
-Define lst-aspect `escape': texcl, escapebegin, escapeend, escapechar,
-escapeinside, mathescape, 
-Allocs: none
-
-Define lst-aspect `keywords': sensitive, 
-new hook `TrackKeywords',
-
-new hook `PostTrackKeywords',
-
-new hook `DetectKeywords',
-classoffset, keywords, morekeywords, deletekeywords, keywordstyle,
-keywordstyle, ndkeywords, morendkeywords, deletendkeywords, ndkeywordstyle,
-keywordsprefix, otherkeywords, 
-Allocs: none
-
-Define lst-aspect `emph': emph, moreemph, deleteemph, emphstyle, 
-Allocs: none
-
-Define lst-aspect `index': index, moreindex, deleteindex, indexstyle,
-\lstindexmacro, 
-Allocs: none
-
-Define lst-aspect `style': \lststylefiles, \lstdefinestyle, \lst@definestyle,
-style, 
-new hook `SetStyle',
-
-Allocs: none
-
-Define lst-aspect `language': \lstlanguagefiles, \lstdefinelanguage,
-\lst@definelanguage, language, alsolanguage, \lstalias, defaultdialect,
-
-Allocs: none
-
-Define lst-aspect `labels': numbers, stepnumber, numberfirstline, numberstyle,
-numbersep, numberblanklines, firstnumber,
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 \c@lstnumber=\count323
 \lst@skipnumbers=\count324
- 
-Allocs: 2\count, 
-
-Define lst-aspect `lineshape': xleftmargin, xrightmargin, resetmargins,
-
-new hook `BoxUnsafe',
-linewidth, lineskip, breaklines, breakindent, breakautoindent,
-breakatwhitespace, prebreak, postbreak, 
-Allocs: none
-
-Define lst-aspect `frames': framexleftmargin, framexrightmargin,
-framextopmargin, framexbottommargin, backgroundcolor, fillcolor, rulecolor,
-rulesepcolor, rulesep, framerule, framesep, frameshape, frameround, frame,
 \lst@framebox=\box59
-
-
-Allocs: 1\box, 
-) 
-Allocs: 8\count, 4\dimen, 2\box, 1\toks, 
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/listings\
-listings.cfg
-File: listings.cfg 2025/10/06 1.11 listings configuration
+)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
-Package: listings 2025/10/06 1.11 (Carsten Heinz)
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
 
-==> First Aid for listings.sty no longer applied!
-    Expected:
-        2024/09/23 1.10c (Carsten Heinz)
-    but found:
-        2025/10/06 1.11 (Carsten Heinz)
-    so I'm assuming it got fixed.
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/xstring\x
-string.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/xstring
-\xstring.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
 \xs_counta=\count325
 \xs_countb=\count326
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xc
-olor.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics-
-cfg\color.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\
-mathcolor.ltx)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -719,14 +506,11 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\
-colortbl.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/tools\arr
-ay.sty
-Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \col@sep=\dimen179
 \ar@mcellbox=\box60
 \extrarowheight=\dimen180
@@ -739,43 +523,41 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \minrowclearance=\skip110
 \rownum=\count327
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utili
-ties\pgffor.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utili
-ties\pgfrcs.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/uti
-lities\pgfutil-common.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.sty
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-
+common.tex
 \pgfutil@everybye=\toks29
 \pgfutil@tempdima=\dimen181
 \pgfutil@tempdimb=\dimen182
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/uti
-lities\pgfutil-latex.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-
+latex.def
 \pgfutil@abb=\box62
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/uti
-lities\pgfrcs.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf
-.revision.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.c
+ode.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
 Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utili
-ties\pgfkeys.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/uti
-lities\pgfkeys.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.st
+y
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.
+code.tex
 \pgfkeys@pathtoks=\toks30
 \pgfkeys@temptoks=\toks31
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/uti
-lities\pgfkeyslibraryfiltered.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeysl
+ibraryfiltered.code.tex
 \pgfkeys@tmptoks=\toks32
 )))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\
-pgfmath.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmath.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathutil.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.
+tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.c
+ode.tex
 \pgf@x=\dimen183
 \pgf@xa=\dimen184
 \pgf@xb=\dimen185
@@ -789,8 +571,8 @@ h\pgfmathutil.code.tex
 \c@pgf@countc=\count330
 \c@pgf@countd=\count331
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathparser.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser
+.code.tex
 \pgfmath@dimen=\dimen191
 \pgfmath@count=\count332
 \pgfmath@box=\box63
@@ -798,32 +580,32 @@ h\pgfmathparser.code.tex
 \pgfmath@stack@operand=\toks34
 \pgfmath@stack@operation=\toks35
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.basic.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.trigonometric.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.random.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.comparison.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.base.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.round.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.misc.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfunctions.integerarithmetics.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathcalc.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfmathfloat.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.basic.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.trigonometric.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.random.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.comparison.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.base.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.round.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.misc.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfuncti
+ons.integerarithmetics.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.c
+ode.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.
+code.tex
 \c@pgfmathroundto@lastzeros=\count333
 )))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/uti
-lities\pgffor.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.c
+ode.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 \pgffor@iter=\dimen192
 \pgffor@skip=\dimen193
@@ -832,49 +614,38 @@ Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 )) (.sty/digsig.sty
 Package: .sty/digsig 2015/06/07 Digital signature fields for PDF
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/nomencl\n
-omencl.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/nomencl\nomencl.sty
 Package: nomencl 2021/11/10 v5.6 Nomenclature package
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\x
-keyval.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval
-\xkeyval.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval
-\xkvutils.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
 \XKV@toks=\toks38
 \XKV@tempa@toks=\toks39
 )
 \XKV@depth=\count334
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/base\ifth
-en.sty
+)) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/koma-scri
-pt\tocbasic.sty
-Package: tocbasic 2026/02/02 v3.49.2 KOMA-Script package (handling toc-files)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\tocbasic.sty
+Package: tocbasic 2025/09/09 v3.48 KOMA-Script package (handling toc-files)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrbase.sty
+Package: scrbase 2025/09/09 v3.48 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/koma-scri
-pt\scrbase.sty
-Package: scrbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-independen
-t basics and keyval usage)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlfile.sty
+Package: scrlfile 2025/09/09 v3.48 KOMA-Script package (file load hooks)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/koma-scri
-pt\scrlfile.sty
-Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlfile-hoo
+k.sty
+Package: scrlfile-hook 2025/09/09 v3.48 KOMA-Script package (using LaTeX hooks)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/koma-scri
-pt\scrlfile-hook.sty
-Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hook
-s)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/koma-scri
-pt\scrlogo.sty
-Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlogo.sty
+Package: scrlogo 2025/09/09 v3.48 KOMA-Script package (logo)
 )))
 Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
 Already applied: [0000/00/00] Usage of raw or classic option list on input line
@@ -906,8 +677,7 @@ LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 267.
 
 (data.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\
-booktabs.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen196
 \lightrulewidth=\dimen197
@@ -927,9 +697,8 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count338
 \@thisrulewidth=\dimen264
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/tools\lon
-gtable.sty
-Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
 \LTleft=\skip113
 \LTright=\skip114
 \LTpre=\skip115
@@ -947,12 +716,10 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \c@LT@chunks=\count343
 \LT@p@ftn=\toks40
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\
-amssymb.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\
-amsfonts.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks41
 \symAMSa=\mathgroup4
@@ -961,37 +728,33 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/todo\todo
-.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/todo\todo.sty
 Package: todo 2010/03/31 v2.4142 To-do list (Federico Garcia)
 \@todotoks=\toks42
 \c@todo=\count344
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/tools\ver
-batim.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks43
 \verbatim@line=\toks44
 \verbatim@in@stream=\read3
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\
-pgfplots.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplots.revision.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\pgfplots.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.revi
+sion.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/front
-endlayer\tikz.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basic
-layer\pgf.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.s
+ty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
 Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basic
-layer\pgfcore.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/syste
-mlayer\pgfsys.sty
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/sys
-temlayer\pgfsys.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.s
+ty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.s
+ty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@x=\dimen266
 \pgf@y=\dimen267
@@ -1014,38 +777,38 @@ Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 \t@pgf@tokc=\toks47
 \pgf@sys@id@count=\count349
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/sys
-temlayer\pgf.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cf
+g
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/sys
-temlayer\pgfsys-pdftex.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+-pdftex.def
 File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/sys
-temlayer\pgfsys-common-pdf.def
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+-common-pdf.def
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/sys
-temlayer\pgfsyssoftpath.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+softpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfsyssoftpath@smallbuffer@items=\count350
 \pgfsyssoftpath@bigbuffer@items=\count351
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/sys
-temlayer\pgfsysprotocol.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+protocol.code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcore.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mat
-h\pgfint.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorepoints.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.t
+ex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+points.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@picminx=\dimen276
 \pgf@picmaxx=\dimen277
@@ -1062,112 +825,112 @@ File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@zx=\dimen288
 \pgf@zy=\dimen289
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorepathconstruct.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+pathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@path@lastx=\dimen290
 \pgf@path@lasty=\dimen291
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorepathusage.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+pathusage.code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@shorten@end@additional=\dimen292
 \pgf@shorten@start@additional=\dimen293
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorescopes.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+scopes.code.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box70
 \pgf@hbox=\box71
 \pgf@layerbox@main=\box72
 \pgf@picture@serial@count=\count352
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoregraphicstate.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+graphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgflinewidth=\dimen294
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoretransformations.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+transformations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@pt@x=\dimen295
 \pgf@pt@y=\dimen296
 \pgf@pt@temp=\dimen297
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorequick.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+quick.code.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoreobjects.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+objects.code.tex
 File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorepathprocessing.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+pathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorearrows.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+arrows.code.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowsep=\dimen298
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoreshade.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+shade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@max=\dimen299
 \pgf@sys@shading@range@num=\count353
 \pgf@shadingcount=\count354
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoreimage.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+image.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoreexternal.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+external.code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfexternal@startupbox=\box73
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorelayers.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+layers.code.tex
 File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcoretransparency.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+transparency.code.tex
 File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorepatterns.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+patterns.code.tex
 File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/bas
-iclayer\pgfcorerdf.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore
+rdf.code.tex
 File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mod
-ules\pgfmoduleshapes.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodules
+hapes.code.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodeparttextbox=\box74
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mod
-ules\pgfmoduleplot.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulep
+lot.code.tex
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compa
-tibility\pgfcomp-version-0-65.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcom
+p-version-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@nodesepstart=\dimen300
 \pgf@nodesepend=\dimen301
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compa
-tibility\pgfcomp-version-1-18.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcom
+p-version-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/fro
-ntendlayer/tikz\tikz.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz
+\tikz.code.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/lib
-raries\pgflibraryplothandlers.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibra
+ryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@plot@mark@count=\count355
 \pgfplotmarksize=\dimen302
@@ -1189,8 +952,8 @@ File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \tikznumberofcurrentchild=\count358
 \tikz@fig@count=\count359
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mod
-ules\pgfmodulematrix.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulem
+atrix.code.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfmatrixcurrentrow=\count360
 \pgfmatrixcurrentcolumn=\count361
@@ -1198,14 +961,14 @@ File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 \tikz@expandcount=\count363
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/fro
-ntendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz
+/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplots.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotscore.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.code
+.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore.
+code.tex
 \t@pgfplots@toka=\toks48
 \t@pgfplots@tokb=\toks49
 \t@pgfplots@tokc=\toks50
@@ -1213,80 +976,80 @@ s\pgfplotscore.code.tex
 \c@pgfplots@coordindex=\count364
 \c@pgfplots@scanlineindex=\count365
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/sys\pgfplotssysgeneric.code.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/libs\pgfplotslibrary.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/lib
-raries\pgflibraryfpu.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplotss
+ysgeneric.code.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgfplots
+library.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompati
+b\pgfplotsoldpgfsupp_loader.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibra
+ryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
 \t@pgf@toka=\toks51
 \t@pgf@tokb=\toks52
 \t@pgf@tokc=\toks53
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/util\pgfplotsutil.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/liststructure\pgfplotsliststructure.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/liststructure\pgfplotsliststructureext.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/liststructure\pgfplotsarray.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompati
+b\pgfplotsoldpgfsupp_pgfutil-common-lists.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplots
+util.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure
+\pgfplotsliststructure.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure
+\pgfplotsliststructureext.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure
+\pgfplotsarray.code.tex
 \c@pgfplotsarray@tmp=\count366
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/liststructure\pgfplotsmatrix.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/numtable\pgfplotstableshared.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure
+\pgfplotsmatrix.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfp
+lotstableshared.code.tex
 \c@pgfplotstable@counta=\count367
 \t@pgfplotstable@a=\toks54
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/liststructure\pgfplotsdeque.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/util\pgfplotsbinary.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/util\pgfplotsbinary.data.code.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/util\pgfplotsutil.verb.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/libs\pgflibrarypgfplots.surfshading.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure
+\pgfplotsdeque.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplots
+binary.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplots
+binary.data.code.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplots
+util.verb.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibra
+rypgfplots.surfshading.code.tex
 \c@pgfplotslibrarysurf@no=\count368
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def)))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/util\pgfplotscolormap.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/util\pgfplotscolor.code.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotsstackedplots.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotsplothandlers.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotsmeshplothandler.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotsmeshplotimage.code.tex)))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplots.scaling.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotscoordprocessing.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplots.errorbars.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplots.markers.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplotsticks.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s\pgfplots.paths.code.tex)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/fro
-ntendlayer/tikz/libraries\tikzlibrarydecorations.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/mod
-ules\pgfmoduledecorations.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibrar
+ypgfplots.surfshading.pgfsys-pdftex.def)))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplots
+colormap.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplots
+color.code.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsstack
+edplots.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsploth
+andlers.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshp
+lothandler.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshp
+lotimage.code.tex)))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.scal
+ing.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscoord
+processing.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.erro
+rbars.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.mark
+ers.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsticks
+.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.path
+s.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz
+/libraries\tikzlibrarydecorations.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduled
+ecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen312
 \pgfdecoratedremainingdistance=\dimen313
 \pgfdecoratedinputsegmentcompleteddistance=\dimen314
@@ -1298,16 +1061,16 @@ ules\pgfmoduledecorations.code.tex
 )
 \tikz@lib@dec@box=\box79
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/fro
-ntendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/lib
-raries/decorations\pgflibrarydecorations.pathmorphing.code.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/fro
-ntendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/lib
-raries/decorations\pgflibrarydecorations.pathreplacing.code.tex))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgfplot
-s/libs\tikzlibrarypgfplots.contourlua.code.tex)
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz
+/libraries\tikzlibrarydecorations.pathmorphing.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorati
+ons\pgflibrarydecorations.pathmorphing.code.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz
+/libraries\tikzlibrarydecorations.pathreplacing.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorati
+ons\pgflibrarydecorations.pathreplacing.code.tex))
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlibr
+arypgfplots.contourlua.code.tex)
 \pgfplots@numplots=\count370
 \pgfplots@xmin@reg=\dimen319
 \pgfplots@xmax@reg=\dimen320
@@ -1316,16 +1079,15 @@ s/libs\tikzlibrarypgfplots.contourlua.code.tex)
 \pgfplots@zmin@reg=\dimen323
 \pgfplots@zmax@reg=\dimen324
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/fro
-ntendlayer/tikz/libraries\tikzlibraryplotmarks.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz
+/libraries\tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/generic/pgf/lib
-raries\pgflibraryplotmarks.code.tex
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibra
+ryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\
-enumitem.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip117
 \enit@outerparindent=\dimen325
@@ -1334,30 +1096,24 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@count@id=\count371
 \enitdp@description=\count372
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\a
-msmath.sty
-Package: amsmath 2025/07/09 v2.17z AMS math features
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2025/06/16 v2.17y AMS math features
 \@mathmargin=\skip118
 
 For additional information on amsmath, use the `?' option.
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\a
-mstext.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\a
-msgen.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks56
 \ex@=\dimen326
 ))
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\a
-msbsy.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen327
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\a
-msopn.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count373
@@ -1405,21 +1161,18 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \multlinegap=\skip119
 \multlinetaggap=\skip120
 \mathdisplay@stack=\toks60
-LaTeX Info: Redefining \[ on input line 2950.
-LaTeX Info: Redefining \] on input line 2951.
+LaTeX Info: Redefining \[ on input line 2949.
+LaTeX Info: Redefining \] on input line 2950.
 )
 \@LN@amsmath@ams@eqpen=\count385
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/caption\s
-ubcaption.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/caption\c
-aption.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/caption\c
-aption3.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen335
 \captionmargin=\dimen336
@@ -1438,8 +1191,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/caption\l
-tcaption.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 ))
 Package caption Info: New subtype `subfigure' on input line 238.
@@ -1447,19 +1199,18 @@ Package caption Info: New subtype `subfigure' on input line 238.
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count389
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/algorithm
-s\algorithm.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 \@float@every@algorithm=\toks61
 \c@algorithm=\count390
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/algorithm
-icx\algpseudocode.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudoco
+de.sty
 Package: algpseudocode 
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/algorithm
-icx\algorithmicx.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmic
+x.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
@@ -1475,16 +1226,14 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip123
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-)
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/multirow\
-multirow.sty
+) (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip124
 \multirow@cntb=\count398
 \multirow@dima=\skip125
 \bigstrutjot=\dimen343
-)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Bab/bab3.aux)
-(Bab/bab4.aux) (Bab/bab5.aux) (Bab/bab6.aux) (Lampiran/lampA.aux))
+)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Bab/bab3.aux) (Bab/bab4.aux)
+(Bab/bab5.aux) (Bab/bab6.aux) (Lampiran/lampA.aux))
 \openout1 = `skripsi.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 270.
@@ -1557,20 +1306,19 @@ Package microtype Info: Patching command `\showhyphens'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
-\mt-cmr.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
 Package hyperref Info: Link coloring ON on input line 270.
- (skripsi.out) (skripsi.out)
+
+(skripsi.out) (skripsi.out)
 \@outlinefile=\write5
 \openout5 = `skripsi.out'.
 
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/context/base/mk
-ii\supp-pdf.mkii
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
+i
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count399
 \scratchdimen=\dimen344
@@ -1584,14 +1332,14 @@ ii\supp-pdf.mkii
 \makeMPintoPDFobject=\count404
 \everyMPtoPDFconversion=\toks63
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-
-pkg\epstopdf-base.sty
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
+se.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\
-epstopdf-sys.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cf
+g
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count405
@@ -1602,16 +1350,20 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<./Gambar/Logo-UNPAR.png, id=294, 180.31364pt x 177.42285pt>
+<./Gambar/Logo-UNPAR.png, id=314, 180.31364pt x 177.42285pt>
 File: ./Gambar/Logo-UNPAR.png Graphic file (type png)
 <use ./Gambar/Logo-UNPAR.png>
 Package pdftex.def Info: ./Gambar/Logo-UNPAR.png  used on input line 460.
 (pdftex.def)             Requested size: 180.3132pt x 177.42241pt.
+
+
 [1
 
-{C:/Users/ArloDanteHananvyasa/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
-{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
-lm-ec.enc} <./Gambar/Logo-UNPAR.png>] [2
+{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/User/
+AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc} <./Gambar/Logo-UNPA
+R.png>]
+
+[2
 
 ] (skripsi.toc
 Package microtype Info: Character `029' is missing
@@ -1622,29 +1374,25 @@ LaTeX Font Info:    Font shape `T1/lmr/bx/sc' in size <10.95> not available
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
 .
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr
-.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
 .
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm
-.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
 2.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslms
-y.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
 2.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlme
-x.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1655,246 +1403,336 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 2.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\
-umsa.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
-\mt-msa.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\
-umsb.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
-\mt-msb.cfg
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [3{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
-/lm/lm-mathsy.enc}])
+)
+
+[3{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc
+}])
 \tf@toc=\write6
 \openout6 = `skripsi.toc'.
 
- [4] (skripsi.lof [5
 
-{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
-lm-rm.enc}])
+
+[4] (skripsi.lof
+
+[5
+
+{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}])
 \tf@lof=\write7
 \openout7 = `skripsi.lof'.
 
- [6]
+
+
+[6]
+
+[7]
+
+[8
+
+]
 \openout2 = `Bab/bab1.aux'.
 
-
-(Bab/bab1.tex
+ (Bab/bab1.tex
 Bab 1.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
 .
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss
-.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [1
+<./Gambar/./bt/19.png, id=594, 499.11469pt x 499.11469pt>
+File: ./Gambar/./bt/19.png Graphic file (type png)
+<use ./Gambar/./bt/19.png>
+Package pdftex.def Info: ./Gambar/./bt/19.png  used on input line 18.
+(pdftex.def)             Requested size: 164.31754pt x 164.31232pt.
+<./Gambar/./bt/31.png, id=595, 645.91313pt x 645.91313pt>
+File: ./Gambar/./bt/31.png Graphic file (type png)
+<use ./Gambar/./bt/31.png>
+Package pdftex.def Info: ./Gambar/./bt/31.png  used on input line 25.
+(pdftex.def)             Requested size: 164.31754pt x 164.31636pt.
 
 
+[1
 
-{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
-lm-mathit.enc}]
+
+{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
+
 
 LaTeX Warning: Citation `vanbeek2006backtracking' on page 2 undefined on input 
-line 16.
+line 35.
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-7.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr
-.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
- [2{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
-lm/lm-ts1.enc}] [3]) [4]
+[2 <./Gambar/./bt/19.png> <./Gambar/./bt/31.png>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
+6.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[3{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
+
+[4])
+
+[5]
 \openout2 = `Bab/bab2.aux'.
 
  (Bab/bab2.tex
-Bab 2.
-<./Gambar/queen_attack_pattern.png, id=608, 903.375pt x 451.6875pt>
-File: ./Gambar/queen_attack_pattern.png Graphic file (type png)
-<use ./Gambar/queen_attack_pattern.png>
-Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line 
-17.
-(pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
-[5
 
-
-
-
- <./Gambar/queen_attack_pattern.png (PNG copy)>] [6]
-<./Gambar/N_queens_correct.png, id=628, 396.48125pt x 395.4775pt>
-File: ./Gambar/N_queens_correct.png Graphic file (type png)
-<use ./Gambar/N_queens_correct.png>
-Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 38.
-(pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
- [7{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
-lm/lm-mathex.enc} <./Gambar/N_queens_correct.png>]
-<./Gambar/Queens_unsolved.png, id=646, 399.74344pt x 402.75468pt>
-File: ./Gambar/Queens_unsolved.png Graphic file (type png)
-<use ./Gambar/Queens_unsolved.png>
-Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 66.
-(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
-<./Gambar/Queens_solved.png, id=647, 399.74344pt x 402.75468pt>
-File: ./Gambar/Queens_solved.png Graphic file (type png)
-<use ./Gambar/Queens_solved.png>
-Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 73.
-(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
- [8] [9 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>]
-<./Gambar/domainwipeout2.png, id=666, 380.17032pt x 378.66469pt>
-File: ./Gambar/domainwipeout2.png Graphic file (type png)
-<use ./Gambar/domainwipeout2.png>
-Package pdftex.def Info: ./Gambar/domainwipeout2.png  used on input line 104.
-(pdftex.def)             Requested size: 164.31754pt x 163.672pt.
-<./Gambar/domainwipeout.png, id=667, 451.6875pt x 450.18187pt>
-File: ./Gambar/domainwipeout.png Graphic file (type png)
-<use ./Gambar/domainwipeout.png>
-Package pdftex.def Info: ./Gambar/domainwipeout.png  used on input line 111.
-(pdftex.def)             Requested size: 164.31754pt x 163.7689pt.
- [10 <./Gambar/domainwipeout2.png> <./Gambar/domainwipeout.png>]
-<./Gambar/adjsmallboard.png, id=675, 451.6875pt x 447.17062pt>
-File: ./Gambar/adjsmallboard.png Graphic file (type png)
-<use ./Gambar/adjsmallboard.png>
-Package pdftex.def Info: ./Gambar/adjsmallboard.png  used on input line 120.
-(pdftex.def)             Requested size: 164.31754pt x 162.67346pt.
-
-[11 <./Gambar/adjsmallboard.png>] [12] [13]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 201.
- [14] [15]
-
-LaTeX Warning: Citation `fig:ac3-contoh' on page 16 undefined on input line 264
-.
-
-<gambar/AC3_start.png, id=732, 976.64874pt x 915.42pt>
-File: gambar/AC3_start.png Graphic file (type png)
-<use gambar/AC3_start.png>
-Package pdftex.def Info: gambar/AC3_start.png  used on input line 270.
-(pdftex.def)             Requested size: 211.26028pt x 198.01273pt.
-<gambar/AC3_end.png, id=733, 732.48656pt x 686.565pt>
-File: gambar/AC3_end.png Graphic file (type png)
-<use gambar/AC3_end.png>
-Package pdftex.def Info: gambar/AC3_end.png  used on input line 276.
-(pdftex.def)             Requested size: 211.26028pt x 198.00923pt.
-[16] [17 <./gambar/AC3_start.png> <./gambar/AC3_end.png (PNG copy)>] [18]
-[19]
-
-LaTeX Warning: Citation `eq:pso-velocity' on page 20 undefined on input line 35
-5.
-
-
-LaTeX Warning: Citation `eq:pso-position' on page 20 undefined on input line 35
-5.
-
-<gambar/pso_single.png, id=783, 766.865pt x 363.3575pt>
-File: gambar/pso_single.png Graphic file (type png)
-<use gambar/pso_single.png>
-Package pdftex.def Info: gambar/pso_single.png  used on input line 373.
-(pdftex.def)             Requested size: 234.73524pt x 111.22029pt.
-[20]
-<gambar/psoflow.png, id=795, 275.1078pt x 609.2361pt>
-File: gambar/psoflow.png Graphic file (type png)
-<use gambar/psoflow.png>
-Package pdftex.def Info: gambar/psoflow.png  used on input line 390.
-(pdftex.def)             Requested size: 140.84258pt x 311.91481pt.
- [21 <./gambar/pso_single.png>] [22 <./gambar/psoflow.png>]) [23]
-\openout2 = `Bab/bab3.aux'.
-
-
-(Bab/bab3.tex [24
+[6
 
 
 
 
 ]
-Bab 3.
-<./Gambar/flowchart.png, id=843, 804.00375pt x 480.79625pt>
-File: ./Gambar/flowchart.png Graphic file (type png)
-<use ./Gambar/flowchart.png>
-Package pdftex.def Info: ./Gambar/flowchart.png  used on input line 15.
-(pdftex.def)             Requested size: 399.05278pt x 238.62946pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-5.
+Bab 2.
+<./Gambar/queen_attack_pattern.png, id=661, 903.375pt x 451.6875pt>
+File: ./Gambar/queen_attack_pattern.png Graphic file (type png)
+<use ./Gambar/queen_attack_pattern.png>
+Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line 
+19.
+(pdftex.def)             Requested size: 422.52057pt x 211.2662pt.
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt
-.fd
+
+[7]
+
+[8 <./Gambar/queen_attack_pattern.png (PNG copy)>]
+<./Gambar/N_queens_correct.png, id=681, 396.48125pt x 395.4775pt>
+File: ./Gambar/N_queens_correct.png Graphic file (type png)
+<use ./Gambar/N_queens_correct.png>
+Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 40.
+(pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 43.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 43.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
+3.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [25]
 
-LaTeX Warning: Reference `sec:perancangan-backtracking' on page 26 undefined on
+
+[9{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc
+} <./Gambar/N_queens_correct.png>]
+
+[10]
+<./Gambar/Queens_unsolved.png, id=708, 399.74344pt x 402.75468pt>
+File: ./Gambar/Queens_unsolved.png Graphic file (type png)
+<use ./Gambar/Queens_unsolved.png>
+Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 73.
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+<./Gambar/Queens_solved.png, id=709, 399.74344pt x 402.75468pt>
+File: ./Gambar/Queens_solved.png Graphic file (type png)
+<use ./Gambar/Queens_solved.png>
+Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 80.
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+
+
+[11 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>]
+<./Gambar/domainwipeout2.png, id=725, 380.17032pt x 378.66469pt>
+File: ./Gambar/domainwipeout2.png Graphic file (type png)
+<use ./Gambar/domainwipeout2.png>
+Package pdftex.def Info: ./Gambar/domainwipeout2.png  used on input line 111.
+(pdftex.def)             Requested size: 164.31754pt x 163.672pt.
+<./Gambar/domainwipeout.png, id=726, 451.6875pt x 450.18187pt>
+File: ./Gambar/domainwipeout.png Graphic file (type png)
+<use ./Gambar/domainwipeout.png>
+Package pdftex.def Info: ./Gambar/domainwipeout.png  used on input line 118.
+(pdftex.def)             Requested size: 164.31754pt x 163.7689pt.
+
+
+[12]
+
+[13 <./Gambar/domainwipeout2.png> <./Gambar/domainwipeout.png>]
+<./Gambar/adjsmallboard.png, id=738, 451.6875pt x 447.17062pt>
+File: ./Gambar/adjsmallboard.png Graphic file (type png)
+<use ./Gambar/adjsmallboard.png>
+Package pdftex.def Info: ./Gambar/adjsmallboard.png  used on input line 127.
+(pdftex.def)             Requested size: 164.31754pt x 162.67346pt.
+
+
+[14 <./Gambar/adjsmallboard.png>]
+
+[15]
+
+[16]
+
+[17]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 212.
+
+
+[18]
+
+[19]
+
+LaTeX Warning: Citation `fig:ac3-contoh' on page 20 undefined on input line 283
+.
+
+<gambar/AC3_start.png, id=807, 976.64874pt x 915.42pt>
+File: gambar/AC3_start.png Graphic file (type png)
+<use gambar/AC3_start.png>
+Package pdftex.def Info: gambar/AC3_start.png  used on input line 289.
+(pdftex.def)             Requested size: 211.26028pt x 198.01273pt.
+<gambar/AC3_end.png, id=808, 732.48656pt x 686.565pt>
+File: gambar/AC3_end.png Graphic file (type png)
+<use gambar/AC3_end.png>
+Package pdftex.def Info: gambar/AC3_end.png  used on input line 295.
+(pdftex.def)             Requested size: 211.26028pt x 198.00923pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--300
+[][][]\T1/lmr/m/n/9 (+20) Diambil da-ri [][]$\T1/lmtt/m/n/9 https : / / www . b
+oristhebrave . com / wp-[]content / uploads / 2021 / 08 / arc _ consistency _ 5
+var _
+ []
+
+
+
+[20]
+
+[21 <./gambar/AC3_start.png> <./gambar/AC3_end.png (PNG copy)>]
+
+[22]
+
+[23]
+
+[24]
+
+LaTeX Warning: Citation `eq:pso-velocity' on page 25 undefined on input line 38
+4.
+
+
+LaTeX Warning: Citation `eq:pso-position' on page 25 undefined on input line 38
+4.
+
+<gambar/pso_single.png, id=872, 766.865pt x 363.3575pt>
+File: gambar/pso_single.png Graphic file (type png)
+<use gambar/pso_single.png>
+Package pdftex.def Info: gambar/pso_single.png  used on input line 402.
+(pdftex.def)             Requested size: 234.73524pt x 111.22029pt.
+
+
+[25 <./gambar/pso_single.png>]
+<gambar/psoflow.png, id=891, 275.1078pt x 609.2361pt>
+File: gambar/psoflow.png Graphic file (type png)
+<use gambar/psoflow.png>
+Package pdftex.def Info: gambar/psoflow.png  used on input line 428.
+(pdftex.def)             Requested size: 140.84258pt x 311.91481pt.
+
+
+[26]
+
+[27 <./gambar/psoflow.png>]
+
+[28])
+
+[29]
+\openout2 = `Bab/bab3.aux'.
+
+ (Bab/bab3.tex
+
+[30
+
+
+
+
+]
+Bab 3.
+<./Gambar/flowchart.png, id=947, 804.00375pt x 480.79625pt>
+File: ./Gambar/flowchart.png Graphic file (type png)
+<use ./Gambar/flowchart.png>
+Package pdftex.def Info: ./Gambar/flowchart.png  used on input line 15.
+(pdftex.def)             Requested size: 399.05278pt x 238.62946pt.
+
+
+[31]
+
+LaTeX Warning: Reference `sec:perancangan-backtracking' on page 32 undefined on
  input line 31.
 
 
-LaTeX Warning: Reference `sec:perancangan-pso' on page 26 undefined on input li
+LaTeX Warning: Reference `sec:perancangan-pso' on page 32 undefined on input li
 ne 33.
 
 
-LaTeX Warning: Reference `chap:implementasi' on page 26 undefined on input line
- 37.
 
-[26 <./Gambar/flowchart.png>]
+[32 <./Gambar/flowchart.png>]
+
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 65.
 
-[27] [28]
-<./Gambar/flowbt.png, id=895, 2039.62pt x 920.43875pt>
+[33]
+
+[34]
+<./Gambar/flowbt.png, id=999, 2039.62pt x 920.43875pt>
 File: ./Gambar/flowbt.png Graphic file (type png)
 <use ./Gambar/flowbt.png>
 Package pdftex.def Info: ./Gambar/flowbt.png  used on input line 133.
 (pdftex.def)             Requested size: 445.99553pt x 201.26122pt.
 
 
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 141.
-
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 141.
 
-[29] [30 <./Gambar/flowbt.png>]
-<./Gambar/flowfc.png, id=914, 1547.7825pt x 684.5575pt>
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 141.
+
+[35]
+
+[36 <./Gambar/flowbt.png>]
+<./Gambar/flowfc.png, id=1019, 1547.7825pt x 684.5575pt>
 File: ./Gambar/flowfc.png Graphic file (type png)
 <use ./Gambar/flowfc.png>
 Package pdftex.def Info: ./Gambar/flowfc.png  used on input line 165.
 (pdftex.def)             Requested size: 445.99553pt x 197.25269pt.
 
 
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 177.
-
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 177.
 
-[31]
-<./Gambar/flowrevise.png, id=927, 1499.6025pt x 544.0325pt>
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 177.
+
+[37]
+<./Gambar/flowrevise.png, id=1031, 1499.6025pt x 544.0325pt>
 File: ./Gambar/flowrevise.png Graphic file (type png)
 <use ./Gambar/flowrevise.png>
 Package pdftex.def Info: ./Gambar/flowrevise.png  used on input line 189.
 (pdftex.def)             Requested size: 445.99553pt x 161.79979pt.
- [32 <./Gambar/flowfc.png>]
+
+
+[38 <./Gambar/flowfc.png>]
+
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 214.
@@ -1903,13 +1741,15 @@ LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 214.
 
-[33 <./Gambar/flowrevise.png>]
-<./Gambar/flowac3.png, id=947, 1130.2225pt x 631.35875pt>
+[39 <./Gambar/flowrevise.png>]
+<./Gambar/flowac3.png, id=1051, 1130.2225pt x 631.35875pt>
 File: ./Gambar/flowac3.png Graphic file (type png)
 <use ./Gambar/flowac3.png>
 Package pdftex.def Info: ./Gambar/flowac3.png  used on input line 217.
 (pdftex.def)             Requested size: 445.99553pt x 249.1383pt.
- [34 <./Gambar/flowac3.png>]
+
+
+[40 <./Gambar/flowac3.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 238.
 
@@ -1925,134 +1765,139 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 238.
 
-<./Gambar/./bt/20.png, id=958, 606.76688pt x 605.26125pt>
+<./Gambar/./bt/20.png, id=1062, 606.76688pt x 605.26125pt>
 File: ./Gambar/./bt/20.png Graphic file (type png)
 <use ./Gambar/./bt/20.png>
 Package pdftex.def Info: ./Gambar/./bt/20.png  used on input line 249.
 (pdftex.def)             Requested size: 140.84258pt x 140.49089pt.
-<./Gambar/./bt/21.png, id=960, 606.76688pt x 606.76688pt>
+<./Gambar/./bt/21.png, id=1064, 606.76688pt x 606.76688pt>
 File: ./Gambar/./bt/21.png Graphic file (type png)
 <use ./Gambar/./bt/21.png>
 Package pdftex.def Info: ./Gambar/./bt/21.png  used on input line 258.
 (pdftex.def)             Requested size: 140.84258pt x 140.84038pt.
 
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 263.
 
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 263.
 
-[35 <./Gambar/./bt/20.png>]
-<./Gambar/./bt/22.png, id=969, 1252.68pt x 385.44pt>
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 263.
+
+[41 <./Gambar/./bt/20.png>]
+<./Gambar/./bt/22.png, id=1074, 1252.68pt x 385.44pt>
 File: ./Gambar/./bt/22.png Graphic file (type png)
 <use ./Gambar/./bt/22.png>
 Package pdftex.def Info: ./Gambar/./bt/22.png  used on input line 269.
 (pdftex.def)             Requested size: 352.10286pt x 108.34003pt.
-<./Gambar/./bt/23.png, id=971, 1445.4pt x 545.03625pt>
+<./Gambar/./bt/23.png, id=1076, 1445.4pt x 545.03625pt>
 File: ./Gambar/./bt/23.png Graphic file (type png)
 <use ./Gambar/./bt/23.png>
 Package pdftex.def Info: ./Gambar/./bt/23.png  used on input line 278.
 (pdftex.def)             Requested size: 328.6279pt x 123.91693pt.
- [36 <./Gambar/./bt/21.png> <./Gambar/./bt/22.png> <./Gambar/./bt/23.png>]
-<./Gambar/./bt/24.png, id=981, 639.13782pt x 639.13782pt>
+
+
+[42 <./Gambar/./bt/21.png> <./Gambar/./bt/22.png> <./Gambar/./bt/23.png>]
+<./Gambar/./bt/24.png, id=1086, 639.13782pt x 639.13782pt>
 File: ./Gambar/./bt/24.png Graphic file (type png)
 <use ./Gambar/./bt/24.png>
 Package pdftex.def Info: ./Gambar/./bt/24.png  used on input line 289.
 (pdftex.def)             Requested size: 140.84258pt x 140.8448pt.
-<./Gambar/./bt/25.png, id=983, 659.46375pt x 659.46375pt>
+<./Gambar/./bt/25.png, id=1088, 659.46375pt x 659.46375pt>
 File: ./Gambar/./bt/25.png Graphic file (type png)
 <use ./Gambar/./bt/25.png>
 Package pdftex.def Info: ./Gambar/./bt/25.png  used on input line 298.
 (pdftex.def)             Requested size: 140.84258pt x 140.83604pt.
 
 
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 304.
-
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 304.
 
-[37 <./Gambar/./bt/24.png> <./Gambar/./bt/25.png>]
-<./Gambar/./bt/26.png, id=992, 608.2725pt x 608.2725pt>
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 304.
+
+[43 <./Gambar/./bt/24.png> <./Gambar/./bt/25.png>]
+<./Gambar/./bt/26.png, id=1096, 608.2725pt x 608.2725pt>
 File: ./Gambar/./bt/26.png Graphic file (type png)
 <use ./Gambar/./bt/26.png>
 Package pdftex.def Info: ./Gambar/./bt/26.png  used on input line 307.
 (pdftex.def)             Requested size: 140.84258pt x 140.83716pt.
-<./Gambar/./bt/27.png, id=994, 607.51968pt x 607.51968pt>
+<./Gambar/./bt/27.png, id=1098, 607.51968pt x 607.51968pt>
 File: ./Gambar/./bt/27.png Graphic file (type png)
 <use ./Gambar/./bt/27.png>
 Package pdftex.def Info: ./Gambar/./bt/27.png  used on input line 318.
 (pdftex.def)             Requested size: 140.84258pt x 140.83897pt.
-<./Gambar/./bt/28.png, id=996, 611.28375pt x 611.28375pt>
+<./Gambar/./bt/28.png, id=1100, 611.28375pt x 611.28375pt>
 File: ./Gambar/./bt/28.png Graphic file (type png)
 <use ./Gambar/./bt/28.png>
 Package pdftex.def Info: ./Gambar/./bt/28.png  used on input line 327.
 (pdftex.def)             Requested size: 140.84258pt x 140.83481pt.
- [38 <./Gambar/./bt/26.png> <./Gambar/./bt/27.png>]
-<./Gambar/./bt/29.png, id=1006, 605.26125pt x 605.26125pt>
+
+
+[44 <./Gambar/./bt/26.png> <./Gambar/./bt/27.png>]
+<./Gambar/./bt/29.png, id=1110, 605.26125pt x 605.26125pt>
 File: ./Gambar/./bt/29.png Graphic file (type png)
 <use ./Gambar/./bt/29.png>
 Package pdftex.def Info: ./Gambar/./bt/29.png  used on input line 338.
 (pdftex.def)             Requested size: 140.84258pt x 140.84184pt.
-<./Gambar/./bt/30.png, id=1008, 605.26125pt x 605.26125pt>
+<./Gambar/./bt/30.png, id=1112, 605.26125pt x 605.26125pt>
 File: ./Gambar/./bt/30.png Graphic file (type png)
 <use ./Gambar/./bt/30.png>
 Package pdftex.def Info: ./Gambar/./bt/30.png  used on input line 347.
 (pdftex.def)             Requested size: 140.84258pt x 140.84184pt.
 
 
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 355.
-
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 355.
 
-[39 <./Gambar/./bt/28.png> <./Gambar/./bt/29.png> <./Gambar/./bt/30.png>]
-<./Gambar/./bt/31.png, id=1017, 645.91313pt x 645.91313pt>
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 355.
+
+[45 <./Gambar/./bt/28.png> <./Gambar/./bt/29.png> <./Gambar/./bt/30.png>]
 File: ./Gambar/./bt/31.png Graphic file (type png)
 <use ./Gambar/./bt/31.png>
 Package pdftex.def Info: ./Gambar/./bt/31.png  used on input line 358.
 (pdftex.def)             Requested size: 187.78532pt x 187.78308pt.
 
 
-LaTeX Warning: Reference `subsubsec:discrete-pso' on page 40 undefined on input
- line 370.
-
-[40 <./Gambar/./bt/31.png>]
-<./Gambar/flowparticle.png, id=1027, 1658.195pt x 606.265pt>
+[46]
+<./Gambar/flowparticle.png, id=1129, 1658.195pt x 606.265pt>
 File: ./Gambar/flowparticle.png Graphic file (type png)
 <use ./Gambar/flowparticle.png>
 Package pdftex.def Info: ./Gambar/flowparticle.png  used on input line 379.
 (pdftex.def)             Requested size: 445.99553pt x 163.05542pt.
 
 
-LaTeX Warning: Reference `subsec:topologi-pso' on page 41 undefined on input li
-ne 386.
-
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 402.
 
-[41 <./Gambar/flowparticle.png>] [42]
+[47 <./Gambar/flowparticle.png>]
 
-LaTeX Warning: Reference `subsec:fitness-pso' on page 43 undefined on input lin
+[48]
+
+LaTeX Warning: Reference `subsec:fitness-pso' on page 49 undefined on input lin
 e 432.
 
-<./Gambar/flowpso.png, id=1048, 1762.585pt x 1065.9825pt>
+<./Gambar/flowpso.png, id=1152, 1762.585pt x 1065.9825pt>
 File: ./Gambar/flowpso.png Graphic file (type png)
 <use ./Gambar/flowpso.png>
 Package pdftex.def Info: ./Gambar/flowpso.png  used on input line 441.
 (pdftex.def)             Requested size: 445.99553pt x 269.73181pt.
 
+
+
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 449.
 
-[43 <./Gambar/flowpso.png>]
+[49 <./Gambar/flowpso.png>]
 
-LaTeX Warning: Reference `subsec:stagnasi-terminasi' on page 44 undefined on in
+LaTeX Warning: Reference `subsec:stagnasi-terminasi' on page 50 undefined on in
 put line 468.
 
 
@@ -2067,91 +1912,106 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 470.
 
-[44]
 
-LaTeX Warning: Reference `subsec:fungsi-fitness-pso' on page 45 undefined on in
+
+[50]
+
+LaTeX Warning: Reference `subsec:fungsi-fitness-pso' on page 51 undefined on in
 put line 493.
+
+
 
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 515.
 
-[45]
+[51]
 
-LaTeX Warning: Reference `subsubsec:fungsi-fitness-pso' on page 46 undefined on
+LaTeX Warning: Reference `subsubsec:fungsi-fitness-pso' on page 52 undefined on
  input line 532.
 
-<./Gambar/./pso/39.png, id=1079, 708.39656pt x 708.39656pt>
+<./Gambar/./pso/39.png, id=1181, 708.39656pt x 708.39656pt>
 File: ./Gambar/./pso/39.png Graphic file (type png)
 <use ./Gambar/./pso/39.png>
 Package pdftex.def Info: ./Gambar/./pso/39.png  used on input line 544.
 (pdftex.def)             Requested size: 140.84258pt x 140.83368pt.
-[46 <./Gambar/./pso/39.png>]
-<./Gambar/./pso/40.png, id=1088, 734.745pt x 734.745pt>
+
+
+[52 <./Gambar/./pso/39.png>]
+<./Gambar/./pso/40.png, id=1190, 734.745pt x 734.745pt>
 File: ./Gambar/./pso/40.png Graphic file (type png)
 <use ./Gambar/./pso/40.png>
 Package pdftex.def Info: ./Gambar/./pso/40.png  used on input line 553.
 (pdftex.def)             Requested size: 140.84258pt x 140.83624pt.
-<./Gambar/./pso/41.png, id=1090, 737.00343pt x 737.00343pt>
+<./Gambar/./pso/41.png, id=1192, 737.00343pt x 737.00343pt>
 File: ./Gambar/./pso/41.png Graphic file (type png)
 <use ./Gambar/./pso/41.png>
 Package pdftex.def Info: ./Gambar/./pso/41.png  used on input line 562.
 (pdftex.def)             Requested size: 140.84258pt x 140.8418pt.
-<./Gambar/./pso/42.png, id=1092, 712.91344pt x 712.91344pt>
+<./Gambar/./pso/42.png, id=1194, 712.91344pt x 712.91344pt>
 File: ./Gambar/./pso/42.png Graphic file (type png)
 <use ./Gambar/./pso/42.png>
 Package pdftex.def Info: ./Gambar/./pso/42.png  used on input line 573.
 (pdftex.def)             Requested size: 140.84258pt x 140.83965pt.
 
 
+
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 579.
 
-[47 <./Gambar/./pso/40.png> <./Gambar/./pso/41.png> <./Gambar/./pso/42.png>]
-<./Gambar/./pso/46.png, id=1102, 548.0475pt x 547.2947pt>
+[53 <./Gambar/./pso/40.png> <./Gambar/./pso/41.png> <./Gambar/./pso/42.png>]
+<./Gambar/./pso/46.png, id=1205, 548.0475pt x 547.2947pt>
 File: ./Gambar/./pso/46.png Graphic file (type png)
 <use ./Gambar/./pso/46.png>
 Package pdftex.def Info: ./Gambar/./pso/46.png  used on input line 582.
 (pdftex.def)             Requested size: 140.84258pt x 140.6481pt.
-<./Gambar/./pso/44.png, id=1104, 734.745pt x 734.745pt>
+<./Gambar/./pso/44.png, id=1207, 734.745pt x 734.745pt>
 File: ./Gambar/./pso/44.png Graphic file (type png)
 <use ./Gambar/./pso/44.png>
 Package pdftex.def Info: ./Gambar/./pso/44.png  used on input line 591.
 (pdftex.def)             Requested size: 140.84258pt x 140.83624pt.
-<./Gambar/./pso/45.png, id=1108, 532.99126pt x 529.98pt>
+<./Gambar/./pso/45.png, id=1211, 532.99126pt x 529.98pt>
 File: ./Gambar/./pso/45.png Graphic file (type png)
 <use ./Gambar/./pso/45.png>
 Package pdftex.def Info: ./Gambar/./pso/45.png  used on input line 600.
 (pdftex.def)             Requested size: 140.84258pt x 140.04776pt.
-<./Gambar/./pso/43.png, id=1110, 727.21687pt x 727.21687pt>
+<./Gambar/./pso/43.png, id=1213, 727.21687pt x 727.21687pt>
 File: ./Gambar/./pso/43.png Graphic file (type png)
 <use ./Gambar/./pso/43.png>
 Package pdftex.def Info: ./Gambar/./pso/43.png  used on input line 609.
 (pdftex.def)             Requested size: 140.84258pt x 140.83577pt.
 
-[48 <./Gambar/./pso/46.png> <./Gambar/./pso/44.png>]
+
+[54 <./Gambar/./pso/46.png> <./Gambar/./pso/44.png>]
+
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
 (Font)              using `T1/lmr/m/scsl' instead on input line 618.
 
-[49 <./Gambar/./pso/45.png> <./Gambar/./pso/43.png>]) [50]
+[55 <./Gambar/./pso/45.png> <./Gambar/./pso/43.png>])
+
+[56]
 \openout2 = `Bab/bab4.aux'.
 
  (Bab/bab4.tex
 Bab 4.
-<./Gambar/cDiagram.png, id=1129, 867.7218pt x 1039.9653pt>
+<./Gambar/cDiagram.png, id=1231, 867.7218pt x 1039.9653pt>
 File: ./Gambar/cDiagram.png Graphic file (type png)
 <use ./Gambar/cDiagram.png>
 Package pdftex.def Info: ./Gambar/cDiagram.png  used on input line 14.
 (pdftex.def)             Requested size: 399.05278pt x 478.2629pt.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 21.
-[51
+
+
+[57
 
 
 
 
-] [52 <./Gambar/cDiagram.png>]
+]
+
+[58 <./Gambar/cDiagram.png>]
 Overfull \hbox (27.41162pt too wide) in alignment at lines 62--68
  [] [] [] 
  []
@@ -2200,13 +2060,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--99
 95 buildColorSymbols()
  []
 
-ignored error: Infinite glue shrinkage found in box being split [53]
+[59]
 Underfull \hbox (badness 10000) in paragraph at lines 142--143
 []|\T1/lmr/m/n/10.95 (+20) Mengurai \T1/lmr/m/it/10.95 (+20) string \T1/lmr/m/n
 /10.95 (+20) war-na da-lam for-mat
  []
 
-ignored error: Infinite glue shrinkage found in box being split [54]
+[60]
 Underfull \hbox (badness 10000) in paragraph at lines 178--179
 []|\T1/lmr/m/n/10.95 (+20) Array so-lu-si di ma-na
  []
@@ -2217,9 +2077,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--179
 /m/n/10.95 (+20) me-nyimp-an in-
  []
 
-ignored error: Infinite glue shrinkage found in box being split [55]
-ignored error: Infinite glue shrinkage found in box being split [56] [57]
-[58] [59] [60] [61] [62] [63]
+[61] [62]
+
+[63]
+
+[64]
+
+[65]
+
+[66]
+
+[67]
+
+[68]
+
+[69]
 Overfull \hbox (11.18396pt too wide) in paragraph at lines 541--542
 \T1/lmr/m/n/10.95 (-20) meng-i-ni-si-a-li-sa-si ob-jek \T1/lmtt/m/n/10.95 Homep
 age \T1/lmr/m/n/10.95 (-20) pa-da \T1/lmr/m/it/10.95 (-20) Event Dis-pa-tch Thr
@@ -2227,8 +2099,12 @@ e-ad \T1/lmr/m/n/10.95 (-20) me-la-lui \T1/lmtt/m/n/10.95 SwingUtilities.invoke
 Later()
  []
 
-[64] [65]
-<./Gambar/flowchart_app.png, id=1239, 650.43pt x 409.68056pt>
+
+
+[70]
+
+[71]
+<./Gambar/flowchart_app.png, id=1342, 650.43pt x 409.68056pt>
 File: ./Gambar/flowchart_app.png Graphic file (type png)
 <use ./Gambar/flowchart_app.png>
 Package pdftex.def Info: ./Gambar/flowchart_app.png  used on input line 605.
@@ -2240,80 +2116,98 @@ n/10.95 (-20) Se-te-lah peng-gu-na me-mi-lih le-vel, ke-las \T1/lmtt/m/n/10.95
 GameWindow
  []
 
-[66 <./Gambar/flowchart_app.png>]
-<./Gambar/mockup/homepage.png, id=1252, 680.5425pt x 382.42876pt>
+
+
+[72 <./Gambar/flowchart_app.png>]
+<./Gambar/mockup/homepage.png, id=1355, 680.5425pt x 382.42876pt>
 File: ./Gambar/mockup/homepage.png Graphic file (type png)
 <use ./Gambar/mockup/homepage.png>
 Package pdftex.def Info: ./Gambar/mockup/homepage.png  used on input line 639.
 (pdftex.def)             Requested size: 352.10286pt x 197.8604pt.
-<./Gambar/mockup/levelSelector.png, id=1254, 764.8575pt x 430.60875pt>
+<./Gambar/mockup/levelSelector.png, id=1357, 764.8575pt x 430.60875pt>
 File: ./Gambar/mockup/levelSelector.png Graphic file (type png)
 <use ./Gambar/mockup/levelSelector.png>
 Package pdftex.def Info: ./Gambar/mockup/levelSelector.png  used on input line 
 653.
 (pdftex.def)             Requested size: 352.10286pt x 198.23354pt.
- [67 <./Gambar/mockup/homepage.png (PNG copy)>]
-<./Gambar/mockup/level.png, id=1270, 764.8575pt x 431.36156pt>
+
+
+[73 <./Gambar/mockup/homepage.png (PNG copy)>]
+<./Gambar/mockup/level.png, id=1372, 764.8575pt x 431.36156pt>
 File: ./Gambar/mockup/level.png Graphic file (type png)
 <use ./Gambar/mockup/level.png>
 Package pdftex.def Info: ./Gambar/mockup/level.png  used on input line 670.
 (pdftex.def)             Requested size: 352.10286pt x 198.58011pt.
- [68 <./Gambar/mockup/levelSelector.png (PNG copy)> <./Gambar/mockup/level.png 
-(PNG copy)>]
-<./Gambar/mockup/solved_by_solver.png, id=1286, 808.52063pt x 458.46281pt>
+
+
+[74 <./Gambar/mockup/levelSelector.png (PNG copy)> <./Gambar/mockup/level.png (
+PNG copy)>]
+<./Gambar/mockup/solved_by_solver.png, id=1388, 808.52063pt x 458.46281pt>
 File: ./Gambar/mockup/solved_by_solver.png Graphic file (type png)
 <use ./Gambar/mockup/solved_by_solver.png>
 Package pdftex.def Info: ./Gambar/mockup/solved_by_solver.png  used on input li
 ne 691.
 (pdftex.def)             Requested size: 352.10286pt x 199.66055pt.
-<./Gambar/mockup/warning_adjacent.png, id=1288, 810.02625pt x 456.95718pt>
+<./Gambar/mockup/warning_adjacent.png, id=1390, 810.02625pt x 456.95718pt>
 File: ./Gambar/mockup/warning_adjacent.png Graphic file (type png)
 <use ./Gambar/mockup/warning_adjacent.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_adjacent.png  used on input li
 ne 704.
 (pdftex.def)             Requested size: 352.10286pt x 198.63531pt.
-<./Gambar/mockup/warning_color.png, id=1290, 809.27344pt x 454.69875pt>
+<./Gambar/mockup/warning_color.png, id=1392, 809.27344pt x 454.69875pt>
 File: ./Gambar/mockup/warning_color.png Graphic file (type png)
 <use ./Gambar/mockup/warning_color.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_color.png  used on input line 
 717.
 (pdftex.def)             Requested size: 352.10286pt x 197.83398pt.
- [69 <./Gambar/mockup/solved_by_solver.png (PNG copy)> <./Gambar/mockup/warning
-_adjacent.png (PNG copy)>]
-<./Gambar/mockup/warning_horizontal.png, id=1302, 809.27344pt x 455.45157pt>
+
+
+[75 <./Gambar/mockup/solved_by_solver.png (PNG copy)> <./Gambar/mockup/warning_
+adjacent.png (PNG copy)>]
+<./Gambar/mockup/warning_horizontal.png, id=1404, 809.27344pt x 455.45157pt>
 File: ./Gambar/mockup/warning_horizontal.png Graphic file (type png)
 <use ./Gambar/mockup/warning_horizontal.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_horizontal.png  used on input 
 line 730.
 (pdftex.def)             Requested size: 352.10286pt x 198.16153pt.
-<./Gambar/mockup/warning_vertical.png, id=1304, 808.52063pt x 456.20438pt>
+<./Gambar/mockup/warning_vertical.png, id=1406, 808.52063pt x 456.20438pt>
 File: ./Gambar/mockup/warning_vertical.png Graphic file (type png)
 <use ./Gambar/mockup/warning_vertical.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_vertical.png  used on input li
 ne 743.
 (pdftex.def)             Requested size: 352.10286pt x 198.677pt.
-<./Gambar/mockup/hint1.png, id=1306, 808.52063pt x 455.45157pt>
+<./Gambar/mockup/hint1.png, id=1408, 808.52063pt x 455.45157pt>
 File: ./Gambar/mockup/hint1.png Graphic file (type png)
 <use ./Gambar/mockup/hint1.png>
 Package pdftex.def Info: ./Gambar/mockup/hint1.png  used on input line 756.
 (pdftex.def)             Requested size: 352.10286pt x 198.34917pt.
-<./Gambar/mockup/hint2.png, id=1308, 808.52063pt x 456.95718pt>
+<./Gambar/mockup/hint2.png, id=1410, 808.52063pt x 456.95718pt>
 File: ./Gambar/mockup/hint2.png Graphic file (type png)
 <use ./Gambar/mockup/hint2.png>
 Package pdftex.def Info: ./Gambar/mockup/hint2.png  used on input line 769.
 (pdftex.def)             Requested size: 352.10286pt x 199.00485pt.
- [70 <./Gambar/mockup/warning_color.png (PNG copy)> <./Gambar/mockup/warning_ho
-rizontal.png (PNG copy)>] [71 <./Gambar/mockup/warning_vertical.png (PNG copy)>
- <./Gambar/mockup/hint1.png (PNG copy)> <./Gambar/mockup/hint2.png (PNG copy)>]
-<./Gambar/mockup/win.png, id=1323, 909.3975pt x 512.66531pt>
+
+
+[76 <./Gambar/mockup/warning_color.png (PNG copy)> <./Gambar/mockup/warning_hor
+izontal.png (PNG copy)>]
+
+[77 <./Gambar/mockup/warning_vertical.png (PNG copy)> <./Gambar/mockup/hint1.pn
+g (PNG copy)> <./Gambar/mockup/hint2.png (PNG copy)>]
+<./Gambar/mockup/win.png, id=1426, 909.3975pt x 512.66531pt>
 File: ./Gambar/mockup/win.png Graphic file (type png)
 <use ./Gambar/mockup/win.png>
 Package pdftex.def Info: ./Gambar/mockup/win.png  used on input line 783.
 (pdftex.def)             Requested size: 352.10286pt x 198.4993pt.
-) [72 <./Gambar/mockup/win.png (PNG copy)>] [73]
+)
+
+[78 <./Gambar/mockup/win.png (PNG copy)>]
+
+[79]
 \openout2 = `Bab/bab5.aux'.
 
- (Bab/bab5.tex [74
+ (Bab/bab5.tex
+
+[80
 
 
 
@@ -2321,19 +2215,19 @@ Package pdftex.def Info: ./Gambar/mockup/win.png  used on input line 783.
 ]
 Bab 5.
 
-LaTeX Warning: Reference `sec:perancangan-backtracking' on page 75 undefined on
+LaTeX Warning: Reference `sec:perancangan-backtracking' on page 81 undefined on
  input line 12.
 
-[75]
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/listings\
-lstlang1.sty
-File: lstlang1.sty 2025/10/06 1.11 listings language file
+
+
+[81]
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 LaTeX Font Info:    Trying to load font information for T1+fvm on input line 24
 .
 
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fv
-m.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -2344,16 +2238,17 @@ LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <6> not available
 (Font)              Font shape `T1/fvm/m/sl' tried instead on input line 27.
 
 
-LaTeX Warning: Reference `subsec:pemeriksaan-constraint' on page 76 undefined o
+LaTeX Warning: Reference `subsec:pemeriksaan-constraint' on page 82 undefined o
 n input line 52.
 
-[76{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
-base/8r.enc}]
-
-LaTeX Warning: Reference `subsec:ac3' on page 77 undefined on input line 65.
 
 
-LaTeX Warning: Reference `sec:perancangan-pso' on page 77 undefined on input li
+[82{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+
+LaTeX Warning: Reference `subsec:ac3' on page 83 undefined on input line 65.
+
+
+LaTeX Warning: Reference `sec:perancangan-pso' on page 83 undefined on input li
 ne 70.
 
 
@@ -2365,85 +2260,91 @@ eAdjacencyViolation()\T1/lmr/m/n/10.95 (-20) .
 
 LaTeX Font Info:    Trying to load font information for TS1+fvm on input line 8
 4.
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/bera\ts1f
-vm.fd
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\ts1fvm.fd
 File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `fvm' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [77]
 
-LaTeX Warning: Reference `subsubsec:update-velocity' on page 78 undefined on in
+
+[83]
+
+LaTeX Warning: Reference `subsubsec:update-velocity' on page 84 undefined on in
 put line 138.
 
-[78]
 
-LaTeX Warning: Reference `subsubsec:update-position' on page 79 undefined on in
+
+[84]
+
+LaTeX Warning: Reference `subsubsec:update-position' on page 85 undefined on in
 put line 165.
 
 
-LaTeX Warning: Reference `subsec:stagnasi-terminasi' on page 79 undefined on in
+LaTeX Warning: Reference `subsec:stagnasi-terminasi' on page 85 undefined on in
 put line 169.
 
-[79] [80]
-<./Gambar/implementation/homepage_imp.png, id=1504, 1156.32pt x 650.43pt>
+
+
+[85]
+
+[86]
+<./Gambar/implementation/homepage_imp.png, id=1603, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/homepage_imp.png Graphic file (type png)
 <use ./Gambar/implementation/homepage_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/homepage_imp.png  used on inpu
 t line 231.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/levelselector_imp.png, id=1505, 1156.32pt x 650.43pt>
+<./Gambar/implementation/levelselector_imp.png, id=1604, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/levelselector_imp.png Graphic file (type png)
 <use ./Gambar/implementation/levelselector_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/levelselector_imp.png  used on
  input line 238.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/gamewindow_imp.png, id=1506, 1156.32pt x 650.43pt>
+<./Gambar/implementation/gamewindow_imp.png, id=1605, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/gamewindow_imp.png Graphic file (type png)
 <use ./Gambar/implementation/gamewindow_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/gamewindow_imp.png  used on in
 put line 245.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/samecolor_imp.png, id=1507, 1156.32pt x 650.43pt>
+<./Gambar/implementation/samecolor_imp.png, id=1606, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/samecolor_imp.png Graphic file (type png)
 <use ./Gambar/implementation/samecolor_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/samecolor_imp.png  used on inp
 ut line 252.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/samerow_imp.png, id=1508, 1156.32pt x 650.43pt>
+<./Gambar/implementation/samerow_imp.png, id=1607, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/samerow_imp.png Graphic file (type png)
 <use ./Gambar/implementation/samerow_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/samerow_imp.png  used on input
  line 259.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/samecolumn_imp.png, id=1509, 1156.32pt x 650.43pt>
+<./Gambar/implementation/samecolumn_imp.png, id=1608, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/samecolumn_imp.png Graphic file (type png)
 <use ./Gambar/implementation/samecolumn_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/samecolumn_imp.png  used on in
 put line 266.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/adjacent_imp.png, id=1510, 1156.32pt x 650.43pt>
+<./Gambar/implementation/adjacent_imp.png, id=1609, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/adjacent_imp.png Graphic file (type png)
 <use ./Gambar/implementation/adjacent_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/adjacent_imp.png  used on inpu
 t line 273.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/hint1_imp.png, id=1511, 1156.32pt x 650.43pt>
+<./Gambar/implementation/hint1_imp.png, id=1610, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/hint1_imp.png Graphic file (type png)
 <use ./Gambar/implementation/hint1_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/hint1_imp.png  used on input l
 ine 280.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/hint2_imp.png, id=1512, 1156.32pt x 650.43pt>
+<./Gambar/implementation/hint2_imp.png, id=1611, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/hint2_imp.png Graphic file (type png)
 <use ./Gambar/implementation/hint2_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/hint2_imp.png  used on input l
 ine 287.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/win_imp.png, id=1513, 1156.32pt x 650.43pt>
+<./Gambar/implementation/win_imp.png, id=1612, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/win_imp.png Graphic file (type png)
 <use ./Gambar/implementation/win_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/win_imp.png  used on input lin
@@ -2451,15 +2352,28 @@ e 294.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
 
 
-LaTeX Warning: Reference `lampiran:kerangka-pengujian' on page 81 undefined on 
+LaTeX Warning: Reference `lampiran:kerangka-pengujian' on page 87 undefined on 
 input line 302.
 
-[81 <./Gambar/implementation/homepage_imp.png>] [82 <./Gambar/implementation/le
-velselector_imp.png> <./Gambar/implementation/gamewindow_imp.png> <./Gambar/imp
-lementation/samecolor_imp.png>] [83 <./Gambar/implementation/samerow_imp.png> <
-./Gambar/implementation/samecolumn_imp.png>] [84 <./Gambar/implementation/adjac
-ent_imp.png> <./Gambar/implementation/hint1_imp.png>] [85 <./Gambar/implementat
-ion/hint2_imp.png> <./Gambar/implementation/win_imp.png>] [86] [87]
+
+
+[87 <./Gambar/implementation/homepage_imp.png>]
+
+[88 <./Gambar/implementation/levelselector_imp.png> <./Gambar/implementation/ga
+mewindow_imp.png> <./Gambar/implementation/samecolor_imp.png>]
+
+[89 <./Gambar/implementation/samerow_imp.png> <./Gambar/implementation/samecolu
+mn_imp.png>]
+
+[90 <./Gambar/implementation/adjacent_imp.png> <./Gambar/implementation/hint1_i
+mp.png>]
+
+[91 <./Gambar/implementation/hint2_imp.png> <./Gambar/implementation/win_imp.pn
+g>]
+
+[92]
+
+[93]
 Underfull \hbox (badness 10000) in paragraph at lines 405--406
 []|$\OML/lmm/m/it/10.95 P[]\OT1/lmr/m/n/10.95 (+20) 5000$\T1/lmr/m/n/10.95 (+20
 ) , $\OML/lmm/m/it/10.95 N[][]\OT1/lmr/m/n/10.95 (+20) 100$\T1/lmr/m/n/10.95 (+
@@ -2475,48 +2389,63 @@ Underfull \hbox (badness 10000) in paragraph at lines 429--430
  (+20) ,
  []
 
-[88]
-ignored error: Infinite glue shrinkage found in box being split [89]
-ignored error: Infinite glue shrinkage found in box being split [90] [91]
-[92] [93]
-
-LaTeX Warning: Reference `chap:landasan-teori' on page 94 undefined on input li
-ne 718.
 
 
-LaTeX Warning: Reference `subsec:perbandingan-bt-pso' on page 94 undefined on i
-nput line 723.
+[94] [95] [96]
 
-[94]
+[97]
 
-LaTeX Warning: Reference `subsec:topologi-kawanan' on page 95 undefined on inpu
-t line 746.
+[98]
 
-[95]
+[99]
 
-LaTeX Warning: Reference `subsec:parameter-pso' on page 96 undefined on input l
-ine 754.
+LaTeX Warning: Reference `subsec:perbandingan-bt-pso' on page 100 undefined on 
+input line 723.
 
 
-LaTeX Warning: Reference `subsubsec:update-position' on page 96 undefined on in
-put line 760.
 
-[96]
+[100]
 
-LaTeX Warning: Reference `lampiran:hasil-detail' on page 97 undefined on input 
-line 780.
+LaTeX Warning: Reference `subsec:topologi-kawanan' on page 101 undefined on inp
+ut line 746.
 
-[97]) [98]
+
+
+[101]
+
+LaTeX Warning: Reference `subsec:parameter-pso' on page 102 undefined on input 
+line 754.
+
+
+LaTeX Warning: Reference `subsubsec:update-position' on page 102 undefined on i
+nput line 760.
+
+
+
+[102]
+
+LaTeX Warning: Reference `lampiran:hasil-detail' on page 103 undefined on input
+ line 780.
+
+
+
+[103])
+
+[104]
 \openout2 = `Bab/bab6.aux'.
 
  (Bab/bab6.tex
 Bab 6.
-[99
+
+
+[105
 
 
 
 
-]) [100] (skripsi.bbl
+])
+
+[106] (skripsi.bbl
 Underfull \hbox (badness 1817) in paragraph at lines 25--28
 []\T1/lmr/m/n/10.95 (+20) Snyder, T. (2013) Star batt-le ru-les and in-fo.  [][
 ]$\T1/lmtt/m/n/10.95 https : / / www . gmpuzzles . com / blog /
@@ -2526,6 +2455,18 @@ Underfull \hbox (badness 1817) in paragraph at lines 25--28
 Underfull \hbox (badness 10000) in paragraph at lines 35--40
 \T1/lmtt/m/n/10.95 id / 5272 / 1 / Artificial % 20Intelligence-[]A % 20Modern %
  20Approach % 20(3rd % 20Edition )
+ []
+
+
+Underfull \hbox (badness 6348) in paragraph at lines 42--48
+[]\T1/lmr/m/n/10.95 (+20) Kennedy, J. dan Eber-hart, R. (1995) Par-ti-cle swarm
+ op-ti-mi-za-tion.  \T1/lmr/m/it/10.95 (+20) Pro-ce-e-
+ []
+
+
+Underfull \hbox (badness 4378) in paragraph at lines 42--48
+\T1/lmr/m/it/10.95 (+20) dings of ICNN'95-international con-fe-ren-ce on ne-u-r
+al ne-tworks\T1/lmr/m/n/10.95 (+20) , Per-th, pp. 1942--
  []
 
 
@@ -2553,105 +2494,192 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--63
 20m % 20Queens % 20Problem . pdf$[][]
  []
 
-[101
+
+Underfull \hbox (badness 6284) in paragraph at lines 72--77
+[]\T1/lmr/m/n/10.95 (+20) Kumar, V. (1998) Al-go-ri-thms for con-stra-int sa-ti
+-sfa-ction pro-blems: A su-rvey.
+ []
+
+
+
+[107
 
 
 
 ]
-Underfull \hbox (badness 2591) in paragraph at lines 123--131
+Underfull \hbox (badness 1424) in paragraph at lines 98--104
+[]\T1/lmr/m/n/10.95 (+20) Bessiere, C. (2006) Con-stra-int pro-pa-ga-tion.  \T1
+/lmr/m/it/10.95 (+20) Han-dbo-ok of Con-stra-int Pro-gram-ming\T1/lmr/m/n/10.95
+ (+20) ,
+ []
+
+
+Underfull \hbox (badness 1062) in paragraph at lines 98--104
+\T1/lmr/m/n/10.95 (+20) pp. 29--83. El-se-vi-er, Ams-te-rdam.  [][]$\T1/lmtt/m/
+n/10.95 https : / / www . dcs . gla . ac . uk / ~pat / cpM / papers / CP _
+ []
+
+
+Underfull \hbox (badness 1874) in paragraph at lines 129--137
 []\T1/lmr/m/n/10.95 (+20) Kennedy, J. dan Eber-hart, R. C. (1997) A di-scre-te 
-bi-nary ver-sion of the par-
+bi-nary ver-sion of the par-ti-
  []
 
 
-Underfull \hbox (badness 4454) in paragraph at lines 123--131
-\T1/lmr/m/n/10.95 (+20) ti-cle swarm al-go-ri-thm.  \T1/lmr/m/it/10.95 (+20) 19
-97 IE-EE In-ter-na-tio-nal con-fe-ren-ce on sys-tems, man,
+Underfull \hbox (badness 1496) in paragraph at lines 129--137
+\T1/lmr/m/n/10.95 (+20) cle swarm al-go-ri-thm.  \T1/lmr/m/it/10.95 (+20) 1997 
+IE-EE In-ter-na-tio-nal con-fe-ren-ce on sys-tems, man, and
  []
 
 
-Underfull \hbox (badness 6825) in paragraph at lines 123--131
-\T1/lmr/m/it/10.95 (+20) and cyber-ne-ti-cs. Com-pu-ta-tio-nal cyber-ne-ti-cs a
-nd si-mu-la-tion\T1/lmr/m/n/10.95 (+20) , pp. 4104--4108. ie-ee.
+Underfull \hbox (badness 2334) in paragraph at lines 129--137
+\T1/lmr/m/it/10.95 (+20) cyber-ne-ti-cs. Com-pu-ta-tio-nal cyber-ne-ti-cs and s
+i-mu-la-tion\T1/lmr/m/n/10.95 (+20) , Or-lan-do, pp. 4104--4108. ie-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--131
-[][]$\T1/lmtt/m/n/10.95 https : / / www . ahmetcevahircinar . com . tr / wp-[]c
-ontent / uploads / 2017 / 02 / A _ discrete _
+Underfull \hbox (badness 1635) in paragraph at lines 139--144
+[]\T1/lmr/m/n/10.95 (+20) Engelbrecht, A. P. dkk. (2007) \T1/lmr/m/it/10.95 (+2
+0) Com-pu-ta-tio-nal in-te-lli-gen-ce: an in-tro-du-ction\T1/lmr/m/n/10.95 (+20
+) . Wi-ley
  []
 
-) [102]
+
+Underfull \hbox (badness 2020) in paragraph at lines 139--144
+\T1/lmr/m/n/10.95 (+20) Onli-ne Li-brary, Chi-ches-ter.  [][]$\T1/lmtt/m/n/10.9
+5 https : / / dai . fmph . uniba . sk / courses / ICI / engelbrecht .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--151
+\T1/lmtt/m/n/10.95 20D . -[]How % 20to % 20solve % 20it . %20Modern % 20heurist
+ics-[]Springer % 20(2004 ) .pdf$[][] \T1/lmr/m/n/10.95 (+20) Di-ak-
+ []
+
+)
+
+[108]
 \openout2 = `Lampiran/lampA.aux'.
 
  (Lampiran/lampA.tex
 Lampiran A.
 (Lampiran/Main.java) (Lampiran/BatchMain.java
-LaTeX Font Info:    Font shape `TS1/fvm/m/it' in size <6> not available
-(Font)              Font shape `TS1/fvm/m/sl' tried instead on input line 9.
- [103
+
+[109
 
 
-] [104] [105] [106])
-(Lampiran/Board.java [107]) (Lampiran/Cell.java [108])
-(Lampiran/BoardImporter.java) (Lampiran/BacktrackingSolverAC3.java [109]
-[110] [111] [112]) (Lampiran/PSOSolver.java [113] [114] [115] [116] [117])
-[118] (Lampiran/UITheme.java [119]) (Lampiran/Homepage.java)
-(Lampiran/LevelSelectorWindow.java [120]) (Lampiran/GameWindow.java [121]
-[122] [123] [124] [125] [126] [127] [128])) [129] (skripsi.aux (Bab/bab1.aux)
-(Bab/bab2.aux) (Bab/bab3.aux) (Bab/bab4.aux) (Bab/bab5.aux) (Bab/bab6.aux)
-(Lampiran/lampA.aux))
+]
+
+[110]
+
+[111]
+
+[112]) (Lampiran/Board.java
+
+[113]) (Lampiran/Cell.java
+
+[114]) (Lampiran/BoardImporter.java) (Lampiran/BacktrackingSolverAC3.java
+
+[115]
+
+[116]
+
+[117]
+
+[118]) (Lampiran/PSOSolver.java
+
+[119]
+
+[120]
+
+[121]
+
+[122]
+
+[123])
+
+[124] (Lampiran/UITheme.java
+
+[125]) (Lampiran/Homepage.java) (Lampiran/LevelSelectorWindow.java
+
+[126]) (Lampiran/GameWindow.java
+
+[127]
+
+[128]
+
+[129]
+
+[130]
+
+[131]
+
+[132]
+
+[133]
+
+[134]))
+
+[135] (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Bab/bab3.aux) (Bab/bab4.aux)
+(Bab/bab5.aux) (Bab/bab6.aux) (Lampiran/lampA.aux))
  ***********
-LaTeX2e <2025-11-01>
-L3 programming layer <2025-10-24>
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-08-13>
  ***********
 
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: 7C272365F02D3B301EF32E175ADCC4DF;13021.
+(rerunfilecheck)             Checksum: 1FA7055D40D33DB4853DD67CF618EF97;13863.
  ) 
 Here is how much of TeX's memory you used:
- 47806 strings out of 467871
- 1032774 string characters out of 5411599
- 2602250 words of memory out of 5000000
- 72343 multiletter control sequences out of 15000+600000
- 759702 words of font info for 302 fonts, out of 8000000 for 9000
+ 47932 strings out of 468133
+ 1026311 string characters out of 5431196
+ 2517244 words of memory out of 5000000
+ 72176 multiletter control sequences out of 15000+600000
+ 767146 words of font info for 316 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 110i,14n,136p,1365b,2342s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\ArloDanteHananvyasa\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
-ec/dpi600\ecxc1095.pk><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKT
-eX/fonts/type1/bera/fvmb8a.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/Users/ArloDanteHananvyasa/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/bera/fvmro8a.pfb><C:/Users/ArloDanteHananvyasa
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pf
-b><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/lm/lmbx10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/lm/lmbx12.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/ArloDanteHananvyasa/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/ArloDante
-Hananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsco10.pfb><C:
-/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
-lmex10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/lm/lmmi10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/ArloDanteHananvyasa/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/ArloDanteHananvyas
-a/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/ArloD
-anteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:
-/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
-lmr8.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmr9.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/lm/lmri10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Users/ArloDanteHananvyasa/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/ArloDant
-eHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/
-Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
-mtk10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/lm/lmtt10.pfb>
-Output written on skripsi.pdf (135 pages, 5240319 bytes).
+ 110i,14n,136p,1405b,2372s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecxc109
+5.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmb8a.pfb><
+C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/Use
+rs/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmro8a.pfb><C:/Users/Us
+er/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.
+pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.p
+fb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pf
+b><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pf
+b><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pf
+b><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsco10.p
+fb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pf
+b><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb
+><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><
+C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:
+/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/U
+sers/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/User
+s/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/U
+ser/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/User
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/User/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Users/User/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/User/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/User/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on skripsi.pdf (143 pages, 5287992 bytes).
 PDF statistics:
- 5109 PDF objects out of 5155 (max. 8388607)
- 3115 named destinations out of 3580 (max. 500000)
- 72067 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 5217 PDF objects out of 6186 (max. 8388607)
+ 3133 named destinations out of 3580 (max. 500000)
+ 76208 words of extra memory for PDF output out of 89155 (max. 10000000)
 
