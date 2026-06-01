@@ -82,9 +82,9 @@
 % aktifkan salah satu mode di bawah ini :
 %=============================================================================
 %\mode{bimbingan} 		% untuk keperluan bimbingan
-%\mode{sidang} 			% untuk sidang 1
+\mode{sidang} 			% untuk sidang 1
 %\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
-\mode{final} 			% untuk mencetak buku skripsi 
+%\mode{final} 			% untuk mencetak buku skripsi 
 %=============================================================================
 %\mode{sidangakhir}
 
@@ -228,7 +228,7 @@
 % - judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
 %=============================================================================
 \judulINA{Pembangunan Perangkat Lunak Permainan \textit{Colored Queens} dan Perbandingan Solver \textit{Backtracking} dengan \textit{Particle Swarm Optimization}}
-\judulENG{Development of a \textit{Colored Queens} Game Application and Comparative Analysis of \textit{Backtracking} and \textit{Particle Swarm Optimization} Solvers}
+\judulENG{Development of a Colored Queens Game Application and Comparative Analysis of Backtracking and Particle Swarm Optimization Solvers}
 %_____________________________________________________________________________
 %=============================================================================
 % 								BAGIAN X
@@ -240,8 +240,17 @@
 % - hilangkan tanda << & >>, dan isi sesuai dengan data anda
 % - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
 %=============================================================================
-\abstrakINA{\textit{Colored Queens} adalah \textit{puzzle} logika berbasis papan yang dipopulerkan oleh LinkedIn, di mana pemain menempatkan tepat satu menteri pada setiap baris, kolom, dan sektor warna tanpa ada dua menteri yang bertetangga dalam delapan arah. Tugas akhir ini mengimplementasikan dan membandingkan dua pendekatan untuk menyelesaikannya: \textit{backtracking} dengan \textit{forward checking} dan AC-3 sebagai pendekatan deterministik, serta \textit{Particle Swarm Optimization} (PSO) diskrit sebagai pendekatan \textit{metaheuristic}. Selain itu, dikembangkan aplikasi permainan berbasis \textit{desktop} menggunakan Java Swing yang mengintegrasikan solver \textit{backtracking} sebagai mesin \textit{hint} dan \textit{auto-solve}. Pengujian dilakukan pada 1.502 puzzle berukuran $7 \times 7$ hingga $30 \times 30$. \textit{Backtracking} dengan FC+AC-3 menyelesaikan seluruh 1.500 puzzle ukuran standar dengan tingkat keberhasilan 100\% dan waktu rata-rata kurang dari 2 ms; pada papan $20 \times 20$ dan $30 \times 30$, algoritma ini secara teoretis tetap akan menemukan solusi sebagai algoritma \textit{complete}, namun waktu komputasinya tidak praktis. PSO menunjukkan penurunan tajam dari 99,20\% pada papan $7 \times 7$ menjadi hanya 5,20\% pada $12 \times 12$, dan gagal sepenuhnya pada ukuran besar. Hasil ini mengonfirmasi bahwa untuk CSP berkendala ketat seperti \textit{Colored Queens}, propagasi kendala jauh lebih efektif dibandingkan pendekatan \textit{metaheuristic}.}
-\abstrakENG{\textit{Colored Queens} is a logic-based board puzzle popularized by LinkedIn, where the player places exactly one queen in each row, column, and colored region of an $n \times n$ board with no two queens adjacent in any of eight directions. This thesis implements and compares two approaches to solving it: backtracking with forward checking and AC-3 as a deterministic approach, and discrete Particle Swarm Optimization (PSO) as a metaheuristic. A desktop application was also developed in Java Swing, integrating the backtracking solver as the engine for hint and auto-solve features. Testing was conducted on 1,502 puzzles ranging from $7 \times 7$ to $30 \times 30$. Backtracking with FC+AC-3 solved all 1,500 standard-size puzzles with a 100\% success rate and an average execution time under 2 ms; on $20 \times 20$ and $30 \times 30$ boards, the algorithm is theoretically guaranteed to find a solution as a complete algorithm, but the computation time is impractical. PSO showed a sharp decline from 99.20\% on $7 \times 7$ boards to only 5.20\% on $12 \times 12$, and failed entirely on larger boards. These results confirm that for 	tightly-constrained CSPs such as Colored Queens, constraint propagation is far more effective than a metaheuristic approach.} 
+\abstrakINA{\textit{Colored Queens} adalah \textit{puzzle} logika berbasis papan yang dipopulerkan oleh platform LinkedIn, di mana pemain harus menempatkan tepat satu menteri pada setiap baris, kolom, dan sektor warna pada papan berukuran $n \times n$, tanpa ada dua menteri yang saling bertetangga dalam delapan arah. Permasalahan ini merupakan variasi dari N-Queens klasik dengan kendala tambahan berupa sektor warna ireguler dan aturan \textit{adjacency} lokal, sehingga tidak dapat diselesaikan dengan teknik konstruktif standar dan secara alami dapat dimodelkan sebagai \textit{Constraint Satisfaction Problem} (CSP).
+
+Tugas akhir ini mengimplementasikan dan membandingkan dua pendekatan algoritmik untuk menyelesaikan \textit{Colored Queens}: \textit{backtracking} yang diperkuat dengan \textit{forward checking} dan \textit{Arc Consistency 3} (AC-3) sebagai pendekatan deterministik dan lengkap, serta \textit{Particle Swarm Optimization} (PSO) diskrit sebagai pendekatan \textit{metaheuristic}. Selain kedua solver tersebut, dikembangkan pula sebuah aplikasi permainan berbasis \textit{desktop} menggunakan Java Swing yang mengintegrasikan solver \textit{backtracking} sebagai mesin untuk fitur \textit{hint} dan \textit{auto-solve}. Pengujian dilakukan terhadap 1.502 puzzle yang mencakup ukuran papan $7 \times 7$ hingga $30 \times 30$, dengan dataset yang diperoleh dari 
+\textit{playqueensgame.com} melalui \textit{web scraping}.
+
+Solver \textit{backtracking} dengan FC+AC-3 berhasil menyelesaikan seluruh 1.500 puzzle ukuran standar ($7 \times 7$ hingga $12 \times 12$) dengan tingkat keberhasilan 100\% dan waktu eksekusi rata-rata kurang dari 2 ms. Pada papan berukuran besar ($20 \times 20$ dan $30 \times 30$), algoritma ini sebagai algoritma yang bersifat lengkap pada prinsipnya tetap akan menemukan solusi, namun waktu komputasi yang diperlukan tidak praktis, mengindikasikan bahwa \textit{overhead} propagasi AC-3 pada setiap simpul pencarian mengkompensasi manfaat pemangkasan domain pada skala tersebut. Solver PSO diskrit menunjukkan penurunan tingkat keberhasilan yang tajam seiring bertambahnya ukuran papan, dari 99,20\% pada papan $7 \times 7$ hingga hanya 5,20\% pada papan $12 \times 12$ dengan konfigurasi parameter terbaik, dan gagal sepenuhnya pada ukuran besar. Analisis sensitivitas parameter menunjukkan bahwa jumlah partikel merupakan faktor yang paling berpengaruh terhadap kualitas solusi, meskipun peningkatannya mengalami \textit{diminishing returns} pada ukuran papan yang lebih besar. Secara keseluruhan, hasil ini mengonfirmasi bahwa untuk CSP berkendala ketat seperti \textit{Colored Queens}, pendekatan berbasis propagasi kendala terbukti jauh lebih efektif dibandingkan pendekatan \textit{metaheuristic}.}
+\abstrakENG{\textit{Colored Queens} is a logic-based board puzzle popularized by the LinkedIn platform, in which the player must place exactly one queen in each row, column, and colored region of an $n \times n$ board, with no two queens adjacent in any of eight directions. The problem is a variant of the classical N-Queens problem featuring irregular colored regions and a local adjacency constraint, making it unsolvable by standard constructive techniques and naturally suited for modeling as a Constraint Satisfaction Problem (CSP).
+
+This thesis implements and compares two algorithmic approaches to solving \textit{Colored Queens}: backtracking augmented with forward checking and Arc Consistency 3 (AC-3) as a deterministic and complete approach, and discrete Particle Swarm Optimization (PSO) as a metaheuristic approach. In addition to the two solvers, a desktop application was developed using Java Swing, integrating the backtracking solver as the engine for hint and auto-solve features. Testing was conducted on 1,502 puzzles spanning board sizes from $7 \times 7$ to $30 \times 30$, with the dataset obtained from \textit{playqueensgame.com} via web scraping.
+
+The backtracking solver with FC+AC-3 successfully solved all 1,500 standard-size puzzles ($7 \times 7$ to $12 \times 12$) with a 100\% success rate and an average execution time under 2 ms. On large boards ($20 \times 20$ and $30 \times 30$), the algorithm is theoretically guaranteed to find a solution by virtue of being a complete algorithm, but the required computation time is impractical, indicating that the AC-3 propagation overhead at each search node outweighs the benefit of domain pruning at that scale. The discrete PSO solver exhibited a sharp decline in success rate as board size increased, from 99.20\% on $7 \times 7$ boards to only 5.20\% on $12 \times 12$ under the best parameter configuration, and failed entirely on larger boards. Parameter sensitivity analysis revealed that swarm size was the most influential factor on solution quality, though its effect exhibited diminishing returns on larger board sizes. Overall, these results confirm that for tightly-constrained CSPs such as \textit{Colored Queens}, constraint propagation-based approaches are far more effective than metaheuristic ones.} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -264,7 +273,7 @@
 % Persembahan : kepada siapa anda mempersembahkan skripsi ini ...
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\untuk{<<kepada siapa anda mempersembahkan skripsi ini\ldots?>>}
+\untuk{Dipersembahkan untuk Tuhan, keluarga, dan teman-teman}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -275,7 +284,32 @@
 % kasih kepada yang telah membantu anda bla bla bla ....  
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\prakata{<<Tuliskan kata pengantar dari anda di sini \ldots>>} 
+\prakata{Puji syukur penulis panjatkan kepada Tuhan Yang Maha Esa, karena atas rahmat dan karunia-Nya penulis dapat menyelesaikan penyusunan tugas akhir yang berjudul ``Pembangunan Perangkat Lunak Permainan \textit{Colored Queens} dan Perbandingan Solver \textit{Backtracking} dengan \textit{Particle Swarm Optimization}``. Tugas akhir ini disusun sebagai salah satu syarat untuk memperoleh gelar sarjana di Program Studi Informatika Universitas Katolik Parahyangan.
+
+Penyusunan tugas akhir ini tidak akan dapat diselesaikan tanpa bantuan dan dukungan dari berbagai pihak. Oleh karena itu, penulis ingin mengucapkan terima kasih yang sebesar-besarnya kepada:
+	
+\begin{enumerate}
+	\item Kedua orang tua penulis, yang selalu memberikan dukungan, doa, dan motivasi 
+	tanpa henti selama proses pengerjaan tugas akhir ini dan selama proses pembelajaran di Universitas Katolik Parahyangan.
+		
+	\item Bapak \HUH selaku dosen pembimbing yang telah meluangkan waktu, memberikan bimbingan, arahan, dan semangat sehingga penulis dapat menyelesaikan tugas akhir ini.
+		
+	\item Bapak \GDK dan $\ldots$ selaku dosen penguji yang telah memberikan kritik dan saran yang membangun demi perbaikan tugas akhir ini.
+	
+	\item Ibu \MTA yang telah memberikan kesempatan dan kepercayaan kepada penulis untuk menjalankan tugas sebagai pelatih ekstrakurikuler di SMA Bina Bakti.
+	
+	\item Bapak \RCP dan Bapak \HUH yang telah memberikan kesempatan dan kepercayaan kepada penulis untuk mengabdi sebgai asisten laboratorium.
+	
+	\item Ibu \VSM dan Ibu \VAN selaku dosen mata kuliah Proyek Sistem Informasi yang telah memberikan kesempatan dan kepercayaan bagi penulis untuk mengerjakan proyek SI CHIPS.
+		
+	\item Angelique Gabriella Halim, atas segala dukungan, kesabaran, dan semangat yang diberikan kepada penulis selama pengerjaan tugas akhir ini.
+		
+	\item Teman-teman penulis, terutama Renggana Santika Kurniawan dan Junita Hariyati atas kebersamaan, dukungan, dan bantuan selama persiapan sidang.
+		
+	\item Seluruh pihak yang telah memberikan dukungan kepada penulis, baik secara langsung maupun tidak langsung, yang tidak dapat disebutkan satu per satu.
+\end{enumerate}
+	
+Penulis menyadari bahwa tugas akhir ini masih jauh dari sempurna. Oleh karena itu, penulis terbuka terhadap kritik dan saran yang membangun sebagai bahan perbaikan di masa mendatang. Semoga tugas akhir ini dapat bermanfaat bagi pembaca dan menjadi kontribusi yang berguna bagi penelitian selanjutnya.} 
 %=============================================================================
 
 %_____________________________________________________________________________

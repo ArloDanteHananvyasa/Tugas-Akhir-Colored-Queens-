@@ -1,7 +1,7 @@
-\chapter{Metodologi Penelitian}
+\chapter{Analisis}
 \label{chap:metodologi}
 
-\section{Gambaran Umum Penelitian}
+\section{Analisis Masalah}
 \label{sec:gambaran-umum}
 
 Tugas akhir ini bertujuan untuk merancang, mengimplementasikan, dan membandingkan dua pendekatan algoritmik dalam menyelesaikan permasalahan \textit{Colored Queens}: pendekatan berbasis pencarian sistematis menggunakan \textit{Backtracking} yang diperkuat dengan \textit{Forward Checking} dan AC-3 sebagaimana dibahas pada Bagian \ref{subsubsec:backtracking}, serta pendekatan berbasis \textit{metaheuristic} menggunakan \textit{Particle Swarm Optimization} (PSO) diskrit sebagaimana dibahas pada Bagian \ref{subsubsec:pso}. Selain kedua solver tersebut, Tugas akhir ini juga mencakup perancangan dan implementasi sebuah aplikasi permainan berbasis antarmuka grafis yang berfungsi sebagai platform visualisasi dan pengujian.
@@ -10,7 +10,7 @@ Secara garis besar, sistem yang dibangun terdiri atas tiga komponen utama. Perta
 
 Dalam konteks aplikasi permainan, solver yang digunakan secara eksklusif adalah \textit{backtracking} dengan \textit{forward checking} dan AC-3, yang menjamin ditemukannya solusi dan dijalankan secara asinkron di latar belakang saat pengguna membuka sebuah puzzle. Solver PSO diskrit tidak diintegrasikan ke dalam aplikasi permainan, melainkan digunakan secara terpisah dalam kerangka eksperimen untuk dibandingkan dengan solver \textit{backtracking} dari segi waktu eksekusi, tingkat keberhasilan, dan jumlah iterasi. Alur kerja penelitian secara keseluruhan diilustrasikan pada Gambar \ref{fig:alur-sistem}.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.85\linewidth]{flowchart.png}
 	\caption{Alur kerja penelitian secara keseluruhan.}
@@ -40,21 +40,19 @@ Berikut adalah penjelasan setiap proses pada Gambar \ref{fig:alur-sistem}:
 \section{Pemodelan Permasalahan \textit{Colored Queens} sebagai CSP}
 \label{sec:pemodelan-csp}
 
-Sebagaimana telah dibahas pada Bagian \ref{sec:csp}, sebuah \textit{Constraint Satisfaction Problem} didefinisikan oleh tiga komponen utama: himpunan variabel, domain masing-masing variabel, dan himpunan kendala yang harus dipenuhi secara bersamaan \cite{russell2020artificial}. Bagian ini menjabarkan secara konkret bagaimana ketiga komponen tersebut didefinisikan dalam konteks permasalahan \textit{Colored Queens}, sekaligus menjelaskan bagaimana representasi tersebut diimplementasikan dalam sistem yang dibangun.
+Sebagaimana telah dibahas pada Bagian~\ref{sec:csp}, sebuah \textit{Constraint Satisfaction Problem} didefinisikan oleh tiga komponen utama: himpunan variabel, domain masing-masing variabel, dan himpunan kendala yang harus dipenuhi secara bersamaan. Bagian ini menjabarkan secara konkret bagaimana ketiga komponen tersebut didefinisikan dalam konteks permasalahan \textit{Colored Queens}. Pemodelan formal ini menjadi landasan bagi kedua pendekatan penyelesaian yang dirancang pada Bagian~\ref{sec:analisis-backtracking} dan Bagian~\ref{sec:analisis-pso}.
 
 \subsection{Representasi Papan}
 \label{subsec:representasi-papan}
 
-Papan permainan \textit{Colored Queens} dimodelkan sebagai sebuah grid berukuran $n \times n$, di mana $n$ menyatakan jumlah baris, jumlah kolom, sekaligus jumlah sektor warna yang ada pada papan. Setiap sel pada papan diidentifikasi oleh pasangan koordinat $(\textit{baris}, \textit{kolom})$ dengan indeks berbasis nol, sehingga sel pojok kiri atas memiliki koordinat $(0, 0)$ dan sel pojok kanan bawah memiliki koordinat $(n-1, n-1)$.
+Papan permainan \textit{Colored Queens} dimodelkan sebagai sebuah grid berukuran $n \times n$, di mana $n$ menyatakan jumlah baris, jumlah kolom, sekaligus jumlah sektor warna yang ada pada papan. Setiap sel pada papan diidentifikasi oleh pasangan koordinat $(\textit{baris}, \textit{kolom})$ dengan indeks berbasis nol, sehingga sel pojok kiri atas memiliki koordinat $(0, 0)$ dan sel pojok kanan bawah memiliki koordinat $(n-1, n-1)$. Setiap sel memiliki atribut warna yang menentukan sektor mana sel tersebut termasuk.
 
-Dalam implementasi, setiap sel direpresentasikan oleh objek \texttt{Cell} yang menyimpan koordinat baris, koordinat kolom, serta nilai warna dalam format RGB. Informasi warna digunakan sebagai kunci pengelompokan sel ke dalam sektor warna yang bersesuaian. Papan secara keseluruhan direpresentasikan oleh objek \texttt{Board}, yang menyimpan pemetaan dari setiap sektor warna ke daftar sel-sel yang termasuk dalam sektor tersebut melalui struktur \texttt{LinkedHashMap<String, List<int[]>>}. Kunci peta adalah representasi string dari nilai RGB warna dalam format \texttt{"R,G,B"}, sedangkan nilainya adalah daftar pasangan koordinat $[\textit{baris}, \textit{kolom}]$ dari seluruh sel yang memiliki warna tersebut. Penggunaan \texttt{LinkedHashMap} secara khusus dipilih untuk mempertahankan urutan insersi warna, yang berpengaruh pada urutan pemrosesan variabel oleh solver sebagaimana akan dijelaskan pada Bagian \ref{subsec:strategi-variabel}.
-
-Data papan dibaca dari berkas JSON dengan format \texttt{\{ukuran\}x\{ukuran\}\_level\{nomor\}.json} oleh kelas \texttt{BoardImporter}. Setiap entri dalam berkas JSON mewakili satu sel dan memuat atribut \texttt{row}, \texttt{col}, serta \texttt{color} dalam format \texttt{rgba(R, G, B, A)}.
+Sektor warna didefinisikan sebagai himpunan sel-sel yang memiliki warna sama. Pada papan yang valid, terdapat tepat $n$ sektor warna, dan setiap sel pada papan termasuk dalam tepat satu sektor warna. Bentuk dan luas sektor warna dapat berbeda-beda tergantung pada tata letak papan yang diberikan, sebagaimana telah diperlihatkan pada contoh papan di Bagian~\ref{subsec:colored-queens-definisi}.
 
 \subsection{Definisi Variabel}
 \label{subsec:definisi-variabel}
 
-Mengacu pada kerangka CSP yang dijelaskan pada Bagian \ref{sec:csp}, variabel dalam permasalahan \textit{Colored Queens} didefinisikan sebagai sektor warna pada papan. Secara formal, diberikan himpunan warna $C = \{c_1, c_2, \dots, c_n\}$, maka himpunan variabel adalah:
+Mengacu pada kerangka CSP yang dijelaskan pada Bagian~\ref{sec:csp}, variabel dalam permasalahan \textit{Colored Queens} didefinisikan sebagai sektor warna pada papan. Secara formal, diberikan himpunan warna $C = \{c_1, c_2, \dots, c_n\}$, maka himpunan variabel adalah:
 
 \begin{equation}
 	X = \{X_{c_1}, X_{c_2}, \dots, X_{c_n}\}
@@ -62,7 +60,7 @@ Mengacu pada kerangka CSP yang dijelaskan pada Bagian \ref{sec:csp}, variabel da
 
 di mana setiap variabel $X_{c_i}$ merepresentasikan pilihan posisi penempatan menteri untuk sektor warna $c_i$.
 
-Pemilihan sektor warna sebagai variabel—bukan baris atau kolom seperti pada N-Queens klasik—didasarkan pada struktur kendala \textit{Colored Queens} itu sendiri. Aturan permainan mengharuskan tepat satu menteri ditempatkan pada setiap sektor warna (kendala \textit{one queen per color}), sehingga setiap sektor warna secara alami berkorespondensi dengan satu variabel keputusan. Dengan pemodelan ini, himpunan variabel memiliki kardinalitas yang sama dengan ukuran papan $n$, dan setiap penugasan lengkap (\textit{complete assignment}) secara otomatis memenuhi kendala jumlah menteri per warna.
+Pemilihan sektor warna sebagai variabel, bukan baris atau kolom seperti pada N-Queens klasik, didasarkan pada struktur kendala \textit{Colored Queens} itu sendiri. Aturan permainan mengharuskan tepat satu menteri ditempatkan pada setiap sektor warna (kendala \textit{one queen per color}), sehingga setiap sektor warna secara alami berkorespondensi dengan satu variabel keputusan. Dengan pemodelan ini, himpunan variabel memiliki kardinalitas yang sama dengan ukuran papan $n$, dan setiap penugasan lengkap (\textit{complete assignment}) secara otomatis memenuhi kendala jumlah menteri per warna.
 
 \subsection{Definisi Domain}
 \label{subsec:definisi-domain}
@@ -73,14 +71,14 @@ Domain dari setiap variabel $X_{c_i}$ adalah himpunan semua sel yang termasuk da
 	D_{c_i} = \{(r, k) \mid \text{sel } (r, k) \text{ memiliki warna } c_i\}
 \end{equation}
 
-Dengan demikian, ukuran domain setiap variabel dapat berbeda-beda tergantung pada bentuk dan luas sektor warna yang bersangkutan pada papan. Tidak seperti N-Queens klasik yang menggunakan representasi permutasi dengan domain seragam $\{1, 2, \dots, n\}$ \cite{glock2022n}, domain pada \textit{Colored Queens} bersifat heterogen dan bergantung pada tata letak papan yang diberikan.
+Dengan demikian, ukuran domain setiap variabel dapat berbeda-beda tergantung pada bentuk dan luas sektor warna yang bersangkutan pada papan. Tidak seperti N-Queens klasik yang menggunakan representasi permutasi dengan domain seragam $\{1, 2, \dots, n\}$, domain pada \textit{Colored Queens} bersifat heterogen dan bergantung pada tata letak papan yang diberikan.
 
-Dalam implementasi, domain setiap variabel direpresentasikan menggunakan dua struktur yang bekerja secara bersama-sama. Daftar sel \texttt{List<int[]>} menyimpan koordinat aktual dari seluruh sel dalam domain secara statis sebagai referensi. \texttt{BitSet} digunakan untuk merepresentasikan status kevalidan setiap sel secara dinamis selama proses pencarian: bit ke-$i$ bernilai \texttt{1} apabila sel ke-$i$ masih valid sebagai kandidat penempatan menteri, dan bernilai \texttt{0} apabila sel tersebut telah dipangkas oleh mekanisme \textit{forward checking} atau propagasi AC-3. Kombinasi ini memungkinkan operasi pemangkasan dan pemulihan domain dilakukan dalam waktu $O(1)$ per sel.
+Selama proses pencarian, status kevalidan setiap sel dalam domain bersifat dinamis. Sel dapat dipangkas dari domain (dianggap tidak lagi valid sebagai kandidat penempatan) oleh mekanisme seperti \textit{forward checking} atau propagasi AC-3, dan dapat dipulihkan kembali ke domain ketika algoritma melakukan \textit{backtrack}. Dengan demikian, domain efektif yang dipertimbangkan oleh algoritma pada suatu titik dalam pencarian merupakan himpunan bagian dari domain awalnya.
 
 \subsection{Definisi \textit{Constraint}}
 \label{subsec:definisi-constraint}
 
-Sesuai dengan aturan permainan \textit{Colored Queens} yang dijabarkan pada Bagian \ref{subsec:colored-queens-definisi}, terdapat tiga jenis kendala yang harus dipenuhi secara bersamaan oleh setiap pasangan variabel $(X_{c_i}, X_{c_j})$ dengan $i \neq j$. Ketiga kendala ini bersifat biner dan membentuk \textit{constraint graph} yang lengkap (\textit{complete}), artinya setiap pasang variabel terhubung oleh kendala \cite{bessiere2006constraint}.
+Sesuai dengan aturan permainan \textit{Colored Queens} yang dijabarkan pada Bagian~\ref{subsec:colored-queens-definisi}, terdapat tiga jenis kendala yang harus dipenuhi secara bersamaan oleh setiap pasangan variabel $(X_{c_i}, X_{c_j})$ dengan $i \neq j$. Ketiga kendala ini bersifat biner dan membentuk \textit{constraint graph} yang lengkap (\textit{complete}), artinya setiap pasang variabel terhubung oleh kendala.
 
 \textbf{Kendala Baris.} Dua menteri tidak boleh ditempatkan pada baris yang sama. Untuk dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ yang ditugaskan kepada variabel $X_{c_i}$ dan $X_{c_j}$, kendala ini dinyatakan sebagai:
 \begin{equation}
@@ -92,850 +90,533 @@ Sesuai dengan aturan permainan \textit{Colored Queens} yang dijabarkan pada Bagi
 	k_1 \neq k_2
 \end{equation}
 
-\textbf{Kendala \textit{Adjacency}.} Berbeda dari permasalahan N-Queens klasik yang melarang konflik diagonal tak terbatas \cite{bell2009survey}, \textit{Colored Queens} hanya melarang penempatan dua menteri pada sel yang bertetangga secara langsung dalam delapan arah (horizontal, vertikal, dan diagonal). Dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ dinyatakan bertetangga apabila:
+\textbf{Kendala \textit{Adjacency}.} Berbeda dari permasalahan N-Queens klasik yang melarang konflik diagonal tak terbatas, \textit{Colored Queens} hanya melarang penempatan dua menteri pada sel yang bertetangga secara langsung dalam delapan arah (horizontal, vertikal, dan diagonal). Dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ dinyatakan bertetangga apabila:
 \begin{equation}
 	|r_1 - r_2| \leq 1 \quad \text{dan} \quad |k_1 - k_2| \leq 1
 \end{equation}
 
-Perlu dicatat bahwa tidak ada larangan bagi dua menteri untuk berada pada diagonal yang sama, selama keduanya tidak bertetangga secara langsung. Hal ini merupakan perbedaan struktural yang signifikan dari N-Queens klasik dan menjadi karakteristik utama dari \textit{Colored Queens} sebagaimana dibahas pada Bagian \ref{subsec:colored-queens-definisi}.
+Perlu dicatat bahwa tidak ada larangan bagi dua menteri untuk berada pada diagonal yang sama, selama keduanya tidak bertetangga secara langsung. Hal ini merupakan perbedaan struktural yang signifikan dari N-Queens klasik dan menjadi karakteristik utama dari \textit{Colored Queens} sebagaimana dibahas pada Bagian~\ref{subsec:colored-queens-definisi}.
 
-Dalam implementasi, ketiga kendala di atas diperiksa sekaligus melalui satu fungsi konflik tunggal. Dua sel dinyatakan berkonflik apabila memenuhi salah satu dari kondisi berikut:
+Ketiga kendala di atas dapat digabungkan menjadi sebuah definisi konflik tunggal antara dua sel. Dua sel dinyatakan berkonflik apabila memenuhi salah satu dari kondisi berikut:
 
 \begin{equation}
 	\text{konflik}((r_1, k_1),\, (r_2, k_2)) \iff (r_1 = r_2) \;\lor\; (k_1 = k_2) \;\lor\; (|r_1 - r_2| \leq 1 \;\land\; |k_1 - k_2| \leq 1)
 \end{equation}
 
+Pemeriksaan konflik melalui formulasi ini akan digunakan secara konsisten oleh kedua algoritma penyelesaian yang dirancang pada bagian-bagian berikutnya.
+
 \subsection{Representasi Solusi}
 \label{subsec:representasi-solusi}
 
-Sebuah solusi valid dari permasalahan \textit{Colored Queens} yang dimodelkan sebagai CSP adalah sebuah penugasan lengkap $A = \{X_{c_1} \mapsto s_1,\; X_{c_2} \mapsto s_2,\; \dots,\; X_{c_n} \mapsto s_n\}$ di mana $s_i \in D_{c_i}$ untuk setiap $i$, dan tidak ada pasangan $(s_i, s_j)$ dengan $i \neq j$ yang melanggar ketiga kendala yang telah didefinisikan pada Bagian \ref{subsec:definisi-constraint}.
+Sebuah solusi valid dari permasalahan \textit{Colored Queens} yang dimodelkan sebagai CSP adalah sebuah penugasan lengkap
 
-Dalam implementasi solver \textit{backtracking}, solusi disimpan sebagai array integer \texttt{solution[]} berindeks variabel (warna), di mana \texttt{solution[i]} menyimpan \textit{indeks} sel terpilih dalam daftar domain warna ke-$i$. Koordinat aktual sel kemudian dapat diperoleh dengan \path{colorCells.get(colors.get(i)).get(solution[i])}. Representasi berbasis indeks ini dipilih karena lebih efisien secara memori dan memudahkan operasi pemangkasan domain berbasis \texttt{BitSet}.
+\begin{equation}
+	A = \{X_{c_1} \mapsto s_1,\; X_{c_2} \mapsto s_2,\; \dots,\; X_{c_n} \mapsto s_n\}
+\end{equation}
 
-Untuk keperluan antarmuka, solusi dikonversi ke dalam format matriks dua dimensi \texttt{int[][] result} berukuran $n \times 2$, di mana \texttt{result[i][0]} dan \texttt{result[i][1]} masing-masing menyimpan koordinat baris dan kolom menteri untuk warna ke-$i$. Format ini kemudian digunakan oleh \texttt{GameWindow} untuk merender posisi menteri pada tampilan papan.
+di mana $s_i \in D_{c_i}$ untuk setiap $i$, dan tidak ada pasangan $(s_i, s_j)$ dengan $i \neq j$ yang melanggar ketiga kendala yang telah didefinisikan pada Bagian~\ref{subsec:definisi-constraint}.
 
-\section{Perancangan Algoritma \textit{Backtracking} dengan \textit{Forward Checking} dan AC-3}
-\label{sec:perancangan-backtracking}
+Penugasan lengkap inilah yang menjadi keluaran dari kedua algoritma yang dirancang dalam tugas akhir ini. Pada algoritma \textit{backtracking}, penugasan dibangun secara inkremental melalui penambahan satu variabel pada satu waktu hingga seluruh variabel mendapat nilai. Pada algoritma PSO, setiap partikel pada setiap iterasi merepresentasikan satu kandidat penugasan lengkap, meskipun belum tentu memenuhi seluruh kendala.
 
-Bagian ini menjelaskan perancangan dan implementasi algoritma pencarian sistematis yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}. Algoritma ini menggabungkan \textit{backtracking} sebagai kerangka pencarian utama dengan dua mekanisme pemangkasan ruang pencarian, yaitu \textit{forward checking} dan AC-3, yang landasan teorinya telah dibahas pada Bagian \ref{subsubsec:backtracking}. Penjelasan dimulai dari alur dasar pencarian dan pemeriksaan kendala, dilanjutkan dengan mekanisme pemangkasan yang menjadi inti efisiensi algoritma.
+\section{Analisis Algoritma \textit{Backtracking} dengan \textit{Forward Checking} dan AC-3}
+\label{sec:analisis-backtracking}
 
-\subsection{Alur Dasar \textit{Backtracking}}
+Bagian ini menjelaskan analisis algoritmik dari pendekatan pertama yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}, yaitu \textit{backtracking} sistematis yang diperkuat dengan dua mekanisme pemangkasan domain: \textit{forward checking} dan AC-3. Landasan teori ketiga teknik tersebut telah dibahas pada Bagian~\ref{subsubsec:backtracking} dan Bagian~\ref{subsubsec:ac3}. Analisis disajikan melalui empat diagram alur yang merepresentasikan setiap komponen algoritma secara terpisah, yaitu alur utama rekursif pencarian, prosedur \textit{forward checking}, fungsi \textit{revise} sebagai inti dari konsistensi busur, dan prosedur propagasi AC-3 yang menjalankan propagasi secara iteratif. Rincian implementasi masing-masing komponen dibahas pada Bab~\ref{chap:perancangan}.
+
+\subsection{Alur Utama Algoritma \textit{Backtracking}}
 \label{subsec:alur-backtracking}
 
-Algoritma \textit{backtracking} yang diimplementasikan menggunakan pendekatan rekursif \textit{depth-first} yang memproses variabel (sektor warna) satu per satu secara berurutan. Prosedur utama pencarian direpresentasikan oleh fungsi \texttt{placeQueens(colorIndex)}, yang bekerja sebagai berikut.
+Alur utama algoritma \textit{backtracking} mengimplementasikan pencarian rekursif \textit{depth-first} yang memproses variabel warna satu per satu sesuai urutan yang telah ditentukan. Pada setiap pemanggilan rekursif, satu menteri ditempatkan untuk satu sektor warna, diikuti oleh pemangkasan domain dan pemanggilan rekursif berikutnya. Apabila pencarian pada suatu cabang gagal, algoritma membatalkan penugasan dan mencoba alternatif lain pada level yang sama. Keseluruhan alur diilustrasikan pada Gambar~\ref{fig:flow-placequeens}.
 
-Pada setiap pemanggilan rekursif, fungsi menerima indeks warna \texttt{colorIndex} yang menunjukkan variabel mana yang sedang diproses. Apabila indeks telah mencapai jumlah total warna, seluruh variabel telah berhasil ditugaskan dan solusi dinyatakan ditemukan. Apabila domain variabel saat ini kosong (tidak ada sel valid yang tersisa), fungsi segera mengembalikan nilai \texttt{false} tanpa melanjutkan pencarian.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.95\linewidth]{flowbt.png}
+	\caption{Diagram alur prosedur rekursif pencarian \textit{backtracking}.}
+	\label{fig:flow-placequeens}
+\end{figure}
 
-Untuk setiap sel valid dalam domain variabel saat ini, algoritma melakukan langkah-langkah berikut: (1) menempatkan menteri pada sel tersebut, (2) menjalankan mekanisme pemangkasan terhadap domain variabel-variabel yang belum ditugaskan, (3) memeriksa apakah pemangkasan mengakibatkan domain suatu variabel menjadi kosong, dan (4) melanjutkan pencarian secara rekursif ke variabel berikutnya apabila tidak ada domain yang kosong. Apabila pencarian rekursif gagal atau domain ditemukan kosong, algoritma membatalkan penugasan saat ini, memulihkan seluruh domain yang telah dipangkas, dan mencoba sel berikutnya. Mekanisme pemangkasan dan pemulihan domain dibahas secara rinci pada Bagian \ref{subsec:integrasi-ac3}.
+\subsubsection{Pengecekan Kondisi Terminasi}
 
-Pseudocode alur dasar \textit{backtracking} diperlihatkan pada Algoritma \ref{alg:backtracking}.
+Setiap pemanggilan rekursif diawali dengan dua pemeriksaan kondisi terminasi. Pemeriksaan pertama, ``Semua warna sudah ditugaskan?'', menentukan apakah \textit{base case} pencarian telah tercapai. Kondisi ini terpenuhi ketika seluruh sektor warna telah memiliki menteri yang ditempatkan, sehingga prosedur mengembalikan nilai \textit{true} yang menandakan ditemukannya solusi valid. Pemeriksaan kedua, ``Domain warna saat ini kosong?'', memeriksa apakah variabel warna yang sedang diproses tidak memiliki sel valid yang tersisa. Apabila kondisi ini terpenuhi, pencarian pada cabang ini tidak dapat dilanjutkan dan prosedur mengembalikan \textit{false} kepada pemanggilnya sebagai sinyal untuk melakukan \textit{backtrack}.
 
-\begin{algorithm}[H]
-	\caption{Alur dasar \textit{backtracking} untuk \textit{Colored Queens}}
-	\label{alg:backtracking}
-	\begin{algorithmic}[1]
-		\Function{PlaceQueens}{$colorIndex$}
-		\If{$colorIndex = |C|$}
-		\State \Return \textbf{true} \Comment{Seluruh variabel telah ditugaskan}
-		\EndIf
-		\State $color \gets C[colorIndex]$
-		\If{$|D_{color}| = 0$}
-		\State \Return \textbf{false} \Comment{Domain kosong, gagal}
-		\EndIf
-		\For{setiap sel $s$ dalam $D_{color}$ yang masih valid}
-		\State Tempatkan menteri pada sel $s$
-		\State $checkpoint \gets$ posisi \textit{pruneStack} saat ini
-		\State Jalankan pemangkasan (\textit{forward checking} + AC-3)
-		\If{tidak ada domain variabel lain yang kosong}
-		\If{\Call{PlaceQueens}{$colorIndex + 1$}}
-		\State \Return \textbf{true}
-		\EndIf
-		\EndIf
-		\State Pulihkan domain ke $checkpoint$
-		\State Batalkan penempatan menteri pada sel $s$
-		\EndFor
-		\State \Return \textbf{false}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+\subsubsection{Pemilihan dan Penempatan Menteri}
 
-Sistem mencatat dua metrik selama proses pencarian: jumlah langkah (\textit{steps}), yaitu banyaknya penugasan yang berhasil diteruskan ke pemanggilan rekursif berikutnya, dan jumlah \textit{backtracks}, yaitu banyaknya pembatalan penugasan yang terjadi akibat kegagalan pencarian pada tingkat yang lebih dalam.
+Apabila kedua kondisi terminasi tidak terpenuhi, algoritma masuk ke dalam perulangan utama yang mengiterasi seluruh sel valid dalam domain variabel saat ini. Dari seluruh sel yang tersedia, algoritma memilih satu sel kandidat berikutnya dan menempatkan menteri pada sel tersebut secara tentatif, artinya penempatan ini dapat dibatalkan apabila pencarian pada cabang ini gagal. Penempatan menteri pada sel tertentu secara langsung membatasi pilihan yang tersedia bagi variabel-variabel yang belum ditugaskan, karena setiap sel yang berkonflik dengan posisi tersebut tidak lagi dapat digunakan.
 
-\subsection{Pemeriksaan \textit{Constraint}}
-\label{subsec:pemeriksaan-constraint}
+\subsubsection{Penyimpanan \textit{Checkpoint} dan Pemangkasan Domain}
 
-Pemeriksaan kendala merupakan operasi fundamental yang digunakan di seluruh bagian algoritma, baik pada tahap \textit{forward checking} maupun pada tahap propagasi AC-3. Sebagaimana didefinisikan pada Bagian \ref{subsec:definisi-constraint}, dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ dinyatakan berkonflik apabila memenuhi salah satu dari tiga kondisi: berada pada baris yang sama ($r_1 = r_2$), berada pada kolom yang sama ($k_1 = k_2$), atau bertetangga secara langsung ($|r_1 - r_2| \leq 1 \land |k_1 - k_2| \leq 1$).
+Sebelum menjalankan pemangkasan, algoritma mencatat kondisi domain saat ini sebagai \textit{checkpoint}. Mekanisme ini memungkinkan seluruh perubahan domain yang dilakukan pada langkah berikutnya untuk dibatalkan secara efisien apabila pencarian gagal, tanpa perlu menyalin ulang seluruh struktur domain. Setelah \textit{checkpoint} disimpan, algoritma menjalankan dua tahap pemangkasan domain secara berurutan: \textit{forward checking} yang akan dijabarkan pada Bagian~\ref{subsec:flow-fc}, diikuti oleh propagasi AC-3 yang akan dijabarkan pada Bagian~\ref{subsec:flow-propagate}. Kedua tahap ini secara bersama-sama mengeliminasi sel-sel yang sudah tidak konsisten dari domain seluruh variabel yang belum ditugaskan, mempersempit ruang pencarian sebelum rekursi dilanjutkan.
 
-Dalam implementasi, ketiga kondisi ini diperiksa dalam satu fungsi \texttt{conflicts()} yang mengembalikan nilai boolean. Pemeriksaan dilakukan secara \textit{inline} tanpa mengonstruksi struktur data terpisah untuk zona serangan, sehingga kompleksitas per pemeriksaan adalah $O(1)$. Perlu dicatat bahwa kondisi ketiga (adjacency) secara implisit mencakup kasus dua menteri yang berada pada sel yang sama, karena selisih baris dan kolom keduanya bernilai nol yang memenuhi syarat $\leq 1$. Namun, kasus ini tidak pernah terjadi dalam praktik karena setiap variabel merepresentasikan sektor warna yang berbeda dan sel-sel antarsektor tidak beririsan.
+\subsubsection{Evaluasi Pemangkasan dan Pemanggilan Rekursif}
 
-Berbeda dari permasalahan N-Queens klasik yang memeriksa konflik diagonal tak terbatas melalui kondisi $|i - j| = |\pi_i - \pi_j|$ \cite{bell2009survey}, pemeriksaan pada \textit{Colored Queens} hanya bersifat lokal: dua menteri yang berada pada diagonal yang sama namun berjarak lebih dari satu sel tidak dianggap berkonflik. Perbedaan ini berimplikasi pada tingkat pemangkasan domain—kendala \textit{adjacency} hanya memangkas sel-sel yang bertetangga langsung dengan menteri yang baru ditempatkan, sedangkan kendala baris dan kolom memangkas seluruh baris atau kolom yang bersangkutan.
+Setelah pemangkasan selesai, algoritma memeriksa apakah salah satu variabel yang belum ditugaskan kehilangan seluruh kandidat selnya akibat pemangkasan. Apabila kondisi ini terjadi, cabang pencarian ini dipastikan tidak dapat menghasilkan solusi valid, sehingga algoritma langsung melompat ke proses pemulihan tanpa melanjutkan rekursi. Deteksi dini kegagalan ini merupakan salah satu keunggulan utama kombinasi \textit{forward checking} dan AC-3 dibandingkan \textit{backtracking} murni. Apabila tidak ada domain yang kosong, algoritma memanggil dirinya sendiri secara rekursif untuk memproses variabel warna berikutnya. Apabila pemanggilan rekursif tersebut berhasil menemukan solusi, nilai \textit{true} diteruskan kembali ke pemanggil.
 
-\subsection{Mekanisme Pemangkasan: \textit{Forward Checking} dan AC-3}
-\label{subsec:integrasi-ac3}
+\subsubsection{Pemulihan dan Eksplorasi Sel Berikutnya}
 
-Efisiensi algoritma \textit{backtracking} sangat bergantung pada kemampuannya untuk menghindari eksplorasi cabang pencarian yang pasti gagal sedini mungkin. Dalam implementasi ini, dua mekanisme pemangkasan domain digunakan secara berurutan setelah setiap penugasan variabel: \textit{forward checking} sebagai pemangkasan tahap pertama, dan propagasi AC-3 sebagai pemangkasan tahap kedua yang lebih mendalam. Seluruh operasi pemangkasan dicatat dalam sebuah struktur \textit{pruneStack} agar dapat dibatalkan secara efisien saat algoritma melakukan \textit{backtrack}.
+Apabila pemanggilan rekursif gagal atau pemangkasan menyebabkan domain variabel lain menjadi kosong, algoritma melakukan \textit{backtrack} dengan memulihkan seluruh domain ke kondisi tepat sebelum penempatan saat ini, menggunakan informasi yang tersimpan pada \textit{checkpoint}. Penempatan menteri yang gagal dibatalkan, dan sel tersebut dianggap tidak layak untuk iterasi saat ini. Algoritma kemudian memeriksa apakah masih terdapat sel valid lain dalam domain yang belum dicoba. Apabila masih ada, perulangan dilanjutkan untuk mencoba sel berikutnya. Apabila seluruh sel telah dicoba tanpa keberhasilan, prosedur mengembalikan \textit{false} kepada pemanggilnya, yang akan memicu \textit{backtrack} pada level rekursi di atasnya.
 
-\subsubsection{\textit{Forward Checking}}
-\label{subsubsec:forward-checking}
+\subsection{\textit{Forward Checking}}
+\label{subsec:flow-fc}
 
-Setelah sebuah menteri ditempatkan pada sel $(r, k)$ untuk variabel warna ke-$i$, \textit{forward checking} memeriksa seluruh sel yang masih valid dalam domain setiap variabel warna yang belum ditugaskan ($i+1, i+2, \dots, n$). Untuk setiap sel tersebut, fungsi konflik sebagaimana didefinisikan pada Bagian \ref{subsec:pemeriksaan-constraint} dievaluasi terhadap posisi menteri yang baru ditempatkan. Apabila sebuah sel dinyatakan berkonflik, bit yang bersesuaian pada \texttt{BitSet} domain warna tersebut di-\textit{clear} dan pencacah ukuran domain (\texttt{colorCellCount}) dikurangi. Setiap pemangkasan dicatat sebagai objek \texttt{PruneAction} yang disimpan pada \textit{pruneStack}.
+\textit{Forward checking} merupakan tahap pemangkasan pertama yang dijalankan setiap kali seorang menteri ditempatkan pada papan. Sebagaimana dibahas pada Bagian~\ref{subsubsec:backtracking}, mekanisme ini secara reaktif mengeliminasi nilai-nilai domain yang tidak konsisten dengan penugasan yang baru saja dilakukan, sehingga cabang pencarian yang pasti gagal dapat dihindari sedini mungkin. Dalam konteks \textit{Colored Queens}, \textit{forward checking} memangkas seluruh sel yang berkonflik dengan menteri yang baru ditempatkan dari domain variabel-variabel warna yang belum ditugaskan. Alur prosedur ini diperlihatkan pada Gambar~\ref{fig:flow-fc}.
 
-Pseudocode tahap \textit{forward checking} diperlihatkan pada Algoritma \ref{alg:fc-impl}.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.95\linewidth]{flowfc.png}
+	\caption{Diagram alur prosedur \textit{forward checking}.}
+	\label{fig:flow-fc}
+\end{figure}
 
-\begin{algorithm}[H]
-	\caption{\textit{Forward checking} untuk \textit{Colored Queens}}
-	\label{alg:fc-impl}
-	\begin{algorithmic}[1]
-		\Function{ForwardCheck}{$row, col, placedColorIdx$}
-		\For{$colorIdx \gets placedColorIdx + 1$ \textbf{hingga} $|C| - 1$}
-		\State $valid \gets$ \texttt{BitSet} domain warna $colorIdx$
-		\For{setiap indeks $i$ yang masih aktif dalam $valid$}
-		\State $(r_2, k_2) \gets$ koordinat sel ke-$i$ dari warna $colorIdx$
-		\If{$row = r_2 \;\lor\; col = k_2 \;\lor\; (|row - r_2| \leq 1 \;\land\; |col - k_2| \leq 1)$}
-		\State Hapus bit $i$ dari $valid$
-		\State Kurangi $colorCellCount[colorIdx]$
-		\State Catat $(colorIdx, i)$ pada \textit{pruneStack}
-		\EndIf
-		\EndFor
-		\EndFor
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+\subsubsection{Iterasi atas Warna yang Belum Ditugaskan}
 
-Dampak \textit{forward checking} bersifat langsung: hanya sel-sel yang berkonflik dengan menteri yang \textit{baru saja} ditempatkan yang dipangkas. Mekanisme ini tidak memperhitungkan interaksi antara domain variabel-variabel yang belum ditugaskan satu sama lain. Konsekuensinya, terdapat kemungkinan sebuah sel tetap berada dalam domain suatu variabel meskipun sel tersebut tidak memiliki \textit{support} yang konsisten di variabel lain. Keterbatasan inilah yang ditangani oleh propagasi AC-3.
+Prosedur dimulai dengan mengiterasi seluruh variabel warna yang belum ditugaskan, yaitu variabel-variabel yang belum memiliki menteri. Iterasi dilakukan secara terurut sesuai urutan pemrosesan variabel yang telah ditetapkan. Apabila seluruh variabel yang belum ditugaskan telah diperiksa, prosedur berakhir dan kendali dikembalikan ke alur utama \textit{backtracking}.
+
+\subsubsection{Iterasi atas Sel dalam Domain Warna Terpilih}
+
+Untuk setiap variabel warna yang diperiksa, prosedur mengiterasi seluruh sel yang masih valid dalam domainnya. Sel yang sebelumnya telah dipangkas oleh penugasan-penugasan sebelumnya tidak diperiksa ulang. Apabila seluruh sel pada domain variabel saat ini telah diperiksa, alur beralih ke variabel warna berikutnya.
+
+\subsubsection{Pemeriksaan Konflik dan Pemangkasan Sel}
+
+Setiap sel yang diperiksa dievaluasi terhadap posisi menteri yang baru ditempatkan. Pemeriksaan konflik mengacu pada definisi kendala \textit{Colored Queens} yang telah dijabarkan pada Bagian~\ref{subsec:definisi-constraint}, yang mencakup kesamaan baris, kesamaan kolom, dan ketetanggaan dalam delapan arah. Apabila sel tidak berkonflik, sel tersebut tetap berada dalam domain dan alur melanjutkan ke sel berikutnya. Apabila sel berkonflik, sel tersebut dihapus dari domain dan pemangkasan ini dicatat agar dapat dipulihkan apabila algoritma melakukan \textit{backtrack} di kemudian hari.
+
+\subsection{Fungsi \textit{Revise}}
+\label{subsec:flow-revise}
+
+Fungsi \textit{revise} merupakan inti dari mekanisme konsistensi busur AC-3. Sebagaimana telah dijabarkan pada Bagian~\ref{subsubsec:ac3}, fungsi ini menerima sepasang variabel sebagai parameter, yaitu variabel sumber dan variabel tujuan, kemudian memeriksa apakah setiap nilai dalam domain variabel tujuan memiliki nilai pendamping yang konsisten pada variabel sumber. Nilai yang tidak memiliki pendamping yang konsisten dianggap tidak \textit{arc-consistent} dan dipangkas dari domain. Dalam konteks \textit{Colored Queens}, fungsi ini juga memperhitungkan posisi menteri yang sudah ditempatkan pada variabel-variabel yang telah ditugaskan, sehingga setiap kandidat sel tidak hanya konsisten secara berpasangan, tetapi juga konsisten dengan keseluruhan penugasan parsial yang sedang dibangun. Alur fungsi ini diperlihatkan pada Gambar~\ref{fig:flow-revise}.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.95\linewidth]{flowrevise.png}
+	\caption{Diagram alur fungsi \textit{revise}.}
+	\label{fig:flow-revise}
+\end{figure}
+
+\subsubsection{Inisialisasi dan Iterasi atas Domain Variabel Tujuan}
+
+Fungsi dimulai dengan menetapkan penanda \textit{revised} bernilai \textit{false}. Penanda ini akan menjadi nilai kembalian fungsi yang menunjukkan apakah domain variabel tujuan mengalami perubahan akibat eksekusi. Selanjutnya, fungsi mengiterasi seluruh sel valid dalam domain variabel tujuan. Apabila seluruh sel telah diperiksa, fungsi mengembalikan nilai \textit{revised} sebagai hasil akhir.
+
+\subsubsection{Pemeriksaan Keberadaan \textit{Support} pada Variabel Sumber}
+
+Untuk setiap sel yang diperiksa pada variabel tujuan, fungsi memeriksa apakah terdapat setidaknya satu sel pada variabel sumber yang tidak berkonflik dengannya. Sebuah sel dinyatakan memiliki \textit{support} apabila terdapat minimal satu pasangan nilai yang valid antara kedua variabel. Konflik antara sepasang sel mengacu pada definisi kendala yang telah dijabarkan pada Bagian~\ref{subsec:definisi-constraint}. Apabila tidak ditemukan sel pendukung pada variabel sumber, sel pada variabel tujuan dipastikan tidak \textit{arc-consistent} dan dipangkas dari domain.
+
+\subsubsection{Pemeriksaan Konflik dengan Menteri yang Sudah Ditempatkan}
+
+Apabila sel memiliki \textit{support} dari variabel sumber, fungsi melanjutkan pemeriksaan terhadap seluruh menteri yang telah ditempatkan pada variabel-variabel sebelumnya. Langkah tambahan ini diperlukan karena AC-3 dalam konteks \textit{Colored Queens} tidak hanya menjaga konsistensi antarvariabel yang belum ditugaskan, tetapi juga memastikan bahwa setiap kandidat sel tetap konsisten dengan keseluruhan penugasan parsial yang telah dibangun. Apabila sel berkonflik dengan salah satu menteri yang telah ditempatkan, sel tersebut dipangkas meskipun memiliki \textit{support} pada variabel sumber.
+
+\subsubsection{Pemangkasan Sel Tanpa \textit{Support}}
+
+Pada saat sel terbukti tidak memiliki \textit{support} yang valid, baik karena tidak ditemukan sel pendamping pada variabel sumber maupun karena berkonflik dengan menteri yang telah ditempatkan, sel tersebut dihapus dari domain variabel tujuan. Pemangkasan ini dicatat agar dapat dipulihkan apabila algoritma melakukan \textit{backtrack}, dan penanda \textit{revised} diatur menjadi \textit{true} untuk menandakan bahwa domain mengalami perubahan. Iterasi kemudian dilanjutkan ke sel berikutnya pada domain variabel tujuan.
+
+\subsection{Propagasi AC-3}
+\label{subsec:flow-propagate}
+
+Propagasi AC-3 merupakan tahap pemangkasan kedua yang dijalankan setelah \textit{forward checking} selesai. Sebagaimana dijabarkan pada Bagian~\ref{subsubsec:ac3}, AC-3 menegakkan konsistensi busur antarseluruh pasangan variabel yang belum ditugaskan, mengeksploitasi keterkaitan kendala antarvariabel yang tidak terdeteksi oleh \textit{forward checking}. Propagasi dilakukan secara iteratif menggunakan antrean busur: setiap busur diambil, diperiksa konsistensinya melalui fungsi \textit{revise} sebagaimana dibahas pada Bagian~\ref{subsec:flow-revise}, dan apabila terjadi perubahan domain, busur-busur lain yang terkait ditambahkan ke antrean untuk dipropagasi lebih lanjut. Alur prosedur ini diperlihatkan pada Gambar~\ref{fig:flow-propagate}.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.95\linewidth]{flowac3.png}
+	\caption{Diagram alur prosedur propagasi AC-3.}
+	\label{fig:flow-propagate}
+\end{figure}
+
+\subsubsection{Pengecekan Antrean dan Pengambilan Busur}
+
+Prosedur dimulai dengan memeriksa apakah antrean busur masih berisi busur yang belum diproses. Antrean awal diinisialisasi dengan seluruh pasang busur antara variabel-variabel yang belum ditugaskan. Apabila antrean kosong, propagasi telah selesai dan seluruh busur dipastikan konsisten, sehingga prosedur berakhir. Apabila antrean masih berisi busur, satu busur diambil untuk diproses pada langkah berikutnya.
+
+\subsubsection{Pemanggilan Fungsi \textit{Revise}}
+
+Busur yang diambil dari antrean diproses dengan menjalankan fungsi \textit{revise} sebagaimana dijelaskan pada Bagian~\ref{subsec:flow-revise}. Fungsi ini memangkas sel-sel pada domain variabel tujuan yang tidak memiliki \textit{support} pada variabel sumber atau yang berkonflik dengan menteri yang telah ditempatkan, kemudian mengembalikan status perubahan domain. Status ini menentukan langkah berikutnya pada propagasi.
+
+\subsubsection{Evaluasi Hasil Pemangkasan}
+
+Apabila fungsi \textit{revise} tidak menghasilkan perubahan pada domain variabel tujuan, dampak propagasi terhenti pada busur tersebut, dan alur kembali memeriksa antrean. Apabila domain mengalami perubahan, prosedur selanjutnya memeriksa apakah domain variabel tujuan menjadi kosong. Apabila ya, hal ini menandakan terjadinya \textit{domain wipeout}, yaitu kondisi di mana tidak ada nilai konsisten yang dapat ditugaskan kepada variabel tersebut. Pada kondisi ini, propagasi dihentikan dan sinyal kegagalan dikembalikan kepada alur utama \textit{backtracking} agar dapat melakukan \textit{backtrack}.
+
+\subsubsection{Pengembangan Antrean dengan Busur Terkait}
+
+Apabila domain variabel tujuan mengalami perubahan namun tidak menjadi kosong, dampak pemangkasan tersebut dapat memengaruhi konsistensi busur lain yang melibatkan variabel tujuan sebagai variabel sumber. Oleh karena itu, seluruh busur yang berbentuk $(t, k)$, di mana $t$ adalah variabel tujuan saat ini dan $k$ adalah variabel lain yang belum ditugaskan, ditambahkan kembali ke antrean. Mekanisme ini memastikan dampak pemangkasan terpropagasi secara transitif ke seluruh variabel yang saling terhubung. Setelah penambahan selesai, alur kembali ke pemeriksaan antrean untuk melanjutkan iterasi.
+
+\subsection{Studi Kasus: Penyelesaian Papan 7$\times$7}
+\label{subsec:studi-kasus-bt}
+
+Untuk memperjelas cara kerja algoritma \textit{backtracking} yang diperkuat dengan \textit{forward checking} dan AC-3, bagian ini menyajikan studi kasus penyelesaian sebuah papan \textit{Colored Queens} berukuran 7$\times$7 yang terdiri atas tujuh sektor warna, yaitu ungu, biru, hijau, oranye, merah, abu-abu, dan kuning. Studi kasus ini menelusuri proses penyelesaian dengan penekanan pada bagaimana kedua mekanisme pemangkasan mengurangi ruang pencarian dan bagaimana \textit{backtrack} terjadi ketika cabang pencarian gagal.
+
+\subsubsection{Penempatan Awal dan \textit{Forward Checking}}
+
+Algoritma memulai pencarian dengan memproses variabel warna pertama, dalam contoh ini warna biru. Sebuah sel valid dipilih dari domain warna biru sebagai posisi penempatan menteri, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step20}.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/20.png}
+	\caption{Penempatan menteri pertama pada salah satu sel dari domain warna biru.}
+	\label{fig:bt-step20}
+\end{figure}
+
+Setelah menteri ditempatkan, \textit{forward checking} dijalankan untuk memangkas sel-sel yang berkonflik langsung dengan menteri tersebut dari domain seluruh variabel warna yang belum ditugaskan. Hasil pemangkasan diperlihatkan pada Gambar~\ref{fig:bt-step21}: seluruh sel yang berada pada baris atau kolom yang sama dengan menteri, serta sel-sel yang bertetangga secara langsung dalam delapan arah, ditandai sebagai tidak valid (tanda X merah).
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/21.png}
+	\caption{Hasil pemangkasan oleh \textit{forward checking} setelah penempatan menteri pertama.}
+	\label{fig:bt-step21}
+\end{figure}
 
 \subsubsection{Propagasi AC-3}
-\label{subsubsec:propagasi-ac3}
 
-Setelah \textit{forward checking} selesai, algoritma melanjutkan dengan propagasi busur AC-3 untuk menegakkan konsistensi busur antara seluruh pasang variabel yang belum ditugaskan. Sebagaimana dijelaskan pada Bagian \ref{subsubsec:ac3}, AC-3 bekerja dengan memelihara sebuah antrean busur dan memeriksa apakah setiap nilai dalam domain suatu variabel memiliki \textit{support} yang konsisten di variabel lain.
+Setelah \textit{forward checking} selesai, algoritma melanjutkan dengan propagasi AC-3 untuk menegakkan konsistensi busur antarvariabel yang belum ditugaskan. Konsep dasar dari pemeriksaan satu busur (\textit{arc}) diilustrasikan pada Gambar~\ref{fig:bt-step22}: untuk setiap pasang variabel, AC-3 memastikan bahwa setiap nilai dalam domain salah satu variabel memiliki minimal satu nilai pendamping yang konsisten (\textit{support}) pada variabel lainnya.
 
-Dalam konteks implementasi ini, antrean awal diinisialisasi dengan seluruh pasang busur $(i, j)$ untuk $i \neq j$ di antara variabel-variabel yang belum ditugaskan (indeks $> placedColorIdx$). Untuk setiap busur $(\textit{from}, \textit{to})$ yang diambil dari antrean, fungsi \texttt{Revise} memeriksa setiap sel yang masih valid dalam domain variabel \textit{to}. Sebuah sel $s_{\textit{to}}$ dinyatakan \textit{supported} apabila terdapat setidaknya satu sel $s_{\textit{from}}$ dalam domain variabel \textit{from} yang tidak berkonflik dengan $s_{\textit{to}}$. Selain itu, $s_{\textit{to}}$ juga diperiksa terhadap seluruh menteri yang telah ditempatkan sebelumnya: apabila $s_{\textit{to}}$ berkonflik dengan salah satu menteri yang sudah ada, maka \textit{support} dibatalkan.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.75\linewidth]{./bt/22.png}
+	\caption{Konsep dasar busur (\textit{arc}) dalam AC-3.}
+	\label{fig:bt-step22}
+\end{figure}
 
-Apabila sebuah sel tidak memiliki \textit{support}, sel tersebut dihapus dari domain dan dicatat pada \textit{pruneStack}. Apabila fungsi \texttt{Revise} menghasilkan perubahan (setidaknya satu sel dihapus), busur-busur baru ditambahkan ke antrean: untuk setiap variabel $k$ yang bukan merupakan variabel \textit{from} dan bukan variabel \textit{to}, busur $(\textit{to}, k)$ ditambahkan agar dampak pemangkasan terpropagasi lebih lanjut. Propagasi berhenti apabila antrean kosong atau domain suatu variabel menjadi kosong.
+Dalam konteks \textit{Colored Queens}, setiap variabel warna saling terhubung dengan seluruh variabel warna lainnya, membentuk graf kendala yang lengkap. Antrean awal AC-3 diinisialisasi dengan seluruh pasang busur antara variabel-variabel yang belum ditugaskan, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step23}.
 
-Pseudocode fungsi \texttt{Revise} dan propagasi busur diperlihatkan pada Algoritma \ref{alg:revise-impl} dan Algoritma \ref{alg:propagate-impl}.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./bt/23.png}
+	\caption{Graf kendala lengkap dan antrean awal busur AC-3.}
+	\label{fig:bt-step23}
+\end{figure}
 
-\begin{algorithm}[H]
-	\caption{Fungsi \texttt{Revise} untuk \textit{Colored Queens}}
-	\label{alg:revise-impl}
-	\begin{algorithmic}[1]
-		\Function{Revise}{$fromColorIdx, toColorIdx$}
-		\State $revised \gets$ \textbf{false}
-		\For{setiap indeks $i$ yang masih aktif dalam $D_{to}$}
-		\State $supported \gets$ \textbf{false}
-		\For{setiap indeks $j$ yang masih aktif dalam $D_{from}$}
-		\If{$\lnot\;\text{konflik}(sel_j^{from},\; sel_i^{to})$}
-		\State $supported \gets$ \textbf{true}
-		\State \textbf{break}
-		\EndIf
-		\EndFor
-		\If{$supported$}
-		\For{setiap variabel $p$ yang telah ditugaskan, $p \neq toColorIdx$}
-		\If{$\text{konflik}(sel_p^{placed},\; sel_i^{to})$}
-		\State $supported \gets$ \textbf{false}
-		\State \textbf{break}
-		\EndIf
-		\EndFor
-		\EndIf
-		\If{$\lnot\; supported$}
-		\State Hapus bit $i$ dari $D_{to}$
-		\State Kurangi $colorCellCount[toColorIdx]$
-		\State Catat $(toColorIdx, i)$ pada \textit{pruneStack}
-		\State $revised \gets$ \textbf{true}
-		\EndIf
-		\EndFor
-		\State \Return $revised$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+Sebagai ilustrasi pemrosesan satu busur, perhatikan busur Hijau$\rightarrow$Kuning yang menjadi busur pertama dalam antrean. Pada titik ini, domain warna hijau yang masih valid setelah \textit{forward checking} terdiri atas sel-sel $\{(1,2),\,(1,3),\,(1,4),\,(4,4),\,(5,2),\,(5,3),\,(5,4)\}$, sementara domain warna kuning terdiri atas $\{(6,2),\,(6,3)\}$. Algoritma memeriksa setiap sel valid pada domain warna hijau dan menentukan apakah terdapat setidaknya satu sel pada domain warna kuning yang tidak berkonflik dengannya.
 
-\begin{algorithm}[H]
-	\caption{Propagasi busur AC-3 setelah penugasan}
-	\label{alg:propagate-impl}
-	\begin{algorithmic}[1]
-		\Function{PropagateArcs}{$queue$}
-		\While{$queue$ tidak kosong}
-		\State $(from, to) \gets$ ambil busur dari $queue$
-		\If{\Call{Revise}{$from, to$}}
-		\If{$|D_{to}| = 0$}
-		\State \Return \Comment{Domain kosong, hentikan propagasi}
-		\EndIf
-		\For{setiap variabel $k$, $k \neq to$, $k \neq from$}
-		\State Tambahkan busur $(to, k)$ ke $queue$
-		\EndFor
-		\EndIf
-		\EndWhile
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+Gambar~\ref{fig:bt-step24} menunjukkan pemrosesan sel Hijau(1,2), yang ditandai dengan kotak putih pada papan. Sel ini berkonflik dengan Kuning(6,2) karena berada pada kolom yang sama, tetapi tidak berkonflik dengan Kuning(6,3) karena berada pada baris, kolom, dan ketetanggaan yang berbeda. Dengan demikian, Hijau(1,2) memiliki minimal satu \textit{support} pada domain warna kuning, sehingga sel ini tetap dipertahankan dalam domain.
 
-\subsubsection{Integrasi dan Mekanisme Pemulihan}
-\label{subsubsec:integrasi-pemulihan}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/24.png}
+	\caption{Pemrosesan busur Hijau$\rightarrow$Kuning: sel Hijau(1,2) memiliki \textit{support} pada Kuning(6,3) dan tetap valid.}
+	\label{fig:bt-step24}
+\end{figure}
 
-Kedua mekanisme pemangkasan bekerja secara berurutan dalam setiap iterasi pencarian. Setelah sebuah menteri ditempatkan, \textit{forward checking} terlebih dahulu memangkas sel-sel yang berkonflik langsung dengan penempatan tersebut. Selanjutnya, AC-3 mempropagasi dampak pemangkasan tersebut ke seluruh pasang variabel yang belum ditugaskan, sehingga inkonsistensi yang tidak terdeteksi oleh \textit{forward checking} dapat terungkap. Urutan ini memastikan bahwa AC-3 beroperasi pada domain yang telah dipersempit oleh \textit{forward checking}, sehingga jumlah busur yang perlu diperiksa berkurang.
+Sebaliknya, Gambar~\ref{fig:bt-step25} menunjukkan pemrosesan sel Hijau(5,2) dan Hijau(5,3). Sel Hijau(5,2) berkonflik dengan Kuning(6,2) karena berada pada kolom yang sama, sekaligus berkonflik dengan Kuning(6,3) karena bertetangga secara diagonal langsung. Demikian pula, sel Hijau(5,3) berkonflik dengan Kuning(6,2) secara diagonal dan dengan Kuning(6,3) pada kolom yang sama. Karena tidak ada satu pun sel pada domain warna kuning yang dapat menjadi \textit{support}, kedua sel hijau tersebut dipangkas dari domain dan ditandai dengan lingkaran ungu pada papan.
 
-Seluruh pemangkasan yang dilakukan oleh kedua mekanisme dicatat secara kronologis pada satu \textit{pruneStack} tunggal. Sebelum pemangkasan dimulai, posisi saat ini pada \textit{stack} dicatat sebagai \textit{checkpoint}. Apabila pencarian pada cabang saat ini gagal dan algoritma perlu melakukan \textit{backtrack}, fungsi \texttt{undoPrunes} mengembalikan seluruh bit yang telah di-\textit{clear} sejak \textit{checkpoint} terakhir. Mekanisme ini menjamin bahwa domain setiap variabel dipulihkan ke kondisi tepat sebelum penugasan yang gagal, tanpa memerlukan penyalinan struktur data yang mahal.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/25.png}
+	\caption{Pemrosesan busur Hijau$\rightarrow$Kuning: sel Hijau(5,2) dan Hijau(5,3) tidak memiliki \textit{support} dan dipangkas.}
+	\label{fig:bt-step25}
+\end{figure}
 
-Deteksi kegagalan dini dilakukan melalui fungsi \texttt{anyColorExhausted}, yang memeriksa apakah terdapat variabel yang belum ditugaskan dengan domain berukuran nol. Pemeriksaan ini dilakukan tepat setelah kedua tahap pemangkasan selesai dan sebelum pemanggilan rekursif berikutnya. Apabila ditemukan domain yang kosong, algoritma langsung melakukan \textit{backtrack} tanpa melanjutkan pencarian, sehingga menghemat komputasi yang tidak produktif.
+Propagasi serupa dilakukan untuk seluruh busur dalam antrean, dengan busur-busur baru ditambahkan setiap kali sebuah domain mengalami pemangkasan. Kondisi papan setelah seluruh propagasi AC-3 selesai diperlihatkan pada Gambar~\ref{fig:bt-step26}. Tanda X merah menunjukkan sel yang dipangkas oleh \textit{forward checking}, sedangkan tanda X dengan lingkaran ungu menunjukkan sel tambahan yang dipangkas oleh AC-3. Penggabungan kedua mekanisme ini menghasilkan reduksi ruang pencarian yang lebih agresif dibandingkan menggunakan salah satunya saja.
 
-\subsection{Strategi Pemilihan Variabel}
-\label{subsec:strategi-variabel}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/26.png}
+	\caption{Kondisi papan setelah propagasi AC-3 selesai.}
+	\label{fig:bt-step26}
+\end{figure}
 
-Urutan pemrosesan variabel dalam algoritma \textit{backtracking} dapat berpengaruh signifikan terhadap efisiensi pencarian. Sebagaimana dibahas pada Bagian \ref{subsubsec:backtracking} mengenai heuristik pemilihan variabel, \textit{Minimum Remaining Values} (MRV) memilih variabel dengan domain terkecil terlebih dahulu, dengan tujuan mendeteksi kegagalan sedini mungkin dan mengurangi faktor percabangan pada tingkat awal pohon pencarian \cite{russell2020artificial}.
+\subsubsection{Penempatan Berikutnya dan Deteksi \textit{Domain Wipeout}}
 
-Dalam implementasi ini, urutan pemrosesan variabel tidak ditentukan oleh heuristik dinamis, melainkan mengikuti urutan insersi warna pada struktur \texttt{LinkedHashMap} yang dibangun oleh \texttt{BoardImporter} saat membaca berkas JSON. Urutan ini bersifat tetap sepanjang eksekusi solver dan ditentukan oleh urutan kemunculan warna dalam berkas data papan. Konsekuensinya, variabel diproses dalam urutan statis yang sama untuk setiap eksekusi pada papan yang sama, sehingga algoritma bersifat deterministik.
+Setelah pemangkasan selesai dan tidak ada domain yang kosong, algoritma melanjutkan pencarian dengan memanggil dirinya sendiri secara rekursif untuk variabel warna berikutnya. Misalkan algoritma menempatkan menteri pada salah satu sel dari domain warna oranye sebagaimana ditunjukkan pada Gambar~\ref{fig:bt-step27}.
 
-Keputusan untuk tidak menggunakan heuristik dinamis seperti MRV didasarkan pada pertimbangan kesederhanaan implementasi. Penerapan MRV memerlukan evaluasi ulang ukuran domain seluruh variabel yang belum ditugaskan pada setiap tingkat rekursi, yang menambahkan \textit{overhead} sebesar $O(n)$ per tingkat. Meskipun \textit{overhead} ini relatif kecil dibandingkan biaya propagasi kendala, manfaatnya pada permasalahan \textit{Colored Queens} tidak selalu signifikan karena ukuran domain antarvariabel pada tahap awal pencarian cenderung tidak jauh berbeda—selisihnya bergantung pada luas sektor warna yang umumnya tidak terlalu bervariasi pada papan berukuran kecil hingga menengah.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/27.png}
+	\caption{Penempatan menteri kedua pada salah satu sel dari domain warna oranye.}
+	\label{fig:bt-step27}
+\end{figure}
 
-Namun demikian, ketiadaan heuristik pemilihan variabel dapat menjadi kelemahan pada papan berukuran besar yang memiliki variasi ukuran sektor warna yang signifikan. Pada kasus tersebut, pemrosesan sektor warna dengan domain besar di awal pencarian dapat menghasilkan faktor percabangan yang tinggi dan memperlambat konvergensi. Potensi peningkatan efisiensi melalui penerapan heuristik pemilihan variabel dicatat sebagai salah satu arah pengembangan pada Bab \ref{chap:kesimpulan}.
+Setelah penempatan ini, \textit{forward checking} dan AC-3 dijalankan kembali. Namun, kombinasi penempatan ini ternyata menyebabkan seluruh sel pada domain warna kuning menjadi tidak valid, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step28}. Kondisi ini disebut \textit{domain wipeout}, yaitu kondisi di mana tidak ada lagi nilai yang dapat ditugaskan kepada suatu variabel. Algoritma menyimpulkan bahwa cabang pencarian ini tidak dapat menghasilkan solusi valid, sehingga \textit{backtrack} diperlukan.
 
-\section{Perancangan Algoritma \textit{Particle Swarm Optimization} Diskrit}
-\label{sec:perancangan-pso}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/28.png}
+	\caption{\textit{Domain wipeout}: seluruh sel pada domain warna kuning menjadi tidak valid.}
+	\label{fig:bt-step28}
+\end{figure}
 
-Bagian ini menjelaskan perancangan dan implementasi algoritma \textit{Particle Swarm Optimization} (PSO) diskrit yang digunakan sebagai pendekatan \textit{metaheuristic} untuk menyelesaikan permasalahan \textit{Colored Queens}. Landasan teori PSO, termasuk formulasi kontinu asli dan adaptasi diskritnya, telah dibahas pada Bagian \ref{subsubsec:pso}. Penjelasan pada bagian ini berfokus pada bagaimana konsep-konsep tersebut diadaptasi secara konkret untuk struktur permasalahan \textit{Colored Queens}.
+\subsubsection{\textit{Backtrack} dan Pemulihan Domain}
 
-\subsection{Representasi Partikel}
-\label{subsec:representasi-partikel}
+Sebagai respons terhadap kegagalan, algoritma melakukan \textit{backtrack} dengan membatalkan penempatan menteri oranye yang baru saja dilakukan, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step29}. Seluruh pemangkasan yang dilakukan akibat penempatan tersebut dipulihkan, mengembalikan domain seluruh variabel ke kondisi tepat sebelum penempatan oranye dilakukan.
 
-Setiap partikel dalam populasi merepresentasikan satu kandidat solusi lengkap untuk permasalahan \textit{Colored Queens}. Mengacu pada pemodelan CSP yang telah didefinisikan pada Bagian \ref{sec:pemodelan-csp}, sebuah kandidat solusi terdiri atas penugasan posisi menteri untuk setiap sektor warna. Dalam implementasi, kandidat solusi disimpan sebagai array integer \texttt{candidate[]} berukuran $n$ (jumlah warna), di mana \texttt{candidate[$i$]} menyimpan indeks sel terpilih dalam daftar domain warna ke-$i$. Dengan demikian, setiap elemen array merujuk pada sebuah sel spesifik dalam sektor warna yang bersesuaian, dan keseluruhan array merepresentasikan satu konfigurasi penempatan $n$ menteri pada papan.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/29.png}
+	\caption{\textit{Backtrack}: pembatalan penempatan menteri oranye yang menyebabkan kegagalan.}
+	\label{fig:bt-step29}
+\end{figure}
 
-Selain posisi, setiap partikel juga menyimpan sebuah array \textit{velocity} bertipe \texttt{double[]} dengan ukuran yang sama. Berbeda dari PSO kontinu di mana \textit{velocity} menyatakan perpindahan dalam ruang kontinu, \textit{velocity} pada PSO diskrit ini diinterpretasikan sebagai probabilitas perubahan pada setiap dimensi. Nilai $v_j \in [0, 1]$ pada dimensi ke-$j$ menyatakan peluang partikel tersebut mengubah posisinya pada dimensi $j$ dengan mengadopsi posisi terbaik dari \textit{neighborhood}-nya. Interpretasi probabilistik ini mengikuti pendekatan PSO biner yang diusulkan oleh Kennedy dan Eberhart \cite{kennedy1997discrete}, yang diadaptasi untuk domain diskrit berindeks.
+Algoritma kemudian mencoba sel berikutnya dari domain warna oranye yang masih valid, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step30}. Pemangkasan dijalankan kembali pada konfigurasi baru ini, dan apabila tidak terjadi \textit{domain wipeout}, pencarian dilanjutkan ke variabel warna berikutnya.
 
-Setiap partikel menyimpan dua informasi tambahan yang diperlukan selama proses optimasi: \textit{personal best} (\texttt{pBest}), yaitu kandidat solusi terbaik yang pernah ditemukan oleh partikel tersebut sepanjang iterasi, beserta nilai \textit{fitness}-nya (\texttt{pBestFitness}). Informasi ini digunakan dalam perhitungan pembaruan \textit{velocity} sebagaimana akan dijelaskan pada Bagian \ref{subsec:mekanisme-update}.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./bt/30.png}
+	\caption{Penempatan alternatif untuk warna oranye setelah \textit{backtrack}.}
+	\label{fig:bt-step30}
+\end{figure}
 
-\subsection{Inisialisasi Populasi}
-\label{subsec:inisialisasi-populasi}
+\subsubsection{Solusi Akhir}
 
-Proses inisialisasi terdiri atas tiga tahap yang dieksekusi secara berurutan: pembangkitan partikel, pembentukan \textit{neighborhood}, dan evaluasi \textit{fitness} awal.
+Proses penempatan, pemangkasan, dan \textit{backtrack} berulang hingga seluruh tujuh variabel warna mendapat penugasan yang konsisten. Solusi akhir untuk papan 7$\times$7 diperlihatkan pada Gambar~\ref{fig:bt-step31}, di mana setiap sektor warna memiliki tepat satu menteri yang ditempatkan, tidak ada dua menteri yang berbagi baris atau kolom yang sama, dan tidak ada dua menteri yang bertetangga secara langsung.
 
-Pada tahap pertama, sejumlah $P$ partikel dibangkitkan secara acak. Untuk setiap partikel, posisi awal ditentukan dengan memilih satu sel secara acak dari domain setiap variabel warna secara independen, tanpa mempertimbangkan kendala apa pun. Dengan demikian, kandidat solusi awal dapat mengandung pelanggaran kendala baris, kolom, maupun \textit{adjacency}. Keputusan untuk tidak menerapkan \textit{constraint handling} pada tahap inisialisasi didasarkan pada pertimbangan bahwa mekanisme \textit{fitness} dan tekanan selektif dari interaksi antarpartikel diharapkan mampu mengarahkan populasi menuju solusi valid secara bertahap. \textit{Velocity} awal setiap partikel dibangkitkan secara acak dengan nilai seragam pada interval $[0, 1)$ untuk setiap dimensi.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.4\linewidth]{./bt/31.png}
+	\caption{Solusi akhir papan 7$\times$7 yang memenuhi seluruh kendala \textit{Colored Queens}.}
+	\label{fig:bt-step31}
+\end{figure}
 
-Pada tahap kedua, seluruh partikel dipartisi ke dalam sejumlah $N_{\textit{neighborhood}}$ kelompok \textit{neighborhood} dengan ukuran yang seimbang. Partisi dilakukan dengan mengacak daftar indeks partikel menggunakan \texttt{Collections.shuffle}, kemudian membagi daftar tersebut menjadi $N_{\textit{neighborhood}}$ sublista secara berurutan. Apabila $P$ tidak habis dibagi $N_{\textit{neighborhood}}$, sisa partikel didistribusikan satu per satu ke kelompok-kelompok pertama. Mekanisme \textit{neighborhood} ini akan dibahas lebih lanjut pada Bagian \ref{subsec:topologi-neighborhood}.
+Studi kasus ini mengilustrasikan bagaimana sinergi antara \textit{forward checking} dan AC-3 secara signifikan mengurangi ruang pencarian. \textit{Forward checking} menangani konflik langsung dengan penugasan terbaru, sementara AC-3 menelusuri konsekuensi tidak langsung dari penugasan tersebut terhadap konsistensi seluruh pasangan variabel yang belum ditugaskan. Mekanisme \textit{backtrack} memastikan bahwa kegagalan pada satu cabang pencarian dapat ditangani secara efisien dengan memulihkan domain ke kondisi sebelumnya, sehingga algoritma dapat mengeksplorasi cabang alternatif tanpa perlu menghitung ulang seluruh struktur domain.
 
-Pada tahap ketiga, \textit{fitness} setiap partikel dievaluasi menggunakan fungsi \textit{fitness} yang didefinisikan pada Bagian \ref{subsec:fungsi-fitness}. Nilai \textit{fitness} awal ini sekaligus menjadi nilai \texttt{pBestFitness} masing-masing partikel, dan untuk setiap \textit{neighborhood}, partikel dengan \textit{fitness} terendah dicatat sebagai \textit{neighborhood best} (\texttt{nBest}).
 
-\subsection{Fungsi \textit{Fitness}}
-\label{subsec:fungsi-fitness}
 
-Fungsi \textit{fitness} mengukur kualitas sebuah kandidat solusi dengan menghitung jumlah pelanggaran kendala yang terjadi pada konfigurasi penempatan menteri yang direpresentasikan oleh partikel. Nilai \textit{fitness} yang lebih rendah menandakan kandidat solusi yang lebih baik, dan nilai \textit{fitness} sama dengan nol menandakan solusi yang valid (seluruh kendala terpenuhi).
+\section{Analisis Algoritma \textit{Particle Swarm Optimization}}
+\label{sec:analisis-pso}
 
-Pelanggaran kendala dibedakan menjadi dua komponen. Komponen pertama, \textit{attacking violations}, menghitung jumlah pasangan menteri yang berada pada baris atau kolom yang sama. Perhitungan dilakukan dengan mengevaluasi seluruh pasangan unik $(i, j)$ dengan $i < j$: apabila menteri ke-$i$ dan menteri ke-$j$ memiliki koordinat baris atau koordinat kolom yang sama, pencacah pelanggaran ditambah satu. Komponen kedua, \textit{adjacency violations}, menghitung jumlah pasangan menteri yang bertetangga secara langsung dalam delapan arah. Untuk setiap menteri, delapan sel tetangganya diperiksa terhadap matriks \texttt{occupied}: apabila sebuah sel tetangga ditempati oleh menteri lain, pencacah pelanggaran ditambah satu. Karena setiap pasangan tetangga terhitung dua kali (sekali dari masing-masing menteri), hasil akhir dibagi dua.
+Bagian ini menjelaskan analisis algoritmik dari pendekatan kedua yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}, yaitu \textit{Particle Swarm Optimization} (PSO) dalam varian diskrit. Berbeda dengan \textit{backtracking} yang menjamin penemuan solusi melalui pencarian sistematis, PSO merupakan algoritma stokastik berbasis populasi yang mencari solusi melalui pergerakan kolektif partikel-partikel pada ruang pencarian. Landasan teori PSO klasik dan adaptasinya untuk ruang pencarian diskrit telah dibahas pada Bagian~\ref{subsubsec:pso} dan Bagian~\ref{subsubsec:discrete-pso}. Analisis disajikan melalui dua diagram alur, yaitu mekanisme pembaruan kecepatan dan posisi setiap partikel, kemudian alur utama algoritma yang menjalankan pembaruan tersebut secara iteratif hingga salah satu kondisi terminasi tercapai. Diagram pembaruan partikel disajikan terlebih dahulu agar pembaca dapat memahami unit komputasi inti dari PSO sebelum melihat keseluruhan alur. Rincian implementasi masing-masing komponen dibahas pada Bab~\ref{chap:perancangan}.
 
-Kedua komponen digabungkan melalui penjumlahan berbobot:
+\subsection{Pembaruan Kecepatan dan Posisi Partikel}
+\label{subsec:flow-particle-update}
+
+Mekanisme pembaruan kecepatan dan posisi merupakan inti komputasi PSO yang dijalankan pada setiap iterasi terhadap seluruh partikel dalam populasi. Pada varian diskrit yang digunakan dalam tugas akhir ini, kecepatan tidak diinterpretasikan sebagai perubahan posisi numerik, melainkan sebagai probabilitas adopsi posisi terbaik tetangga (\textit{neighborhood best} atau \textit{nBest}) pada setiap dimensi. Pendekatan ini mempertahankan kerangka kerja PSO klasik sekaligus mengakomodasi sifat diskrit dari ruang pencarian \textit{Colored Queens}. Alur pembaruan partikel diperlihatkan pada Gambar~\ref{fig:flow-particle-update}.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.95\linewidth]{flowparticle.png}
+	\caption{Diagram alur pembaruan kecepatan dan posisi partikel PSO diskrit.}
+	\label{fig:flow-particle-update}
+\end{figure}
+
+\subsubsection{Iterasi atas \textit{Neighborhood}}
+
+Prosedur dimulai dengan mengiterasi seluruh kelompok \textit{neighborhood} yang telah dibentuk pada tahap inisialisasi populasi. Setiap \textit{neighborhood} adalah himpunan partikel yang berbagi informasi mengenai posisi terbaik kolektifnya (\textit{nBest}), sehingga partikel-partikel dalam satu kelompok bergerak dipandu oleh referensi yang sama. Penggunaan topologi \textit{neighborhood} dipilih atas pertimbangan yang dijabarkan pada Bagian~\ref{subsec:topologi-pso}. Apabila seluruh \textit{neighborhood} telah diproses, prosedur berakhir.
+
+\subsubsection{Iterasi atas Partikel dalam \textit{Neighborhood}}
+
+Untuk setiap \textit{neighborhood} yang diambil, prosedur mengiterasi seluruh partikel yang menjadi anggotanya. Setiap partikel akan melalui rangkaian langkah pembaruan secara independen, tetapi semuanya merujuk pada \textit{nBest} yang sama untuk kelompok tersebut. Apabila seluruh partikel dalam \textit{neighborhood} saat ini telah diperbarui, alur kembali ke iterasi \textit{neighborhood} berikutnya.
+
+\subsubsection{Penghitungan Kecepatan Baru}
+
+Kecepatan baru setiap partikel dihitung sebagai kombinasi linear dari tiga komponen, yaitu komponen inersia yang mempertahankan arah pergerakan sebelumnya, komponen kognitif yang menarik partikel menuju posisi terbaik historisnya (\textit{personal best} atau \textit{pBest}), dan komponen sosial yang menarik partikel menuju \textit{nBest}. Untuk setiap partikel, kecepatan baru pada dimensi ke-$j$ dihitung sebagai:
 
 \begin{equation}
-	f(\mathbf{x}) = w_1 \cdot V_{\textit{attacking}}(\mathbf{x}) + w_2 \cdot V_{\textit{adjacency}}(\mathbf{x})
-	\label{eq:fitness}
+	v_j^{(t+1)} = w \cdot v_j^{(t)} + c_1 \cdot r_1 \cdot \delta_{pBest,j} + c_2 \cdot r_2 \cdot \delta_{nBest,j}
+	\label{eq:pso-velocity-update}
 \end{equation}
 
-di mana $\mathbf{x}$ adalah vektor posisi partikel, $V_{\textit{attacking}}$ adalah jumlah pelanggaran baris/kolom, $V_{\textit{adjacency}}$ adalah jumlah pelanggaran \textit{adjacency}, dan $w_1$, $w_2$ adalah bobot yang menentukan kontribusi relatif masing-masing komponen. Pemisahan menjadi dua komponen berbobot memungkinkan eksplorasi pengaruh prioritas penalti terhadap konvergensi algoritma, yang akan dianalisis pada Bab \ref{chap:implementasi}.
-
-Perlu dicatat bahwa kendala \textit{one queen per color} tidak perlu diperiksa dalam fungsi \textit{fitness}, karena representasi partikel sebagaimana didefinisikan pada Bagian \ref{subsec:representasi-partikel} menjamin bahwa setiap sektor warna memiliki tepat satu menteri. Demikian pula, kendala diagonal tak terbatas yang ada pada N-Queens klasik tidak dievaluasi karena bukan merupakan kendala pada \textit{Colored Queens} (lihat Bagian \ref{subsec:definisi-constraint}).
-
-\subsection{Topologi \textit{Neighborhood}}
-\label{subsec:topologi-neighborhood}
-
-Implementasi ini menggunakan topologi \textit{local best} (lBest) sebagaimana dibahas pada Bagian \ref{subsubsec:pso}, di mana partikel hanya berinteraksi dengan partikel lain dalam \textit{neighborhood} yang sama. Pendekatan ini dipilih sebagai alternatif dari topologi \textit{global best} (gBest) yang menghubungkan seluruh partikel ke satu \textit{best} tunggal, dengan tujuan menjaga diversitas populasi dan mengurangi risiko konvergensi prematur menuju \textit{local optimum} \cite{kennedy1995particle}.
-
-Populasi dipartisi menjadi $N_{\textit{neighborhood}}$ kelompok pada saat inisialisasi, sebagaimana dijelaskan pada Bagian \ref{subsec:inisialisasi-populasi}. Setiap \textit{neighborhood} memelihara secara independen satu \textit{neighborhood best} (\texttt{nBest}), yaitu indeks partikel dengan nilai \textit{fitness} terendah di dalam kelompok tersebut. Nilai \texttt{nBest} diperbarui setiap kali sebuah partikel dalam \textit{neighborhood} mencapai \textit{fitness} yang lebih rendah dari \texttt{nBest} saat ini.
-
-Komposisi \textit{neighborhood} bersifat statis sepanjang eksekusi: partisi yang ditentukan pada saat inisialisasi tidak berubah selama proses optimasi berlangsung. Konsekuensi dari desain ini adalah bahwa pertukaran informasi antarkelompok \textit{neighborhood} tidak terjadi secara langsung. Setiap sub-populasi berevolusi secara semi-independen menuju solusi terbaiknya masing-masing. Meskipun pendekatan ini efektif dalam menjaga diversitas, ketiadaan mekanisme pertukaran informasi antarkelompok dapat memperlambat konvergensi pada kasus di mana solusi optimal memerlukan kombinasi komponen dari \textit{neighborhood} yang berbeda. Potensi peningkatan melalui mekanisme pengacakan ulang \textit{neighborhood} pada saat stagnasi dicatat sebagai arah pengembangan pada Bab \ref{chap:kesimpulan}.
-
-\subsection{Mekanisme Pembaruan Kecepatan dan Posisi}
-\label{subsec:mekanisme-update}
-
-Pembaruan kecepatan dan posisi merupakan inti dari mekanisme eksplorasi PSO. Pada setiap iterasi, kedua pembaruan dieksekusi secara berurutan: seluruh kecepatan partikel diperbarui terlebih dahulu, kemudian posisi partikel diperbarui berdasarkan kecepatan baru tersebut.
-
-\subsubsection{Pembaruan Kecepatan}
-\label{subsubsec:update-velocity}
-
-Pembaruan kecepatan mengadaptasi formula standar PSO ke dalam ruang diskrit. Untuk setiap partikel, kecepatan baru pada dimensi ke-$j$ dihitung sebagai:
+di mana $w$ adalah koefisien inersia, $c_1$ dan $c_2$ adalah koefisien akselerasi kognitif dan sosial, $r_1$ dan $r_2$ adalah bilangan acak seragam pada interval $[0, 1)$ yang dibangkitkan secara independen untuk setiap dimensi, dan $\delta_{pBest,j}$ serta $\delta_{nBest,j}$ adalah indikator perbedaan posisi yang didefinisikan sebagai:
 
 \begin{equation}
-	v_j^{(t+1)} = w \cdot v_j^{(t)} + c_1 \cdot r_1 \cdot \delta_{\textit{pBest},j} + c_2 \cdot r_2 \cdot \delta_{\textit{nBest},j}
-	\label{eq:velocity-update}
-\end{equation}
-
-di mana $w$ adalah koefisien inersia, $c_1$ dan $c_2$ adalah koefisien akselerasi kognitif dan sosial, $r_1$ dan $r_2$ adalah bilangan acak seragam pada interval $[0, 1)$ yang dibangkitkan secara independen untuk setiap dimensi, dan $\delta_{\textit{pBest},j}$ serta $\delta_{\textit{nBest},j}$ adalah indikator perbedaan posisi yang didefinisikan sebagai:
-
-\begin{equation}
-	\delta_{\textit{pBest},j} = 
-	\begin{cases}
-		1 & \text{jika } x_j^{(t)} \neq \textit{pBest}_j \\
-		0 & \text{jika } x_j^{(t)} = \textit{pBest}_j
-	\end{cases}
+	\delta_{pBest,j} = \begin{cases} 1 & \text{jika } x_j^{(t)} \neq pBest_j \\ 0 & \text{jika } x_j^{(t)} = pBest_j \end{cases}
 	\qquad
-	\delta_{\textit{nBest},j} =
-	\begin{cases}
-		1 & \text{jika } x_j^{(t)} \neq \textit{nBest}_j \\
-		0 & \text{jika } x_j^{(t)} = \textit{nBest}_j
-	\end{cases}
-	\label{eq:delta}
+	\delta_{nBest,j} = \begin{cases} 1 & \text{jika } x_j^{(t)} \neq nBest_j \\ 0 & \text{jika } x_j^{(t)} = nBest_j \end{cases}
+	\label{eq:pso-delta}
 \end{equation}
 
-Penggunaan indikator biner $\delta$ sebagai pengganti selisih aritmatika merupakan adaptasi kunci dari PSO kontinu ke ruang diskrit. Pada PSO kontinu, komponen kognitif dan sosial dihitung melalui selisih vektor posisi yang menghasilkan arah perpindahan dalam ruang Euclidean. Pada ruang diskrit berindeks, selisih aritmatika antara dua indeks sel tidak memiliki makna geometris: sel dengan indeks 3 dan sel dengan indeks 7 dalam domain suatu warna tidak memiliki hubungan spasial yang ditentukan oleh selisih indeksnya. Oleh sebab itu, informasi yang relevan hanyalah apakah posisi saat ini berbeda dari posisi referensi (\textit{pBest} atau \textit{nBest}), bukan seberapa jauh perbedaannya.
+Penggunaan indikator biner $\delta$ sebagai pengganti selisih aritmatika merupakan adaptasi kunci dari PSO kontinu ke ruang diskrit. Pada PSO kontinu, komponen kognitif dan sosial dihitung melalui selisih vektor posisi yang menghasilkan arah perpindahan dalam ruang Euclidean. Pada ruang diskrit berindeks, selisih aritmatika antara dua indeks sel tidak memiliki makna geometris: sel dengan indeks tertentu dan sel dengan indeks lain dalam domain suatu warna tidak memiliki hubungan spasial yang ditentukan oleh selisih indeksnya. Oleh sebab itu, informasi yang relevan hanyalah apakah posisi saat ini berbeda dari posisi referensi (\textit{pBest} atau \textit{nBest}), bukan seberapa jauh perbedaannya.
 
 Setelah perhitungan, nilai kecepatan di-\textit{clamp} pada interval $[0, 1]$ untuk mempertahankan interpretasinya sebagai probabilitas:
 
 \begin{equation}
 	v_j^{(t+1)} = \max(0,\; \min(1,\; v_j^{(t+1)}))
-	\label{eq:velocity-clamp}
+	\label{eq:pso-clamp}
 \end{equation}
 
-\subsubsection{Pembaruan Posisi}
-\label{subsubsec:update-position}
+\subsubsection{Pembaruan Posisi Partikel}
 
-Pembaruan posisi menggunakan kecepatan yang telah diperbarui sebagai probabilitas untuk mengadopsi posisi \textit{neighborhood best}. Untuk setiap dimensi $j$, sebuah bilangan acak $r \in [0, 1)$ dibangkitkan. Apabila $r < v_j$, posisi partikel pada dimensi $j$ diubah menjadi posisi \textit{nBest} pada dimensi yang sama. Apabila $r \geq v_j$, posisi partikel pada dimensi $j$ tetap tidak berubah. Secara formal:
+Posisi baru partikel diturunkan dari kecepatan dengan interpretasi probabilistik. Untuk setiap dimensi $j$, sebuah bilangan acak $r \in [0, 1)$ dibangkitkan, kemudian dibandingkan dengan nilai kecepatan pada dimensi tersebut. Apabila $r < v_j$, posisi partikel pada dimensi tersebut diadopsi dari \textit{nBest}. Apabila $r \geq v_j$, posisi tidak berubah. Secara formal:
 
 \begin{equation}
-	x_j^{(t+1)} = 
-	\begin{cases}
-		\textit{nBest}_j & \text{jika } r < v_j^{(t+1)} \\
-		x_j^{(t)} & \text{jika } r \geq v_j^{(t+1)}
-	\end{cases}
-	\label{eq:position-update}
+	x_j^{(t+1)} = \begin{cases} nBest_j & \text{jika } r < v_j^{(t+1)} \\ x_j^{(t)} & \text{jika } r \geq v_j^{(t+1)} \end{cases}
+	\label{eq:pso-position-update}
 \end{equation}
 
-Mekanisme ini secara sengaja hanya menggunakan posisi \textit{nBest} sebagai target perpindahan, meskipun \textit{pBest} turut memengaruhi probabilitas perpindahan melalui formula kecepatan. Pemisahan peran ini merupakan keputusan desain yang didasarkan pada karakteristik ruang pencarian diskrit. Pada PSO kontinu, posisi baru merupakan hasil penjumlahan vektor yang secara alami menginterpolasi antara \textit{pBest} dan \textit{gBest}/\textit{nBest}. Pada ruang diskrit, interpolasi semacam ini tidak terdefinisi: sebuah dimensi hanya dapat mengambil satu nilai indeks pada satu waktu, sehingga partikel harus memilih salah satu target, bukan menggabungkan keduanya. Apabila pembaruan posisi juga mempertimbangkan \textit{pBest} sebagai target alternatif, setiap dimensi akan menghadapi dua arah perpindahan yang dapat saling bertentangan, yang dalam ruang diskrit menghasilkan pergantian indeks yang tidak koheren alih-alih konvergensi bertahap. Dengan menjadikan \textit{nBest} sebagai satu-satunya target perpindahan, mekanisme pembaruan posisi menjadi lebih terarah, sementara pengaruh pengalaman individual partikel tetap terkodifikasi dalam besaran probabilitas melalui komponen $c_1 \cdot r_1 \cdot \delta_{\textit{pBest},j}$ pada formula kecepatan.
+Mekanisme ini secara sengaja hanya menggunakan posisi \textit{nBest} sebagai target perpindahan, meskipun \textit{pBest} turut memengaruhi probabilitas perpindahan melalui formula kecepatan. Pemisahan peran ini merupakan keputusan desain yang didasarkan pada karakteristik ruang pencarian diskrit. Pada PSO kontinu, posisi baru merupakan hasil penjumlahan vektor yang secara alami menginterpolasi antara \textit{pBest} dan \textit{nBest}. Pada ruang diskrit, interpolasi semacam ini tidak terdefinisi: sebuah dimensi hanya dapat mengambil satu nilai indeks pada satu waktu, sehingga partikel harus memilih salah satu target, bukan menggabungkan keduanya. Apabila pembaruan posisi juga mempertimbangkan \textit{pBest} sebagai target alternatif, setiap dimensi akan menghadapi dua arah perpindahan yang dapat saling bertentangan, yang dalam ruang diskrit menghasilkan pergantian indeks yang tidak koheren alih-alih konvergensi bertahap. Dengan menjadikan \textit{nBest} sebagai satu-satunya target perpindahan, mekanisme pembaruan posisi menjadi lebih terarah, sementara pengaruh pengalaman individual partikel tetap terkodifikasi dalam besaran probabilitas melalui komponen $c_1 \cdot r_1 \cdot \delta_{pBest,j}$ pada formula kecepatan.
 
-Setelah seluruh dimensi diperbarui, \textit{fitness} partikel dievaluasi ulang. Apabila \textit{fitness} baru lebih rendah dari \texttt{pBestFitness}, maka \texttt{pBest} dan \texttt{pBestFitness} diperbarui. Demikian pula, apabila \textit{fitness} baru lebih rendah dari \textit{fitness} \texttt{nBest} saat ini, indeks \texttt{nBest} pada \textit{neighborhood} yang bersangkutan diperbarui.
+\subsubsection{Evaluasi \textit{Fitness} dan Pembaruan \textit{pBest} serta \textit{nBest}}
 
-Pseudocode pembaruan kecepatan dan posisi diperlihatkan pada Algoritma \ref{alg:pso-update}.
+Setelah posisi partikel diperbarui, nilai \textit{fitness} dievaluasi ulang berdasarkan fungsi \textit{fitness} yang menghitung jumlah pelanggaran kendala sesuai definisi pada Bagian~\ref{subsec:definisi-constraint} dan formulasi pada Bagian~\ref{subsec:fitness-pso}. Nilai \textit{fitness} ini kemudian dibandingkan dengan \textit{fitness} dari \textit{pBest} partikel: apabila lebih baik, \textit{pBest} diperbarui dengan posisi saat ini. Selanjutnya, \textit{fitness} juga dibandingkan dengan \textit{fitness} dari \textit{nBest} \textit{neighborhood}: apabila lebih baik, \textit{nBest} diperbarui agar partikel-partikel lain dalam kelompok yang sama dapat mengikutinya pada iterasi berikutnya.
 
-\begin{algorithm}[H]
-	\caption{Pembaruan kecepatan dan posisi PSO diskrit}
-	\label{alg:pso-update}
-	\begin{algorithmic}[1]
-		\For{setiap \textit{neighborhood} $N_i$}
-		\State $\mathbf{x}_{\textit{nBest}} \gets$ posisi \texttt{nBest} dari $N_i$
-		\For{setiap partikel $p$ dalam $N_i$}
-		\State \Comment{\textit{Pembaruan kecepatan}}
-		\For{$j \gets 0$ \textbf{hingga} $n - 1$}
-		\State $r_1, r_2 \gets$ bilangan acak $\in [0, 1)$
-		\State $\delta_{\textit{pBest}} \gets \mathbf{1}[x_j \neq \textit{pBest}_j]$
-		\State $\delta_{\textit{nBest}} \gets \mathbf{1}[x_j \neq \textit{nBest}_j]$
-		\State $v_j \gets \text{clamp}(w \cdot v_j + c_1 \cdot r_1 \cdot \delta_{\textit{pBest}} + c_2 \cdot r_2 \cdot \delta_{\textit{nBest}},\; 0,\; 1)$
-		\EndFor
-		\State \Comment{\textit{Pembaruan posisi}}
-		\For{$j \gets 0$ \textbf{hingga} $n - 1$}
-		\State $r \gets$ bilangan acak $\in [0, 1)$
-		\If{$r < v_j$}
-		\State $x_j \gets \textit{nBest}_j$
-		\EndIf
-		\EndFor
-		\State Evaluasi ulang \textit{fitness} partikel $p$
-		\State Perbarui \texttt{pBest} dan \texttt{nBest} jika diperlukan
-		\EndFor
-		\EndFor
-	\end{algorithmic}
-\end{algorithm}
+\subsection{Alur Utama Algoritma PSO}
+\label{subsec:flow-pso-main}
 
-\subsection{Deteksi Stagnasi dan Terminasi}
-\label{subsec:stagnasi-terminasi}
+Alur utama algoritma PSO mengorkestrasi keseluruhan proses optimasi, mulai dari inisialisasi populasi hingga terminasi. Pada setiap iterasi, mekanisme pembaruan partikel yang telah dijabarkan pada Bagian~\ref{subsec:flow-particle-update} dijalankan terhadap seluruh partikel, diikuti oleh evaluasi terhadap tiga kondisi terminasi: ditemukannya solusi valid, tercapainya batas iterasi maksimum, atau terdeteksinya stagnasi. Keseluruhan alur diperlihatkan pada Gambar~\ref{fig:flow-pso-main}.
 
-Algoritma PSO memerlukan kriteria terminasi yang jelas, mengingat sifat stokastiknya tidak menjamin konvergensi ke solusi optimal dalam jumlah iterasi tertentu. Dalam implementasi ini, terdapat tiga kondisi terminasi yang dievaluasi pada setiap akhir iterasi.
-
-Kondisi pertama adalah ditemukannya solusi valid: apabila salah satu \texttt{nBest} memiliki nilai \textit{fitness} sama dengan nol, algoritma berhenti dan melaporkan solusi tersebut. Pemeriksaan dilakukan hanya terhadap \texttt{nBest} dari setiap \textit{neighborhood}, bukan terhadap seluruh partikel, karena partikel terbaik dalam setiap kelompok pasti merupakan \texttt{nBest} saat ini.
-
-Kondisi kedua adalah tercapainya batas iterasi maksimum $I_{\max}$. Apabila algoritma telah berjalan selama $I_{\max}$ iterasi tanpa menemukan solusi valid, pencarian dihentikan dan partikel dengan \textit{fitness} terendah di antara seluruh \texttt{nBest} dilaporkan sebagai solusi terbaik yang ditemukan, meskipun tidak valid.
-
-Kondisi ketiga adalah deteksi stagnasi. Algoritma mencatat nilai \textit{fitness} terbaik secara global (terendah di antara seluruh \texttt{nBest}) pada setiap iterasi. Apabila nilai ini tidak mengalami perbaikan selama $S_{\max}$ iterasi berturut-turut, pencarian dihentikan lebih awal. Mekanisme ini menghemat waktu komputasi pada kasus di mana populasi telah terjebak pada \textit{local optimum} dan eksplorasi lebih lanjut tidak produktif. Pencacah stagnasi direset setiap kali ditemukan \textit{fitness} global yang lebih rendah.
-
-Pseudocode alur utama PSO dengan ketiga kondisi terminasi diperlihatkan pada Algoritma \ref{alg:pso-main}.
-
-\begin{algorithm}[H]
-	\caption{Alur utama PSO diskrit untuk \textit{Colored Queens}}
-	\label{alg:pso-main}
-	\begin{algorithmic}[1]
-		\Function{Solve}{}
-		\State Inisialisasi populasi, \textit{neighborhood}, dan \textit{fitness} awal
-		\State $f_{\textit{globalBest}} \gets$ \textit{fitness} terendah di antara seluruh \texttt{nBest}
-		\State $stagnasi \gets 0$
-		\For{$iter \gets 1$ \textbf{hingga} $I_{\max}$}
-		\State Perbarui kecepatan seluruh partikel
-		\State Perbarui posisi dan evaluasi \textit{fitness} seluruh partikel
-		\If{terdapat \texttt{nBest} dengan \textit{fitness} $= 0$}
-		\State \Return solusi valid ditemukan
-		\EndIf
-		\State $f_{\textit{current}} \gets$ \textit{fitness} terendah di antara seluruh \texttt{nBest}
-		\If{$f_{\textit{current}} < f_{\textit{globalBest}}$}
-		\State $f_{\textit{globalBest}} \gets f_{\textit{current}}$
-		\State $stagnasi \gets 0$
-		\Else
-		\State $stagnasi \gets stagnasi + 1$
-		\EndIf
-		\If{$stagnasi \geq S_{\max}$}
-		\State \Return terminasi dini, laporkan solusi terbaik
-		\EndIf
-		\EndFor
-		\State \Return batas iterasi tercapai, laporkan solusi terbaik
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-Perlu dicatat bahwa pada kondisi terminasi kedua dan ketiga, solusi yang dilaporkan dapat bersifat tidak valid (memiliki \textit{fitness} $> 0$). Dalam konteks pengujian, kasus-kasus tersebut dicatat sebagai kegagalan dan menjadi bagian dari metrik tingkat keberhasilan yang dianalisis pada Bab \ref{chap:implementasi}.
-
-\subsection{Parameter PSO}
-\label{subsec:parameter-pso}
-
-Perilaku algoritma PSO sangat dipengaruhi oleh konfigurasi parameternya. Dalam implementasi ini, terdapat sembilan parameter yang dapat dikonfigurasi melalui berkas teks yang dibaca pada saat eksekusi. Tabel \ref{tab:parameter-pso} merangkum seluruh parameter beserta deskripsinya.
-
-\begin{longtable}{llp{7cm}}
-	\caption{Parameter algoritma PSO}
-	\label{tab:parameter-pso} \\
-	\toprule
-	\textbf{Parameter} & \textbf{Simbol} & \textbf{Deskripsi} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Parameter} & \textbf{Simbol} & \textbf{Deskripsi} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	Jumlah iterasi & $I_{\max}$ & Batas maksimum iterasi sebelum terminasi \\
-	\midrule
-	Jumlah partikel & $P$ & Ukuran populasi \\
-	\midrule
-	Jumlah \textit{neighborhood} & $N_{\textit{nh}}$ & Jumlah kelompok dalam topologi lBest \\
-	\midrule
-	Koefisien kognitif & $c_1$ & Bobot pengaruh \textit{personal best} pada kecepatan \\
-	\midrule
-	Koefisien sosial & $c_2$ & Bobot pengaruh \textit{neighborhood best} pada kecepatan \\
-	\midrule
-	Inersia & $w$ & Bobot kecepatan sebelumnya \\
-	\midrule
-	Bobot pelanggaran baris/kolom & $w_1$ & Bobot komponen \textit{attacking violations} pada fungsi \textit{fitness} \\
-	\midrule
-	Bobot pelanggaran \textit{adjacency} & $w_2$ & Bobot komponen \textit{adjacency violations} pada fungsi \textit{fitness} \\
-	\midrule
-	Batas stagnasi & $S_{\max}$ & Jumlah iterasi tanpa perbaikan sebelum terminasi dini \\
-	\bottomrule
-\end{longtable}
-
-Untuk keperluan pengujian, sebuah konfigurasi \textit{benchmark} ditetapkan sebagai \textit{baseline} yang menjadi titik acuan seluruh eksperimen. Konfigurasi ini menggunakan nilai $P = 5000$, $N_{\textit{nh}} = 100$, $c_1 = 1{,}0$, $c_2 = 1{,}0$, $w = 0{,}7$, $w_1 = 1{,}0$, $w_2 = 1{,}0$, $I_{\max} = 100000$, dan $S_{\max} = 500$. Pemilihan nilai-nilai \textit{benchmark} ini didasarkan pada nilai-nilai umum yang digunakan dalam litementerir PSO \cite{kennedy1995particle} serta penyesuaian awal terhadap karakteristik permasalahan \textit{Colored Queens}.
-
-Strategi pengujian menggunakan pendekatan \textit{one-factor-at-a-time}: pada setiap eksperimen, satu parameter divariasikan sementara parameter lainnya tetap pada nilai \textit{benchmark}. Pendekatan ini memungkinkan identifikasi pengaruh individual setiap parameter terhadap kinerja algoritma. Variasi yang diuji mencakup jumlah partikel ($P \in \{3000, 8000, 50000\}$), jumlah \textit{neighborhood} ($N_{\textit{nh}} \in \{50, 200\}$), koefisien inersia ($w \in \{0{,}4,\; 0{,}9\}$), koefisien kognitif ($c_1 = 1{,}5$), koefisien sosial ($c_2 = 1{,}5$), bobot pelanggaran baris/kolom ($w_1 = 2{,}0$), dan bobot pelanggaran \textit{adjacency} ($w_2 = 2{,}0$). Selain itu, sebuah konfigurasi \textit{optimal} disusun dengan menggabungkan nilai-nilai terbaik yang teridentifikasi dari eksperimen individual, yaitu $P = 50000$, $N_{\textit{nh}} = 50$, $c_1 = 1{,}5$, dan $w = 0{,}4$, dengan parameter lainnya pada nilai \textit{benchmark}. Rincian skenario pengujian dan analisis hasil disajikan pada Bagian \ref{sec:skenario-pengujian} dan Bab \ref{chap:implementasi}.
-
-\section{Perancangan Perangkat Lunak}
-\label{sec:perancangan-pl}
-
-\subsection{Arsitektur Sistem}
-\label{subsec:arsitektur-sistem}
-
-Sistem dibangun menggunakan arsitektur modular yang memisahkan tiga tanggung jawab utama: pengelolaan data papan, logika solver, dan antarmuka pengguna. Pemisahan ini memungkinkan kedua solver beroperasi secara independen terhadap representasi visual dan sebaliknya, sehingga perubahan pada salah satu modul tidak berdampak pada modul lainnya.
-
-Modul pertama adalah modul data, yang terdiri atas kelas \texttt{Cell} dan \texttt{Board} dalam paket \texttt{objects} serta kelas \texttt{BoardImporter} dalam paket \texttt{util}. Kelas \texttt{Cell} merepresentasikan satu sel pada papan dengan atribut koordinat dan warna RGB. Kelas \texttt{Board} mengagregasi seluruh sel ke dalam pemetaan warna-ke-posisi menggunakan \texttt{LinkedHashMap} dan menyediakan antarmuka bagi solver untuk mengakses struktur papan. Kelas \texttt{BoardImporter} bertanggung jawab membaca berkas JSON dan mengonstruksi daftar objek \texttt{Cell} yang kemudian diserahkan kepada \texttt{Board}.
-
-Modul kedua adalah modul solver, yang terdiri atas dua kelas dalam paket terpisah: \path{BacktrackingSolverAC3} dalam paket \texttt{solver.backtracking} dan \texttt{PSOSolver} dalam paket \texttt{solver.PSO}. Kedua kelas menerima objek \texttt{Board} sebagai masukan dan menghasilkan solusi berupa koordinat penempatan menteri untuk setiap warna. Kedua solver tidak memiliki ketergantungan terhadap modul antarmuka, sehingga dapat dieksekusi secara mandiri melalui \textit{command line} untuk keperluan pengujian.
-
-Modul ketiga adalah modul antarmuka dalam paket \texttt{GUI}, yang terdiri atas empat kelas: \texttt{Main} sebagai titik masuk aplikasi, \texttt{Homepage} sebagai halaman utama, \texttt{LevelSelectorWindow} sebagai halaman pemilihan level, dan \texttt{GameWindow} sebagai halaman permainan utama. Kelas \texttt{UITheme} menyediakan konstanta visual (palet warna, font, komponen tombol) yang digunakan secara konsisten di seluruh antarmuka.
-
-Diagram hubungan antarmodul diperlihatkan pada Gambar \ref{fig:arsitektur}.
-
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.85\linewidth]{cDiagram.png}
-	\caption{Arsitektur sistem yang menunjukkan hubungan antara modul data, modul solver, dan modul antarmuka.}
-	\label{fig:arsitektur}
+	\includegraphics[width=0.95\linewidth]{flowpso.png}
+	\caption{Diagram alur utama algoritma PSO diskrit.}
+	\label{fig:flow-pso-main}
 \end{figure}
 
-\subsection{Struktur Program}
-\label{subsec:struktur-program}
+\subsubsection{Inisialisasi Populasi dan Variabel Pelacakan}
 
-Struktur program diorganisasi ke dalam empat paket Java yang mencerminkan pembagian modul pada arsitektur sistem. Tabel \ref{tab:struktur-program} merangkum seluruh kelas beserta tanggung jawab utamanya.
+Algoritma dimulai dengan inisialisasi populasi, yaitu pembangkitan sejumlah partikel dengan posisi acak pada ruang pencarian dan kecepatan acak pada interval valid. Selanjutnya, partikel-partikel tersebut dipartisi ke dalam beberapa \textit{neighborhood} dengan ukuran yang relatif seimbang, dan nilai \textit{fitness} awal seluruh partikel dievaluasi. Setelah inisialisasi populasi selesai, algoritma menetapkan pencacah iterasi pada nilai satu, pencacah stagnasi pada nilai nol, dan menyimpan \textit{fitness} terendah di antara seluruh \textit{nBest} sebagai nilai \textit{fitness} global terbaik (\textit{globalBest}) yang akan digunakan sebagai acuan deteksi stagnasi pada iterasi-iterasi berikutnya.
 
-\begin{longtable}{llp{6.5cm}}
-	\caption{Struktur kelas dalam sistem}
-	\label{tab:struktur-program} \\
-	\toprule
-	\textbf{Paket} & \textbf{Kelas} & \textbf{Tanggung Jawab} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Paket} & \textbf{Kelas} & \textbf{Tanggung Jawab} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	\texttt{app} & \texttt{Main} & Titik masuk aplikasi; menginisialisasi \texttt{Homepage} pada \textit{Event Dispatch Thread} \\
-	\midrule
-	\multirow{2}{*}{\texttt{objects}} & \texttt{Cell} & Representasi satu sel papan (koordinat + warna RGB) \\
-	& \texttt{Board} & Representasi papan keseluruhan; pemetaan warna ke daftar posisi sel \\
-	\midrule
-	\texttt{util} & \texttt{BoardImporter} & Pembacaan dan penguraian berkas JSON papan \\
-	\midrule
-	\multirow{2}{*}{\texttt{solver}} & \texttt{BacktrackingSolverAC3} & Solver berbasis \textit{backtracking} dengan \textit{forward checking} dan AC-3 \\
-	& \texttt{PSOSolver} & Solver berbasis PSO diskrit (termasuk kelas \texttt{Particle}) \\
-	\midrule
-	\multirow{4}{*}{\texttt{GUI}} & \texttt{Homepage} & Halaman utama dengan tombol navigasi \\
-	& \texttt{LevelSelectorWindow} & Halaman pemilihan ukuran papan dan level \\
-	& \texttt{GameWindow} & Halaman permainan utama; menampilkan papan, mengintegrasikan solver, dan mengelola interaksi pengguna \\
-	& \texttt{UITheme} & Konstanta visual (palet warna, font, komponen tombol) \\
-	\bottomrule
-\end{longtable}
+\subsubsection{Pengecekan Batas Iterasi}
 
-\subsection{Antarmuka Pengguna}
-\label{subsec:antarmuka}
+Pada awal setiap iterasi, algoritma memeriksa apakah pencacah iterasi telah melampaui batas iterasi maksimum yang telah ditetapkan sebagai parameter. Apabila ya, pencarian dihentikan dan algoritma melaporkan partikel dengan \textit{fitness} terendah di antara seluruh \textit{nBest} sebagai solusi terbaik yang ditemukan, meskipun solusi tersebut belum tentu valid. Apabila batas belum tercapai, algoritma melanjutkan ke tahap pembaruan partikel.
 
-Antarmuka pengguna terdiri atas tiga layar utama yang dinavigasi secara berurutan. Alur interaksi pengguna dengan aplikasi diilustrasikan pada Gambar \ref{fig:alur-app}.
+\subsubsection{Pembaruan Seluruh Partikel}
 
-\begin{figure}[H]
+Algoritma menjalankan dua tahap pembaruan secara berurutan terhadap seluruh partikel dalam populasi. Tahap pertama memperbarui kecepatan seluruh partikel berdasarkan \textit{pBest} masing-masing dan \textit{nBest} dari \textit{neighborhood}-nya. Tahap kedua memperbarui posisi partikel berdasarkan kecepatan yang baru dihitung, mengevaluasi ulang \textit{fitness}, serta memperbarui \textit{pBest} dan \textit{nBest} apabila ditemukan posisi yang lebih baik. Kedua tahap ini secara kolektif merupakan eksekusi penuh dari prosedur pembaruan partikel yang telah dijabarkan pada Bagian~\ref{subsec:flow-particle-update}.
+
+\subsubsection{Pengecekan Solusi Valid}
+
+Setelah pembaruan selesai, algoritma memeriksa apakah salah satu \textit{nBest} memiliki nilai \textit{fitness} sama dengan nol. Nilai \textit{fitness} nol menandakan tidak adanya pelanggaran kendala pada posisi tersebut, yang berarti partikel tersebut merepresentasikan solusi valid bagi permasalahan \textit{Colored Queens}. Pemeriksaan dilakukan hanya terhadap \textit{nBest} dari setiap \textit{neighborhood}, bukan terhadap seluruh partikel, karena partikel dengan \textit{fitness} terendah dalam setiap kelompok pasti merupakan \textit{nBest} saat ini. Apabila solusi valid ditemukan, algoritma berhenti dan melaporkan solusi tersebut.
+
+\subsubsection{Pembaruan \textit{Fitness} Global dan Pencacah Stagnasi}
+
+Apabila solusi valid belum ditemukan, algoritma menghitung \textit{fitness} terendah di antara seluruh \textit{nBest} saat ini (\textit{fitnessCur}) dan membandingkannya dengan \textit{globalBest} yang tersimpan. Apabila \textit{fitnessCur} lebih rendah, hal ini menandakan bahwa populasi mengalami perbaikan, sehingga \textit{globalBest} diperbarui dan pencacah stagnasi direset menjadi nol. Apabila tidak terjadi perbaikan, pencacah stagnasi ditambahkan satu untuk menandai berlalunya satu iterasi tanpa kemajuan.
+
+\subsubsection{Pengecekan Stagnasi dan Lanjutan Iterasi}
+
+Setelah pencacah stagnasi diperbarui, algoritma memeriksa apakah nilainya telah melampaui batas stagnasi maksimum. Mekanisme ini menghentikan pencarian lebih awal pada kasus di mana populasi telah terjebak pada \textit{local optimum} dan eksplorasi lebih lanjut tidak produktif. Justifikasi keberadaan dan pemilihan nilai batas stagnasi dijabarkan pada Bagian~\ref{subsec:stagnasi-terminasi}. Apabila batas tidak terlampaui, pencacah iterasi ditambahkan satu dan alur kembali ke pengecekan batas iterasi, melanjutkan siklus optimasi pada iterasi berikutnya.
+
+\subsection{Studi Kasus: Pencarian Solusi dengan PSO pada Papan 7$\times$7}
+\label{subsec:studi-kasus-pso}
+
+Sebagai pembanding terhadap pendekatan \textit{backtracking} yang telah dijabarkan pada Bagian~\ref{subsec:studi-kasus-bt}, bagian ini menyajikan studi kasus penerapan PSO pada papan 7$\times$7 yang sama. Untuk menjaga kesederhanaan ilustrasi, contoh ini menggunakan populasi minimal yang terdiri atas dua partikel yang dikelompokkan dalam satu \textit{neighborhood}. Pada implementasi nyata, jumlah partikel dan \textit{neighborhood} jauh lebih besar untuk meningkatkan keragaman eksplorasi.
+
+\subsubsection{Inisialisasi Populasi}
+
+Pada tahap inisialisasi, dua partikel dibangkitkan dengan posisi awal acak. Setiap posisi partikel direpresentasikan sebagai vektor berukuran tujuh, di mana setiap index pada vektor berkaitan dengan satu sektor warna. Nilai pada index ke-$i$ menyatakan posisi sel terpilih dari domain warna ke-$i$. Posisi awal kedua partikel ditetapkan sebagai berikut:
+
+\begin{itemize}
+	\item Partikel 1: $\{3,\, 1,\, 12,\, 8,\, 0,\, 2,\, 1\}$
+	\item Partikel 2: $\{0,\, 3,\, 9,\, 2,\, 0,\, 3,\, 1\}$
+\end{itemize}
+
+Selain posisi, setiap partikel juga memiliki vektor kecepatan awal dengan nilai acak pada interval $[0, 1)$ untuk setiap index:
+
+\begin{itemize}
+	\item Partikel 1: $v_i = [0.12,\, 0.85,\, 0.43,\, 0.67,\, 0.09,\, 0.91,\, 0.34]$
+	\item Partikel 2: $v_i = [0.76,\, 0.21,\, 0.58,\, 0.04,\, 0.69,\, 0.47,\, 0.83]$
+\end{itemize}
+
+\subsubsection{Perhitungan \textit{Fitness} Awal dan Penetapan \textit{nBest}}
+
+Nilai \textit{fitness} awal setiap partikel dievaluasi berdasarkan fungsi \textit{fitness} yang telah dijabarkan pada Bagian~\ref{subsec:fungsi-fitness-pso}. Dalam contoh ini, hasil evaluasi adalah:
+
+\begin{itemize}
+	\item Partikel 1: $f = 14$
+	\item Partikel 2: $f = 20$
+\end{itemize}
+
+Karena partikel 1 memiliki nilai \textit{fitness} terendah, partikel 1 ditetapkan sebagai \textit{neighborhood best} (\textit{nBest}) dengan nilai $14$. Penetapan ini akan digunakan sebagai acuan untuk pembaruan kecepatan dan posisi pada iterasi berikutnya. Selain itu, posisi awal masing-masing partikel juga ditetapkan sebagai \textit{personal best} (\textit{pBest}) mereka.
+
+\subsubsection{Pembaruan Kecepatan}
+
+Pada iterasi pertama, kecepatan setiap partikel diperbarui menggunakan formula yang telah dijabarkan pada Persamaan~\ref{eq:pso-velocity-update}. Sebagai contoh ilustratif, misalkan parameter PSO ditetapkan sebagai $\omega = 0.7$, $c_1 = 0.5$, $c_2 = 0.5$, dan bilangan acak yang dibangkitkan adalah $r_1 = 0.2$ serta $r_2 = 0.3$. Untuk index ke-0 dari partikel 2, perhitungan kecepatan baru adalah sebagai berikut:
+
+\begin{equation*}
+	\begin{aligned}
+		v_{i+1}[0] &= \underbrace{(\omega \cdot v_i[0])}_{\text{inersia}} + \underbrace{(r_1 \cdot c_1 \cdot \delta_{pBest,0})}_{\text{kognitif}} + \underbrace{(r_2 \cdot c_2 \cdot \delta_{nBest,0})}_{\text{sosial}} \\
+		&= (0.7 \cdot 0.76) + (0.2 \cdot 0.5 \cdot 0) + (0.3 \cdot 0.5 \cdot 1) \\
+		&= 0.532 + 0 + 0.15 = 0.682
+	\end{aligned}
+\end{equation*}
+
+Nilai $\delta_{pBest,0} = 0$ karena nilai partikel 2 pada index ke-0 sama dengan nilai \textit{pBest}-nya pada index yang sama (keduanya bernilai $0$). Sebaliknya, $\delta_{nBest,0} = 1$ karena nilai partikel 2 pada index ke-0 (bernilai $0$) berbeda dengan nilai \textit{nBest} pada index ke-0 (bernilai $3$). Perhitungan serupa dilakukan untuk seluruh index, menghasilkan vektor kecepatan baru:
+
+\begin{equation*}
+	v_{i+1} = [0.682,\, 0.497,\, 0.606,\, 0.328,\, 0.483,\, 0.579,\, 0.581]
+\end{equation*}
+
+\subsubsection{Pembaruan Posisi}
+
+Selanjutnya, posisi partikel diperbarui berdasarkan kecepatan baru menggunakan formula pada Persamaan~\ref{eq:pso-position-update}. Untuk setiap index, bilangan acak $r \in [0, 1)$ dibangkitkan, dan apabila $r < v_{i+1}[j]$, nilai pada index tersebut diadopsi dari \textit{nBest}; apabila tidak, nilai tetap.
+
+Sebagai contoh, untuk index ke-0 partikel 2, dibangkitkan bilangan acak $r = 0.25$. Karena $r < v_{i+1}[0]$ (yaitu $0.25 < 0.682$), maka nilai pada index ke-0 mengadopsi nilai dari \textit{nBest}, sehingga $x_{i+1}[0] = 3$ (menggantikan nilai sebelumnya yang bernilai $0$). Perhitungan serupa dilakukan untuk seluruh index. Posisi baru partikel 2 menjadi:
+
+\begin{equation*}
+	x_{i+1} = [3,\, 3,\, 12,\, 2,\, 0,\, 2,\, 1]
+\end{equation*}
+
+\subsubsection{Evaluasi \textit{Fitness} Partikel Baru}
+
+Setelah posisi diperbarui, nilai \textit{fitness} partikel 2 dievaluasi ulang menggunakan fungsi \textit{fitness} yang telah dijabarkan pada Bagian~\ref{subsubsec:fungsi-fitness-pso}:
+
+\begin{equation*}
+	fitness = w_1 \cdot \textit{attackingViolation} + w_2 \cdot \textit{adjacencyViolation}
+\end{equation*}
+
+dengan $w_1$ sebagai bobot pelanggaran \textit{attacking} dan $w_2$ sebagai bobot pelanggaran \textit{adjacency}. Untuk contoh ini, ditetapkan $w_1 = 1$ dan $w_2 = 2$. Posisi baru partikel 2 yaitu $[3,\, 3,\, 12,\, 2,\, 0,\, 2,\, 1]$ memetakan menteri ke sel-sel tertentu pada papan, dan pelanggaran kendala kemudian dihitung berdasarkan dua komponen tersebut.
+
+\textbf{Pelanggaran \textit{adjacency}.} Komponen ini menghitung pasangan menteri yang bertetangga secara langsung dalam delapan arah. Pada konfigurasi partikel 2, terdapat tiga pasangan \textit{adjacency}. Pasangan pertama, sebagaimana disorot pada Gambar~\ref{fig:pso-step39}, terdiri atas menteri pada (3,1) dan menteri pada (4,1) yang bertetangga secara vertikal.
+
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.85\linewidth]{flowchart_app.png}
-	\caption{Alur interaksi pengguna pada aplikasi \textit{Colored Queens}.}
-	\label{fig:alur-app}
+	\includegraphics[width=0.3\linewidth]{./pso/39.png}
+	\caption{Pasangan \textit{adjacency} pertama: menteri pada (3,1) dan (4,1) bertetangga vertikal.}
+	\label{fig:pso-step39}
 \end{figure}
 
-Berikut adalah penjelasan setiap proses pada Gambar \ref{fig:alur-app}:
+Pasangan kedua, sebagaimana disorot pada Gambar~\ref{fig:pso-step40}, terdiri atas menteri pada (4,1) dan menteri pada (4,2) yang bertetangga secara horizontal.
 
-\begin{enumerate}
-	\item \textbf{\textit{Welcome Page}.} Layar pertama (\texttt{Homepage}) menampilkan judul permainan, ikon menteri, dan tombol \textit{Start Game} yang mengarahkan pengguna ke halaman pemilihan level. Halaman ini berfungsi sebagai titik masuk visual dan tidak memuat logika permainan.
-	
-	\item \textbf{\textit{Level Selector}.} Layar kedua (\texttt{LevelSelectorWindow}) menyajikan pilihan ukuran papan yang dikelompokkan berdasarkan tingkat kesulitan: \textit{Easy} ($7 \times 7$), \textit{Medium} ($8 \times 8$ dan $9 \times 9$), serta \textit{Hard} ($10 \times 10$, $11 \times 11$, dan $12 \times 12$). Selain itu, terdapat kategori \textit{Challenge} yang menyediakan papan berukuran $20 \times 20$ dan $30 \times 30$ dengan masing-masing satu level. Pemilihan ukuran papan langsung membuka halaman permainan pada level pertama dari ukuran tersebut.
-	
-	\item \textbf{Memuat papan dan menjalankan solver.} Setelah pengguna memilih level, kelas \texttt{GameWindow} membaca berkas JSON melalui \texttt{BoardImporter}, mengonstruksi objek \texttt{Board}, dan menjalankan solver \textit{backtracking} secara asinkron menggunakan \texttt{SwingWorker}. Solver berjalan di latar belakang agar antarmuka tetap responsif selama proses pencarian berlangsung. Untuk papan berukuran $20 \times 20$ dan $30 \times 30$, solusi disimpan secara \textit{hardcoded} karena waktu komputasi solver pada ukuran tersebut terlalu lama untuk dieksekusi secara \textit{on-the-fly}. Solusi yang dihasilkan disimpan dan digunakan oleh fitur \textit{hint} dan \textit{auto-solve}.
-	
-	\item \textbf{Menunggu aksi pemain.} Sistem memasuki kondisi menunggu, di mana papan ditampilkan sebagai grid berwarna di tengah jendela disertai panel kontrol di bagian bawah. Dari kondisi ini, pengguna dapat melakukan salah satu dari tiga aksi berikut.
-	
-	\item \textbf{Pemain menempatkan bidak menteri pada papan permainan.} Pengguna menempatkan atau menghapus menteri dengan mengklik sel pada papan. Pencacah waktu mulai berjalan saat pengguna menempatkan menteri pertama.
-	
-	\item \textbf{Pemeriksaan pelanggaran.} Setiap kali pengguna menempatkan atau menghapus menteri, sistem memeriksa seluruh pasangan menteri terhadap kendala baris, kolom, \textit{adjacency}, dan kesamaan warna. Menteri yang terlibat dalam pelanggaran ditandai dengan ikon berwarna merah.
-	
-	\item \textbf{Apakah semua kendala terpenuhi?} Sistem memeriksa apakah jumlah menteri yang ditempatkan sama dengan ukuran papan dan seluruh posisi sesuai dengan solusi. Apabila tidak, sistem kembali ke kondisi menunggu aksi pemain.
-	
-	\item \textbf{Pemain memilih opsi \textit{Hint}.} Sistem menampilkan petunjuk visual berupa sorotan hijau pada posisi yang benar dan sorotan oranye pada posisi yang salah untuk satu sektor warna. Setelah petunjuk ditampilkan, sistem kembali ke kondisi menunggu aksi pemain.
-	
-	\item \textbf{Pemain memilih opsi \textit{Solve}.} Solusi lengkap yang telah dihitung di latar belakang diterapkan secara otomatis pada papan.
-	
-	\item \textbf{\textit{Stopwatch} diberhentikan dan pesan kemenangan ditampilkan.} Pencacah waktu dihentikan dan dialog kemenangan ditampilkan kepada pengguna.
-\end{enumerate}
-
-Rancangan antarmuka untuk setiap layar beserta elemen-elemen interaktifnya diperlihatkan pada Gambar \ref{fig:mockup-homepage} hingga Gambar \ref{fig:mockup-win}.
-
-% ===== HOMEPAGE =====
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/homepage.png}
-	\caption{Rancangan halaman utama (\textit{Homepage}).}
-	\label{fig:mockup-homepage}
+	\includegraphics[width=0.3\linewidth]{./pso/40.png}
+	\caption{Pasangan \textit{adjacency} kedua: menteri pada (4,1) dan (4,2) bertetangga horizontal.}
+	\label{fig:pso-step40}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-homepage}:
-\begin{enumerate}
-	\item Judul aplikasi yang menampilkan nama permainan.
-	\item Tombol \textit{Play} yang mengarahkan pengguna ke halaman pemilihan level.
-\end{enumerate}
+Pasangan ketiga, sebagaimana disorot pada Gambar~\ref{fig:pso-step41}, terdiri atas menteri pada (3,1) dan menteri pada (4,2) yang bertetangga secara diagonal.
 
-% ===== LEVEL SELECTOR =====
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/levelSelector.png}
-	\caption{Rancangan halaman pemilihan level (\textit{Level Selector}).}
-	\label{fig:mockup-levelselector}
+	\includegraphics[width=0.3\linewidth]{./pso/41.png}
+	\caption{Pasangan \textit{adjacency} ketiga: menteri pada (3,1) dan (4,2) bertetangga diagonal.}
+	\label{fig:pso-step41}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-levelselector}:
-\begin{enumerate}
-	\item Judul bagian pemilihan tingkat kesulitan.
-	\item Judul bagian tantangan (\textit{Challenge}) untuk papan berukuran besar.
-	\item Label kategori kesulitan (\textit{Easy}, \textit{Medium}, \textit{Hard}) yang mengelompokkan ukuran papan.
-	\item Tombol ukuran papan yang dapat dipilih oleh pengguna untuk memulai permainan.
-	\item Tombol ukuran papan pada kategori \textit{Challenge} ($20 \times 20$ dan $30 \times 30$).
-\end{enumerate}
+Dengan demikian, nilai \textit{adjacencyViolation} adalah $3$..
 
-% ===== GAME WINDOW =====
-\begin{figure}[H]
+\textbf{Pelanggaran \textit{attacking}.} Komponen ini menghitung pasangan menteri yang berada pada baris atau kolom yang sama. Pada konfigurasi partikel 2, Gambar~\ref{fig:pso-step42} menyoroti pasangan pertama, yaitu menteri pada (4,2) dan menteri pada (6,2) yang berada pada kolom 2. 
+
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/level.png}
-	\caption{Rancangan halaman permainan (\textit{Game Window}).}
-	\label{fig:mockup-gamewindow}
+	\includegraphics[width=0.3\linewidth]{./pso/42.png}
+	\caption{Pasangan \textit{attacking} pertama: menteri pada (4,2) dan (6,2) berada pada kolom yang sama.}
+	\label{fig:pso-step42}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-gamewindow}:
-\begin{enumerate}
-	\item Label ukuran papan yang sedang dimainkan.
-	\item Label nomor level yang sedang dimainkan.
-	\item Papan permainan berupa grid berwarna tempat pengguna menempatkan bidak menteri.
-	\item Bidak menteri yang telah ditempatkan pada papan. Ikon berwarna hitam digunakan pada sel terang dan ikon berwarna putih pada sel gelap, dengan pemilihan berdasarkan luminansi warna sel.
-	\item \textit{Dropdown} ukuran papan untuk berpindah ke ukuran lain.
-	\item \textit{Dropdown} level untuk berpindah ke level lain dalam ukuran yang sama.
-	\item Pencacah waktu (\textit{stopwatch}) yang mulai berjalan saat pengguna menempatkan menteri pertama.
-	\item Tombol \textit{Hint} yang menampilkan petunjuk visual.
-	\item Tombol \textit{Solve} yang menerapkan solusi lengkap secara otomatis.
-\end{enumerate}
+Pasangan kedua, sebagaimana disorot pada Gambar~\ref{fig:pso-step43}, terdiri atas menteri pada (4,1) dan menteri pada (4,2) yang berada pada baris 4. Perlu dicatat bahwa pasangan ini juga merupakan pelanggaran \textit{adjacency} sebagaimana telah disorot pada Gambar~\ref{fig:pso-step40}. Pasangan tersebut tetap dihitung pada kedua komponen secara independen karena keduanya merepresentasikan jenis kendala yang berbeda: \textit{attacking} mengukur konflik berbasis baris dan kolom, sedangkan \textit{adjacency} mengukur kedekatan posisi.
 
-% ===== SOLVED BY SOLVER =====
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/solved_by_solver.png}
-	\caption{Tampilan papan setelah solver menerapkan solusi lengkap.}
-	\label{fig:mockup-solved}
+	\includegraphics[width=0.3\linewidth]{./pso/46.png}
+	\caption{Pasangan \textit{attacking} kedua: menteri pada (4,1) dan (4,2) berada pada baris yang sama. Pasangan ini juga merupakan pelanggaran \textit{adjacency}.}
+	\label{fig:pso-step43}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-solved}:
-\begin{enumerate}
-	\item Seluruh bidak menteri ditempatkan pada posisi yang benar oleh solver. Seluruh menteri ditampilkan dengan warna hijau untuk menandakan solusi yang valid.
-\end{enumerate}
+Pasangan ketiga, sebagaimana disorot pada Gambar~\ref{fig:pso-step44}, terdiri atas menteri pada (4,1) dan menteri pada (4,4) yang berada pada baris 4. Berbeda dengan pasangan sebelumnya, pasangan ini tidak bertetangga langsung sehingga hanya tergolong sebagai pelanggaran \textit{attacking}.
 
-% ===== WARNING: ADJACENT =====
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/warning_adjacent.png}
-	\caption{Tampilan peringatan pelanggaran kendala \textit{adjacency}.}
-	\label{fig:mockup-warn-adj}
+	\includegraphics[width=0.3\linewidth]{./pso/44.png}
+	\caption{Pasangan \textit{attacking} ketiga: menteri pada (4,1) dan (4,4) berada pada baris yang sama.}
+	\label{fig:pso-step44}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-warn-adj}:
-\begin{enumerate}
-	\item Dua bidak menteri yang bertetangga secara diagonal ditandai berwarna merah, menunjukkan pelanggaran kendala \textit{adjacency}. Sel-sel di sekitar kedua menteri yang berkonflik juga disorot untuk memperjelas area pelanggaran.
-\end{enumerate}
+Pasangan keempat, sebagaimana disorot pada Gambar~\ref{fig:pso-step45}, terdiri atas menteri pada (3,1) dan menteri pada (4,1) yang berada pada kolom 1. Sama halnya dengan pasangan pada Gambar~\ref{fig:pso-step43}, pasangan ini juga merupakan pelanggaran \textit{adjacency} (telah disorot pada Gambar~\ref{fig:pso-step39}) dan dihitung pada kedua komponen.
 
-% ===== WARNING: COLOR =====
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/warning_color.png}
-	\caption{Tampilan peringatan pelanggaran kendala kesamaan warna.}
-	\label{fig:mockup-warn-color}
+	\includegraphics[width=0.3\linewidth]{./pso/45.png}
+	\caption{Pasangan \textit{attacking} keempat: menteri pada (3,1) dan (4,1) berada pada kolom yang sama. Pasangan ini juga merupakan pelanggaran \textit{adjacency}.}
+	\label{fig:pso-step45}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-warn-color}:
-\begin{enumerate}
-	\item Dua bidak menteri yang ditempatkan pada sektor warna yang sama ditandai berwarna merah, menunjukkan pelanggaran kendala \textit{one queen per color}.
-\end{enumerate}
+Pasangan kelima, sebagaimana disorot pada Gambar~\ref{fig:pso-step46}, terdiri atas menteri pada (4,2) dan menteri pada (4,4) yang berada pada baris 4. Pasangan ini tidak bertetangga langsung sehingga hanya tergolong sebagai pelanggaran \textit{attacking}.
 
-% ===== WARNING: HORIZONTAL =====
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/warning_horizontal.png}
-	\caption{Tampilan peringatan pelanggaran kendala baris.}
-	\label{fig:mockup-warn-horiz}
+	\includegraphics[width=0.3\linewidth]{./pso/43.png}
+	\caption{Pasangan \textit{attacking} kelima: menteri pada (4,2) dan (4,4) berada pada baris yang sama.}
+	\label{fig:pso-step46}
 \end{figure}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-warn-horiz}:
-\begin{enumerate}
-	\item Dua bidak menteri yang berada pada baris yang sama ditandai berwarna merah. Seluruh sel pada baris tersebut disorot untuk memperjelas area pelanggaran.
-\end{enumerate}
+Dengan kelima pasangan tersebut, nilai \textit{attackingViolation} adalah $5$. Nilai \textit{fitness} partikel 2 setelah iterasi pertama dihitung sebagai berikut:
 
-% ===== WARNING: VERTICAL =====
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/warning_vertical.png}
-	\caption{Tampilan peringatan pelanggaran kendala kolom.}
-	\label{fig:mockup-warn-vert}
-\end{figure}
+\begin{equation*}
+	fitness = w_1 \cdot \textit{attackingViolation} + w_2 \cdot \textit{adjacencyViolation} = (1 \cdot 5) + (2 \cdot 3) = 5 + 6 = 11
+\end{equation*}
 
-Penjelasan elemen pada Gambar \ref{fig:mockup-warn-vert}:
-\begin{enumerate}
-	\item Dua bidak menteri yang berada pada kolom yang sama ditandai berwarna merah. Seluruh sel pada kolom tersebut disorot untuk memperjelas area pelanggaran.
-\end{enumerate}
+Nilai \textit{fitness} ini lebih rendah dari \textit{fitness} awal partikel 2 (yang sebesar $20$), sehingga \textit{pBest} partikel 2 diperbarui dengan posisi baru. Selain itu, karena nilai ini ($11$) juga lebih rendah daripada \textit{fitness} \textit{nBest} sebelumnya (yaitu $14$ dari partikel 1), maka \textit{nBest} \textit{neighborhood} diperbarui menjadi partikel 2.
 
-% ===== HINT 1: CORRECT POSITION =====
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/hint1.png}
-	\caption{Tampilan fitur \textit{hint}: sorotan posisi yang benar.}
-	\label{fig:mockup-hint1}
-\end{figure}
-
-Penjelasan elemen pada Gambar \ref{fig:mockup-hint1}:
-\begin{enumerate}
-	\item Sorotan hijau pada sel yang merupakan posisi benar untuk sektor warna yang belum terisi, menunjukkan di mana menteri seharusnya ditempatkan.
-\end{enumerate}
-
-% ===== HINT 2: WRONG + CORRECT =====
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/hint2.png}
-	\caption{Tampilan fitur \textit{hint}: sorotan posisi salah dan posisi benar.}
-	\label{fig:mockup-hint2}
-\end{figure}
-
-Penjelasan elemen pada Gambar \ref{fig:mockup-hint2}:
-\begin{enumerate}
-	\item Menteri yang ditempatkan pada posisi salah ditandai dengan sorotan merah, menunjukkan bahwa penempatan perlu dipindahkan.
-	\item Sorotan oranye pada sel yang merupakan posisi benar untuk sektor warna tersebut, menunjukkan ke mana menteri seharusnya dipindahkan.
-\end{enumerate}
-
-% ===== WIN =====
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{mockup/win.png}
-	\caption{Rancangan tampilan kemenangan.}
-	\label{fig:mockup-win}
-\end{figure}
-
-Penjelasan elemen pada Gambar \ref{fig:mockup-win}:
-\begin{enumerate}
-	\item Ikon trofi sebagai elemen visual perayaan kemenangan.
-	\item Pesan ucapan selamat kepada pemain.
-	\item Waktu penyelesaian yang dicatat oleh \textit{stopwatch} selama permainan berlangsung.
-	\item Tombol \textit{Next} untuk melanjutkan ke level berikutnya.
-	\item Tombol \textit{Level Picker} untuk kembali ke halaman pemilihan level.
-	\item Latar belakang halaman permainan yang diredupkan (\textit{dimmed}) untuk memberikan fokus pada dialog kemenangan.
-\end{enumerate}
-
-\subsection{Teknologi yang Digunakan}
-\label{subsec:teknologi}
-
-Tabel \ref{tab:teknologi} merangkum teknologi dan pustaka yang digunakan dalam pengembangan sistem.
-
-\begin{longtable}{lp{9cm}}
-	\caption{Teknologi yang digunakan}
-	\label{tab:teknologi} \\
-	\toprule
-	\textbf{Teknologi} & \textbf{Penggunaan} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Teknologi} & \textbf{Penggunaan} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	Java (JDK 23) & Bahasa pemrograman utama untuk seluruh modul \\
-	\midrule
-	Java Swing / JFrame & \textit{Framework} antarmuka grafis untuk rendering papan, navigasi, dan interaksi pengguna \\
-	\midrule
-	\texttt{org.json} & Pustaka untuk penguraian berkas JSON papan \\
-	\midrule
-	JSON & Format penyimpanan data papan (\texttt{NxN\_levelM.json}) \\
-	\bottomrule
-\end{longtable}
-
-Pemilihan Java Swing sebagai \text it{framework} antarmuka didasarkan pada kemudahan implementasi dan ketersediaannya sebagai bagian dari \textit{Java Standard Edition} tanpa memerlukan dependensi eksternal tambahan. Meskipun Swing merupakan teknologi yang lebih lama dibandingkan alternatif seperti JavaFX, kemampuannya untuk merender grid berwarna dan menangani interaksi klik pengguna cukup memadai untuk kebutuhan visualisasi papan \textit{Colored Queens}.
-
-\section{Skenario dan Metode Pengujian}
-\label{sec:skenario-pengujian}
-
-\subsection{Dataset Puzzle}
-\label{subsec:dataset-puzzle}
-
-Pengujian dilakukan pada delapan ukuran papan \textit{Colored Queens}. Untuk ukuran standar ($7 \times 7$ hingga $12 \times 12$), masing-masing memiliki 250 level puzzle yang diuji secara keseluruhan. Untuk ukuran besar ($20 \times 20$ dan $30 \times 30$), masing-masing hanya memiliki satu level. Tabel \ref{tab:dataset} merangkum seluruh dataset yang digunakan.
-
-\begin{longtable}{ccc}
-	\caption{Dataset puzzle yang digunakan dalam pengujian}
-	\label{tab:dataset} \\
-	\toprule
-	\textbf{Ukuran Papan} & \textbf{Kategori} & \textbf{Jumlah Level} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Ukuran Papan} & \textbf{Kategori} & \textbf{Jumlah Level} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	$7 \times 7$ & \textit{Easy} & 250 \\
-	\midrule
-	$8 \times 8$ & \textit{Medium} & 250 \\
-	\midrule
-	$9 \times 9$ & \textit{Medium} & 250 \\
-	\midrule
-	$10 \times 10$ & \textit{Hard} & 250 \\
-	\midrule
-	$11 \times 11$ & \textit{Hard} & 250 \\
-	\midrule
-	$12 \times 12$ & \textit{Hard} & 250 \\
-	\midrule
-	$20 \times 20$ & \textit{Challenge} & 1 \\
-	\midrule
-	$30 \times 30$ & \textit{Challenge} & 1 \\
-	\bottomrule
-\end{longtable}
-
-Total dataset untuk ukuran standar berjumlah 1.500 puzzle ($6 \times 250$), ditambah 2 puzzle untuk ukuran besar, sehingga keseluruhan dataset mencakup 1.502 puzzle. Seluruh data papan bersumber dari permainan \textit{LinkedIn Queens} dan disimpan dalam format JSON. Variasi ukuran papan dipilih untuk menguji skalabilitas kedua algoritma: papan berukuran kecil ($7 \times 7$ hingga $9 \times 9$) memiliki ruang pencarian yang relatif terbatas, sedangkan papan berukuran besar ($20 \times 20$ dan $30 \times 30$) menghadirkan tantangan kombinatorik yang signifikan.
-
-\subsection{Parameter Pengujian}
-\label{subsec:parameter-pengujian}
-
-Kinerja kedua algoritma dievaluasi berdasarkan empat metrik utama:
-
-\begin{enumerate}
-	\item \textbf{Waktu eksekusi}: durasi yang diperlukan solver untuk menyelesaikan satu puzzle, diukur dalam milidetik menggunakan \texttt{System.currentTimeMillis()}.
-	\item \textbf{Tingkat keberhasilan}: persentase eksekusi yang menghasilkan solusi valid (seluruh kendala terpenuhi). Untuk solver \textit{backtracking}, metrik ini secara teoretis selalu bernilai 100\% apabila solusi ada, karena sifat pencarian yang lengkap (\textit{complete}). Untuk PSO, metrik ini bergantung pada konfigurasi parameter dan ukuran papan.
-	\item \textbf{Jumlah langkah/iterasi}: untuk \textit{backtracking}, jumlah penugasan yang berhasil dilanjutkan ke tingkat rekursi berikutnya (\textit{steps}) dan jumlah pembatalan penugasan (\textit{backtracks}). Untuk PSO, jumlah iterasi yang dieksekusi sebelum terminasi.
-	\item \textbf{Nilai \textit{fitness} akhir}: khusus untuk PSO, nilai fungsi \textit{fitness} dari solusi terbaik yang ditemukan. Nilai nol menandakan solusi valid; nilai positif menandakan jumlah pelanggaran yang tersisa, termasuk rincian \textit{adjacency violations} dan \textit{attacking violations}.
-\end{enumerate}
-
-\subsection{Skenario Pengujian}
-\label{subsec:skenario-pengujian-sub}
-
-Pengujian dirancang dalam tiga kelompok skenario yang masing-masing menguji aspek yang berbeda.
-
-\textbf{Skenario 1: Pengujian \textit{Backtracking}.} Solver \textit{backtracking} dengan \textit{forward checking} dan AC-3 dijalankan pada seluruh 1.502 puzzle untuk mengukur waktu eksekusi, jumlah langkah, dan jumlah \textit{backtracks}. Karena solver ini bersifat deterministik, setiap puzzle hanya perlu dijalankan satu kali.
-
-\textbf{Skenario 2: Pengujian variasi parameter PSO.} Solver PSO dijalankan dengan 13 konfigurasi parameter sebagaimana dirangkum pada Tabel \ref{tab:skenario-pso}. Setiap konfigurasi dijalankan pada seluruh dataset. Untuk ukuran standar, 250 level per ukuran dieksekusi dalam 5 \textit{batch} yang masing-masing berisi 50 level. Eksekusi \textit{batch} dilakukan secara paralel menggunakan \texttt{ExecutorService} dengan 6 \textit{thread} untuk mempercepat proses pengujian. Untuk ukuran besar ($20 \times 20$ dan $30 \times 30$), hanya PSO yang dijalankan (tanpa \textit{backtracking}) karena waktu komputasi solver deterministik pada ukuran tersebut tidak praktis. Hasil setiap konfigurasi diagregasi per \textit{batch} dan per ukuran papan untuk menghasilkan metrik rata-rata waktu eksekusi dan tingkat keberhasilan.
-
-\begin{longtable}{lp{4cm}p{5.5cm}}
-	\caption{Konfigurasi pengujian PSO}
-	\label{tab:skenario-pso} \\
-	\toprule
-	\textbf{Nama Konfigurasi} & \textbf{Parameter yang Diubah} & \textbf{Nilai} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Nama Konfigurasi} & \textbf{Parameter yang Diubah} & \textbf{Nilai} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	Benchmark & (baseline) & $P{=}5000$, $N_{\textit{nh}}{=}100$, $c_1{=}1{,}0$, $c_2{=}1{,}0$, $w{=}0{,}7$, $w_1{=}1{,}0$, $w_2{=}1{,}0$ \\
-	\midrule
-	LParticles & Jumlah partikel & $P = 3000$ \\
-	\midrule
-	MParticles & Jumlah partikel & $P = 8000$ \\
-	\midrule
-	MMParticles & Jumlah partikel & $P = 50000$ \\
-	\midrule
-	LNeighborhoods & Jumlah \textit{neighborhood} & $N_{\textit{nh}} = 50$ \\
-	\midrule
-	MNeighborhoods & Jumlah \textit{neighborhood} & $N_{\textit{nh}} = 200$ \\
-	\midrule
-	LInertia & Koefisien inersia & $w = 0{,}4$ \\
-	\midrule
-	MInertia & Koefisien inersia & $w = 0{,}9$ \\
-	\midrule
-	c1 & Koefisien kognitif & $c_1 = 1{,}5$ \\
-	\midrule
-	c2 & Koefisien sosial & $c_2 = 1{,}5$ \\
-	\midrule
-	w1 & Bobot \textit{attacking} & $w_1 = 2{,}0$ \\
-	\midrule
-	w2 & Bobot \textit{adjacency} & $w_2 = 2{,}0$ \\
-	\midrule
-	Optimal & Kombinasi terbaik & $P{=}50000$, $N_{\textit{nh}}{=}50$, $c_1{=}1{,}5$, $w{=}0{,}4$ \\
-	\bottomrule
-\end{longtable}
-
-\textbf{Skenario 3: Perbandingan \textit{Backtracking} vs PSO.} Hasil solver \textit{backtracking} dan konfigurasi PSO terbaik (Optimal) dibandingkan secara langsung pada seluruh ukuran papan standar, dengan fokus pada waktu eksekusi dan tingkat keberhasilan. Perbandingan ini bertujuan untuk mengidentifikasi kelebihan dan keterbatasan masing-masing pendekatan pada skala permasalahan yang berbeda.
-
-\subsection{Lingkungan Pengujian}
-\label{subsec:lingkungan-pengujian}
-
-Seluruh pengujian dilakukan pada satu mesin dengan spesifikasi yang ditunjukkan pada Tabel \ref{tab:lingkungan}. Penggunaan satu lingkungan pengujian yang konsisten memastikan bahwa perbedaan waktu eksekusi antarkonfigurasi tidak dipengaruhi oleh variasi perangkat keras.
-
-\begin{longtable}{ll}
-	\caption{Spesifikasi lingkungan pengujian}
-	\label{tab:lingkungan} \\
-	\toprule
-	\textbf{Komponen} & \textbf{Spesifikasi} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Komponen} & \textbf{Spesifikasi} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	Sistem Operasi & Windows 11 Home \\
-	\midrule
-	Prosesor & Intel i5-12400F \\
-	\midrule
-	Memori (RAM) & 32GB DDR4 @ 3200 MHz \\
-	\midrule
-	Java Version & 23 \\
-	\midrule
-	IDE & Visual Studio Code \\
-	\bottomrule
-\end{longtable}
+Proses pembaruan kecepatan, pembaruan posisi, dan evaluasi \textit{fitness} ini berulang pada iterasi-iterasi berikutnya. Apabila salah satu partikel mencapai \textit{fitness} bernilai 0 (yaitu konfigurasi tanpa pelanggaran), algoritma berhenti dan melaporkan partikel tersebut sebagai solusi valid. Apabila tidak, pencarian dilanjutkan hingga batas iterasi atau kondisi stagnasi tercapai.

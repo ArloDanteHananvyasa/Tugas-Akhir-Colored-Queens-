@@ -1,0 +1,72 @@
+unused parts:
+
+\section{Perbandingan Pendekatan}
+\label{sec:perbandingan}
+
+Bagian ini membandingkan dua kategori pendekatan yang digunakan dalam tugas akhir ini untuk menyelesaikan permasalahan \textit{Colored Queens}: pendekatan sistematis (\textit{complete}) dan pendekatan \textit{metaheuristic} (\textit{incomplete}). Perbandingan dilakukan secara teoretis untuk memberikan landasan bagi analisis empiris yang akan disajikan pada bab-bab selanjutnya.
+
+\subsection{Algoritma Complete vs Metaheuristic}
+\label{subsec:perbandingan-complete-meta}
+
+Perbedaan paling fundamental antara algoritma \textit{complete} dan \textit{metaheuristic} terletak pada jaminan terhadap solusi \cite{russell2020artificial}. Algoritma \textit{complete}, seperti \textit{backtracking} dengan \textit{forward checking} dan AC-3, menjamin bahwa solusi akan ditemukan apabila solusi tersebut ada, atau akan membuktikan ketiadaan solusi apabila tidak ada penugasan yang memenuhi seluruh kendala. Algoritma \textit{metaheuristic}, seperti PSO, tidak memberikan jaminan tersebut: algoritma dapat berakhir tanpa menemukan solusi valid meskipun solusi tersebut ada, atau dapat menemukan solusi yang mendekati optimal tetapi bukan solusi terbaik.
+
+Dari segi kompleksitas waktu, algoritma \textit{complete} memiliki kompleksitas terburuk yang eksponensial terhadap jumlah variabel, yaitu $O(d^n)$ di mana $d$ adalah ukuran domain maksimum dan $n$ adalah jumlah variabel \cite{kumar1998}. Meskipun teknik propagasi kendala seperti \textit{forward checking} dan AC-3 dapat mengurangi jumlah simpul yang dieksplorasi secara signifikan, kompleksitas terburuk tetap eksponensial. Di sisi lain, kompleksitas waktu \textit{metaheuristic} bergantung pada parameter yang ditetapkan pengguna (jumlah partikel, jumlah iterasi), sehingga waktu eksekusi dapat dikontrol secara langsung, meskipun dengan \textit{trade-off} terhadap kualitas solusi \cite{blum2003metaheuristics}.
+
+Dari segi penggunaan memori, algoritma \textit{backtracking} bekerja pada satu cabang pencarian dalam satu waktu sehingga hanya memerlukan ruang polinomial $O(nd)$ untuk menyimpan domain dan penugasan saat ini \cite{van2006backtracking}. PSO memerlukan ruang yang proporsional terhadap jumlah partikel dikali dimensi masalah, yaitu $O(P \cdot n)$ di mana $P$ adalah jumlah partikel, yang pada umumnya juga bersifat polinomial namun dengan konstanta yang lebih besar.
+
+Tabel \ref{tab:complete-vs-meta} merangkum perbandingan kedua kategori pendekatan.
+
+\begin{longtable}{lp{5.5cm}p{5.5cm}}
+	\caption{Perbandingan algoritma \textit{complete} dan \textit{metaheuristic}}
+	\label{tab:complete-vs-meta} \\
+	\toprule
+	\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
+	\midrule
+	\endfirsthead
+	\toprule
+	\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	Jaminan solusi & Ya - menemukan solusi jika ada, membuktikan ketiadaan jika tidak ada & Tidak - dapat gagal menemukan solusi yang ada \\
+	\midrule
+	Kompleksitas waktu & Eksponensial terburuk $O(d^n)$, namun propagasi kendala mereduksi secara signifikan & Terkontrol oleh parameter (iterasi $\times$ partikel), namun tanpa jaminan kualitas \\
+	\midrule
+	Penggunaan memori & Polinomial $O(nd)$ & Polinomial $O(Pn)$ \\
+	\midrule
+	Skalabilitas & Menurun pada instansi besar akibat ledakan kombinatorik & Lebih stabil, namun kualitas solusi menurun \\
+	\midrule
+	Determinisme & Deterministik (hasil konsisten) & Stokastik (hasil bervariasi antareksekusi) \\
+	\bottomrule
+\end{longtable}
+
+\subsection{Backtracking+FC+AC-3 vs PSO untuk Colored Queens}
+\label{subsec:perbandingan-bt-pso}
+
+Ketika diterapkan secara spesifik pada permasalahan \textit{Colored Queens}, masing-masing pendekatan memiliki karakteristik yang perlu dipertimbangkan.
+
+Pendekatan \textit{backtracking} dengan \textit{forward checking} dan AC-3 memanfaatkan struktur kendala \textit{Colored Queens} secara langsung. Setiap penugasan menteri pada suatu sektor warna segera memicu propagasi kendala ke seluruh sektor warna lainnya, menghapus posisi-posisi yang melanggar kendala baris, kolom, atau \textit{adjacency}. Karena \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete} (sebagaimana dibahas pada Bagian \ref{subsec:csp-colored-queens}), setiap penugasan memiliki dampak propagasi yang luas, yang memungkinkan pemangkasan domain secara agresif. Keunggulan pendekatan ini adalah kemampuannya untuk mendeteksi inkonsistensi secara dini dan menghindari eksplorasi cabang-cabang yang tidak produktif. Kelemahannya adalah pada papan berukuran besar, jumlah kombinasi yang harus dieksplorasi tetap dapat menjadi sangat besar meskipun dengan propagasi kendala.
+
+Pendekatan PSO beroperasi dengan paradigma yang berbeda. Alih-alih membangun solusi secara inkremental, PSO memulai dengan populasi solusi kandidat yang lengkap (setiap partikel merupakan penugasan untuk seluruh sektor warna) dan secara iteratif memperbaikinya melalui mekanisme \textit{velocity} dan interaksi sosial. Fungsi \textit{fitness} mengukur jumlah pelanggaran kendala, dan algoritma berusaha meminimalkan nilai ini hingga mencapai nol (solusi valid). Keunggulan pendekatan ini adalah kemampuannya untuk menjelajahi banyak area ruang solusi secara paralel melalui populasi partikel. Kelemahannya adalah tidak adanya jaminan konvergensi ke solusi valid, terutama pada masalah dengan ruang solusi yang sangat terkendala (\textit{highly constrained}) di mana solusi valid mungkin hanya menempati sebagian kecil dari ruang pencarian.
+
+Perbedaan mendasar lainnya terletak pada cara kedua pendekatan menangani kendala. Pendekatan \textit{backtracking}+FC+AC-3 menangani kendala secara eksplisit: kendala digunakan untuk memangkas domain dan mencegah penugasan yang tidak konsisten sejak awal. PSO menangani kendala secara implisit melalui fungsi \textit{fitness}: pelanggaran kendala tidak dicegah, melainkan dihukum (\textit{penalized}) dalam evaluasi \textit{fitness}, dan algoritma mengandalkan tekanan selektif untuk mengarahkan pencarian menuju solusi tanpa pelanggaran.
+
+\subsection{Justifikasi Pemilihan Metode}
+\label{subsec:justifikasi-metode}
+
+Pemilihan \textit{backtracking} dengan \textit{forward checking} dan AC-3 sebagai pendekatan sistematis didasarkan pada beberapa pertimbangan. Pertama, kombinasi ketiga teknik ini merupakan pendekatan standar yang telah terbukti efektif untuk berbagai permasalahan CSP \cite{bessiere2006constraint}, sehingga memberikan \textit{baseline} yang kuat untuk perbandingan. Kedua, \textit{forward checking} dan AC-3 saling melengkapi: \textit{forward checking} menangani konsistensi antara variabel yang baru ditugaskan dengan variabel lain, sementara AC-3 menangani konsistensi antarsesama variabel yang belum ditugaskan. Ketiga, jaminan kelengkapan memastikan bahwa kegagalan menemukan solusi dapat diinterpretasikan sebagai bukti ketiadaan solusi, bukan sebagai keterbatasan algoritma.
+
+Pemilihan PSO sebagai pendekatan \textit{metaheuristic} didasarkan pada pertimbangan berikut. Pertama, PSO memiliki struktur yang relatif sederhana dengan sedikit parameter dibandingkan \textit{metaheuristic} lainnya seperti \textit{Genetic Algorithm} yang memerlukan operator \textit{crossover} dan \textit{mutation} \cite{kennedy1995particle}. Kedua, adaptasi PSO untuk masalah diskrit telah menunjukkan hasil yang menjanjikan pada masalah N-Queens tradisional \cite{hu2003swarm}, sehingga menarik untuk mengevaluasi efektivitasnya pada varian \textit{Colored Queens} yang memiliki kendala tambahan. Ketiga, topologi \textit{local best} (lBest) yang digunakan memberikan mekanisme natural untuk menjaga diversitas populasi dan mengurangi risiko konvergensi prematur, yang merupakan pertimbangan penting pada masalah dengan banyak \textit{local optima}.
+
+Perbandingan kedua pendekatan ini diharapkan memberikan wawasan mengenai \textit{trade-off} antara kelengkapan solusi dan efisiensi waktu pada permasalahan \textit{Colored Queens} dengan berbagai ukuran papan, mulai dari ukuran kecil ($7 \times 7$) hingga besar ($30 \times 30$). Hasil pengujian dan analisis empiris akan disajikan pada Bab \ref{chap:hasil}.
+
+
+%move to bab 3:
+
+Dalam konteks \textit{Colored Queens}, \textit{forward checking} bekerja sebagai berikut: ketika sebuah menteri ditempatkan pada posisi $(r, c)$ di sektor warna tertentu, algoritma segera memindai domain seluruh sektor warna yang belum diproses dan menghapus setiap posisi yang berada pada baris $r$, kolom $c$, atau sel-sel yang bertetangga (\textit{adjacent}) dengan $(r, c)$. Mengingat \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete} sebagaimana dibahas pada Bagian \ref{subsec:csp-colored-queens}, setiap penugasan memengaruhi domain seluruh variabel lainnya, sehingga \textit{forward checking} memberikan dampak reduksi yang substansial pada setiap langkah.
+
+Sebagai ilustrasi, misalkan setelah \textit{forward checking}, domain sektor warna A hanya menyisakan satu posisi di baris 3, sementara domain sektor warna B juga hanya menyisakan satu posisi di baris 3. Kedua domain ini saling bertentangan karena melanggar kendala baris, namun \textit{forward checking} tidak akan mendeteksi konflik tersebut karena keduanya masih merupakan variabel yang belum ditugaskan.
+
+
+

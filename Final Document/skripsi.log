@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.20)  23 MAY 2026 15:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.20)  1 JUN 2026 00:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1483,11 +1483,8 @@ Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@cntb=\count398
 \multirow@dima=\skip125
 \bigstrutjot=\dimen343
-)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Bab/bab3.aux
-
-LaTeX Warning: Label `subsubsec:forward-checking' multiply defined.
-
-) (Bab/bab4.aux) (Bab/bab5.aux) (Lampiran/lampA.aux) (Lampiran/lampB.aux))
+)) (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Bab/bab3.aux)
+(Bab/bab4.aux) (Bab/bab5.aux) (Bab/bab6.aux) (Lampiran/lampA.aux))
 \openout1 = `skripsi.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 270.
@@ -1605,7 +1602,7 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<./Gambar/Logo-UNPAR.png, id=330, 180.31364pt x 177.42285pt>
+<./Gambar/Logo-UNPAR.png, id=294, 180.31364pt x 177.42285pt>
 File: ./Gambar/Logo-UNPAR.png Graphic file (type png)
 <use ./Gambar/Logo-UNPAR.png>
 Package pdftex.def Info: ./Gambar/Logo-UNPAR.png  used on input line 460.
@@ -1616,73 +1613,47 @@ Package pdftex.def Info: ./Gambar/Logo-UNPAR.png  used on input line 460.
 {C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
 lm-ec.enc} <./Gambar/Logo-UNPAR.png>] [2
 
-]
-File: ./Gambar/Logo-UNPAR.png Graphic file (type png)
-<use ./Gambar/Logo-UNPAR.png>
-Package pdftex.def Info: ./Gambar/Logo-UNPAR.png  used on input line 460.
-(pdftex.def)             Requested size: 180.3132pt x 177.42241pt.
- [3] [4
-
-]
-LaTeX Font Info:    Trying to load font information for U+pzd on input line 460
+] (skripsi.toc
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Font shape `T1/lmr/bx/sc' in size <10.95> not available
+(Font)              Font shape `T1/cmr/bx/sc' tried instead on input line 2.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
 .
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\up
-zd.fd
-File: upzd.fd 2001/06/04 font definitions for U/pzd.
-)
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 4
-60.
-
-(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss
-.fd
-File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmss' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [5] [6
-
-] [7] [8
-
-]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
-60.
 
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr
 .fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
-60.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+.
 
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm
 .fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-460.
+2.
 
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslms
 y.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-460.
+2.
 
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlme
 x.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 460.
+(Font)              <10.95> on input line 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 460.
+(Font)              <8> on input line 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 460.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 460
-.
+(Font)              <6> on input line 2.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
 
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\
 umsa.fd
@@ -1692,8 +1663,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 \mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 460
-.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
 
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\
 umsb.fd
@@ -1702,83 +1672,44 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/microtype
 \mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [9{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
-/lm/lm-rm.enc}{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts
-/enc/dvips/lm/lm-mathsy.enc}] [10
-
-] [11{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvip
-s/lm/lm-mathit.enc}] [12
-
-] [13]
-[14
-
-] [15
-
-] [16
-
-] (skripsi.toc
-Package microtype Info: Character `029' is missing
-(microtype)             in font `T1/lmr/m/sc/10.95'.
-(microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Font shape `T1/lmr/bx/sc' in size <10.95> not available
-(Font)              Font shape `T1/cmr/bx/sc' tried instead on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 2.
- [17])
+) [3{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
+/lm/lm-mathsy.enc}])
 \tf@toc=\write6
 \openout6 = `skripsi.toc'.
 
- [18] (skripsi.lof [19
+ [4] (skripsi.lof [5
 
-])
+{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
+lm-rm.enc}])
 \tf@lof=\write7
 \openout7 = `skripsi.lof'.
 
- [20]
+ [6]
 \openout2 = `Bab/bab1.aux'.
 
- (Bab/bab1.tex
+
+(Bab/bab1.tex
 Bab 1.
-
-LaTeX Warning: Citation `CITE_bell2009survey' on page 1 undefined on input line
- 8.
-
-
-LaTeX Warning: Citation `CITE_gent2017complexity' on page 1 undefined on input 
-line 10.
-
-
-LaTeX Warning: Citation `CITE_linkedin2024queens' on page 1 undefined on input 
-line 12.
-
-
-LaTeX Warning: Citation `CITE_gmpuzzles2013starbattle' on page 1 undefined on i
-nput line 12.
-
-
-LaTeX Warning: Citation `CITE_ali2026qubo' on page 1 undefined on input line 14
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
 .
 
+(C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss
+.fd
+File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [1
 
-LaTeX Warning: Citation `CITE_russell2020artificial' on page 1 undefined on inp
-ut line 16.
 
 
-LaTeX Warning: Citation `CITE_vanbeek2006backtracking' on page 1 undefined on i
-nput line 16.
+{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
+lm-mathit.enc}]
 
-[1
-
-
-
-]
-
-LaTeX Warning: Citation `CITE_kennedy1995pso' on page 2 undefined on input line
- 18.
+LaTeX Warning: Citation `vanbeek2006backtracking' on page 2 undefined on input 
+line 16.
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
 7.
@@ -1796,7 +1727,7 @@ lm/lm-ts1.enc}] [3]) [4]
 
  (Bab/bab2.tex
 Bab 2.
-<./Gambar/queen_attack_pattern.png, id=674, 903.375pt x 451.6875pt>
+<./Gambar/queen_attack_pattern.png, id=608, 903.375pt x 451.6875pt>
 File: ./Gambar/queen_attack_pattern.png Graphic file (type png)
 <use ./Gambar/queen_attack_pattern.png>
 Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line 
@@ -1807,100 +1738,97 @@ Package pdftex.def Info: ./Gambar/queen_attack_pattern.png  used on input line
 
 
 
- <./Gambar/queen_attack_pattern.png (PNG copy)>]
-<./Gambar/N_queens_correct.png, id=687, 396.48125pt x 395.4775pt>
+ <./Gambar/queen_attack_pattern.png (PNG copy)>] [6]
+<./Gambar/N_queens_correct.png, id=628, 396.48125pt x 395.4775pt>
 File: ./Gambar/N_queens_correct.png Graphic file (type png)
 <use ./Gambar/N_queens_correct.png>
 Package pdftex.def Info: ./Gambar/N_queens_correct.png  used on input line 38.
 (pdftex.def)             Requested size: 164.31754pt x 163.90286pt.
- [6] [7{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dv
-ips/lm/lm-mathex.enc} <./Gambar/N_queens_correct.png>]
-<./Gambar/Queens_unsolved.png, id=713, 399.74344pt x 402.75468pt>
+ [7{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
+lm/lm-mathex.enc} <./Gambar/N_queens_correct.png>]
+<./Gambar/Queens_unsolved.png, id=646, 399.74344pt x 402.75468pt>
 File: ./Gambar/Queens_unsolved.png Graphic file (type png)
 <use ./Gambar/Queens_unsolved.png>
 Package pdftex.def Info: ./Gambar/Queens_unsolved.png  used on input line 66.
-(pdftex.def)             Requested size: 211.26028pt x 212.85056pt.
-<./Gambar/Queens_solved.png, id=714, 399.74344pt x 402.75468pt>
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+<./Gambar/Queens_solved.png, id=647, 399.74344pt x 402.75468pt>
 File: ./Gambar/Queens_solved.png Graphic file (type png)
 <use ./Gambar/Queens_solved.png>
 Package pdftex.def Info: ./Gambar/Queens_solved.png  used on input line 73.
-(pdftex.def)             Requested size: 211.26028pt x 212.85056pt.
- [8 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>] [9] [10] [11]
+(pdftex.def)             Requested size: 164.31754pt x 165.55452pt.
+ [8] [9 <./Gambar/Queens_unsolved.png> <./Gambar/Queens_solved.png>]
+<./Gambar/domainwipeout2.png, id=666, 380.17032pt x 378.66469pt>
+File: ./Gambar/domainwipeout2.png Graphic file (type png)
+<use ./Gambar/domainwipeout2.png>
+Package pdftex.def Info: ./Gambar/domainwipeout2.png  used on input line 104.
+(pdftex.def)             Requested size: 164.31754pt x 163.672pt.
+<./Gambar/domainwipeout.png, id=667, 451.6875pt x 450.18187pt>
+File: ./Gambar/domainwipeout.png Graphic file (type png)
+<use ./Gambar/domainwipeout.png>
+Package pdftex.def Info: ./Gambar/domainwipeout.png  used on input line 111.
+(pdftex.def)             Requested size: 164.31754pt x 163.7689pt.
+ [10 <./Gambar/domainwipeout2.png> <./Gambar/domainwipeout.png>]
+<./Gambar/adjsmallboard.png, id=675, 451.6875pt x 447.17062pt>
+File: ./Gambar/adjsmallboard.png Graphic file (type png)
+<use ./Gambar/adjsmallboard.png>
+Package pdftex.def Info: ./Gambar/adjsmallboard.png  used on input line 120.
+(pdftex.def)             Requested size: 164.31754pt x 162.67346pt.
+
+[11 <./Gambar/adjsmallboard.png>] [12] [13]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 178.
- [12] [13]
-<gambar/AC3_start.png, id=785, 976.64874pt x 915.42pt>
+put line 201.
+ [14] [15]
+
+LaTeX Warning: Citation `fig:ac3-contoh' on page 16 undefined on input line 264
+.
+
+<gambar/AC3_start.png, id=732, 976.64874pt x 915.42pt>
 File: gambar/AC3_start.png Graphic file (type png)
 <use gambar/AC3_start.png>
-Package pdftex.def Info: gambar/AC3_start.png  used on input line 249.
+Package pdftex.def Info: gambar/AC3_start.png  used on input line 270.
 (pdftex.def)             Requested size: 211.26028pt x 198.01273pt.
-<gambar/AC3_end.png, id=786, 732.48656pt x 686.565pt>
+<gambar/AC3_end.png, id=733, 732.48656pt x 686.565pt>
 File: gambar/AC3_end.png Graphic file (type png)
 <use gambar/AC3_end.png>
-Package pdftex.def Info: gambar/AC3_end.png  used on input line 255.
+Package pdftex.def Info: gambar/AC3_end.png  used on input line 276.
 (pdftex.def)             Requested size: 211.26028pt x 198.00923pt.
- [14 <./gambar/AC3_start.png> <./gambar/AC3_end.png (PNG copy)>]
+[16] [17 <./gambar/AC3_start.png> <./gambar/AC3_end.png (PNG copy)>] [18]
+[19]
 
-LaTeX Warning: Reference `chap:implementasi' on page 15 undefined on input line
- 303.
+LaTeX Warning: Citation `eq:pso-velocity' on page 20 undefined on input line 35
+5.
 
-[15] [16]
-<gambar/pso_single.png, id=827, 766.865pt x 363.3575pt>
+
+LaTeX Warning: Citation `eq:pso-position' on page 20 undefined on input line 35
+5.
+
+<gambar/pso_single.png, id=783, 766.865pt x 363.3575pt>
 File: gambar/pso_single.png Graphic file (type png)
 <use gambar/pso_single.png>
-Package pdftex.def Info: gambar/pso_single.png  used on input line 352.
+Package pdftex.def Info: gambar/pso_single.png  used on input line 373.
 (pdftex.def)             Requested size: 234.73524pt x 111.22029pt.
-<gambar/psoflow.png, id=828, 275.1078pt x 609.2361pt>
+[20]
+<gambar/psoflow.png, id=795, 275.1078pt x 609.2361pt>
 File: gambar/psoflow.png Graphic file (type png)
 <use gambar/psoflow.png>
-Package pdftex.def Info: gambar/psoflow.png  used on input line 360.
-(pdftex.def)             Requested size: 187.78532pt x 415.87401pt.
- [17 <./gambar/pso_single.png>] [18 <./gambar/psoflow.png>]
-
-LaTeX Warning: Reference `chap:implementasi' on page 19 undefined on input line
- 390.
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 413--413
-[]|\T1/lmr/bx/n/10.95 (+20) Complete
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 413--413
-\T1/lmr/bx/n/10.95 (+20) (Backtracking+FC+AC-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 417--417
-[]|\T1/lmr/bx/n/10.95 (+20) Complete
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 417--417
-\T1/lmr/bx/n/10.95 (+20) (Backtracking+FC+AC-
- []
-
-[20]
-
-LaTeX Warning: Reference `chap:implementasi' on page 21 undefined on input line
- 452.
-
-) [21]
+Package pdftex.def Info: gambar/psoflow.png  used on input line 390.
+(pdftex.def)             Requested size: 140.84258pt x 311.91481pt.
+ [21 <./gambar/pso_single.png>] [22 <./gambar/psoflow.png>]) [23]
 \openout2 = `Bab/bab3.aux'.
 
- (Bab/bab3.tex [22
+
+(Bab/bab3.tex [24
 
 
 
 
 ]
 Bab 3.
-<./Gambar/flowchart.png, id=888, 804.00375pt x 480.79625pt>
+<./Gambar/flowchart.png, id=843, 804.00375pt x 480.79625pt>
 File: ./Gambar/flowchart.png Graphic file (type png)
 <use ./Gambar/flowchart.png>
 Package pdftex.def Info: ./Gambar/flowchart.png  used on input line 15.
 (pdftex.def)             Requested size: 399.05278pt x 238.62946pt.
-[23]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
 5.
 
@@ -1912,212 +1840,491 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [24 <./Gambar/flowchart.png>]
+ [25]
 
-LaTeX Warning: Reference `chap:implementasi' on page 25 undefined on input line
+LaTeX Warning: Reference `sec:perancangan-backtracking' on page 26 undefined on
+ input line 31.
+
+
+LaTeX Warning: Reference `sec:perancangan-pso' on page 26 undefined on input li
+ne 33.
+
+
+LaTeX Warning: Reference `chap:implementasi' on page 26 undefined on input line
  37.
 
+[26 <./Gambar/flowchart.png>]
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 66.
-
-[25] [26]
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 161.
-
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 161.
+(Font)              using `T1/lmr/m/scsl' instead on input line 65.
 
 [27] [28]
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 213.
-
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 213.
-
-[29] [30]
-
-LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 289.
+<./Gambar/flowbt.png, id=895, 2039.62pt x 920.43875pt>
+File: ./Gambar/flowbt.png Graphic file (type png)
+<use ./Gambar/flowbt.png>
+Package pdftex.def Info: ./Gambar/flowbt.png  used on input line 133.
+(pdftex.def)             Requested size: 445.99553pt x 201.26122pt.
 
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 289.
-
-[31] [32]
-
-LaTeX Warning: Reference `chap:implementasi' on page 33 undefined on input line
- 331.
+(Font)              using `T1/lmr/m/scsl' instead on input line 141.
 
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 343.
+(Font)              using `T1/lmr/m/scsl' instead on input line 141.
 
-[33] [34]
+[29] [30 <./Gambar/flowbt.png>]
+<./Gambar/flowfc.png, id=914, 1547.7825pt x 684.5575pt>
+File: ./Gambar/flowfc.png Graphic file (type png)
+<use ./Gambar/flowfc.png>
+Package pdftex.def Info: ./Gambar/flowfc.png  used on input line 165.
+(pdftex.def)             Requested size: 445.99553pt x 197.25269pt.
+
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 441.
+(Font)              using `T1/lmr/m/scsl' instead on input line 177.
 
-[35]
 
-LaTeX Warning: Reference `chap:implementasi' on page 36 undefined on input line
- 476.
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 177.
 
-[36]
+[31]
+<./Gambar/flowrevise.png, id=927, 1499.6025pt x 544.0325pt>
+File: ./Gambar/flowrevise.png Graphic file (type png)
+<use ./Gambar/flowrevise.png>
+Package pdftex.def Info: ./Gambar/flowrevise.png  used on input line 189.
+(pdftex.def)             Requested size: 445.99553pt x 161.79979pt.
+ [32 <./Gambar/flowfc.png>]
 
-LaTeX Warning: Reference `chap:implementasi' on page 37 undefined on input line
- 518.
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 214.
 
-[37]
-Overfull \hbox (55.52289pt too wide) in paragraph at lines 530--531
-[]\T1/lmr/m/n/10.95 (-20) Modul ke-dua ada-lah mo-dul so-lver, yang ter-di-ri a
-tas dua ke-las da-lam pa-ket ter-pi-sah: $\T1/lmtt/m/n/10.95 BacktrackingSolver
-AC3$
- []
 
-<./Gambar/cDiagram.png, id=1037, 867.7218pt x 1039.9653pt>
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 214.
+
+[33 <./Gambar/flowrevise.png>]
+<./Gambar/flowac3.png, id=947, 1130.2225pt x 631.35875pt>
+File: ./Gambar/flowac3.png Graphic file (type png)
+<use ./Gambar/flowac3.png>
+Package pdftex.def Info: ./Gambar/flowac3.png  used on input line 217.
+(pdftex.def)             Requested size: 445.99553pt x 249.1383pt.
+ [34 <./Gambar/flowac3.png>]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 238.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 238.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 238.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 238.
+
+<./Gambar/./bt/20.png, id=958, 606.76688pt x 605.26125pt>
+File: ./Gambar/./bt/20.png Graphic file (type png)
+<use ./Gambar/./bt/20.png>
+Package pdftex.def Info: ./Gambar/./bt/20.png  used on input line 249.
+(pdftex.def)             Requested size: 140.84258pt x 140.49089pt.
+<./Gambar/./bt/21.png, id=960, 606.76688pt x 606.76688pt>
+File: ./Gambar/./bt/21.png Graphic file (type png)
+<use ./Gambar/./bt/21.png>
+Package pdftex.def Info: ./Gambar/./bt/21.png  used on input line 258.
+(pdftex.def)             Requested size: 140.84258pt x 140.84038pt.
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 263.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 263.
+
+[35 <./Gambar/./bt/20.png>]
+<./Gambar/./bt/22.png, id=969, 1252.68pt x 385.44pt>
+File: ./Gambar/./bt/22.png Graphic file (type png)
+<use ./Gambar/./bt/22.png>
+Package pdftex.def Info: ./Gambar/./bt/22.png  used on input line 269.
+(pdftex.def)             Requested size: 352.10286pt x 108.34003pt.
+<./Gambar/./bt/23.png, id=971, 1445.4pt x 545.03625pt>
+File: ./Gambar/./bt/23.png Graphic file (type png)
+<use ./Gambar/./bt/23.png>
+Package pdftex.def Info: ./Gambar/./bt/23.png  used on input line 278.
+(pdftex.def)             Requested size: 328.6279pt x 123.91693pt.
+ [36 <./Gambar/./bt/21.png> <./Gambar/./bt/22.png> <./Gambar/./bt/23.png>]
+<./Gambar/./bt/24.png, id=981, 639.13782pt x 639.13782pt>
+File: ./Gambar/./bt/24.png Graphic file (type png)
+<use ./Gambar/./bt/24.png>
+Package pdftex.def Info: ./Gambar/./bt/24.png  used on input line 289.
+(pdftex.def)             Requested size: 140.84258pt x 140.8448pt.
+<./Gambar/./bt/25.png, id=983, 659.46375pt x 659.46375pt>
+File: ./Gambar/./bt/25.png Graphic file (type png)
+<use ./Gambar/./bt/25.png>
+Package pdftex.def Info: ./Gambar/./bt/25.png  used on input line 298.
+(pdftex.def)             Requested size: 140.84258pt x 140.83604pt.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 304.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 304.
+
+[37 <./Gambar/./bt/24.png> <./Gambar/./bt/25.png>]
+<./Gambar/./bt/26.png, id=992, 608.2725pt x 608.2725pt>
+File: ./Gambar/./bt/26.png Graphic file (type png)
+<use ./Gambar/./bt/26.png>
+Package pdftex.def Info: ./Gambar/./bt/26.png  used on input line 307.
+(pdftex.def)             Requested size: 140.84258pt x 140.83716pt.
+<./Gambar/./bt/27.png, id=994, 607.51968pt x 607.51968pt>
+File: ./Gambar/./bt/27.png Graphic file (type png)
+<use ./Gambar/./bt/27.png>
+Package pdftex.def Info: ./Gambar/./bt/27.png  used on input line 318.
+(pdftex.def)             Requested size: 140.84258pt x 140.83897pt.
+<./Gambar/./bt/28.png, id=996, 611.28375pt x 611.28375pt>
+File: ./Gambar/./bt/28.png Graphic file (type png)
+<use ./Gambar/./bt/28.png>
+Package pdftex.def Info: ./Gambar/./bt/28.png  used on input line 327.
+(pdftex.def)             Requested size: 140.84258pt x 140.83481pt.
+ [38 <./Gambar/./bt/26.png> <./Gambar/./bt/27.png>]
+<./Gambar/./bt/29.png, id=1006, 605.26125pt x 605.26125pt>
+File: ./Gambar/./bt/29.png Graphic file (type png)
+<use ./Gambar/./bt/29.png>
+Package pdftex.def Info: ./Gambar/./bt/29.png  used on input line 338.
+(pdftex.def)             Requested size: 140.84258pt x 140.84184pt.
+<./Gambar/./bt/30.png, id=1008, 605.26125pt x 605.26125pt>
+File: ./Gambar/./bt/30.png Graphic file (type png)
+<use ./Gambar/./bt/30.png>
+Package pdftex.def Info: ./Gambar/./bt/30.png  used on input line 347.
+(pdftex.def)             Requested size: 140.84258pt x 140.84184pt.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 355.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 355.
+
+[39 <./Gambar/./bt/28.png> <./Gambar/./bt/29.png> <./Gambar/./bt/30.png>]
+<./Gambar/./bt/31.png, id=1017, 645.91313pt x 645.91313pt>
+File: ./Gambar/./bt/31.png Graphic file (type png)
+<use ./Gambar/./bt/31.png>
+Package pdftex.def Info: ./Gambar/./bt/31.png  used on input line 358.
+(pdftex.def)             Requested size: 187.78532pt x 187.78308pt.
+
+
+LaTeX Warning: Reference `subsubsec:discrete-pso' on page 40 undefined on input
+ line 370.
+
+[40 <./Gambar/./bt/31.png>]
+<./Gambar/flowparticle.png, id=1027, 1658.195pt x 606.265pt>
+File: ./Gambar/flowparticle.png Graphic file (type png)
+<use ./Gambar/flowparticle.png>
+Package pdftex.def Info: ./Gambar/flowparticle.png  used on input line 379.
+(pdftex.def)             Requested size: 445.99553pt x 163.05542pt.
+
+
+LaTeX Warning: Reference `subsec:topologi-pso' on page 41 undefined on input li
+ne 386.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 402.
+
+[41 <./Gambar/flowparticle.png>] [42]
+
+LaTeX Warning: Reference `subsec:fitness-pso' on page 43 undefined on input lin
+e 432.
+
+<./Gambar/flowpso.png, id=1048, 1762.585pt x 1065.9825pt>
+File: ./Gambar/flowpso.png Graphic file (type png)
+<use ./Gambar/flowpso.png>
+Package pdftex.def Info: ./Gambar/flowpso.png  used on input line 441.
+(pdftex.def)             Requested size: 445.99553pt x 269.73181pt.
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 449.
+
+[43 <./Gambar/flowpso.png>]
+
+LaTeX Warning: Reference `subsec:stagnasi-terminasi' on page 44 undefined on in
+put line 468.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 470.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 470.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 470.
+
+[44]
+
+LaTeX Warning: Reference `subsec:fungsi-fitness-pso' on page 45 undefined on in
+put line 493.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 515.
+
+[45]
+
+LaTeX Warning: Reference `subsubsec:fungsi-fitness-pso' on page 46 undefined on
+ input line 532.
+
+<./Gambar/./pso/39.png, id=1079, 708.39656pt x 708.39656pt>
+File: ./Gambar/./pso/39.png Graphic file (type png)
+<use ./Gambar/./pso/39.png>
+Package pdftex.def Info: ./Gambar/./pso/39.png  used on input line 544.
+(pdftex.def)             Requested size: 140.84258pt x 140.83368pt.
+[46 <./Gambar/./pso/39.png>]
+<./Gambar/./pso/40.png, id=1088, 734.745pt x 734.745pt>
+File: ./Gambar/./pso/40.png Graphic file (type png)
+<use ./Gambar/./pso/40.png>
+Package pdftex.def Info: ./Gambar/./pso/40.png  used on input line 553.
+(pdftex.def)             Requested size: 140.84258pt x 140.83624pt.
+<./Gambar/./pso/41.png, id=1090, 737.00343pt x 737.00343pt>
+File: ./Gambar/./pso/41.png Graphic file (type png)
+<use ./Gambar/./pso/41.png>
+Package pdftex.def Info: ./Gambar/./pso/41.png  used on input line 562.
+(pdftex.def)             Requested size: 140.84258pt x 140.8418pt.
+<./Gambar/./pso/42.png, id=1092, 712.91344pt x 712.91344pt>
+File: ./Gambar/./pso/42.png Graphic file (type png)
+<use ./Gambar/./pso/42.png>
+Package pdftex.def Info: ./Gambar/./pso/42.png  used on input line 573.
+(pdftex.def)             Requested size: 140.84258pt x 140.83965pt.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 579.
+
+[47 <./Gambar/./pso/40.png> <./Gambar/./pso/41.png> <./Gambar/./pso/42.png>]
+<./Gambar/./pso/46.png, id=1102, 548.0475pt x 547.2947pt>
+File: ./Gambar/./pso/46.png Graphic file (type png)
+<use ./Gambar/./pso/46.png>
+Package pdftex.def Info: ./Gambar/./pso/46.png  used on input line 582.
+(pdftex.def)             Requested size: 140.84258pt x 140.6481pt.
+<./Gambar/./pso/44.png, id=1104, 734.745pt x 734.745pt>
+File: ./Gambar/./pso/44.png Graphic file (type png)
+<use ./Gambar/./pso/44.png>
+Package pdftex.def Info: ./Gambar/./pso/44.png  used on input line 591.
+(pdftex.def)             Requested size: 140.84258pt x 140.83624pt.
+<./Gambar/./pso/45.png, id=1108, 532.99126pt x 529.98pt>
+File: ./Gambar/./pso/45.png Graphic file (type png)
+<use ./Gambar/./pso/45.png>
+Package pdftex.def Info: ./Gambar/./pso/45.png  used on input line 600.
+(pdftex.def)             Requested size: 140.84258pt x 140.04776pt.
+<./Gambar/./pso/43.png, id=1110, 727.21687pt x 727.21687pt>
+File: ./Gambar/./pso/43.png Graphic file (type png)
+<use ./Gambar/./pso/43.png>
+Package pdftex.def Info: ./Gambar/./pso/43.png  used on input line 609.
+(pdftex.def)             Requested size: 140.84258pt x 140.83577pt.
+
+[48 <./Gambar/./pso/46.png> <./Gambar/./pso/44.png>]
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 618.
+
+[49 <./Gambar/./pso/45.png> <./Gambar/./pso/43.png>]) [50]
+\openout2 = `Bab/bab4.aux'.
+
+ (Bab/bab4.tex
+Bab 4.
+<./Gambar/cDiagram.png, id=1129, 867.7218pt x 1039.9653pt>
 File: ./Gambar/cDiagram.png Graphic file (type png)
 <use ./Gambar/cDiagram.png>
-Package pdftex.def Info: ./Gambar/cDiagram.png  used on input line 538.
+Package pdftex.def Info: ./Gambar/cDiagram.png  used on input line 14.
 (pdftex.def)             Requested size: 399.05278pt x 478.2629pt.
-[38]
-Underfull \hbox (badness 1874) in paragraph at lines 566--567
-[]|\T1/lmr/m/n/10.95 (+20) Pembacaan dan pe-ngu-ra-i-an ber-kas
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 21.
+[51
+
+
+
+
+] [52 <./Gambar/cDiagram.png>]
+Overfull \hbox (27.41162pt too wide) in alignment at lines 62--68
+ [] [] [] 
  []
 
-ignored error: Infinite glue shrinkage found in box being split [39 <./Gambar/c
-Diagram.png>]
-<./Gambar/flowchart_app.png, id=1050, 650.43pt x 409.68056pt>
+
+Overfull \hbox (27.41162pt too wide) in alignment at lines 68--72
+ [] [] [] 
+ []
+
+
+Overfull \hbox (27.41162pt too wide) in alignment at lines 72--74
+ [] [] [] 
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 77--78
+\T1/lmr/m/n/10.95 (+20) mat \T1/lmtt/m/n/10.95 "R,G,B"\T1/lmr/m/n/10.95 (+20) )
+ ke daf-tar ko-o-rdi-nat
+ []
+
+
+Underfull \hbox (badness 2237) in paragraph at lines 77--78
+\T1/lmr/m/n/10.95 (+20) li-ki war-na ter-se-but. Peng-gu-na-an
+ []
+
+
+Overfull \hbox (27.41162pt too wide) in alignment at lines 74--81
+ [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+[]|\T1/lmr/m/it/10.95 (+20) Constructor \T1/lmr/m/n/10.95 (+20) yang me-ne-ri-m
+a ukur-an pap-an
+ []
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 98--99
+\T1/lmr/m/n/10.95 (+20) dan daf-tar ob-jek \T1/lmtt/m/n/10.95 Cell\T1/lmr/m/n/1
+0.95 (+20) , ke-mu-di-an me-mang-gil
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+\T1/lmtt/m/n/10.95 buildColorMap() \T1/lmr/m/n/10.95 (+20) dan \T1/lmtt/m/n/10.
+95 buildColorSymbols()
+ []
+
+ignored error: Infinite glue shrinkage found in box being split [53]
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+[]|\T1/lmr/m/n/10.95 (+20) Mengurai \T1/lmr/m/it/10.95 (+20) string \T1/lmr/m/n
+/10.95 (+20) war-na da-lam for-mat
+ []
+
+ignored error: Infinite glue shrinkage found in box being split [54]
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+[]|\T1/lmr/m/n/10.95 (+20) Array so-lu-si di ma-na
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+\T1/lmtt/m/n/10.95 solution[$\OML/lmm/m/it/10.95 i$\T1/lmtt/m/n/10.95 ] \T1/lmr
+/m/n/10.95 (+20) me-nyimp-an in-
+ []
+
+ignored error: Infinite glue shrinkage found in box being split [55]
+ignored error: Infinite glue shrinkage found in box being split [56] [57]
+[58] [59] [60] [61] [62] [63]
+Overfull \hbox (11.18396pt too wide) in paragraph at lines 541--542
+\T1/lmr/m/n/10.95 (-20) meng-i-ni-si-a-li-sa-si ob-jek \T1/lmtt/m/n/10.95 Homep
+age \T1/lmr/m/n/10.95 (-20) pa-da \T1/lmr/m/it/10.95 (-20) Event Dis-pa-tch Thr
+e-ad \T1/lmr/m/n/10.95 (-20) me-la-lui \T1/lmtt/m/n/10.95 SwingUtilities.invoke
+Later()
+ []
+
+[64] [65]
+<./Gambar/flowchart_app.png, id=1239, 650.43pt x 409.68056pt>
 File: ./Gambar/flowchart_app.png Graphic file (type png)
 <use ./Gambar/flowchart_app.png>
-Package pdftex.def Info: ./Gambar/flowchart_app.png  used on input line 585.
+Package pdftex.def Info: ./Gambar/flowchart_app.png  used on input line 605.
 (pdftex.def)             Requested size: 399.05278pt x 251.35506pt.
- [40 <./Gambar/flowchart_app.png>]
-Overfull \hbox (6.51982pt too wide) in paragraph at lines 597--598
+
+Overfull \hbox (6.51982pt too wide) in paragraph at lines 617--618
 []\T1/lmr/bx/n/10.95 (-20) Memuat pap-an dan men-ja-lank-an so-lver. \T1/lmr/m/
 n/10.95 (-20) Se-te-lah peng-gu-na me-mi-lih le-vel, ke-las \T1/lmtt/m/n/10.95 
 GameWindow
  []
 
-<./Gambar/mockup/homepage.png, id=1060, 680.5425pt x 382.42876pt>
+[66 <./Gambar/flowchart_app.png>]
+<./Gambar/mockup/homepage.png, id=1252, 680.5425pt x 382.42876pt>
 File: ./Gambar/mockup/homepage.png Graphic file (type png)
 <use ./Gambar/mockup/homepage.png>
-Package pdftex.def Info: ./Gambar/mockup/homepage.png  used on input line 619.
+Package pdftex.def Info: ./Gambar/mockup/homepage.png  used on input line 639.
 (pdftex.def)             Requested size: 352.10286pt x 197.8604pt.
-[41 <./Gambar/mockup/homepage.png (PNG copy)>]
-<./Gambar/mockup/levelSelector.png, id=1076, 764.8575pt x 430.60875pt>
+<./Gambar/mockup/levelSelector.png, id=1254, 764.8575pt x 430.60875pt>
 File: ./Gambar/mockup/levelSelector.png Graphic file (type png)
 <use ./Gambar/mockup/levelSelector.png>
 Package pdftex.def Info: ./Gambar/mockup/levelSelector.png  used on input line 
-633.
+653.
 (pdftex.def)             Requested size: 352.10286pt x 198.23354pt.
-<./Gambar/mockup/level.png, id=1078, 764.8575pt x 431.36156pt>
+ [67 <./Gambar/mockup/homepage.png (PNG copy)>]
+<./Gambar/mockup/level.png, id=1270, 764.8575pt x 431.36156pt>
 File: ./Gambar/mockup/level.png Graphic file (type png)
 <use ./Gambar/mockup/level.png>
-Package pdftex.def Info: ./Gambar/mockup/level.png  used on input line 650.
+Package pdftex.def Info: ./Gambar/mockup/level.png  used on input line 670.
 (pdftex.def)             Requested size: 352.10286pt x 198.58011pt.
- [42 <./Gambar/mockup/levelSelector.png (PNG copy)> <./Gambar/mockup/level.png 
+ [68 <./Gambar/mockup/levelSelector.png (PNG copy)> <./Gambar/mockup/level.png 
 (PNG copy)>]
-<./Gambar/mockup/solved_by_solver.png, id=1095, 808.52063pt x 458.46281pt>
+<./Gambar/mockup/solved_by_solver.png, id=1286, 808.52063pt x 458.46281pt>
 File: ./Gambar/mockup/solved_by_solver.png Graphic file (type png)
 <use ./Gambar/mockup/solved_by_solver.png>
 Package pdftex.def Info: ./Gambar/mockup/solved_by_solver.png  used on input li
-ne 671.
+ne 691.
 (pdftex.def)             Requested size: 352.10286pt x 199.66055pt.
-<./Gambar/mockup/warning_adjacent.png, id=1097, 810.02625pt x 456.95718pt>
+<./Gambar/mockup/warning_adjacent.png, id=1288, 810.02625pt x 456.95718pt>
 File: ./Gambar/mockup/warning_adjacent.png Graphic file (type png)
 <use ./Gambar/mockup/warning_adjacent.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_adjacent.png  used on input li
-ne 684.
+ne 704.
 (pdftex.def)             Requested size: 352.10286pt x 198.63531pt.
-<./Gambar/mockup/warning_color.png, id=1099, 809.27344pt x 454.69875pt>
+<./Gambar/mockup/warning_color.png, id=1290, 809.27344pt x 454.69875pt>
 File: ./Gambar/mockup/warning_color.png Graphic file (type png)
 <use ./Gambar/mockup/warning_color.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_color.png  used on input line 
-697.
+717.
 (pdftex.def)             Requested size: 352.10286pt x 197.83398pt.
- [43 <./Gambar/mockup/solved_by_solver.png (PNG copy)> <./Gambar/mockup/warning
+ [69 <./Gambar/mockup/solved_by_solver.png (PNG copy)> <./Gambar/mockup/warning
 _adjacent.png (PNG copy)>]
-<./Gambar/mockup/warning_horizontal.png, id=1112, 809.27344pt x 455.45157pt>
+<./Gambar/mockup/warning_horizontal.png, id=1302, 809.27344pt x 455.45157pt>
 File: ./Gambar/mockup/warning_horizontal.png Graphic file (type png)
 <use ./Gambar/mockup/warning_horizontal.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_horizontal.png  used on input 
-line 710.
+line 730.
 (pdftex.def)             Requested size: 352.10286pt x 198.16153pt.
-<./Gambar/mockup/warning_vertical.png, id=1114, 808.52063pt x 456.20438pt>
+<./Gambar/mockup/warning_vertical.png, id=1304, 808.52063pt x 456.20438pt>
 File: ./Gambar/mockup/warning_vertical.png Graphic file (type png)
 <use ./Gambar/mockup/warning_vertical.png>
 Package pdftex.def Info: ./Gambar/mockup/warning_vertical.png  used on input li
-ne 723.
+ne 743.
 (pdftex.def)             Requested size: 352.10286pt x 198.677pt.
- [44 <./Gambar/mockup/warning_color.png (PNG copy)> <./Gambar/mockup/warning_ho
-rizontal.png (PNG copy)>]
-<./Gambar/mockup/hint1.png, id=1122, 808.52063pt x 455.45157pt>
+<./Gambar/mockup/hint1.png, id=1306, 808.52063pt x 455.45157pt>
 File: ./Gambar/mockup/hint1.png Graphic file (type png)
 <use ./Gambar/mockup/hint1.png>
-Package pdftex.def Info: ./Gambar/mockup/hint1.png  used on input line 736.
+Package pdftex.def Info: ./Gambar/mockup/hint1.png  used on input line 756.
 (pdftex.def)             Requested size: 352.10286pt x 198.34917pt.
-<./Gambar/mockup/hint2.png, id=1124, 808.52063pt x 456.95718pt>
+<./Gambar/mockup/hint2.png, id=1308, 808.52063pt x 456.95718pt>
 File: ./Gambar/mockup/hint2.png Graphic file (type png)
 <use ./Gambar/mockup/hint2.png>
-Package pdftex.def Info: ./Gambar/mockup/hint2.png  used on input line 749.
+Package pdftex.def Info: ./Gambar/mockup/hint2.png  used on input line 769.
 (pdftex.def)             Requested size: 352.10286pt x 199.00485pt.
- [45 <./Gambar/mockup/warning_vertical.png (PNG copy)> <./Gambar/mockup/hint1.p
-ng (PNG copy)>]
-<./Gambar/mockup/win.png, id=1132, 909.3975pt x 512.66531pt>
+ [70 <./Gambar/mockup/warning_color.png (PNG copy)> <./Gambar/mockup/warning_ho
+rizontal.png (PNG copy)>] [71 <./Gambar/mockup/warning_vertical.png (PNG copy)>
+ <./Gambar/mockup/hint1.png (PNG copy)> <./Gambar/mockup/hint2.png (PNG copy)>]
+<./Gambar/mockup/win.png, id=1323, 909.3975pt x 512.66531pt>
 File: ./Gambar/mockup/win.png Graphic file (type png)
 <use ./Gambar/mockup/win.png>
-Package pdftex.def Info: ./Gambar/mockup/win.png  used on input line 763.
+Package pdftex.def Info: ./Gambar/mockup/win.png  used on input line 783.
 (pdftex.def)             Requested size: 352.10286pt x 198.4993pt.
- [46 <./Gambar/mockup/hint2.png (PNG copy)> <./Gambar/mockup/win.png (PNG copy)
->] [47]
-Underfull \hbox (badness 10000) in paragraph at lines 883--884
-[]|$\OML/lmm/m/it/10.95 P[]\OT1/lmr/m/n/10.95 (+20) 5000$\T1/lmr/m/n/10.95 (+20
-) , $\OML/lmm/m/it/10.95 N[][]\OT1/lmr/m/n/10.95 (+20) 100$\T1/lmr/m/n/10.95 (+
-20) , $\OML/lmm/m/it/10.95 c[][]\OT1/lmr/m/n/10.95 (+20) 1[]0$\T1/lmr/m/n/10.95
- (+20) ,
- []
+) [72 <./Gambar/mockup/win.png (PNG copy)>] [73]
+\openout2 = `Bab/bab5.aux'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 907--908
-[]|$\OML/lmm/m/it/10.95 P[]\OT1/lmr/m/n/10.95 (+20) 50000$\T1/lmr/m/n/10.95 (+2
-0) , $\OML/lmm/m/it/10.95 N[][]\OT1/lmr/m/n/10.95 (+20) 50$\T1/lmr/m/n/10.95 (+
-20) , $\OML/lmm/m/it/10.95 c[][]\OT1/lmr/m/n/10.95 (+20) 1[]5$\T1/lmr/m/n/10.95
- (+20) ,
- []
-
-ignored error: Infinite glue shrinkage found in box being split [48]) [49]
-\openout2 = `Bab/bab4.aux'.
-
-
-(Bab/bab4.tex [50
+ (Bab/bab5.tex [74
 
 
 
 
 ]
-Bab 4.
+Bab 5.
 
-LaTeX Warning: Reference `lampiran:kode-sumber' on page 51 undefined on input l
-ine 7.
-
-
-LaTeX Warning: Reference `lampiran:backtracking-solver' on page 51 undefined on
+LaTeX Warning: Reference `sec:perancangan-backtracking' on page 75 undefined on
  input line 12.
 
-
-Overfull \hbox (54.22787pt too wide) in paragraph at lines 12--13
-\T1/lmr/m/n/10.95 (-20) Solver \T1/lmr/m/it/10.95 (-20) back-trac-king \T1/lmr/
-m/n/10.95 (-20) di-im-ple-men-ta-sik-an da-lam ke-las \T1/lmtt/m/n/10.95 Backtr
-ackingSolverAC3 \T1/lmr/m/n/10.95 (-20) pa-da pa-ket \T1/lmtt/m/n/10.95 solver.
-backtracking\T1/lmr/m/n/10.95 (-20) .
- []
-
-
+[75]
 (C:\Users\ArloDanteHananvyasa\AppData\Local\Programs\MiKTeX\tex/latex/listings\
 lstlang1.sty
 File: lstlang1.sty 2025/10/06 1.11 listings language file
@@ -2133,21 +2340,22 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `fvm' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [51]
 LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <6> not available
 (Font)              Font shape `T1/fvm/m/sl' tried instead on input line 27.
 
 
-LaTeX Warning: Reference `subsec:ac3' on page 52 undefined on input line 65.
+LaTeX Warning: Reference `subsec:pemeriksaan-constraint' on page 76 undefined o
+n input line 52.
+
+[76{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
+base/8r.enc}]
+
+LaTeX Warning: Reference `subsec:ac3' on page 77 undefined on input line 65.
 
 
-LaTeX Warning: Reference `lampiran:pso-solver' on page 52 undefined on input li
+LaTeX Warning: Reference `sec:perancangan-pso' on page 77 undefined on input li
 ne 70.
 
-[52{C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
-base/8r.enc}]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 72.
 
 Overfull \hbox (2.5042pt too wide) in paragraph at lines 78--79
 \T1/lmr/m/n/10.95 (-20) fungsi se-ca-ra ber-u-rut-an: \T1/lmtt/m/n/10.95 calcul
@@ -2166,201 +2374,233 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `fvm' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [53] [54]
+ [77]
 
-LaTeX Warning: Reference `lampiran:gui' on page 55 undefined on input line 176.
+LaTeX Warning: Reference `subsubsec:update-velocity' on page 78 undefined on in
+put line 138.
+
+[78]
+
+LaTeX Warning: Reference `subsubsec:update-position' on page 79 undefined on in
+put line 165.
 
 
-[55]
-<./Gambar/implementation/homepage_imp.png, id=1327, 1156.32pt x 650.43pt>
+LaTeX Warning: Reference `subsec:stagnasi-terminasi' on page 79 undefined on in
+put line 169.
+
+[79] [80]
+<./Gambar/implementation/homepage_imp.png, id=1504, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/homepage_imp.png Graphic file (type png)
 <use ./Gambar/implementation/homepage_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/homepage_imp.png  used on inpu
 t line 231.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/levelselector_imp.png, id=1328, 1156.32pt x 650.43pt>
+<./Gambar/implementation/levelselector_imp.png, id=1505, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/levelselector_imp.png Graphic file (type png)
 <use ./Gambar/implementation/levelselector_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/levelselector_imp.png  used on
  input line 238.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
- [56 <./Gambar/implementation/homepage_imp.png>]
-<./Gambar/implementation/gamewindow_imp.png, id=1336, 1156.32pt x 650.43pt>
+<./Gambar/implementation/gamewindow_imp.png, id=1506, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/gamewindow_imp.png Graphic file (type png)
 <use ./Gambar/implementation/gamewindow_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/gamewindow_imp.png  used on in
 put line 245.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/samecolor_imp.png, id=1337, 1156.32pt x 650.43pt>
+<./Gambar/implementation/samecolor_imp.png, id=1507, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/samecolor_imp.png Graphic file (type png)
 <use ./Gambar/implementation/samecolor_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/samecolor_imp.png  used on inp
 ut line 252.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
- [57 <./Gambar/implementation/levelselector_imp.png> <./Gambar/implementation/g
-amewindow_imp.png>]
-<./Gambar/implementation/samerow_imp.png, id=1344, 1156.32pt x 650.43pt>
+<./Gambar/implementation/samerow_imp.png, id=1508, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/samerow_imp.png Graphic file (type png)
 <use ./Gambar/implementation/samerow_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/samerow_imp.png  used on input
  line 259.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/samecolumn_imp.png, id=1345, 1156.32pt x 650.43pt>
+<./Gambar/implementation/samecolumn_imp.png, id=1509, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/samecolumn_imp.png Graphic file (type png)
 <use ./Gambar/implementation/samecolumn_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/samecolumn_imp.png  used on in
 put line 266.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-
-[58 <./Gambar/implementation/samecolor_imp.png> <./Gambar/implementation/samero
-w_imp.png>]
-<./Gambar/implementation/adjacent_imp.png, id=1352, 1156.32pt x 650.43pt>
+<./Gambar/implementation/adjacent_imp.png, id=1510, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/adjacent_imp.png Graphic file (type png)
 <use ./Gambar/implementation/adjacent_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/adjacent_imp.png  used on inpu
 t line 273.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/hint1_imp.png, id=1353, 1156.32pt x 650.43pt>
+<./Gambar/implementation/hint1_imp.png, id=1511, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/hint1_imp.png Graphic file (type png)
 <use ./Gambar/implementation/hint1_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/hint1_imp.png  used on input l
 ine 280.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
- [59 <./Gambar/implementation/samecolumn_imp.png> <./Gambar/implementation/adja
-cent_imp.png>]
-<./Gambar/implementation/hint2_imp.png, id=1361, 1156.32pt x 650.43pt>
+<./Gambar/implementation/hint2_imp.png, id=1512, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/hint2_imp.png Graphic file (type png)
 <use ./Gambar/implementation/hint2_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/hint2_imp.png  used on input l
 ine 287.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
-<./Gambar/implementation/win_imp.png, id=1362, 1156.32pt x 650.43pt>
+<./Gambar/implementation/win_imp.png, id=1513, 1156.32pt x 650.43pt>
 File: ./Gambar/implementation/win_imp.png Graphic file (type png)
 <use ./Gambar/implementation/win_imp.png>
 Package pdftex.def Info: ./Gambar/implementation/win_imp.png  used on input lin
 e 294.
 (pdftex.def)             Requested size: 352.10286pt x 198.0583pt.
- [60 <./Gambar/implementation/hint1_imp.png> <./Gambar/implementation/hint2_imp
-.png>]
 
-LaTeX Warning: Reference `lampiran:kerangka-pengujian' on page 61 undefined on 
+
+LaTeX Warning: Reference `lampiran:kerangka-pengujian' on page 81 undefined on 
 input line 302.
 
-[61 <./Gambar/implementation/win_imp.png>] [62]
-ignored error: Infinite glue shrinkage found in box being split [63] [64]
-[65]
-
-LaTeX Warning: Reference `chap:landasan-teori' on page 66 undefined on input li
-ne 583.
-
-[66]
-
-LaTeX Warning: Reference `subsec:topologi-kawanan' on page 67 undefined on inpu
-t line 611.
-
-[67]
-
-LaTeX Warning: Reference `lampiran:hasil-detail' on page 68 undefined on input 
-line 645.
-
-[68]) [69]
-\openout2 = `Bab/bab5.aux'.
-
- (Bab/bab5.tex [70
+[81 <./Gambar/implementation/homepage_imp.png>] [82 <./Gambar/implementation/le
+velselector_imp.png> <./Gambar/implementation/gamewindow_imp.png> <./Gambar/imp
+lementation/samecolor_imp.png>] [83 <./Gambar/implementation/samerow_imp.png> <
+./Gambar/implementation/samecolumn_imp.png>] [84 <./Gambar/implementation/adjac
+ent_imp.png> <./Gambar/implementation/hint1_imp.png>] [85 <./Gambar/implementat
+ion/hint2_imp.png> <./Gambar/implementation/win_imp.png>] [86] [87]
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
+[]|$\OML/lmm/m/it/10.95 P[]\OT1/lmr/m/n/10.95 (+20) 5000$\T1/lmr/m/n/10.95 (+20
+) , $\OML/lmm/m/it/10.95 N[][]\OT1/lmr/m/n/10.95 (+20) 100$\T1/lmr/m/n/10.95 (+
+20) , $\OML/lmm/m/it/10.95 c[][]\OT1/lmr/m/n/10.95 (+20) 1[]0$\T1/lmr/m/n/10.95
+ (+20) ,
+ []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+[]|$\OML/lmm/m/it/10.95 P[]\OT1/lmr/m/n/10.95 (+20) 50000$\T1/lmr/m/n/10.95 (+2
+0) , $\OML/lmm/m/it/10.95 N[][]\OT1/lmr/m/n/10.95 (+20) 50$\T1/lmr/m/n/10.95 (+
+20) , $\OML/lmm/m/it/10.95 c[][]\OT1/lmr/m/n/10.95 (+20) 1[]5$\T1/lmr/m/n/10.95
+ (+20) ,
+ []
+
+[88]
+ignored error: Infinite glue shrinkage found in box being split [89]
+ignored error: Infinite glue shrinkage found in box being split [90] [91]
+[92] [93]
+
+LaTeX Warning: Reference `chap:landasan-teori' on page 94 undefined on input li
+ne 718.
 
 
-]
-Bab 5.
-[71]) [72] (skripsi.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 19--24
+LaTeX Warning: Reference `subsec:perbandingan-bt-pso' on page 94 undefined on i
+nput line 723.
+
+[94]
+
+LaTeX Warning: Reference `subsec:topologi-kawanan' on page 95 undefined on inpu
+t line 746.
+
+[95]
+
+LaTeX Warning: Reference `subsec:parameter-pso' on page 96 undefined on input l
+ine 754.
+
+
+LaTeX Warning: Reference `subsubsec:update-position' on page 96 undefined on in
+put line 760.
+
+[96]
+
+LaTeX Warning: Reference `lampiran:hasil-detail' on page 97 undefined on input 
+line 780.
+
+[97]) [98]
+\openout2 = `Bab/bab6.aux'.
+
+ (Bab/bab6.tex
+Bab 6.
+[99
+
+
+
+
+]) [100] (skripsi.bbl
+Underfull \hbox (badness 1817) in paragraph at lines 25--28
+[]\T1/lmr/m/n/10.95 (+20) Snyder, T. (2013) Star batt-le ru-les and in-fo.  [][
+]$\T1/lmtt/m/n/10.95 https : / / www . gmpuzzles . com / blog /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--40
 \T1/lmtt/m/n/10.95 id / 5272 / 1 / Artificial % 20Intelligence-[]A % 20Modern %
  20Approach % 20(3rd % 20Edition )
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 26--32
+Underfull \hbox (badness 2221) in paragraph at lines 57--63
 []\T1/lmr/m/n/10.95 (+20) Hoffman, E. J., Lo-es-si, J., dan Mo-o-re, R. C. (196
 9) Con-stru-ctions for the so-
  []
 
 
-Underfull \hbox (badness 2856) in paragraph at lines 26--32
+Underfull \hbox (badness 2856) in paragraph at lines 57--63
 \T1/lmr/m/n/10.95 (+20) lu-tion of the m qu-e-ens pro-blem.  \T1/lmr/m/it/10.95
  (+20) Ma-the-ma-ti-cs Ma-ga-zi-ne\T1/lmr/m/n/10.95 (+20) , \T1/lmr/bx/n/10.95 
 (+20) 42\T1/lmr/m/n/10.95 (+20) , 66--72.  [][]$\T1/lmtt/m/n/10.95 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--32
+Underfull \hbox (badness 10000) in paragraph at lines 57--63
 \T1/lmtt/m/n/10.95 / / exp-[]blog . com / algorithm / poj / poj3239-[]solution-
 []to-[]the-[]n-[]queens-[]puzzle / doc /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--32
+Underfull \hbox (badness 10000) in paragraph at lines 57--63
 \T1/lmtt/m/n/10.95 Constructions % 20for % 20the % 20Solution % 20of % 20the % 
 20m % 20Queens % 20Problem . pdf$[][]
  []
 
-
-Underfull \hbox (badness 1817) in paragraph at lines 47--50
-[]\T1/lmr/m/n/10.95 (+20) Snyder, T. (2013) Star batt-le ru-les and in-fo.  [][
-]$\T1/lmtt/m/n/10.95 https : / / www . gmpuzzles . com / blog /
- []
-
-[73
+[101
 
 
 
 ]
-Underfull \hbox (badness 2591) in paragraph at lines 122--130
+Underfull \hbox (badness 2591) in paragraph at lines 123--131
 []\T1/lmr/m/n/10.95 (+20) Kennedy, J. dan Eber-hart, R. C. (1997) A di-scre-te 
 bi-nary ver-sion of the par-
  []
 
 
-Underfull \hbox (badness 4454) in paragraph at lines 122--130
+Underfull \hbox (badness 4454) in paragraph at lines 123--131
 \T1/lmr/m/n/10.95 (+20) ti-cle swarm al-go-ri-thm.  \T1/lmr/m/it/10.95 (+20) 19
 97 IE-EE In-ter-na-tio-nal con-fe-ren-ce on sys-tems, man,
  []
 
 
-Underfull \hbox (badness 6825) in paragraph at lines 122--130
+Underfull \hbox (badness 6825) in paragraph at lines 123--131
 \T1/lmr/m/it/10.95 (+20) and cyber-ne-ti-cs. Com-pu-ta-tio-nal cyber-ne-ti-cs a
 nd si-mu-la-tion\T1/lmr/m/n/10.95 (+20) , pp. 4104--4108. ie-ee.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--130
+Underfull \hbox (badness 10000) in paragraph at lines 123--131
 [][]$\T1/lmtt/m/n/10.95 https : / / www . ahmetcevahircinar . com . tr / wp-[]c
 ontent / uploads / 2017 / 02 / A _ discrete _
  []
 
-) [74]
+) [102]
 \openout2 = `Lampiran/lampA.aux'.
 
  (Lampiran/lampA.tex
 Lampiran A.
-(Lampiran/MyCode.java
+(Lampiran/Main.java) (Lampiran/BatchMain.java
 LaTeX Font Info:    Font shape `TS1/fvm/m/it' in size <6> not available
-(Font)              Font shape `TS1/fvm/m/sl' tried instead on input line 15.
-)) [75
+(Font)              Font shape `TS1/fvm/m/sl' tried instead on input line 9.
+ [103
 
 
-]
-\openout2 = `Lampiran/lampB.aux'.
-
- (Lampiran/lampB.tex [76
-
-
-
-
-]
-Lampiran B.
-) [77] (skripsi.aux (Bab/bab1.aux) (Bab/bab2.aux) (Bab/bab3.aux) (Bab/bab4.aux)
-(Bab/bab5.aux) (Lampiran/lampA.aux) (Lampiran/lampB.aux))
+] [104] [105] [106])
+(Lampiran/Board.java [107]) (Lampiran/Cell.java [108])
+(Lampiran/BoardImporter.java) (Lampiran/BacktrackingSolverAC3.java [109]
+[110] [111] [112]) (Lampiran/PSOSolver.java [113] [114] [115] [116] [117])
+[118] (Lampiran/UITheme.java [119]) (Lampiran/Homepage.java)
+(Lampiran/LevelSelectorWindow.java [120]) (Lampiran/GameWindow.java [121]
+[122] [123] [124] [125] [126] [127] [128])) [129] (skripsi.aux (Bab/bab1.aux)
+(Bab/bab2.aux) (Bab/bab3.aux) (Bab/bab4.aux) (Bab/bab5.aux) (Bab/bab6.aux)
+(Lampiran/lampA.aux))
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-10-24>
@@ -2369,20 +2609,17 @@ L3 programming layer <2025-10-24>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: 1E8F66BF55BE3758399E0558024B7EAA;14922.
+(rerunfilecheck)             Checksum: 7C272365F02D3B301EF32E175ADCC4DF;13021.
  ) 
 Here is how much of TeX's memory you used:
- 44837 strings out of 467871
- 988132 string characters out of 5411599
- 2235003 words of memory out of 5000000
- 71886 multiletter control sequences out of 15000+600000
- 785355 words of font info for 345 fonts, out of 8000000 for 9000
+ 47806 strings out of 467871
+ 1032774 string characters out of 5411599
+ 2602250 words of memory out of 5000000
+ 72343 multiletter control sequences out of 15000+600000
+ 759702 words of font info for 302 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 110i,13n,136p,1546b,2330s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 110i,14n,136p,1365b,2342s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ArloDanteHananvyasa\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecxc1095.pk><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKT
 eX/fonts/type1/bera/fvmb8a.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Prog
@@ -2406,20 +2643,15 @@ anteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:
 lmr8.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/lm/lmr9.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/lm/lmri10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/ArloDanteHananvyasa/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Users/ArloDan
-teHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss10.pfb><C:
-/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
-lmssbx10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/lm/lmsy10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/ArloDanteHananvyasa/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/ArloDanteHananv
-yasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/A
-rloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfding/uzdr.
-pfb>
-Output written on skripsi.pdf (97 pages, 2752467 bytes).
+Programs/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Users/ArloDanteHananvyasa/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/ArloDant
+eHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/
+Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
+mtk10.pfb><C:/Users/ArloDanteHananvyasa/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/lm/lmtt10.pfb>
+Output written on skripsi.pdf (135 pages, 5240319 bytes).
 PDF statistics:
- 1881 PDF objects out of 2073 (max. 8388607)
- 566 named destinations out of 1000 (max. 500000)
- 84404 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 5109 PDF objects out of 5155 (max. 8388607)
+ 3115 named destinations out of 3580 (max. 500000)
+ 72067 words of extra memory for PDF output out of 74296 (max. 10000000)
 
