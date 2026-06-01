@@ -41,7 +41,7 @@ Russell, S.~J. dan Norvig, P. (2020) {\em Artificial Intelligence: A Modern
 \bibitem{kennedy1995particle}
 Kennedy, J. dan Eberhart, R. (1995) Particle swarm optimization.
 \newblock {\em Proceedings of ICNN'95-international conference on neural
-  networks},  pp. 1942--1948. ieee.
+  networks},  Perth,  pp. 1942--1948. ieee.
 \newblock
   \url{https://www.cs.tufts.edu/comp/150GA/homeworks/hw3/_reading6%201995%20particle%20swarming.pdf}
   Diakses: 18 Mei 2026.
@@ -71,10 +71,14 @@ Montanari, U. (1974) Networks of constraints: Fundamental properties and
 \bibitem{kumar1998}
 Kumar, V. (1998) Algorithms for constraint satisfaction problems: A survey.
 \newblock {\em A.I. Mag}, {\bf  13}.
+\newblock
+  \url{https://www.researchgate.net/publication/2513379_Algorithms_for_Constraint_Satisfaction_Problems_A_Survey}
+  Diakses: 17 Mei 2026.
 
 \bibitem{van2006backtracking}
 Van~Beek, P. (2006) Backtracking search algorithms.
-\newblock {\em Handbook of Constraint Programming},  pp. 85--134. Elsevier.
+\newblock {\em Handbook of Constraint Programming},  pp. 85--134. Elsevier,
+  Amsterdam.
 \newblock \url{https://cs.uwaterloo.ca/~vanbeek/Publications/survey06.pdf}
   Diakses: 17 Mei 2026.
 
@@ -92,7 +96,8 @@ Mohr, R. dan Henderson, T.~C. (1986) Arc and path consistency revisited.
 
 \bibitem{bessiere2006constraint}
 Bessiere, C. (2006) Constraint propagation.
-\newblock {\em Handbook of Constraint Programming},  pp. 29--83. Elsevier.
+\newblock {\em Handbook of Constraint Programming},  pp. 29--83. Elsevier,
+  Amsterdam.
 \newblock
   \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
   Diakses: 17 Mei 2026.
@@ -106,7 +111,8 @@ Blum, C. dan Roli, A. (2003) Metaheuristics in combinatorial optimization:
 
 \bibitem{hoos2006local}
 Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
-\newblock {\em Handbook of Constraint Programming},  pp. 245--268. Elsevier.
+\newblock {\em Handbook of Constraint Programming},  pp. 245--268. Elsevier,
+  Amsterdam.
 \newblock
   \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
   Diakses: 17 Mei 2026.
@@ -115,7 +121,7 @@ Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
 Hu, X., Eberhart, R.~C., dan Shi, Y. (2003) Swarm intelligence for permutation
   optimization: a case study of n-queens problem.
 \newblock {\em Proceedings of the 2003 IEEE Swarm Intelligence Symposium.
-  SIS'03 (Cat. No. 03EX706)},  pp. 243--246. IEEE.
+  SIS'03 (Cat. No. 03EX706)},  Indianapolis,  pp. 243--246. IEEE.
 \newblock \url{http://www.swarmintelligence.org/papers/SIS2003Permutation.pdf}
   Diakses: 18 Mei 2026.
 
@@ -123,22 +129,22 @@ Hu, X., Eberhart, R.~C., dan Shi, Y. (2003) Swarm intelligence for permutation
 Kennedy, J. dan Eberhart, R.~C. (1997) A discrete binary version of the
   particle swarm algorithm.
 \newblock {\em 1997 IEEE International conference on systems, man, and
-  cybernetics. Computational cybernetics and simulation},  pp. 4104--4108.
-  ieee.
+  cybernetics. Computational cybernetics and simulation},  Orlando,  pp.
+  4104--4108. ieee.
 \newblock
   \url{https://www.ahmetcevahircinar.com.tr/wp-content/uploads/2017/02/A_discrete_binary_version_of_the_particle_swarm_algorithm.pdf}
   Diakses: 18 Mei 2026.
 
 \bibitem{engelbrecht2007computational}
 Engelbrecht, A.~P. dkk. (2007) {\em Computational intelligence: an
-  introduction}. Wiley Online Library.
+  introduction}. Wiley Online Library,  Chichester.
 \newblock
   \url{https://dai.fmph.uniba.sk/courses/ICI/engelbrecht.comp-intel-intro.07.pdf}
   Diakses: 24 Mei 2026.
 
 \bibitem{michalewicz2000solve}
 Michalewicz, Z., Fogel, D.~B., dan Michaelewica, A. (2000) {\em How to solve
-  it: modern heuristics}. Springer.
+  it: modern heuristics}. Springer,  Berlin.
 \newblock
   \url{https://people.vts.su.ac.rs/~pmiki/AI/Michalewicz%20Z.,%20Fogel%20D.-How%20to%20solve%20it.%20Modern%20heuristics-Springer%20(2004).pdf}
   Diakses: 24 Mei 2026.

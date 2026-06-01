@@ -19,55 +19,42 @@ Reallocating 'name_of_file' (item size: 1) to 10 items.
 Reallocating 'name_of_file' (item size: 1) to 19 items.
 A level-1 auxiliary file: Lampiran/lampA.aux
 Database file #1: referensi.bib
-I was expecting a `,' or a `}'---line 243 of file referensi.bib
- :  
- :  note={\url{https://www.researchgate.net/publication/2513379_Algorithms_for_Constraint_Satisfaction_Problems_A_Survey} Diakses: 17 Mei 2026}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "vanbeek2006backtracking"
 Warning--I didn't find a database entry for "fig:ac3-contoh"
 Warning--I didn't find a database entry for "eq:pso-velocity"
 Warning--I didn't find a database entry for "eq:pso-position"
-Warning--empty address in kennedy1995particle
 Warning--empty month in kennedy1995particle
 Warning--empty publisher in kennedy1995particle
-Warning--empty address in van2006backtracking
-Warning--empty address in bessiere2006constraint
-Warning--empty address in hoos2006local
-Warning--empty address in hu2003swarm
 Warning--empty month in hu2003swarm
 Warning--empty publisher in hu2003swarm
-Warning--empty address in kennedy1997discrete
 Warning--empty month in kennedy1997discrete
 Warning--empty publisher in kennedy1997discrete
-Warning--empty address in engelbrecht2007computational
-Warning--empty address in michalewicz2000solve
 You've used 21 entries,
             1957 wiz_defined-function locations,
-            688 strings with 9460 characters,
-and the built_in function-call counts, 5186 in all, are:
-= -- 516
+            702 strings with 9695 characters,
+and the built_in function-call counts, 5198 in all, are:
+= -- 527
 > -- 134
 < -- 6
 + -- 40
 - -- 40
-* -- 385
-:= -- 721
-add.period$ -- 67
+* -- 377
+:= -- 732
+add.period$ -- 68
 call.type$ -- 21
 change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 35
+cite$ -- 27
 duplicate$ -- 259
 empty$ -- 578
 format.name$ -- 40
-if$ -- 1234
+if$ -- 1245
 int.to.chr$ -- 0
 int.to.str$ -- 0
 missing$ -- 21
-newline$ -- 103
+newline$ -- 104
 num.names$ -- 21
-pop$ -- 75
+pop$ -- 66
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
@@ -79,8 +66,8 @@ text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 14
+warning$ -- 6
 while$ -- 54
 width$ -- 0
-write$ -- 249
-(There was 1 error message)
+write$ -- 259
+(There were 10 warnings)
