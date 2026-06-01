@@ -1,6 +1,6 @@
 %versi 3 (22-07-2020)
 
-\chapter{Landasan Teori}
+\chapter{Dasar Teori}
 \label{chap:teori}
 
 \section{Permasalahan N-Queens}
@@ -12,7 +12,7 @@ Permasalahan N-Queens merupakan salah satu permasalahan klasik dalam bidang ilmu
 
 Pada formulasi umumnya, diberikan sebuah papan catur berukuran $n \times n$ dan tugasnya adalah menempatkan $n$ buah bidak menteri sedemikian rupa sehingga tidak ada dua menteri yang saling menyerang. Sebagaimana dalam aturan permainan catur, sebuah menteri dapat bergerak secara bebas dalam arah horizontal, vertikal, ataupun diagonal dengan jarak tak terbatas, sehingga setiap penempatan menteri harus mempertimbangkan seluruh arah serangan tersebut seperti yang tertera pada Gambar \ref{fig:queenattackpattern}.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.9\linewidth]{queen_attack_pattern.png}
 	\caption{Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidak menteri.}
@@ -31,9 +31,9 @@ Konflik horizontal terjadi apabila terdapat dua menteri yang ditempatkan pada ba
 
 Konflik diagonal memerlukan analisis yang sedikit lebih cermat. Sebuah menteri dapat menyerang sepanjang dua jenis diagonal, yaitu diagonal utama yang membentang dari kiri atas ke kanan bawah, serta diagonal anti yang membentang dari kanan atas ke kiri bawah. Untuk dua menteri yang ditempatkan pada posisi $(i, \pi_i)$ dan $(j, \pi_j)$, keduanya berada pada diagonal yang sama apabila selisih baris dan selisih kolomnya memiliki nilai absolut yang setara, yaitu $|i - j| = |\pi_i - \pi_j|$. Karakterisasi aritmatika ini memanfaatkan sifat geometris papan: seluruh kotak pada diagonal utama memiliki nilai $i - \pi_i$ yang konstan, sedangkan seluruh kotak pada diagonal anti memiliki nilai $i + \pi_i$ yang konstan \cite{russell2020artificial}.
 
-Berdasarkan ketiga jenis konflik di atas, permasalahan N-Queens dapat dirumuskan secara formal sebagai pencarian penempatan $n$ menteri pada papan $n \times n$ yang memenuhi tiga kendala berikut secara bersamaan: (1) tidak ada dua menteri yang berbagi baris yang sama; (2) tidak ada dua menteri yang berbagi kolom yang sama; dan (3) tidak ada dua menteri yang berbagi diagonal yang sama \cite{russell2020artificial}. Sebagaimana telah dibahas pada Bagian \ref{subsec:n-queens-definisi}, penggunaan representasi permutasi $\pi = (\pi_1, \pi_2, \dots, \pi_n)$ secara implisit menghilangkan dua kendala pertama, sehingga hanya kendala diagonal yang perlu diperiksa secara eksplisit selama proses pencarian solusi.
+Berdasarkan ketiga jenis konflik di atas, permasalahan N-Queens dapat dirumuskan secara formal sebagai pencarian penempatan $n$ menteri pada papan $n \times n$ yang memenuhi tiga kendala berikut secara bersamaan: (1) tidak ada dua menteri yang berbagi baris yang sama; (2) tidak ada dua menteri yang berbagi kolom yang sama; dan (3) tidak ada dua menteri yang berbagi diagonal yang sama \cite{russell2020artificial}. Sebagaimana telah dibahas pada Bagian \ref{subsec:n-queens-definisi}, penggunaan representasi permutasi $\pi = (\pi_1, \pi_2, \dots, \pi_n)$ secara implisit menghilangkan dua kendala pertama, sehingga hanya kendala diagonal yang perlu diperiksa secara eksplisit selama proses pencarian solusi. Sebagai ilustrasi, Gambar~\ref{fig:nqueenscorrect} menampilkan salah satu solusi valid untuk papan 8-Queens, di mana visualisasi jangkauan serangan salah satu menteri menunjukkan bahwa tidak terdapat menteri lain yang berbagi baris, kolom, ataupun diagonal yang sama, sehingga konfigurasi tersebut memenuhi seluruh kendala yang telah didefinisikan.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.35\linewidth]{N_queens_correct.png}
 	\caption{Contoh solusi valid permasalahan 8-Queens. Panah hijau menandakan jangkauan serangan salah satu menteri; tidak ada menteri lain yang berada pada baris, kolom, ataupun diagonal yang sama.}
@@ -50,7 +50,7 @@ Meskipun ruang pencarian tumbuh secara eksponensial, perlu ditekankan bahwa perm
 
 Karakteristik kompleksitas N-Queens telah menjadi topik diskusi yang panjang dalam komunitas \textit{Artificial Intelligence}, khususnya terkait kelayakannya sebagai \textit{benchmark} algoritma pencarian. Gent, Jefferson, dan Nightingale \cite{gent2017complexity} memberikan analisis komprehensif terhadap persoalan ini dan menunjukkan bahwa permasalahan N-Queens dalam bentuk dasarnya tidak ideal sebagai tolok ukur kesulitan algoritma, mengingat solusinya dapat dikonstruksi secara langsung tanpa proses pencarian. Sebaliknya, mereka membuktikan bahwa varian \textit{N-Queens Completion}, yaitu permasalahan menyelesaikan konfigurasi parsial yang telah diberikan sebelumnya, tergolong NP-Complete dan \#P-Complete. Hasil ini mengindikasikan bahwa varian-varian N-Queens dengan kendala tambahan atau struktur papan ireguler memiliki kompleksitas teoritis yang setara dengan permasalahan-permasalahan sulit klasik dalam ilmu komputer.
 
-Permasalahan \textit{Colored Queens} yang menjadi fokus tugas akhir ini memiliki struktur kendala yang jauh lebih kompleks dibandingkan N-Queens klasik, termasuk pembagian sektor warna dan kendala \textit{adjacency} yang tidak dapat diselesaikan dengan konstruksi aritmatika sederhana. Dengan kata lain, meskipun teknik konstruktif tersedia untuk N-Queens dasar, teknik tersebut tidak dapat diperumum ke varian-varian dengan kendala ireguler. Hal inilah yang menjadikan pendekatan algoritmik berbasis pencarian, baik yang bersifat sistematis maupun \textit{metaheuristic}, tetap relevan dan menjadi fokus pembahasan pada bab-bab selanjutnya.
+Permasalahan \textit{Colored Queens} yang menjadi fokus tugas akhir ini memiliki struktur kendala yang jauh lebih kompleks dibandingkan N-Queens klasik, termasuk pembagian sektor warna dan kendala \textit{adjacency} yang tidak dapat diselesaikan dengan konstruksi aritmatika sederhana. Dengan kata lain, meskipun teknik konstruktif tersedia untuk N-Queens dasar, teknik tersebut tidak dapat digeneralisasi ke varian-varian dengan kendala ireguler, yaitu kendala yang strukturnya bergantung pada konfigurasi papan tertentu sehingga bervariasi antarinstansi permasalahan. Sebagai contoh, sektor warna pada \textit{Colored Queens} memiliki bentuk dan ukuran yang berbeda-beda pada setiap papan, sehingga tidak dapat ditangani oleh formula tunggal yang berlaku universal sebagaimana kendala baris, kolom, dan diagonal pada N-Queens klasik. Hal inilah yang menjadikan pendekatan algoritmik berbasis pencarian, baik yang bersifat sistematis maupun \textit{metaheuristic}, tetap relevan dan menjadi fokus pembahasan pada bab-bab selanjutnya.
 
 \section{Colored Queens Problem}
 \label{sec:colored-queens}
@@ -59,16 +59,16 @@ Permasalahan \textit{Colored Queens} yang menjadi fokus tugas akhir ini memiliki
 \label{subsec:colored-queens-definisi}
 Permasalahan \textit{Colored Queens} merupakan sebuah \textit{puzzle} logika berbasis papan yang dipopulerkan melalui permainan \textit{Queens} pada platform LinkedIn \cite{linkedin2024queens}. Secara struktural, permasalahan ini memiliki kesamaan yang kuat dengan jenis \textit{puzzle} penempatan objek yang dikenal sebagai \textit{Star Battle}, yang pertama kali dirancang oleh Hans Eendebak untuk \textit{World Puzzle Championship} tahun 2003 \cite{gmpuzzles2013starbattle}. Dalam varian yang dibahas pada tugas akhir ini, permainan menggunakan papan berukuran $n \times n$ yang dibagi menjadi $n$ buah sektor berwarna (\textit{colored regions}) dengan bentuk yang umumnya tidak beraturan (\textit{irregular}). Setiap sektor warna membentuk satu wilayah yang terhubung (\textit{connected region}) pada papan, artinya seluruh sel dalam satu sektor dapat dijangkau dari sel lainnya melalui tetangga horizontal atau vertikal tanpa melewati sel dari sektor lain. Contoh papan permainan beserta solusinya diperlihatkan pada Gambar \ref{fig:coloredqueens}.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
-	\begin{subfigure}[b]{0.45\linewidth}
+	\begin{subfigure}[b]{0.35\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Queens_unsolved.png}
 		\caption{Papan awal}
 		\label{fig:cq-unsolved}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.45\linewidth}
+	\begin{subfigure}[b]{0.35\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Queens_solved.png}
 		\caption{Papan yang telah diselesaikan}
@@ -97,7 +97,30 @@ Permasalahan \textit{Colored Queens} memiliki struktur kendala berlapis (\textit
 
 Lapisan pertama adalah kendala baris dan kolom, yang secara struktural identik dengan N-Queens dan membatasi setiap baris serta kolom untuk memuat tepat satu menteri. Lapisan kedua adalah kendala sektor warna, yang mengharuskan setiap sektor memiliki tepat satu menteri. Berbeda dengan kendala baris dan kolom yang bersifat reguler dan simetris, sektor warna memiliki bentuk ireguler yang bervariasi antarpapan. Implikasinya, ukuran domain untuk setiap sektor (jumlah sel yang tersedia) tidak seragam, dan beberapa sektor mungkin memiliki domain yang jauh lebih kecil dibandingkan sektor lainnya. Hal ini menciptakan ketidakseimbangan dalam proses pencarian: penempatan menteri pada sektor berukuran kecil memiliki dampak propagasi yang berbeda dibandingkan penempatan pada sektor berukuran besar.
 
-Lapisan ketiga adalah kendala \textit{adjacency}, yang melarang dua menteri menempati sel-sel yang bertetangga. Kendala ini bersifat lokal dan simetris, namun efeknya bersifat global karena penempatan satu menteri secara langsung mengeliminasi hingga delapan sel tambahan dari domain menteri-menteri lainnya. Pada papan berukuran kecil ($n \leq 8$), eliminasi ini sangat signifikan secara proporsional terhadap total sel yang tersedia.
+Dampak propagasi merujuk pada jumlah sel yang dieliminasi dari domain variabel-variabel lain sebagai konsekuensi dari satu penempatan menteri. Setiap kali seorang menteri ditempatkan, seluruh sel pada baris dan kolom yang sama serta hingga delapan sel tetangganya dihapus dari domain seluruh sektor warna yang belum ditugaskan. Apabila sebuah sektor warna kecil yang hanya memiliki sedikit sel kebetulan terletak pada baris, kolom, atau area ketetanggaan menteri yang baru ditempatkan, domain sektor tersebut dapat langsung habis (\textit{domain wipeout}) dan menyebabkan kegagalan pada cabang pencarian. Gambar~\ref{fig:wipeout-single} mengilustrasikan skenario tersebut, di mana sebuah sektor warna kehilangan seluruh kandidat selnya akibat penempatan menteri yang berdekatan. Pada kasus yang lebih ekstrem, satu penempatan menteri bahkan dapat secara bersamaan mengeliminasi seluruh domain dari beberapa sektor sekaligus, sebagaimana diperlihatkan pada Gambar~\ref{fig:wipeout-multi}. Sebaliknya, sektor warna besar yang memiliki banyak sel kandidat cenderung lebih tahan terhadap pemangkasan karena masih menyisakan alternatif setelah sebagian selnya tereliminasi.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.35\linewidth]{domainwipeout2.png}
+	\caption{Ilustrasi \textit{domain wipeout} pada satu sektor warna. Penempatan satu menteri mengeliminasi seluruh kandidat sel pada sektor yang berdekatan (ditandai dengan tanda X merah dan bingkai merah), sehingga sektor tersebut tidak memiliki sel valid lagi untuk ditugaskan.}
+	\label{fig:wipeout-single}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.35\linewidth]{domainwipeout.png}
+	\caption{Ilustrasi \textit{domain wipeout} pada beberapa sektor warna sekaligus. Satu penempatan menteri secara bersamaan mengeliminasi seluruh kandidat sel pada dua sektor yang berdekatan, memperlihatkan bagaimana satu keputusan dapat memicu kegagalan berantai pada cabang pencarian.}
+	\label{fig:wipeout-multi}
+\end{figure}
+
+Lapisan ketiga adalah kendala \textit{adjacency}, yang melarang dua menteri menempati sel-sel yang bertetangga. Kendala ini bersifat lokal dan simetris, namun efeknya bersifat global karena penempatan satu menteri secara langsung mengeliminasi hingga delapan sel tambahan dari domain menteri-menteri lainnya. Pada papan berukuran kecil ($n \leq 8$), eliminasi ini sangat signifikan secara proporsional terhadap total sel yang tersedia. Gambar~\ref{fig:adjacency-small-board} memperlihatkan dampak penempatan satu menteri pada papan $7 \times 7$, di mana delapan sel di sekitarnya langsung dieliminasi dari domain variabel-variabel lain. Eliminasi sebanyak ini setara dengan sekitar $16\%$ dari total sel papan, sehingga ruang pencarian menyempit secara signifikan hanya dari satu penugasan.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.35\linewidth]{adjsmallboard.png}
+	\caption{Dampak kendala \textit{adjacency} pada papan berukuran kecil. Penempatan satu menteri pada papan $7 \times 7$ mengeliminasi delapan sel tetangga (ditandai dengan tanda X merah), yang setara dengan sekitar $16\%$ dari total $49$ sel papan.}
+	\label{fig:adjacency-small-board}
+\end{figure}
 
 Interaksi antara ketiga lapisan kendala tersebut menciptakan beberapa tantangan komputasi. Pertama, tidak ada representasi permutasi sederhana sebagaimana pada N-Queens, karena variabel terkait erat dengan sektor warna yang bentuknya tidak teratur. Kedua, kendala \textit{adjacency} tidak dapat diekspresikan sebagai ketidaksamaan aritmatika global (seperti $|i - j| \neq |\pi_i - \pi_j|$ pada N-Queens), melainkan harus diperiksa secara lokal untuk setiap pasangan sel. Ketiga, bentuk ireguler sektor warna menyebabkan \textit{constraint graph} yang dihasilkan tidak memiliki struktur simetris yang dapat dieksploitasi oleh teknik konstruktif.
 
@@ -172,7 +195,7 @@ Algoritma sistematis untuk CSP adalah algoritma yang menjamin ditemukannya solus
 
 \textit{Backtracking search} adalah algoritma pencarian berbasis \textit{depth-first search} (DFS) yang membangun solusi CSP secara inkremental, satu variabel dalam satu langkah \cite{russell2020artificial}. Pada setiap langkah, algoritma memilih sebuah variabel yang belum diberi nilai, lalu mencoba setiap nilai dalam domain variabel tersebut secara berurutan. Apabila sebuah nilai tidak melanggar kendala apapun terhadap variabel-variabel yang telah ditetapkan sebelumnya, nilai tersebut ditetapkan dan algoritma melanjutkan ke variabel berikutnya secara rekursif. Apabila tidak ada nilai yang konsisten ditemukan untuk variabel saat ini, algoritma mundur (\textit{backtrack}) ke variabel sebelumnya dan mencoba nilai lain dari domain variabel tersebut.
 
-Pseudocode dasar \textit{backtracking search} diperlihatkan pada Listing \ref{alg:backtracking-csp}.
+Pseudocode dasar \textit{backtracking search} sebagaimana disajikan oleh Russell dan Norvig \cite{russell2020artificial} diperlihatkan pada Listing \ref{alg:backtracking-csp}.
 
 \begin{algorithm}[H]
 	\caption{Backtracking Search untuk CSP}
@@ -209,7 +232,7 @@ Meskipun heuristik-heuristik tersebut dapat mengurangi jumlah \textit{backtrack}
 
 \textit{Forward checking} adalah teknik propagasi kendala yang diintegrasikan ke dalam \textit{backtracking search} untuk mendeteksi kegagalan lebih awal \cite{van2006backtracking}. Ide dasarnya adalah: setiap kali sebuah variabel $x_i$ diberi nilai $v$, algoritma segera memeriksa seluruh variabel yang belum diberi nilai dan terhubung dengan $x_i$ melalui suatu kendala, lalu menghapus dari domain variabel-variabel tersebut semua nilai yang tidak konsisten dengan penugasan $x_i = v$. Proses ini dilakukan secara langsung pada saat penugasan, bukan menunggu hingga variabel-variabel tersebut giliran diproses.
 
-Pseudocode \textit{forward checking} diperlihatkan pada Listing \ref{alg:forwardchecking}.
+Pseudocode \textit{forward checking} sebagaimana dirumuskan oleh Van Beek \cite{van2006backtracking} diperlihatkan pada Listing \ref{alg:forwardchecking}..
 
 \begin{algorithm}[H]
 	\caption{Forward Checking}
@@ -233,16 +256,14 @@ Pseudocode \textit{forward checking} diperlihatkan pada Listing \ref{alg:forward
 
 Keuntungan langsung dari \textit{forward checking} adalah kemampuannya untuk mendeteksi \textit{domain wipeout}, yaitu kondisi di mana domain suatu variabel yang belum ditugaskan menjadi kosong, jauh sebelum variabel tersebut giliran diproses oleh rekursi. Apabila \textit{domain wipeout} terdeteksi, algoritma dapat segera melakukan \textit{backtrack} tanpa perlu mengeksplorasi cabang-cabang yang dipastikan tidak produktif. Dengan demikian, \textit{forward checking} mengurangi kedalaman pohon pencarian yang perlu dijelajahi sebelum kegagalan ditemukan.
 
-Dalam konteks \textit{Colored Queens}, \textit{forward checking} bekerja sebagai berikut: ketika sebuah menteri ditempatkan pada posisi $(r, c)$ di sektor warna tertentu, algoritma segera memindai domain seluruh sektor warna yang belum diproses dan menghapus setiap posisi yang berada pada baris $r$, kolom $c$, atau sel-sel yang bertetangga (\textit{adjacent}) dengan $(r, c)$. Mengingat \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete} sebagaimana dibahas pada Bagian \ref{subsec:csp-colored-queens}, setiap penugasan memengaruhi domain seluruh variabel lainnya, sehingga \textit{forward checking} memberikan dampak reduksi yang substansial pada setiap langkah.
-
-Namun, \textit{forward checking} memiliki keterbatasan fundamental: teknik ini hanya memeriksa konsistensi antara variabel yang baru ditugaskan dengan variabel-variabel yang belum ditugaskan, tanpa memeriksa konsistensi antarsesama variabel yang belum ditugaskan \cite{russell2020artificial}. Sebagai ilustrasi, misalkan setelah \textit{forward checking}, domain sektor warna A hanya menyisakan satu posisi di baris 3, sementara domain sektor warna B juga hanya menyisakan satu posisi di baris 3. Kedua domain ini saling bertentangan karena melanggar kendala baris, namun \textit{forward checking} tidak akan mendeteksi konflik tersebut karena keduanya masih merupakan variabel yang belum ditugaskan. Konflik baru akan ditemukan ketika salah satu dari kedua variabel tersebut diproses, yang berpotensi membuang banyak langkah pencarian. Keterbatasan inilah yang diatasi oleh teknik \textit{arc consistency} yang dibahas pada bagian berikutnya.
+Namun, \textit{forward checking} memiliki keterbatasan fundamental: teknik ini hanya memeriksa konsistensi antara variabel yang baru ditugaskan dengan variabel-variabel yang belum ditugaskan, tanpa memeriksa konsistensi antarsesama variabel yang belum ditugaskan \cite{russell2020artificial}. Konflik baru akan ditemukan ketika salah satu dari kedua variabel tersebut diproses, yang berpotensi membuang banyak langkah pencarian. Keterbatasan inilah yang diatasi oleh teknik \textit{arc consistency} yang dibahas pada bagian berikutnya.
 
 \subsubsection{Arc Consistency (AC-3)}
 \label{subsubsec:ac3}
 
-\textit{Arc consistency} adalah properti konsistensi yang lebih kuat dibandingkan yang ditegakkan oleh \textit{forward checking}. Sebuah \textit{arc} $(x_i, x_j)$ dalam CSP dikatakan \textit{arc-consistent} apabila untuk setiap nilai $v \in D_i$, terdapat setidaknya satu nilai $w \in D_j$ sedemikian sehingga penugasan $x_i = v$ dan $x_j = w$ memenuhi semua kendala di antara $x_i$ dan $x_j$ \cite{mackworth1977consistency}. Nilai $w$ tersebut disebut sebagai \textit{support} untuk $v$ pada \textit{arc} $(x_i, x_j)$. Apabila suatu nilai $v \in D_i$ tidak memiliki \textit{support} pada $D_j$, maka $v$ dapat dihapus dari $D_i$ tanpa menghilangkan solusi valid manapun, karena $v$ dipastikan tidak dapat menjadi bagian dari solusi selama domain $x_j$ tetap seperti saat ini.
+\textit{Arc consistency} adalah properti konsistensi yang lebih kuat dibandingkan yang ditegakkan oleh \textit{forward checking}. Sebuah \textit{arc} $(x_i, x_j)$ dalam CSP dikatakan \textit{arc-consistent} apabila untuk setiap nilai $v \in D_i$, terdapat setidaknya satu nilai $w \in D_j$ sedemikian sehingga penugasan $x_i = v$ dan $x_j = w$ memenuhi semua kendala di antara $x_i$ dan $x_j$ \cite{mackworth1977consistency}. Nilai $w$ tersebut disebut sebagai \textit{support} untuk $v$ pada \textit{arc} $(x_i, x_j)$. Apabila suatu nilai $v \in D_i$ tidak memiliki \textit{support} pada $D_j$, maka $v$ dapat dihapus dari $D_i$ tanpa menghilangkan solusi valid manapun, karena $v$ dipastikan tidak dapat menjadi bagian dari solusi selama domain $x_j$ tetap seperti saat ini. Gambar \cite{fig:ac3-contoh} merupakan contoh pemangkasan domain solusi yang dapat terjadi saat AC-3 dijalankan pada suatu permasalahan CSP.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering
@@ -261,7 +282,7 @@ Namun, \textit{forward checking} memiliki keterbatasan fundamental: teknik ini h
 
 Sebuah CSP dikatakan \textit{arc-consistent} secara keseluruhan apabila seluruh \textit{arc} di dalamnya bersifat \textit{arc-consistent}. Perbedaan utama dengan \textit{forward checking} terletak pada cakupan pemeriksaan: \textit{forward checking} hanya memeriksa konsistensi antara variabel yang baru ditugaskan dengan variabel lain, sedangkan \textit{arc consistency} memeriksa konsistensi antara \textit{seluruh} pasangan variabel, termasuk antarsesama variabel yang belum ditugaskan \cite{russell2020artificial}.
 
-Algoritma AC-3 (\textit{Arc Consistency Algorithm \#3}), yang diperkenalkan oleh Mackworth \cite{mackworth1977consistency}, merupakan algoritma standar untuk menegakkan \textit{arc consistency}. AC-3 mengelola sebuah antrean $Q$ yang berisi seluruh \textit{arc} yang perlu diperiksa konsistensinya. Untuk setiap \textit{arc} $(x_i, x_j)$ yang diambil dari antrean, fungsi \textsc{Revise} memeriksa apakah ada nilai dalam $D_i$ yang tidak memiliki \textit{support} di $D_j$; nilai-nilai tanpa \textit{support} dihapus dari $D_i$. Apabila $D_i$ berubah (ada penghapusan), maka seluruh \textit{arc} $(x_k, x_i)$ untuk setiap tetangga $x_k$ dari $x_i$ (selain $x_j$) ditambahkan kembali ke antrean, karena penghapusan nilai dari $D_i$ berpotensi membuat beberapa nilai di $D_k$ kehilangan \textit{support}-nya. Proses berlanjut hingga antrean kosong (\textit{arc consistency} tercapai) atau domain suatu variabel menjadi kosong (inkonsistensi terdeteksi). Pseudocode AC-3 diperlihatkan pada Listing \ref{alg:ac3}.
+Algoritma AC-3 (\textit{Arc Consistency Algorithm \#3}), yang diperkenalkan oleh Mackworth \cite{mackworth1977consistency}, merupakan algoritma standar untuk menegakkan \textit{arc consistency}. AC-3 mengelola sebuah antrean $Q$ yang berisi seluruh \textit{arc} yang perlu diperiksa konsistensinya. Untuk setiap \textit{arc} $(x_i, x_j)$ yang diambil dari antrean, fungsi \textsc{Revise} memeriksa apakah ada nilai dalam $D_i$ yang tidak memiliki \textit{support} di $D_j$; nilai-nilai tanpa \textit{support} dihapus dari $D_i$. Apabila $D_i$ berubah (ada penghapusan), maka seluruh \textit{arc} $(x_k, x_i)$ untuk setiap tetangga $x_k$ dari $x_i$ (selain $x_j$) ditambahkan kembali ke antrean, karena penghapusan nilai dari $D_i$ berpotensi membuat beberapa nilai di $D_k$ kehilangan \textit{support}-nya. Proses berlanjut hingga antrean kosong (\textit{arc consistency} tercapai) atau domain suatu variabel menjadi kosong (inkonsistensi terdeteksi). Pseudocode AC-3 sebagaimana diperkenalkan oleh Mackworth \cite{mackworth1977consistency} diperlihatkan pada Listing \ref{alg:ac3}.
 
 \begin{algorithm}[H]
 	\caption{Algoritma AC-3}
@@ -300,7 +321,7 @@ Algoritma AC-3 (\textit{Arc Consistency Algorithm \#3}), yang diperkenalkan oleh
 
 Kompleksitas waktu AC-3 adalah $O(cd^3)$, di mana $c$ adalah jumlah kendala (\textit{arc}) dan $d$ adalah ukuran maksimum domain \cite{mackworth1977consistency}. Analisisnya adalah sebagai berikut: setiap \textit{arc} dapat dimasukkan ke dalam antrean paling banyak $d$ kali (karena setiap kali \textit{arc} diproses ulang, setidaknya satu nilai telah dihapus dari domain terkait), dan setiap pemanggilan fungsi \textsc{Revise} memerlukan waktu $O(d^2)$ untuk memeriksa setiap pasangan nilai. Meskipun terdapat algoritma yang lebih efisien seperti AC-4 dengan kompleksitas optimal $O(cd^2)$ \cite{mohr1986arc}, AC-3 tetap menjadi pilihan yang paling banyak digunakan dalam praktik karena kesederhanaan implementasinya dan \textit{overhead} per-operasi yang rendah.
 
-Dalam konteks penyelesaian CSP berbasis \textit{backtracking}, AC-3 digunakan sebagai teknik propagasi yang dijalankan setelah \textit{forward checking} pada setiap langkah penugasan. Pendekatan gabungan ini, yang sering disebut \textit{Maintaining Arc Consistency} (MAC), bekerja sebagai berikut \cite{bessiere2006constraint}: setelah sebuah variabel diberi nilai dan \textit{forward checking} menghapus nilai-nilai yang secara langsung tidak konsisten dari domain variabel-variabel yang belum ditugaskan, AC-3 dijalankan pada seluruh \textit{arc} di antara variabel-variabel yang belum ditugaskan untuk mendeteksi dan mengeliminasi inkonsistensi transitif yang tidak terdeteksi oleh \textit{forward checking}. Apabila proses propagasi ini menghasilkan \textit{domain wipeout} pada salah satu variabel, \textit{backtrack} dilakukan segera. Kombinasi \textit{backtracking} + \textit{forward checking} + AC-3 inilah yang menjadi fondasi solver sistematis pada tugas akhir ini dan implementasinya akan dibahas secara rinci pada Bab \ref{chap:implementasi}.
+Dalam konteks penyelesaian CSP berbasis \textit{backtracking}, AC-3 digunakan sebagai teknik propagasi yang dijalankan setelah \textit{forward checking} pada setiap langkah penugasan. Pendekatan gabungan ini, yang sering disebut \textit{Maintaining Arc Consistency} (MAC), bekerja sebagai berikut \cite{bessiere2006constraint}: setelah sebuah variabel diberi nilai dan \textit{forward checking} menghapus nilai-nilai yang secara langsung tidak konsisten dari domain variabel-variabel yang belum ditugaskan, AC-3 dijalankan pada seluruh \textit{arc} di antara variabel-variabel yang belum ditugaskan untuk mendeteksi dan mengeliminasi inkonsistensi transitif yang tidak terdeteksi oleh \textit{forward checking}. Apabila proses propagasi ini menghasilkan \textit{domain wipeout} pada salah satu variabel, \textit{backtrack} dilakukan segera. Kombinasi \textit{backtracking} + \textit{forward checking} + AC-3 inilah yang menjadi fondasi solver sistematis pada tugas akhir ini dan implementasinya akan dibahas secara rinci pada Bab \ref{chap:hasil}.
 
 \subsection{Metaheuristic}
 \label{subsec:metaheuristic}
@@ -331,7 +352,7 @@ Dalam konteks penyelesaian \textit{Constraint Satisfaction Problem} (CSP), pengg
 
 Dalam formulasi standar untuk ruang kontinu, setiap partikel $i$ memiliki dua atribut utama: posisi $\vec{X}_i$ yang merepresentasikan solusi kandidat dalam ruang pencarian berdimensi $d$, dan \textit{velocity} $\vec{V}_i$ yang menentukan arah dan jarak perpindahan partikel pada setiap iterasi. Selain itu, setiap partikel menyimpan \textit{personal best} ($pBest_i$), yaitu posisi terbaik yang pernah dicapai oleh partikel tersebut selama proses pencarian, serta mengacu pada posisi terbaik yang dicapai oleh tetangga-tetangganya, yang disebut \textit{neighborhood best} ($nBest$) pada topologi lokal atau \textit{global best} ($gBest$) pada topologi global \cite{kennedy1995particle}.
 
-Pada setiap iterasi, \textit{velocity} dan posisi setiap partikel diperbarui menggunakan persamaan berikut \cite{kennedy1995particle}:
+Pada setiap iterasi, \textit{velocity} dan posisi setiap partikel diperbarui menggunakan Persamaan \cite{eq:pso-velocity} dan \cite{eq:pso-position} \cite{kennedy1995particle}:
 
 \begin{equation}
 	\vec{V}_{i}^{k+1} = \omega \cdot \vec{V}_{i}^{k} + c_1 \cdot r_1 \cdot (pBest_i - \vec{X}_{i}^{k}) + c_2 \cdot r_2 \cdot (nBest - \vec{X}_{i}^{k})
@@ -345,9 +366,9 @@ Pada setiap iterasi, \textit{velocity} dan posisi setiap partikel diperbarui men
 
 \noindent di mana $\vec{V}_{i}^{k}$ adalah \textit{velocity} partikel $i$ pada iterasi ke-$k$, $\vec{X}_{i}^{k}$ adalah posisi partikel $i$ pada iterasi ke-$k$, $\omega$ adalah \textit{inertia weight} yang mengontrol momentum partikel, $c_1$ adalah koefisien kognitif yang mengontrol pengaruh \textit{personal best}, $c_2$ adalah koefisien sosial yang mengontrol pengaruh \textit{neighborhood best}, serta $r_1$ dan $r_2$ adalah bilangan acak dalam rentang $[0, 1]$ yang memberikan komponen stokastik pada pencarian.
 
-Persamaan \ref{eq:pso-velocity} menggabungkan tiga komponen pergerakan: (1) \textit{komponen inersia} ($\omega \cdot \vec{V}_{i}^{k}$), yaitu kecenderungan partikel untuk terus bergerak ke arah yang sama dengan langkah sebelumnya; (2) \textit{komponen kognitif} ($c_1 \cdot r_1 \cdot (pBest_i - \vec{X}_{i}^{k})$), yaitu tarikan menuju posisi terbaik yang pernah ditemukan oleh partikel itu sendiri; dan (3) \textit{komponen sosial} ($c_2 \cdot r_2 \cdot (nBest - \vec{X}_{i}^{k})$), yaitu tarikan menuju posisi terbaik yang ditemukan oleh tetangga partikel. Interaksi ketiga komponen ini menghasilkan keseimbangan antara eksplorasi dan eksploitasi: komponen inersia mendorong eksplorasi area baru, sedangkan komponen kognitif dan sosial mendorong eksploitasi area yang menjanjikan.
+Persamaan \ref{eq:pso-velocity} menggabungkan tiga komponen pergerakan: (1) \textit{komponen inersia} ($\omega \cdot \vec{V}_{i}^{k}$), yaitu kecenderungan partikel untuk terus bergerak ke arah yang sama dengan langkah sebelumnya; (2) \textit{komponen kognitif} ($c_1 \cdot r_1 \cdot (pBest_i - \vec{X}_{i}^{k})$), yaitu tarikan menuju posisi terbaik yang pernah ditemukan oleh partikel itu sendiri; dan (3) \textit{komponen sosial} ($c_2 \cdot r_2 \cdot (nBest - \vec{X}_{i}^{k})$), yaitu tarikan menuju posisi terbaik yang ditemukan oleh tetangga partikel. Interaksi ketiga komponen ini menghasilkan keseimbangan antara eksplorasi dan eksploitasi: komponen inersia mendorong eksplorasi area baru, sedangkan komponen kognitif dan sosial mendorong eksploitasi area yang menjanjikan. Ilustrasi dari proses ini ditunjukkan pada Gambar \ref{fig:pso-single}.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{gambar/pso_single.png}
 	\caption{Ilustrasi perpindahan satu partikel berdasarkan \textit{velocity} baru yang dipengaruhi oleh \textit{personal best} dan \textit{global best}.}
@@ -355,20 +376,42 @@ Persamaan \ref{eq:pso-velocity} menggabungkan tiga komponen pergerakan: (1) \tex
 	% Sumber: https://www.baeldung.com/cs/pso
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\textwidth]{gambar/psoflow.png}
-	\caption{Diagram alir algoritma PSO.}
-	\label{fig:pso-flowchart}
-\end{figure}
-
-\paragraph{Topologi Kawanan.}
-
-Topologi kawanan menentukan bagaimana informasi mengenai posisi terbaik dibagikan di antara partikel-partikel dalam \textit{swarm}. Terdapat dua jenis topologi utama \cite{kennedy1995particle}:
+Komponen sosial pada Persamaan \ref{eq:pso-velocity} mengacu pada posisi terbaik yang ditemukan oleh tetangga partikel, yang ditentukan oleh topologi kawanan (\textit{swarm topology}). Terdapat dua jenis topologi utama \cite{kennedy1995particle}:
 
 \begin{enumerate}
 	\item \textbf{Global best (gBest)}: Seluruh partikel dalam \textit{swarm} berbagi informasi tentang satu posisi terbaik global. Topologi ini mendorong konvergensi cepat karena seluruh partikel tertarik ke satu titik terbaik, namun rentan terhadap konvergensi prematur ke \textit{local optimum}.
 	\item \textbf{Local best (lBest)}: Setiap partikel hanya berbagi informasi dengan sekelompok tetangga (\textit{neighborhood}). Informasi terbaik menyebar secara bertahap melalui \textit{neighborhood} yang saling tumpang-tindih. Topologi ini memperlambat konvergensi namun meningkatkan diversitas pencarian dan mengurangi risiko terjebak pada \textit{local optimum}.
+\end{enumerate}
+
+Secara keseluruhan, alur kerja algoritma PSO dapat dirangkum dalam diagram alir pada Gambar~\ref{fig:pso-flowchart}. Proses ini terdiri atas dua fase utama, yaitu fase inisialisasi yang dijalankan satu kali pada awal eksekusi, dan fase iteratif yang berulang hingga \textit{stopping condition} terpenuhi.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{gambar/psoflow.png}
+	\caption{Diagram alir algoritma PSO.}
+	\label{fig:pso-flowchart}
+\end{figure}
+
+Berikut adalah penjelasan setiap tahap pada Gambar~\ref{fig:pso-flowchart}:
+
+\begin{enumerate}
+	\item \textbf{Inisialisasi parameter.} Algoritma dimulai dengan menetapkan parameter-parameter utama, yaitu jumlah partikel $N$, bobot inersia $\omega$, koefisien kognitif $c_1$, dan koefisien sosial $c_2$. Pemilihan nilai parameter ini sangat memengaruhi perilaku konvergensi algoritma, sehingga umumnya diatur berdasarkan rekomendasi literatur atau melalui eksperimen pendahuluan \cite{kennedy1995particle}.
+	
+	\item \textbf{Inisialisasi posisi dan \textit{velocity} acak.} Posisi awal setiap partikel dibangkitkan secara acak dalam ruang pencarian, dan \textit{velocity} awalnya juga diberi nilai acak. Inisialisasi acak ini memastikan partikel-partikel tersebar pada ruang pencarian, mendukung eksplorasi awal yang luas tanpa bias terhadap area tertentu.
+	
+	\item \textbf{Inisialisasi $pBest$ dan $gBest$.} Setelah posisi awal ditetapkan, $pBest$ setiap partikel diinisialisasi sebagai posisi awal partikel tersebut, sedangkan $gBest$ diinisialisasi sebagai posisi terbaik di antara seluruh partikel berdasarkan evaluasi nilai \textit{fitness} awal.
+	
+	\item \textbf{Perhitungan \textit{velocity} baru.} Fase iteratif dimulai dengan menghitung \textit{velocity} baru setiap partikel menggunakan Persamaan~\ref{eq:pso-velocity}. Perhitungan ini mempertimbangkan tiga komponen yang telah dijelaskan sebelumnya, yaitu komponen inersia, komponen kognitif, dan komponen sosial, dengan faktor acak yang menjaga sifat stokastik algoritma.
+	
+	\item \textbf{Perhitungan posisi baru.} \textit{Velocity} baru yang telah dihitung digunakan untuk memperbarui posisi setiap partikel menggunakan Persamaan~\ref{eq:pso-position}. Posisi baru tersebut merepresentasikan solusi kandidat baru yang akan dievaluasi pada langkah berikutnya.
+	
+	\item \textbf{Evaluasi \textit{fitness}.} Nilai \textit{fitness} setiap partikel dievaluasi menggunakan fungsi objektif yang spesifik untuk permasalahan yang sedang diselesaikan. Fungsi \textit{fitness} mengukur kualitas solusi yang direpresentasikan oleh posisi partikel, di mana nilai yang lebih baik menandakan solusi yang lebih mendekati optimum.
+	
+	\item \textbf{Pembaruan $pBest$ dan $gBest$.} Hasil evaluasi \textit{fitness} dibandingkan dengan $pBest$ setiap partikel dan $gBest$ kawanan. Apabila terdapat partikel dengan nilai \textit{fitness} yang lebih baik dari $pBest$-nya, $pBest$ tersebut diperbarui dengan posisi saat ini. Demikian pula, apabila terdapat partikel dengan \textit{fitness} yang lebih baik dari $gBest$, nilai $gBest$ diperbarui agar seluruh kawanan dapat mengikutinya pada iterasi berikutnya.
+	
+	\item \textbf{Pengecekan \textit{stopping condition}.} Pada akhir setiap iterasi, algoritma memeriksa apakah kondisi terminasi telah terpenuhi. Kondisi ini umumnya berupa tercapainya jumlah iterasi maksimum, ditemukannya solusi dengan \textit{fitness} optimal, atau terdeteksinya stagnasi, yaitu tidak adanya perbaikan signifikan selama sejumlah iterasi berturut-turut. Apabila kondisi belum terpenuhi, algoritma kembali ke langkah perhitungan \textit{velocity} dan mengulang siklus iteratif.
+	
+	\item \textbf{Output solusi terbaik.} Setelah \textit{stopping condition} terpenuhi, algoritma mengembalikan partikel dengan nilai \textit{fitness} terbaik, yaitu $gBest$, sebagai solusi keluaran.
 \end{enumerate}
 
 \paragraph{Adaptasi PSO untuk Ruang Diskrit.}
@@ -387,66 +430,7 @@ Secara umum, adaptasi PSO untuk ruang diskrit memerlukan tiga modifikasi utama:
 	\item \textbf{Mekanisme pembaruan posisi}: Posisi diperbarui bukan dengan penjumlahan vektor, melainkan dengan mekanisme probabilistik: untuk setiap dimensi, apabila bilangan acak lebih kecil dari \textit{velocity} pada dimensi tersebut, posisi diubah mengikuti $nBest$; sebaliknya, posisi dipertahankan.
 \end{enumerate}
 
-Adaptasi-adaptasi ini memungkinkan PSO diterapkan pada permasalahan kombinatorik diskrit seperti \textit{Colored Queens} tanpa mengubah struktur dasar algoritma. Detail spesifik mengenai bagaimana adaptasi ini diimplementasikan untuk \textit{Colored Queens} akan dibahas pada Bab \ref{chap:implementasi}.
+Adaptasi-adaptasi ini memungkinkan PSO diterapkan pada permasalahan kombinatorik diskrit seperti \textit{Colored Queens} tanpa mengubah struktur dasar algoritma. Detail spesifik mengenai bagaimana adaptasi ini diimplementasikan untuk \textit{Colored Queens} akan dibahas pada Bab \ref{chap:hasil}.
 
 
-\section{Perbandingan Pendekatan}
-\label{sec:perbandingan}
 
-Bagian ini membandingkan dua kategori pendekatan yang digunakan dalam tugas akhir ini untuk menyelesaikan permasalahan \textit{Colored Queens}: pendekatan sistematis (\textit{complete}) dan pendekatan \textit{metaheuristic} (\textit{incomplete}). Perbandingan dilakukan secara teoretis untuk memberikan landasan bagi analisis empiris yang akan disajikan pada bab-bab selanjutnya.
-
-\subsection{Algoritma Complete vs Metaheuristic}
-\label{subsec:perbandingan-complete-meta}
-
-Perbedaan paling fundamental antara algoritma \textit{complete} dan \textit{metaheuristic} terletak pada jaminan terhadap solusi \cite{russell2020artificial}. Algoritma \textit{complete}, seperti \textit{backtracking} dengan \textit{forward checking} dan AC-3, menjamin bahwa solusi akan ditemukan apabila solusi tersebut ada, atau akan membuktikan ketiadaan solusi apabila tidak ada penugasan yang memenuhi seluruh kendala. Algoritma \textit{metaheuristic}, seperti PSO, tidak memberikan jaminan tersebut: algoritma dapat berakhir tanpa menemukan solusi valid meskipun solusi tersebut ada, atau dapat menemukan solusi yang mendekati optimal tetapi bukan solusi terbaik.
-
-Dari segi kompleksitas waktu, algoritma \textit{complete} memiliki kompleksitas terburuk yang eksponensial terhadap jumlah variabel, yaitu $O(d^n)$ di mana $d$ adalah ukuran domain maksimum dan $n$ adalah jumlah variabel \cite{kumar1998}. Meskipun teknik propagasi kendala seperti \textit{forward checking} dan AC-3 dapat mengurangi jumlah simpul yang dieksplorasi secara signifikan, kompleksitas terburuk tetap eksponensial. Di sisi lain, kompleksitas waktu \textit{metaheuristic} bergantung pada parameter yang ditetapkan pengguna (jumlah partikel, jumlah iterasi), sehingga waktu eksekusi dapat dikontrol secara langsung, meskipun dengan \textit{trade-off} terhadap kualitas solusi \cite{blum2003metaheuristics}.
-
-Dari segi penggunaan memori, algoritma \textit{backtracking} bekerja pada satu cabang pencarian dalam satu waktu sehingga hanya memerlukan ruang polinomial $O(nd)$ untuk menyimpan domain dan penugasan saat ini \cite{van2006backtracking}. PSO memerlukan ruang yang proporsional terhadap jumlah partikel dikali dimensi masalah, yaitu $O(P \cdot n)$ di mana $P$ adalah jumlah partikel, yang pada umumnya juga bersifat polinomial namun dengan konstanta yang lebih besar.
-
-Tabel \ref{tab:complete-vs-meta} merangkum perbandingan kedua kategori pendekatan.
-
-\begin{longtable}{lp{5.5cm}p{5.5cm}}
-	\caption{Perbandingan algoritma \textit{complete} dan \textit{metaheuristic}}
-	\label{tab:complete-vs-meta} \\
-	\toprule
-	\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
-	\midrule
-	\endfirsthead
-	\toprule
-	\textbf{Aspek} & \textbf{Complete (Backtracking+FC+AC-3)} & \textbf{Metaheuristic (PSO)} \\
-	\midrule
-	\endhead
-	\bottomrule
-	\endfoot
-	Jaminan solusi & Ya - menemukan solusi jika ada, membuktikan ketiadaan jika tidak ada & Tidak - dapat gagal menemukan solusi yang ada \\
-	\midrule
-	Kompleksitas waktu & Eksponensial terburuk $O(d^n)$, namun propagasi kendala mereduksi secara signifikan & Terkontrol oleh parameter (iterasi $\times$ partikel), namun tanpa jaminan kualitas \\
-	\midrule
-	Penggunaan memori & Polinomial $O(nd)$ & Polinomial $O(Pn)$ \\
-	\midrule
-	Skalabilitas & Menurun pada instansi besar akibat ledakan kombinatorik & Lebih stabil, namun kualitas solusi menurun \\
-	\midrule
-	Determinisme & Deterministik (hasil konsisten) & Stokastik (hasil bervariasi antareksekusi) \\
-	\bottomrule
-\end{longtable}
-
-\subsection{Backtracking+FC+AC-3 vs PSO untuk Colored Queens}
-\label{subsec:perbandingan-bt-pso}
-
-Ketika diterapkan secara spesifik pada permasalahan \textit{Colored Queens}, masing-masing pendekatan memiliki karakteristik yang perlu dipertimbangkan.
-
-Pendekatan \textit{backtracking} dengan \textit{forward checking} dan AC-3 memanfaatkan struktur kendala \textit{Colored Queens} secara langsung. Setiap penugasan menteri pada suatu sektor warna segera memicu propagasi kendala ke seluruh sektor warna lainnya, menghapus posisi-posisi yang melanggar kendala baris, kolom, atau \textit{adjacency}. Karena \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete} (sebagaimana dibahas pada Bagian \ref{subsec:csp-colored-queens}), setiap penugasan memiliki dampak propagasi yang luas, yang memungkinkan pemangkasan domain secara agresif. Keunggulan pendekatan ini adalah kemampuannya untuk mendeteksi inkonsistensi secara dini dan menghindari eksplorasi cabang-cabang yang tidak produktif. Kelemahannya adalah pada papan berukuran besar, jumlah kombinasi yang harus dieksplorasi tetap dapat menjadi sangat besar meskipun dengan propagasi kendala.
-
-Pendekatan PSO beroperasi dengan paradigma yang berbeda. Alih-alih membangun solusi secara inkremental, PSO memulai dengan populasi solusi kandidat yang lengkap (setiap partikel merupakan penugasan untuk seluruh sektor warna) dan secara iteratif memperbaikinya melalui mekanisme \textit{velocity} dan interaksi sosial. Fungsi \textit{fitness} mengukur jumlah pelanggaran kendala, dan algoritma berusaha meminimalkan nilai ini hingga mencapai nol (solusi valid). Keunggulan pendekatan ini adalah kemampuannya untuk menjelajahi banyak area ruang solusi secara paralel melalui populasi partikel. Kelemahannya adalah tidak adanya jaminan konvergensi ke solusi valid, terutama pada masalah dengan ruang solusi yang sangat terkendala (\textit{highly constrained}) di mana solusi valid mungkin hanya menempati sebagian kecil dari ruang pencarian.
-
-Perbedaan mendasar lainnya terletak pada cara kedua pendekatan menangani kendala. Pendekatan \textit{backtracking}+FC+AC-3 menangani kendala secara eksplisit: kendala digunakan untuk memangkas domain dan mencegah penugasan yang tidak konsisten sejak awal. PSO menangani kendala secara implisit melalui fungsi \textit{fitness}: pelanggaran kendala tidak dicegah, melainkan dihukum (\textit{penalized}) dalam evaluasi \textit{fitness}, dan algoritma mengandalkan tekanan selektif untuk mengarahkan pencarian menuju solusi tanpa pelanggaran.
-
-\subsection{Justifikasi Pemilihan Metode}
-\label{subsec:justifikasi-metode}
-
-Pemilihan \textit{backtracking} dengan \textit{forward checking} dan AC-3 sebagai pendekatan sistematis didasarkan pada beberapa pertimbangan. Pertama, kombinasi ketiga teknik ini merupakan pendekatan standar yang telah terbukti efektif untuk berbagai permasalahan CSP \cite{bessiere2006constraint}, sehingga memberikan \textit{baseline} yang kuat untuk perbandingan. Kedua, \textit{forward checking} dan AC-3 saling melengkapi: \textit{forward checking} menangani konsistensi antara variabel yang baru ditugaskan dengan variabel lain, sementara AC-3 menangani konsistensi antarsesama variabel yang belum ditugaskan. Ketiga, jaminan kelengkapan memastikan bahwa kegagalan menemukan solusi dapat diinterpretasikan sebagai bukti ketiadaan solusi, bukan sebagai keterbatasan algoritma.
-
-Pemilihan PSO sebagai pendekatan \textit{metaheuristic} didasarkan pada pertimbangan berikut. Pertama, PSO memiliki struktur yang relatif sederhana dengan sedikit parameter dibandingkan \textit{metaheuristic} lainnya seperti \textit{Genetic Algorithm} yang memerlukan operator \textit{crossover} dan \textit{mutation} \cite{kennedy1995particle}. Kedua, adaptasi PSO untuk masalah diskrit telah menunjukkan hasil yang menjanjikan pada masalah N-Queens tradisional \cite{hu2003swarm}, sehingga menarik untuk mengevaluasi efektivitasnya pada varian \textit{Colored Queens} yang memiliki kendala tambahan. Ketiga, topologi \textit{local best} (lBest) yang digunakan memberikan mekanisme natural untuk menjaga diversitas populasi dan mengurangi risiko konvergensi prematur, yang merupakan pertimbangan penting pada masalah dengan banyak \textit{local optima}.
-
-Perbandingan kedua pendekatan ini diharapkan memberikan wawasan mengenai \textit{trade-off} antara kelengkapan solusi dan efisiensi waktu pada permasalahan \textit{Colored Queens} dengan berbagai ukuran papan, mulai dari ukuran kecil ($7 \times 7$) hingga besar ($30 \times 30$). Hasil pengujian dan analisis empiris akan disajikan pada Bab \ref{chap:implementasi}.

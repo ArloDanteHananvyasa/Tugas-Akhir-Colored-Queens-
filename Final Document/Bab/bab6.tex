@@ -1,0 +1,32 @@
+\chapter{Kesimpulan dan Saran}
+\label{chap:kesimpulan}
+
+\section{Kesimpulan}
+\label{sec:kesimpulan}
+
+Berdasarkan hasil implementasi, pengujian, dan analisis yang telah dilakukan terhadap dua pendekatan penyelesaian permasalahan \textit{Colored Queens} pada tugas akhir ini, dapat ditarik beberapa kesimpulan sebagai berikut:
+
+\begin{enumerate}
+	\item Perangkat lunak permainan \textit{Colored Queens} berhasil dibangun menggunakan bahasa pemrograman Java dengan antarmuka grafis berbasis Java Swing. Perangkat lunak ini terdiri atas tiga halaman utama, yaitu halaman beranda, halaman pemilihan level, dan halaman permainan, yang menyajikan papan permainan dengan ukuran beragam mulai dari $7 \times 7$ hingga $30 \times 30$ yang dimuat dari berkas berformat JSON.
+	
+	\item Solusi permainan \textit{Colored Queens} berhasil dibangun menggunakan dua pendekatan algoritmik yang berbeda. Pendekatan pertama adalah \textit{backtracking} sistematis yang diperkuat dengan \textit{Forward Checking} dan propagasi kendala AC-3, yang merepresentasikan permasalahan sebagai \textit{Constraint Satisfaction Problem} (CSP) dengan variabel berupa sektor warna, domain berupa sel-sel pada sektor tersebut, dan kendala yang mencakup larangan baris, kolom, dan ketetanggaan dalam delapan arah. Pendekatan kedua adalah \textit{Particle Swarm Optimization} (PSO) diskrit dengan representasi indeks sel per warna, fungsi \textit{fitness} berbasis pelanggaran kendala, dan topologi \textit{neighborhood} lokal (lBest) yang menerapkan adaptasi formula kecepatan dan posisi PSO untuk ruang pencarian diskrit.
+	
+	\item Kedua solver berhasil diintegrasikan ke dalam perangkat lunak permainan sebagai kelas independen yang menerima objek papan sebagai masukan dan menghasilkan penugasan menteri sebagai keluaran. Integrasi diwujudkan melalui mekanisme eksekusi asinkron, sehingga solver dapat dijalankan di latar belakang untuk mendukung fitur \textit{hint} dan \textit{auto-solve} tanpa menghambat responsivitas antarmuka pengguna.
+	
+	\item Berdasarkan hasil pengujian, kedua solver menunjukkan kinerja yang sangat berbeda dalam mencari solusi permainan \textit{Colored Queens}. Algoritma \textit{backtracking} dengan \textit{Forward Checking} dan AC-3 mampu menyelesaikan seluruh instansi yang diujikan, mulai dari ukuran $7 \times 7$ hingga $30 \times 30$, dengan tingkat keberhasilan 100\% dan waktu penyelesaian yang cepat dan deterministik. Sebaliknya, algoritma PSO diskrit hanya mampu menemukan solusi yang valid pada papan berukuran kecil ($7 \times 7$ hingga $9 \times 9$) dengan konfigurasi parameter tertentu, namun mengalami stagnasi dan kegagalan konvergensi yang signifikan pada papan berukuran $10 \times 10$ ke atas.
+	
+	\item Hasil eksperimen mengonfirmasi bahwa kombinasi mekanisme propagasi kendala (\textit{Forward Checking} dan AC-3) secara signifikan mempersempit ruang pencarian melalui eliminasi nilai-nilai domain yang tidak konsisten sebelum penelusuran dilanjutkan. Pada PSO, eksperimen variasi parameter menunjukkan bahwa peningkatan jumlah partikel dan pengurangan jumlah \textit{neighborhood} memberikan dampak positif terbesar pada kemampuan eksplorasi, namun bahkan kombinasi parameter optimal tidak mampu menjamin keberhasilan pada instansi berukuran besar. Dengan demikian, untuk permasalahan \textit{Colored Queens} secara khusus dan permasalahan CSP dengan kendala keras secara umum, pendekatan berbasis propagasi kendala terbukti jauh lebih efektif dibandingkan pendekatan \textit{metaheuristik} berbasis populasi.
+\end{enumerate}
+
+\section{Saran}
+\label{sec:saran}
+
+Berdasarkan temuan dan keterbatasan yang diidentifikasi dalam penelitian ini, beberapa saran untuk pengembangan selanjutnya dapat dikemukakan.
+
+Pertama, penelitian selanjutnya dapat mengeksplorasi pendekatan \textit{hybrid} yang menggabungkan kekuatan propagasi kendala dengan metaheuristik, misalnya menggunakan PSO untuk menghasilkan solusi awal yang kemudian diperbaiki oleh \textit{backtracking}, atau menerapkan propagasi kendala sebagai mekanisme perbaikan \textit{fitness} dalam PSO. Pendekatan semacam ini berpotensi mengatasi kelemahan konvergensi PSO pada permasalahan dengan kendala keras.
+
+Kedua, mengingat keterbatasan PSO yang ditemukan, penelitian selanjutnya dapat membandingkan PSO dengan metaheuristik lain seperti \textit{Simulated Annealing}, \textit{Genetic Algorithm}, atau \textit{Tabu Search}, guna menilai apakah kelemahan yang ditemukan bersifat umum pada seluruh pendekatan \textit{metaheuristik}, atau merupakan karakteristik spesifik PSO pada permasalahan ini.
+
+Ketiga, pengembangan heuristik pemilihan variabel yang lebih adaptif dapat menjadi arah penelitian yang menjanjikan. Implementasi \textit{backtracking} dalam penelitian ini menggunakan pengurutan warna berdasarkan ukuran domain secara statik. Heuristik dinamis yang memperbarui urutan pemilihan variabel secara adaptif selama proses pencarian berpotensi mengurangi jumlah \textit{backtrack} lebih lanjut.
+
+Keempat, pengujian pada instansi yang lebih beragam perlu dilakukan. Penelitian ini dibatasi hingga ukuran $30 \times 30$ dengan satu instansi untuk ukuran besar, sehingga penelitian selanjutnya sebaiknya mencakup lebih banyak instansi dengan variasi tata letak warna yang berbeda guna memperoleh gambaran statistik yang lebih komprehensif. Selain itu, cakupan permasalahan dapat diperluas ke varian lain seperti \textit{Star Battle} dengan aturan $k$ bintang per baris, kolom, dan region, atau ke permasalahan CSP lain yang memiliki struktur serupa.

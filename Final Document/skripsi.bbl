@@ -8,28 +8,6 @@ Bell, J. dan Stevens, B. (2009) A survey of known results and research areas
   \url{https://www.sciencedirect.com/science/article/pii/S0012365X07010394#b20}Diakses:
   2026-05-10.
 
-\bibitem{glock2022n}
-Glock, S., Munh{\'a}~Correia, D., dan Sudakov, B. (2022) The n-queens
-  completion problem.
-\newblock {\em Research in the Mathematical Sciences}, {\bf  9}, 41.
-\newblock \url{https://link.springer.com/article/10.1007/s40687-022-00335-1}
-  Diakses: 2026-05-10.
-
-\bibitem{russell2020artificial}
-Russell, S.~J. dan Norvig, P. (2020) {\em Artificial Intelligence: A Modern
-  Approach},  4 edition. Pearson Education, Inc.,  New Jersey.
-\newblock Chapter 6.
-  \url{http://repo.darmajaya.ac.id/5272/1/Artificial%20Intelligence-A%20Modern%20Approach%20(3rd%20Edition)%20(%20PDFDrive%20).pdf}
-  Diakses: 2026-05-10.
-
-\bibitem{hoffman1969constructions}
-Hoffman, E.~J., Loessi, J., dan Moore, R.~C. (1969) Constructions for the
-  solution of the m queens problem.
-\newblock {\em Mathematics Magazine}, {\bf  42}, 66--72.
-\newblock
-  \url{https://exp-blog.com/algorithm/poj/poj3239-solution-to-the-n-queens-puzzle/doc/Constructions%20for%20the%20Solution%20of%20the%20m%20Queens%20Problem.pdf}
-  Diakses: 2026-05-14.
-
 \bibitem{gent2017complexity}
 Gent, I.~P., Jefferson, C., dan Nightingale, P. (2017) Complexity of n-queens
   completion.
@@ -51,6 +29,37 @@ Snyder, T. (2013) Star battle rules and info.
 \bibitem{ali2026quboformulationgeneralizedlinkedin}
 Ali, A.~M. dan Mencia, E. (2026) A qubo formulation for the generalized
   linkedin queens and takuzu/tango game.
+\newblock \url{https://arxiv.org/abs/2410.06429}, Diakses: 28 Mei 2026.
+
+\bibitem{russell2020artificial}
+Russell, S.~J. dan Norvig, P. (2020) {\em Artificial Intelligence: A Modern
+  Approach},  4 edition. Pearson Education, Inc.,  New Jersey.
+\newblock Chapter 6.
+  \url{http://repo.darmajaya.ac.id/5272/1/Artificial%20Intelligence-A%20Modern%20Approach%20(3rd%20Edition)%20(%20PDFDrive%20).pdf}
+  Diakses: 2026-05-10.
+
+\bibitem{kennedy1995particle}
+Kennedy, J. dan Eberhart, R. (1995) Particle swarm optimization.
+\newblock {\em Proceedings of ICNN'95-international conference on neural
+  networks},  pp. 1942--1948. ieee.
+\newblock
+  \url{https://www.cs.tufts.edu/comp/150GA/homeworks/hw3/_reading6%201995%20particle%20swarming.pdf}
+  Diakses: 18 Mei 2026.
+
+\bibitem{glock2022n}
+Glock, S., Munh{\'a}~Correia, D., dan Sudakov, B. (2022) The n-queens
+  completion problem.
+\newblock {\em Research in the Mathematical Sciences}, {\bf  9}, 41.
+\newblock \url{https://link.springer.com/article/10.1007/s40687-022-00335-1}
+  Diakses: 2026-05-10.
+
+\bibitem{hoffman1969constructions}
+Hoffman, E.~J., Loessi, J., dan Moore, R.~C. (1969) Constructions for the
+  solution of the m queens problem.
+\newblock {\em Mathematics Magazine}, {\bf  42}, 66--72.
+\newblock
+  \url{https://exp-blog.com/algorithm/poj/poj3239-solution-to-the-n-queens-puzzle/doc/Constructions%20for%20the%20Solution%20of%20the%20m%20Queens%20Problem.pdf}
+  Diakses: 2026-05-14.
 
 \bibitem{montanari1974networks}
 Montanari, U. (1974) Networks of constraints: Fundamental properties and
@@ -102,14 +111,6 @@ Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
   \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
   Diakses: 17 Mei 2026.
 
-\bibitem{kennedy1995particle}
-Kennedy, J. dan Eberhart, R. (1995) Particle swarm optimization.
-\newblock {\em Proceedings of ICNN'95-international conference on neural
-  networks},  pp. 1942--1948. ieee.
-\newblock
-  \url{https://www.cs.tufts.edu/comp/150GA/homeworks/hw3/_reading6%201995%20particle%20swarming.pdf}
-  Diakses: 18 Mei 2026.
-
 \bibitem{hu2003swarm}
 Hu, X., Eberhart, R.~C., dan Shi, Y. (2003) Swarm intelligence for permutation
   optimization: a case study of n-queens problem.
@@ -127,5 +128,19 @@ Kennedy, J. dan Eberhart, R.~C. (1997) A discrete binary version of the
 \newblock
   \url{https://www.ahmetcevahircinar.com.tr/wp-content/uploads/2017/02/A_discrete_binary_version_of_the_particle_swarm_algorithm.pdf}
   Diakses: 18 Mei 2026.
+
+\bibitem{engelbrecht2007computational}
+Engelbrecht, A.~P. dkk. (2007) {\em Computational intelligence: an
+  introduction}. Wiley Online Library.
+\newblock
+  \url{https://dai.fmph.uniba.sk/courses/ICI/engelbrecht.comp-intel-intro.07.pdf}
+  Diakses: 24 Mei 2026.
+
+\bibitem{michalewicz2000solve}
+Michalewicz, Z., Fogel, D.~B., dan Michaelewica, A. (2000) {\em How to solve
+  it: modern heuristics}. Springer.
+\newblock
+  \url{https://people.vts.su.ac.rs/~pmiki/AI/Michalewicz%20Z.,%20Fogel%20D.-How%20to%20solve%20it.%20Modern%20heuristics-Springer%20(2004).pdf}
+  Diakses: 24 Mei 2026.
 
 \end{thebibliography}
