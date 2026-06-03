@@ -28,9 +28,9 @@ Berikut adalah penjelasan setiap proses pada Gambar \ref{fig:alur-sistem}:
 	
 	\item \textbf{Memilih algoritma yang akan dijalankan untuk mendapatkan solusi.} Pada tahap ini, salah satu dari dua algoritma dipilih untuk menyelesaikan puzzle. Dalam konteks eksperimen, kedua algoritma dijalankan pada puzzle yang sama untuk keperluan perbandingan.
 	
-	\item \textbf{Menjalankan algoritma pencarian \textit{backtracking} sampai menemukan solusi.} Apabila algoritma \textit{backtracking} dengan \textit{forward checking} dan AC-3 dipilih, solver melakukan pencarian sistematis dengan pemangkasan domain hingga solusi valid ditemukan. Sifat deterministik dan kelengkapan (\textit{completeness}) algoritma ini menjamin ditemukannya solusi apabila solusi tersebut ada. Perancangan solver dibahas pada Bagian \ref{sec:perancangan-backtracking}.
+	\item \textbf{Menjalankan algoritma pencarian \textit{backtracking} sampai menemukan solusi.} Apabila algoritma \textit{backtracking} dengan \textit{forward checking} dan AC-3 dipilih, solver melakukan pencarian sistematis dengan pemangkasan domain hingga solusi valid ditemukan. Sifat deterministik dan kelengkapan (\textit{completeness}) algoritma ini menjamin ditemukannya solusi apabila solusi tersebut ada. Perancangan solver dibahas pada Bagian \ref{subsubsec:kelas-backtracking}.
 	
-	\item \textbf{Menjalankan algoritma \textit{metaheuristic} PSO hingga menemukan solusi atau sampai suatu \textit{stopping condition}.} Apabila algoritma PSO diskrit dipilih, solver mengeksplorasi ruang solusi melalui sejumlah partikel yang berinteraksi dalam \textit{neighborhood}. Pencarian berhenti apabila solusi valid ditemukan, batas iterasi tercapai, atau stagnasi terdeteksi. Perancangan solver dibahas pada Bagian \ref{sec:perancangan-pso}.
+	\item \textbf{Menjalankan algoritma \textit{metaheuristic} PSO hingga menemukan solusi atau sampai suatu \textit{stopping condition}.} Apabila algoritma PSO diskrit dipilih, solver mengeksplorasi ruang solusi melalui sejumlah partikel yang berinteraksi dalam \textit{neighborhood}. Pencarian berhenti apabila solusi valid ditemukan, batas iterasi tercapai, atau stagnasi terdeteksi. Perancangan solver dibahas pada Bagian \ref{subsubsec:kelas-psosolver}.
 	
 	\item \textbf{Solusi valid akan ditampilkan.} Solusi berupa pasangan koordinat penempatan menteri untuk setiap sektor warna ditampilkan. Pada konteks aplikasi, solusi dirender pada papan melalui \texttt{GameWindow} (Bagian \ref{subsec:antarmuka}). Pada konteks eksperimen, solusi beserta metrik kinerja dicatat ke dalam berkas hasil.
 	
@@ -214,7 +214,7 @@ Propagasi AC-3 merupakan tahap pemangkasan kedua yang dijalankan setelah \textit
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.95\linewidth]{flowac3.png}
+	\includegraphics[width=0.75\linewidth]{flowac3.png}
 	\caption{Diagram alur prosedur propagasi AC-3.}
 	\label{fig:flow-propagate}
 \end{figure}
@@ -246,7 +246,7 @@ Algoritma memulai pencarian dengan memproses variabel warna pertama, dalam conto
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/20.png}
+	\includegraphics[width=0.27\linewidth]{./bt/20.png}
 	\caption{Penempatan menteri pertama pada salah satu sel dari domain warna biru.}
 	\label{fig:bt-step20}
 \end{figure}
@@ -255,7 +255,7 @@ Setelah menteri ditempatkan, \textit{forward checking} dijalankan untuk memangka
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/21.png}
+	\includegraphics[width=0.27\linewidth]{./bt/21.png}
 	\caption{Hasil pemangkasan oleh \textit{forward checking} setelah penempatan menteri pertama.}
 	\label{fig:bt-step21}
 \end{figure}
@@ -286,7 +286,7 @@ Gambar~\ref{fig:bt-step24} menunjukkan pemrosesan sel Hijau(1,2), yang ditandai 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/24.png}
+	\includegraphics[width=0.27\linewidth]{./bt/24.png}
 	\caption{Pemrosesan busur Hijau$\rightarrow$Kuning: sel Hijau(1,2) memiliki \textit{support} pada Kuning(6,3) dan tetap valid.}
 	\label{fig:bt-step24}
 \end{figure}
@@ -295,7 +295,7 @@ Sebaliknya, Gambar~\ref{fig:bt-step25} menunjukkan pemrosesan sel Hijau(5,2) dan
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/25.png}
+	\includegraphics[width=0.27\linewidth]{./bt/25.png}
 	\caption{Pemrosesan busur Hijau$\rightarrow$Kuning: sel Hijau(5,2) dan Hijau(5,3) tidak memiliki \textit{support} dan dipangkas.}
 	\label{fig:bt-step25}
 \end{figure}
@@ -304,7 +304,7 @@ Propagasi serupa dilakukan untuk seluruh busur dalam antrean, dengan busur-busur
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/26.png}
+	\includegraphics[width=0.27\linewidth]{./bt/26.png}
 	\caption{Kondisi papan setelah propagasi AC-3 selesai.}
 	\label{fig:bt-step26}
 \end{figure}
@@ -315,7 +315,7 @@ Setelah pemangkasan selesai dan tidak ada domain yang kosong, algoritma melanjut
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/27.png}
+	\includegraphics[width=0.27\linewidth]{./bt/27.png}
 	\caption{Penempatan menteri kedua pada salah satu sel dari domain warna oranye.}
 	\label{fig:bt-step27}
 \end{figure}
@@ -324,7 +324,7 @@ Setelah penempatan ini, \textit{forward checking} dan AC-3 dijalankan kembali. N
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/28.png}
+	\includegraphics[width=0.27\linewidth]{./bt/28.png}
 	\caption{\textit{Domain wipeout}: seluruh sel pada domain warna kuning menjadi tidak valid.}
 	\label{fig:bt-step28}
 \end{figure}
@@ -335,7 +335,7 @@ Sebagai respons terhadap kegagalan, algoritma melakukan \textit{backtrack} denga
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/29.png}
+	\includegraphics[width=0.27\linewidth]{./bt/29.png}
 	\caption{\textit{Backtrack}: pembatalan penempatan menteri oranye yang menyebabkan kegagalan.}
 	\label{fig:bt-step29}
 \end{figure}
@@ -344,7 +344,7 @@ Algoritma kemudian mencoba sel berikutnya dari domain warna oranye yang masih va
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./bt/30.png}
+	\includegraphics[width=0.27\linewidth]{./bt/30.png}
 	\caption{Penempatan alternatif untuk warna oranye setelah \textit{backtrack}.}
 	\label{fig:bt-step30}
 \end{figure}
@@ -369,6 +369,26 @@ Studi kasus ini mengilustrasikan bagaimana sinergi antara \textit{forward checki
 
 Bagian ini menjelaskan analisis algoritmik dari pendekatan kedua yang digunakan untuk menyelesaikan permasalahan \textit{Colored Queens}, yaitu \textit{Particle Swarm Optimization} (PSO) dalam varian diskrit. Berbeda dengan \textit{backtracking} yang menjamin penemuan solusi melalui pencarian sistematis, PSO merupakan algoritma stokastik berbasis populasi yang mencari solusi melalui pergerakan kolektif partikel-partikel pada ruang pencarian. Landasan teori PSO klasik dan adaptasinya untuk ruang pencarian diskrit telah dibahas pada Bagian~\ref{subsubsec:pso}. Analisis disajikan melalui dua diagram alur, yaitu mekanisme pembaruan kecepatan dan posisi setiap partikel, kemudian alur utama algoritma yang menjalankan pembaruan tersebut secara iteratif hingga salah satu kondisi terminasi tercapai. Diagram pembaruan partikel disajikan terlebih dahulu agar pembaca dapat memahami unit komputasi inti dari PSO sebelum melihat keseluruhan alur. Rincian implementasi masing-masing komponen dibahas pada Bab~\ref{chap:perancangan}.
 
+\subsection{Fungsi \textit{Fitness}}
+\label{subsec:fungsi-fitness-pso}
+
+Berbeda dengan algoritma \textit{backtracking} yang menjamin validitas solusi melalui pemeriksaan kendala secara eksplisit selama proses pencarian, PSO sebagai algoritma berbasis populasi tidak menggunakan kendala secara langsung untuk membatasi pergerakan partikel. Sebagai gantinya, kualitas suatu posisi partikel diukur secara numerik melalui sebuah fungsi \textit{fitness}, yaitu fungsi yang memetakan setiap posisi partikel ke sebuah nilai real yang mencerminkan seberapa dekat posisi tersebut dengan solusi valid. Pendekatan ini sejalan dengan transformasi umum dari \textit{Constraint Satisfaction Problem} (CSP) menjadi \textit{Constraint Optimization Problem} (COP) sebagaimana telah dibahas pada Bagian~\ref{subsubsec:metaheuristic-konsep}: dengan reformulasi ini, permasalahan ``mencari penugasan yang memenuhi seluruh kendala'' diubah menjadi permasalahan ``meminimalkan jumlah pelanggaran kendala,'' yang dapat ditangani oleh \textit{metaheuristic} berbasis optimasi seperti PSO. Posisi partikel yang merepresentasikan solusi valid bagi permasalahan \textit{Colored Queens} berkorespondensi dengan nilai \textit{fitness} sama dengan nol, dan algoritma berhenti ketika kondisi tersebut tercapai.
+
+Fungsi \textit{fitness} pada penelitian ini dirancang untuk mengukur dua jenis pelanggaran kendala yang dapat terjadi pada konfigurasi penempatan menteri, yang masing-masing bersesuaian dengan kendala yang telah didefinisikan pada Bagian~\ref{subsec:definisi-constraint}. Pelanggaran pertama, yang disebut \textit{attacking violation}, menghitung jumlah pasangan menteri yang ditempatkan pada baris atau kolom yang sama. Pelanggaran jenis ini menggabungkan kendala baris dan kendala kolom yang secara struktural setara: keduanya melarang dua menteri berbagi sebuah sumbu linear pada papan. Pelanggaran kedua, yang disebut \textit{adjacency violation}, menghitung jumlah pasangan menteri yang menempati sel-sel yang bertetangga secara langsung dalam delapan arah. Kedua jenis pelanggaran ini diperhitungkan secara terpisah karena merepresentasikan dimensi konflik yang berbeda secara semantik: \textit{attacking} mengukur konflik berbasis sumbu (\textit{axis-based conflict}), sedangkan \textit{adjacency} mengukur konflik berbasis kedekatan posisi (\textit{proximity-based conflict}). Kendala sektor warna tidak perlu diperhitungkan dalam fungsi \textit{fitness} karena telah dipenuhi secara implisit oleh representasi posisi partikel, di mana setiap indeks pada vektor posisi merepresentasikan pilihan sel dari domain satu sektor tertentu.
+
+Kedua komponen pelanggaran tersebut kemudian dikombinasikan menjadi sebuah nilai \textit{fitness} tunggal melalui penjumlahan berbobot:
+
+\begin{equation}
+	f(\vec{x}) = w_1 \cdot V_{\textit{attacking}}(\vec{x}) + w_2 \cdot V_{\textit{adjacency}}(\vec{x})
+	\label{eq:fitness-pso}
+\end{equation}
+
+di mana $\vec{x}$ adalah posisi partikel, $V_{\textit{attacking}}(\vec{x})$ adalah jumlah pasangan menteri yang melanggar kendala \textit{attacking}, $V_{\textit{adjacency}}(\vec{x})$ adalah jumlah pasangan menteri yang melanggar kendala \textit{adjacency}, serta $w_1$ dan $w_2$ adalah bobot positif yang menentukan kontribusi relatif setiap jenis pelanggaran terhadap nilai \textit{fitness} keseluruhan. Pemilihan bobot mencerminkan prioritas relatif dalam penyelesaian: nilai $w_1$ yang lebih besar mendorong algoritma untuk memprioritaskan pengurangan pelanggaran \textit{attacking}, sedangkan nilai $w_2$ yang lebih besar mendorong prioritas pada pengurangan pelanggaran \textit{adjacency}. Konfigurasi \textit{baseline} pada tugas akhir ini menggunakan $w_1 = w_2 = 1$, yang memberikan bobot setara pada kedua jenis pelanggaran dan menjadikan fungsi \textit{fitness} setara dengan jumlah total pelanggaran kendala pada konfigurasi tersebut.
+
+Penjumlahan berbobot dipilih sebagai mekanisme agregasi karena kesederhanaan interpretasinya dan kompatibilitasnya dengan kerangka kerja optimasi PSO yang bersifat skalar. Fungsi \textit{fitness} sebagai keluaran skalar memungkinkan perbandingan antarposisi partikel secara langsung melalui operator perbandingan numerik, yang diperlukan untuk pembaruan \textit{pBest} dan \textit{nBest} pada setiap iterasi. Alternatif lain seperti agregasi multiplikatif atau formulasi vektorial akan menghasilkan permasalahan multi-objektif yang memerlukan mekanisme penanganan tambahan, seperti konsep dominasi Pareto, yang menambah kompleksitas algoritma tanpa memberikan keuntungan signifikan pada konteks \textit{Colored Queens} di mana kedua jenis pelanggaran sama-sama harus dieliminasi secara absolut pada solusi valid.
+
+Perlu dicatat bahwa kedua komponen pelanggaran tidak bersifat saling-eksklusif. Sepasang menteri yang berada pada baris atau kolom yang sama dan secara bersamaan menempati sel-sel yang bertetangga akan dihitung sebagai pelanggaran pada kedua komponen secara independen. Sebagai contoh, dua menteri yang ditempatkan pada sel $(r, c)$ dan $(r, c+1)$ melanggar kendala baris (keduanya pada baris $r$) sekaligus kendala \textit{adjacency} (keduanya bertetangga secara horizontal). Penghitungan ganda ini bukan suatu redundansi, melainkan keputusan desain yang disengaja: pasangan yang melanggar dua kendala sekaligus merepresentasikan konfigurasi yang lebih jauh dari solusi valid dibandingkan pasangan yang hanya melanggar satu kendala, sehingga sewajarnya menerima penalti yang lebih tinggi pada nilai \textit{fitness}. Mekanisme ini menghasilkan gradien yang lebih curam pada konfigurasi yang sangat melanggar, yang membantu mengarahkan partikel keluar dari area pencarian yang tidak menjanjikan dengan lebih cepat.
+
 \subsection{Pembaruan Kecepatan dan Posisi Partikel}
 \label{subsec:flow-particle-update}
 
@@ -390,7 +410,7 @@ Prosedur dimulai dengan mengiterasi seluruh kelompok \textit{neighborhood} yang 
 Untuk setiap \textit{neighborhood} yang diambil, prosedur mengiterasi seluruh partikel yang menjadi anggotanya. Setiap partikel akan melalui rangkaian langkah pembaruan secara independen, tetapi semuanya merujuk pada \textit{nBest} yang sama untuk kelompok tersebut. Apabila seluruh partikel dalam \textit{neighborhood} saat ini telah diperbarui, alur kembali ke iterasi \textit{neighborhood} berikutnya.
 
 \subsubsection{Penghitungan Kecepatan Baru}
-
+\label{subsubsec:update-velocity}
 Kecepatan baru setiap partikel dihitung sebagai kombinasi linear dari tiga komponen, yaitu komponen inersia yang mempertahankan arah pergerakan sebelumnya, komponen kognitif yang menarik partikel menuju posisi terbaik historisnya (\textit{personal best} atau \textit{pBest}), dan komponen sosial yang menarik partikel menuju \textit{nBest}. Untuk setiap partikel, kecepatan baru pada dimensi ke-$j$ dihitung sebagai:
 
 \begin{equation}
@@ -417,7 +437,7 @@ Setelah perhitungan, nilai kecepatan di-\textit{clamp} pada interval $[0, 1]$ un
 \end{equation}
 
 \subsubsection{Pembaruan Posisi Partikel}
-
+\label{subsubsec:update-position}
 Posisi baru partikel diturunkan dari kecepatan dengan interpretasi probabilistik. Untuk setiap dimensi $j$, sebuah bilangan acak $r \in [0, 1)$ dibangkitkan, kemudian dibandingkan dengan nilai kecepatan pada dimensi tersebut. Apabila $r < v_j$, posisi partikel pada dimensi tersebut diadopsi dari \textit{nBest}. Apabila $r \geq v_j$, posisi tidak berubah. Secara formal:
 
 \begin{equation}
@@ -429,7 +449,7 @@ Mekanisme ini secara sengaja hanya menggunakan posisi \textit{nBest} sebagai tar
 
 \subsubsection{Evaluasi \textit{Fitness} dan Pembaruan \textit{pBest} serta \textit{nBest}}
 
-Setelah posisi partikel diperbarui, nilai \textit{fitness} dievaluasi ulang berdasarkan fungsi \textit{fitness} yang menghitung jumlah pelanggaran kendala sesuai definisi pada Bagian~\ref{subsec:definisi-constraint} dan formulasi pada Bagian~\ref{subsec:fitness-pso}. Nilai \textit{fitness} ini kemudian dibandingkan dengan \textit{fitness} dari \textit{pBest} partikel: apabila lebih baik, \textit{pBest} diperbarui dengan posisi saat ini. Selanjutnya, \textit{fitness} juga dibandingkan dengan \textit{fitness} dari \textit{nBest} \textit{neighborhood}: apabila lebih baik, \textit{nBest} diperbarui agar partikel-partikel lain dalam kelompok yang sama dapat mengikutinya pada iterasi berikutnya.
+Setelah posisi partikel diperbarui, nilai \textit{fitness} dievaluasi ulang berdasarkan fungsi \textit{fitness} yang menghitung jumlah pelanggaran kendala sesuai definisi pada Bagian~\ref{subsec:definisi-constraint} dan formulasi pada Bagian~\ref{subsec:fungsi-fitness-pso}. Nilai \textit{fitness} ini kemudian dibandingkan dengan \textit{fitness} dari \textit{pBest} partikel: apabila lebih baik, \textit{pBest} diperbarui dengan posisi saat ini. Selanjutnya, \textit{fitness} juga dibandingkan dengan \textit{fitness} dari \textit{nBest} \textit{neighborhood}: apabila lebih baik, \textit{nBest} diperbarui agar partikel-partikel lain dalam kelompok yang sama dapat mengikutinya pada iterasi berikutnya.
 
 \subsection{Alur Utama Algoritma PSO}
 \label{subsec:flow-pso-main}
@@ -484,7 +504,7 @@ Pada tahap inisialisasi, dua partikel dibangkitkan dengan posisi awal acak. Seti
 Selain posisi, setiap partikel juga memiliki vektor kecepatan awal dengan nilai acak pada interval $[0, 1)$ untuk setiap index:
 
 \begin{itemize}
-	\item Partikel 1: $v_i = [0.12,\, 0.85,\, 0.43,\, 0.67,\, 0.09,\, 0.91,\, 0.34]$
+	\item Partikel 1: $v_i = [0.12,\, 0.85,\, 0.43,\, 0.67,\, 0.09,\, 0.91,\, 0.274]$
 	\item Partikel 2: $v_i = [0.76,\, 0.21,\, 0.58,\, 0.04,\, 0.69,\, 0.47,\, 0.83]$
 \end{itemize}
 
@@ -501,12 +521,12 @@ Karena partikel 1 memiliki nilai \textit{fitness} terendah, partikel 1 ditetapka
 
 \subsubsection{Pembaruan Kecepatan}
 
-Pada iterasi pertama, kecepatan setiap partikel diperbarui menggunakan formula yang telah dijabarkan pada Persamaan~\ref{eq:pso-velocity-update}. Sebagai contoh ilustratif, misalkan parameter PSO ditetapkan sebagai $\omega = 0.7$, $c_1 = 0.5$, $c_2 = 0.5$, dan bilangan acak yang dibangkitkan adalah $r_1 = 0.2$ serta $r_2 = 0.3$. Untuk index ke-0 dari partikel 2, perhitungan kecepatan baru adalah sebagai berikut:
+Pada iterasi pertama, kecepatan setiap partikel diperbarui menggunakan formula yang telah dijabarkan pada Persamaan~\ref{eq:pso-velocity-update}. Sebagai contoh ilustratif, misalkan parameter PSO ditetapkan sebagai $\omega = 0.7$, $c_1 = 0.5$, $c_2 = 0.5$, dan bilangan acak yang dibangkitkan adalah $r_1 = 0.2$ serta $r_2 = 0.27$. Untuk index ke-0 dari partikel 2, perhitungan kecepatan baru adalah sebagai berikut:
 
 \begin{equation*}
 	\begin{aligned}
 		v_{i+1}[0] &= \underbrace{(\omega \cdot v_i[0])}_{\text{inersia}} + \underbrace{(r_1 \cdot c_1 \cdot \delta_{pBest,0})}_{\text{kognitif}} + \underbrace{(r_2 \cdot c_2 \cdot \delta_{nBest,0})}_{\text{sosial}} \\
-		&= (0.7 \cdot 0.76) + (0.2 \cdot 0.5 \cdot 0) + (0.3 \cdot 0.5 \cdot 1) \\
+		&= (0.7 \cdot 0.76) + (0.2 \cdot 0.5 \cdot 0) + (0.27 \cdot 0.5 \cdot 1) \\
 		&= 0.532 + 0 + 0.15 = 0.682
 	\end{aligned}
 \end{equation*}
@@ -514,7 +534,7 @@ Pada iterasi pertama, kecepatan setiap partikel diperbarui menggunakan formula y
 Nilai $\delta_{pBest,0} = 0$ karena nilai partikel 2 pada index ke-0 sama dengan nilai \textit{pBest}-nya pada index yang sama (keduanya bernilai $0$). Sebaliknya, $\delta_{nBest,0} = 1$ karena nilai partikel 2 pada index ke-0 (bernilai $0$) berbeda dengan nilai \textit{nBest} pada index ke-0 (bernilai $3$). Perhitungan serupa dilakukan untuk seluruh index, menghasilkan vektor kecepatan baru:
 
 \begin{equation*}
-	v_{i+1} = [0.682,\, 0.497,\, 0.606,\, 0.328,\, 0.483,\, 0.579,\, 0.581]
+	v_{i+1} = [0.682,\, 0.497,\, 0.606,\, 0.2728,\, 0.483,\, 0.579,\, 0.581]
 \end{equation*}
 
 \subsubsection{Pembaruan Posisi}
@@ -529,7 +549,7 @@ Sebagai contoh, untuk index ke-0 partikel 2, dibangkitkan bilangan acak $r = 0.2
 
 \subsubsection{Evaluasi \textit{Fitness} Partikel Baru}
 
-Setelah posisi diperbarui, nilai \textit{fitness} partikel 2 dievaluasi ulang menggunakan fungsi \textit{fitness} yang telah dijabarkan pada Bagian~\ref{subsubsec:fungsi-fitness-pso}:
+Setelah posisi diperbarui, nilai \textit{fitness} partikel 2 dievaluasi ulang menggunakan fungsi \textit{fitness} yang telah dijabarkan pada Bagian~\ref{subsec:fungsi-fitness-pso}:
 
 \begin{equation*}
 	fitness = w_1 \cdot \textit{attackingViolation} + w_2 \cdot \textit{adjacencyViolation}
@@ -541,7 +561,7 @@ dengan $w_1$ sebagai bobot pelanggaran \textit{attacking} dan $w_2$ sebagai bobo
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/39.png}
+	\includegraphics[width=0.27\linewidth]{./pso/39.png}
 	\caption{Pasangan \textit{adjacency} pertama: menteri pada (3,1) dan (4,1) bertetangga vertikal.}
 	\label{fig:pso-step39}
 \end{figure}
@@ -550,7 +570,7 @@ Pasangan kedua, sebagaimana disorot pada Gambar~\ref{fig:pso-step40}, terdiri at
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/40.png}
+	\includegraphics[width=0.27\linewidth]{./pso/40.png}
 	\caption{Pasangan \textit{adjacency} kedua: menteri pada (4,1) dan (4,2) bertetangga horizontal.}
 	\label{fig:pso-step40}
 \end{figure}
@@ -559,7 +579,7 @@ Pasangan ketiga, sebagaimana disorot pada Gambar~\ref{fig:pso-step41}, terdiri a
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/41.png}
+	\includegraphics[width=0.27\linewidth]{./pso/41.png}
 	\caption{Pasangan \textit{adjacency} ketiga: menteri pada (3,1) dan (4,2) bertetangga diagonal.}
 	\label{fig:pso-step41}
 \end{figure}
@@ -570,7 +590,7 @@ Dengan demikian, nilai \textit{adjacencyViolation} adalah $3$..
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/42.png}
+	\includegraphics[width=0.27\linewidth]{./pso/42.png}
 	\caption{Pasangan \textit{attacking} pertama: menteri pada (4,2) dan (6,2) berada pada kolom yang sama.}
 	\label{fig:pso-step42}
 \end{figure}
@@ -579,7 +599,7 @@ Pasangan kedua, sebagaimana disorot pada Gambar~\ref{fig:pso-step43}, terdiri at
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/46.png}
+	\includegraphics[width=0.27\linewidth]{./pso/46.png}
 	\caption{Pasangan \textit{attacking} kedua: menteri pada (4,1) dan (4,2) berada pada baris yang sama. Pasangan ini juga merupakan pelanggaran \textit{adjacency}.}
 	\label{fig:pso-step43}
 \end{figure}
@@ -588,7 +608,7 @@ Pasangan ketiga, sebagaimana disorot pada Gambar~\ref{fig:pso-step44}, terdiri a
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/44.png}
+	\includegraphics[width=0.27\linewidth]{./pso/44.png}
 	\caption{Pasangan \textit{attacking} ketiga: menteri pada (4,1) dan (4,4) berada pada baris yang sama.}
 	\label{fig:pso-step44}
 \end{figure}
@@ -597,7 +617,7 @@ Pasangan keempat, sebagaimana disorot pada Gambar~\ref{fig:pso-step45}, terdiri 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/45.png}
+	\includegraphics[width=0.27\linewidth]{./pso/45.png}
 	\caption{Pasangan \textit{attacking} keempat: menteri pada (3,1) dan (4,1) berada pada kolom yang sama. Pasangan ini juga merupakan pelanggaran \textit{adjacency}.}
 	\label{fig:pso-step45}
 \end{figure}
@@ -606,7 +626,7 @@ Pasangan kelima, sebagaimana disorot pada Gambar~\ref{fig:pso-step46}, terdiri a
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./pso/43.png}
+	\includegraphics[width=0.27\linewidth]{./pso/43.png}
 	\caption{Pasangan \textit{attacking} kelima: menteri pada (4,2) dan (4,4) berada pada baris yang sama.}
 	\label{fig:pso-step46}
 \end{figure}
