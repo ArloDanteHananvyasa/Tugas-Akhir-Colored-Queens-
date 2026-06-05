@@ -13,47 +13,58 @@ import java.io.FileReader;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
-        int size = 30;
-        int level = 1;
 
-        int solverChoice = 3;
+    static double totalRuntime = 0;
+    public static void main(String[] args) {
+        int size = 12;
+        int level = 250;
+
+        // int solverChoice = 3;
 
         System.out.println("Loading board (size=" + size + ", level=" + level + ")...");
 
         try {
-            List<Cell> cells = BoardImporter.importBoard(size, level);
-            Board board = new Board(size, cells);
 
-            System.out.println("\nBoard summary:");
-            board.printColorSummary();
+            // System.out.println("\nBoard summary:");
+            // board.printColorSummary();
 
-            System.out.println("\nColor layout:");
-            board.printSymbolBoard();
+            // System.out.println("\nColor layout:");
+            // board.printSymbolBoard();
 
-            switch (solverChoice) {
-                case 1:
-                    System.out.println("Solving using pure backtracking");
-                    callBacktracking(board);
-                    break;
+            // switch (solverChoice) {
+            //     case 1:
+            //         System.out.println("Solving using pure backtracking");
+            //         callBacktracking(board);
+            //         break;
 
-                case 2:
-                    System.out.println("Solving using backtracking optimized with bitsets");
-                    callBacktrackingBitset(board);
-                    break;
+            //     case 2:
+            //         System.out.println("Solving using backtracking optimized with bitsets");
+            //         callBacktrackingBitset(board);
+            //         break;
                     
-                case 3:
-                    System.out.println("Solving using backtracking and AC3");
-                    callBacktrackingAC3(board);
-                    break;
+            //     case 3:
+            //         System.out.println("Solving using backtracking and AC3");
+            //         callBacktrackingAC3(board);
+            //         break;
 
-                case 4:
-                    System.out.println("Solving using Discrete PSO");
-                    callPSO(board);
+            //     case 4:
+            //         System.out.println("Solving using Discrete PSO");
+            //         callPSO(board);
 
-                default:
-                    break;
+            //     default:
+            //         break;
+            // }
+
+            
+
+            for (int i = 1; i <= 250; i++) {
+                List<Cell> cells = BoardImporter.importBoard(size, i);
+                Board board = new Board(size, cells);
+
+                callBacktrackingAC3(board);
             }
+
+            System.out.println((totalRuntime / 250) + " us");
 
         } catch (Exception e) {
             System.out.println("Error: ");
@@ -67,7 +78,7 @@ public class Main {
         boolean solved = solver.solve();
 
             if (solved) {
-                solver.printSolution();
+                totalRuntime += solver.getExecutionTime();
             } else {
                 System.out.println("No solution found for this board.");
             }
