@@ -74,74 +74,73 @@ public class BacktrackingSolverAC3 {
 
     public boolean solve() {
         System.out.println("Starting AC-3 solver for " + size + "x" + size + " board with " + colors.size() + " colors.");
-        startTime = System.currentTimeMillis();
+        startTime = System.nanoTime();
         boolean result = placeQueens(0);
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
 
         System.out.println("\nSolver stats:");
         System.out.println("Steps: " + steps);
         System.out.println("Backtracks: " + backtracks);
-        System.out.println("Time: " + (endTime - startTime) + " ms");
+        System.out.println("Time: " + (endTime - startTime) + " us");
         System.out.println("Solution found: " + result);
 
         return result;
     }
 
     private boolean placeQueens(int colorIndex) {
-    if (colorIndex == colors.size()) return true;
+        if (colorIndex == colors.size()) return true;
 
-    String color = colors.get(colorIndex);
-    List<int[]> cells = colorCells.get(color);
-    BitSet valid = validCells.get(color);
+        String color = colors.get(colorIndex);
+        List<int[]> cells = colorCells.get(color);
+        BitSet valid = validCells.get(color);
 
-    if (valid.cardinality() == 0) return false;
+        if (valid.cardinality() == 0) return false;
 
-    for (int cellIdx = valid.nextSetBit(0); cellIdx >= 0; cellIdx = valid.nextSetBit(cellIdx + 1)) {
-        int row = cells.get(cellIdx)[0];
-        int col = cells.get(cellIdx)[1];
+        for (int cellIdx = valid.nextSetBit(0); cellIdx >= 0; cellIdx = valid.nextSetBit(cellIdx + 1)) {
+            int row = cells.get(cellIdx)[0];
+            int col = cells.get(cellIdx)[1];
 
-        solution[colorIndex] = cellIdx;
-        occupied[row][col] = true;
+            solution[colorIndex] = cellIdx;
+            occupied[row][col] = true;
 
-        int pruneStartPos = pruneStack.size();
+            int pruneStartPos = pruneStack.size();
 
-        // Forward-check
-        forwardCheck(row, col, colorIndex);
+            // Forward-check
+            forwardCheck(row, col, colorIndex);
 
-        // AC-3 arc propagation among future colors
-        Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
-        for (int i = colorIndex + 1; i < colors.size(); i++) {
-            for (int j = colorIndex + 1; j < colors.size(); j++) {
-                if (i != j) queue.add(new Pair<>(i, j));
+            // AC-3 arc propagation among future colors
+            Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
+            for (int i = colorIndex + 1; i < colors.size(); i++) {
+                for (int j = colorIndex + 1; j < colors.size(); j++) {
+                    if (i != j) queue.add(new Pair<>(i, j));
+                }
             }
-        }
-        propagateArcs(queue);
+            propagateArcs(queue);
 
-        if (anyColorExhausted(colorIndex)) {
+            if (anyColorExhausted(colorIndex)) {
+                undoPrunes(pruneStartPos);
+                occupied[row][col] = false;
+                solution[colorIndex] = -1;
+                backtracks++;
+                continue;
+            }
+
+            steps++;
+            if (placeQueens(colorIndex + 1)) return true;
+
             undoPrunes(pruneStartPos);
             occupied[row][col] = false;
             solution[colorIndex] = -1;
             backtracks++;
-            continue;
         }
 
-        steps++;
-        if (placeQueens(colorIndex + 1)) return true;
-
-        undoPrunes(pruneStartPos);
-        occupied[row][col] = false;
-        solution[colorIndex] = -1;
-        backtracks++;
+        return false;
     }
-
-    return false;
-}
 
     private void forwardCheck(int row, int col, int placedColorIdx) {
         // Remove attacked cells from all future colors
         for (int colorIdx = placedColorIdx + 1; colorIdx < colors.size(); colorIdx++) {
             String color = colors.get(colorIdx);
-            // List<int[]> cells = colorCells.get(color); // Don't need this if we iterate bitset
             BitSet valid = validCells.get(color);
             List<int[]> currentCellList = colorCells.get(color);
 
@@ -150,7 +149,6 @@ public class BacktrackingSolverAC3 {
                 int r2 = target[0];
                 int c2 = target[1];
 
-                // INLINE CONFLICT CHECK (Replaces attackZone.contains)
                 boolean conflict = (row == r2 || col == c2 || 
                                    Math.abs(row - r2) <= 1 && Math.abs(col - c2) <= 1);
                 
@@ -224,10 +222,7 @@ public class BacktrackingSolverAC3 {
                 if (colorCellCount[toColorIdx] == 0) return;
 
                 // We must notify neighbors of 'to' that 'to' has changed.
-                // We need to prune the neighbors ('k').
-                // So we add (to, k) so that revise(to, k) is called.
                 for (int k = 0; k < colors.size(); k++) {
-                    // Don't add the one we just came from, and don't add itself
                     if (k != toColorIdx && k != fromColorIdx) { 
                         // CHANGED: Order swapped from (k, to) to (to, k)
                         queue.add(new Pair<>(toColorIdx, k)); 
@@ -336,6 +331,6 @@ public class BacktrackingSolverAC3 {
     }
     
     public long getExecutionTime() {
-        return System.currentTimeMillis() - startTime;
+        return (System.nanoTime() - startTime)/1000000;
     }
 }

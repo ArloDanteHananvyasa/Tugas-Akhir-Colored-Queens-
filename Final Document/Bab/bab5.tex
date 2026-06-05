@@ -486,12 +486,12 @@ Solver \textit{backtracking} dengan \textit{forward checking} dan AC-3 dijalanka
 	\endhead
 	\bottomrule
 	\endfoot
-	$7 \times 7$   & 250 & 100\% & 0 \\
-	$8 \times 8$   & 250 & 100\% & 0 \\
-	$9 \times 9$   & 250 & 100\% & 0 \\
-	$10 \times 10$ & 250 & 100\% & 0 \\
-	$11 \times 11$ & 250 & 100\% & 1 \\
-	$12 \times 12$ & 250 & 100\% & 1 \\
+	$7 \times 7$   & 250 & 100\% & 0.032 \\
+	$8 \times 8$   & 250 & 100\% & 0.072 \\
+	$9 \times 9$   & 250 & 100\% & 0.08 \\
+	$10 \times 10$ & 250 & 100\% & 0.292 \\
+	$11 \times 11$ & 250 & 100\% & 0.584 \\
+	$12 \times 12$ & 250 & 100\% & 0.924 \\
 \end{longtable}
 
 Hasil menunjukkan bahwa solver \textit{backtracking} menyelesaikan seluruh puzzle pada ukuran standar dalam waktu yang sangat singkat: rata-rata 0 ms untuk papan berukuran $7 \times 7$ hingga $10 \times 10$, dan rata-rata 1 ms untuk papan berukuran $11 \times 11$ dan $12 \times 12$. Waktu 0 ms pada ukuran kecil mengindikasikan bahwa resolusi pencacah waktu (\texttt{System.currentTimeMillis()}, resolusi $\sim$1 ms) tidak cukup halus untuk mengukur durasi eksekusi yang sebenarnya pada papan-papan tersebut.

@@ -24,6 +24,8 @@ os.makedirs("boards", exist_ok=True)
 driver = webdriver.Chrome()
 
 for size in SIZES:
+    print(f"\n🔍 Scraping {size}x{size} boards from level 1 to {MAX_LEVEL}...")
+
     for level in range(1, MAX_LEVEL + 1):
         url = BASE_URL.format(size=size, level=level)
         driver.get(url)
@@ -42,10 +44,15 @@ for size in SIZES:
                 "color": color
             })
 
+        # Sort for consistency
+        board.sort(key=lambda c: (c["row"], c["col"]))
+
         # Save JSON
         filename = f"boards/{size}x{size}_level{level}.json"
         with open(filename, "w") as f:
             json.dump(board, f, indent=2)
+
+        print(f"✅ Saved {filename}")
 
 driver.quit()
 print("\n✅ All boards extracted!")
