@@ -16,12 +16,12 @@ public class Main {
 
     static double totalRuntime = 0;
     public static void main(String[] args) {
-        int size = 12;
-        int level = 250;
+        // int size = 12;
+        // int level = 250;
 
         // int solverChoice = 3;
 
-        System.out.println("Loading board (size=" + size + ", level=" + level + ")...");
+        // System.out.println("Loading board (size=" + size + ", level=" + level + ")...");
 
         try {
 
@@ -57,14 +57,22 @@ public class Main {
 
             
 
-            for (int i = 1; i <= 250; i++) {
-                List<Cell> cells = BoardImporter.importBoard(size, i);
-                Board board = new Board(size, cells);
+            // for (int i = 1; i <= 250; i++) {
+            //     List<Cell> cells = BoardImporter.importBoard(size, i);
+            //     Board board = new Board(size, cells);
 
-                callBacktrackingAC3(board);
-            }
+            //     callBacktrackingAC3(board);
+            // }
 
-            System.out.println((totalRuntime / 250) + " us");
+            List<Cell> cells = BoardImporter.importBoard(20, 1);
+            Board board = new Board(20, cells);
+            callPSO(board);
+
+            cells = BoardImporter.importBoard(30, 1);
+            board = new Board(30, cells);
+            callPSO(board);
+
+            // System.out.println((totalRuntime / 250) + " us");
 
         } catch (Exception e) {
             System.out.println("Error: ");
@@ -109,56 +117,56 @@ public class Main {
     }
 
     private static void callPSO(Board board) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/parameters.txt"));
+        // BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/parameters.txt"));
 
-        int iterations = 0;
-        int particles = 0;
-        int neighborhoods = 0;
-        double c1 = 0;
-        double c2 = 0;
-        double inertia = 0;
-        double w1 = 0;
-        double w2 = 0;
-        int maxStagnation = 0;
+        int iterations = 100000;
+        int particles = 50000;
+        int neighborhoods = 50;
+        double c1 = 1.5;
+        double c2 = 1.0;
+        double inertia = 0.4;
+        double w1 = 1.0;
+        double w2 = 1.0;
+        int maxStagnation = 500;
 
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split("=");
-            String key = parts[0].trim();
-            String value = parts[1].trim();
+        // String line;
+        // while ((line = reader.readLine()) != null) {
+        //     String[] parts = line.split("=");
+        //     String key = parts[0].trim();
+        //     String value = parts[1].trim();
 
-            switch (key) {
-                case "iterations":
-                    iterations = Integer.parseInt(value);
-                    break;
-                case "particles":
-                    particles = Integer.parseInt(value);
-                    break;
-                case "neighborhoods":
-                    neighborhoods = Integer.parseInt(value);
-                    break;
-                case "c1":
-                    c1 = Double.parseDouble(value);
-                    break;
-                case "c2":
-                    c2 = Double.parseDouble(value);
-                    break;
-                case "inertia":
-                    inertia = Double.parseDouble(value);
-                    break;
-                case "w1":
-                    w1 = Double.parseDouble(value);
-                    break;
-                case "w2":
-                    w2 = Double.parseDouble(value);
-                    break;
-                case "maxStagnation":
-                    maxStagnation = Integer.parseInt(value);
-                break;
-            }
-        }
+        //     switch (key) {
+        //         case "iterations":
+        //             iterations = Integer.parseInt(value);
+        //             break;
+        //         case "particles":
+        //             particles = Integer.parseInt(value);
+        //             break;
+        //         case "neighborhoods":
+        //             neighborhoods = Integer.parseInt(value);
+        //             break;
+        //         case "c1":
+        //             c1 = Double.parseDouble(value);
+        //             break;
+        //         case "c2":
+        //             c2 = Double.parseDouble(value);
+        //             break;
+        //         case "inertia":
+        //             inertia = Double.parseDouble(value);
+        //             break;
+        //         case "w1":
+        //             w1 = Double.parseDouble(value);
+        //             break;
+        //         case "w2":
+        //             w2 = Double.parseDouble(value);
+        //             break;
+        //         case "maxStagnation":
+        //             maxStagnation = Integer.parseInt(value);
+        //         break;
+        //     }
+        // }
 
-        reader.close();
+        // reader.close();
 
         PSOSolver pso = new PSOSolver(board, iterations, particles, c1, c2, neighborhoods, inertia, w1, w2, maxStagnation);
 
