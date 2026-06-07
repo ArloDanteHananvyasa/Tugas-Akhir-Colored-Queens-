@@ -4,13 +4,13 @@
 \section{Analisis Masalah}
 \label{sec:gambaran-umum}
 
-Tugas akhir ini dibangun di atas satu pertanyaan utama: pendekatan algoritmik mana yang paling sesuai untuk menyelesaikan permasalahan \textit{Colored Queens}, dan apakah pendekatan tersebut cukup praktis untuk diintegrasikan secara langsung ke dalam sebuah aplikasi interaktif. Untuk menjawab pertanyaan tersebut, dirancang dan diimplementasikan dua solver yang merepresentasikan dua paradigma pencarian yang berbeda, kemudian keduanya dievaluasi secara empiris pada dataset puzzle dengan berbagai ukuran. Solver yang terbukti efisien dari hasil evaluasi selanjutnya menjadi \textit{engine} dari aplikasi permainan yang dibangun, sedangkan solver yang lain tetap dipertahankan sebagai pembanding eksperimental.
+Tugas akhir ini bertujuan untuk merancang, mengimplementasikan, dan membandingkan dua pendekatan algoritmik dalam menyelesaikan permasalahan \textit{Colored Queens}: pendekatan berbasis pencarian sistematis menggunakan \textit{Backtracking} yang diperkuat dengan \textit{Forward Checking} dan AC-3 sebagaimana dibahas pada Bagian \ref{subsubsec:backtracking}, serta pendekatan berbasis \textit{metaheuristic} menggunakan \textit{Particle Swarm Optimization} (PSO) diskrit sebagaimana dibahas pada Bagian \ref{subsubsec:pso}. Selain kedua \textit{solver} tersebut, Tugas akhir ini juga mencakup perancangan dan implementasi sebuah aplikasi permainan berbasis antarmuka grafis yang berfungsi sebagai sarana bermain \textit{Colored Queens} dan integrasi \textit{solver}.
 
 Pendekatan pertama adalah \textit{Backtracking} yang diperkuat dengan \textit{Forward Checking} dan AC-3 sebagaimana dibahas pada Bagian \ref{subsubsec:backtracking}. Pendekatan ini bersifat sistematis dan lengkap (\textit{complete}), sehingga selalu menemukan solusi apabila solusi tersebut ada. Pendekatan kedua adalah \textit{Particle Swarm Optimization} (PSO) diskrit sebagaimana dibahas pada Bagian \ref{subsubsec:pso}, yang merupakan \textit{metaheuristic} berbasis populasi yang tidak menjamin kelengkapan solusi namun berpotensi lebih efisien pada ruang pencarian yang besar. Pemilihan kedua pendekatan ini didasarkan pada kontras paradigmanya, sehingga hasil perbandingan dapat memberikan gambaran yang jelas mengenai \textit{trade-off} antara pencarian deterministik dan stokastik pada permasalahan \textit{Colored Queens}.
 
-Sistem yang dibangun terdiri atas tiga komponen utama. Pertama, modul \textit{data loader} yang bertugas membaca dan mengurai berkas puzzle dalam format JSON ke dalam struktur papan yang dapat diproses oleh solver. Kedua, modul solver yang mengimplementasikan kedua algoritma pencarian secara terpisah dan independen, sehingga keduanya dapat dijalankan dengan masukan yang sama untuk keperluan eksperimen. Ketiga, modul antarmuka pengguna yang dibangun menggunakan Java Swing dan JFrame, yang menampilkan papan permainan secara visual serta memungkinkan pengguna untuk berinteraksi secara langsung maupun mengaktifkan solver secara otomatis untuk fitur \textit{hint} dan \textit{auto-solve}.
+Sistem yang dibangun terdiri atas tiga komponen utama. Pertama, sebuah \textit{loader} yang bertugas membaca dan mengurai berkas puzzle dalam format JSON ke dalam struktur papan yang dapat diproses oleh \textit{solver}. Kedua, dua buah \textit{solver} yang mengimplementasikan kedua algoritma pencarian secara terpisah dan independen, sehingga keduanya dapat dijalankan dengan masukan yang sama untuk keperluan eksperimen. Ketiga, sebuah antarmuka pengguna yang dibangun menggunakan Java Swing dan JFrame, yang menampilkan papan permainan secara visual serta memungkinkan pengguna untuk berinteraksi dan memainkan \textit{Colored Queens} secara langsung dan mencoba fitur \textit{hint} dan \textit{auto-solve}.
 
-Sebagaimana akan dikonfirmasi oleh hasil pengujian pada Bab \ref{chap:hasil}, solver yang diintegrasikan ke dalam aplikasi permainan adalah \textit{backtracking} dengan \textit{forward checking} dan AC-3. Solver tersebut dijalankan secara asinkron di latar belakang saat pengguna membuka sebuah puzzle, sehingga solusi tersedia tanpa perlu menyimpan seluruh solusi puzzle secara \textit{hardcoded}. Solver PSO diskrit tidak diintegrasikan ke dalam aplikasi, melainkan digunakan sebagai pembanding dalam kerangka eksperimen untuk dievaluasi dari segi waktu eksekusi, tingkat keberhasilan, dan jumlah iterasi. Alur kerja penelitian secara keseluruhan diilustrasikan pada Gambar \ref{fig:alur-sistem}.
+Mengingat aplikasi permainan memerlukan jaminan bahwa solusi selalu tersedia ketika pengguna menggunakan fitur \textit{hint} atau \textit{auto-solve}, \textit{solver} yang diintegrasikan ke dalam aplikasi adalah \textit{backtracking} dengan \textit{forward checking} dan AC-3. Sifat \textit{complete} dari pendekatan ini menjamin ditemukannya solusi apabila solusi tersebut ada, yang merupakan syarat fungsional yang tidak dapat dipenuhi oleh PSO. \textit{Solver} tersebut dijalankan secara asinkron di latar belakang saat pengguna membuka sebuah puzzle, sehingga solusi tersedia tanpa perlu menyimpan seluruh solusi puzzle secara \textit{hardcoded}. \textit{Solver} PSO diskrit tidak diintegrasikan ke dalam aplikasi, melainkan digunakan sebagai pembanding dalam kerangka eksperimen untuk dievaluasi dari segi waktu eksekusi dan tingkat keberhasilan. Alur kerja penelitian secara keseluruhan diilustrasikan pada Gambar \ref{fig:alur-sistem}.
 
 \begin{figure}[!htbp]
 	\centering
@@ -24,19 +24,19 @@ Berikut adalah penjelasan setiap proses pada Gambar \ref{fig:alur-sistem}:
 \begin{enumerate}
 	\item \textbf{Memilih papan yang akan menjadi tes kasus.} Tahap pertama adalah menentukan papan puzzle yang akan digunakan sebagai masukan pengujian. Dataset mencakup papan berukuran $7 \times 7$ hingga $12 \times 12$ dengan masing-masing 250 level, serta papan berukuran $20 \times 20$ dan $30 \times 30$ dengan masing-masing 1 level. Rincian dataset disajikan pada Bagian \ref{subsec:dataset-puzzle}.
 	
-	\item \textbf{Mengambil data papan dari \textit{file} JSON hasil \textit{scraping}.} Data puzzle diperoleh dari situs \textit{playqueensgame.com} melalui proses \textit{web scraping} menggunakan \textit{Selenium WebDriver} dengan bahasa Python. Untuk setiap level, skrip mengakses halaman puzzle dan mengekstrak atribut \texttt{data-row}, \texttt{data-col}, serta properti CSS \texttt{background-color} dari setiap elemen sel pada \textit{Document Object Model} (DOM). Data yang diekstrak disimpan dalam format JSON dengan struktur satu objek per sel yang memuat atribut \texttt{row}, \texttt{col}, dan \texttt{color}. Berkas JSON tersebut kemudian dibaca oleh kelas \texttt{BoardImporter} dan dikonversi menjadi objek \texttt{Board}. Penjelasan mengenai representasi papan disajikan pada Bagian \ref{subsec:representasi-papan}.
+	\item \textbf{Mengambil data papan dari berkas hasil \textit{scraping}.} Data puzzle diperoleh dari situs \textit{playqueensgame.com} melalui proses \textit{web scraping} otomatis. Untuk setiap level, posisi dan warna setiap sel pada papan diekstrak dari halaman puzzle, kemudian disimpan dalam berkas berformat JSON. Berkas tersebut menjadi sumber data untuk seluruh tahap berikutnya.
 	
-	\item \textbf{Memodelkan papan permainan sebagai \textit{Constraint Satisfaction Problem} (CSP).} Objek \texttt{Board} yang telah dikonstruksi dimodelkan sebagai CSP dengan mendefinisikan variabel (sektor warna), domain (sel-sel dalam setiap sektor), dan kendala (baris, kolom, \textit{adjacency}). Pemodelan CSP secara lengkap dibahas pada Bagian \ref{sec:pemodelan-csp}.
+	\item \textbf{Memodelkan papan permainan sebagai \textit{Constraint Satisfaction Problem} (CSP).} Data papan yang telah dibaca dimodelkan sebagai CSP dengan mendefinisikan variabel (sektor warna), domain (sel-sel dalam setiap sektor), dan kendala (baris, kolom, \textit{adjacency}). Pemodelan CSP secara lengkap dibahas pada Bagian \ref{sec:pemodelan-csp}.
 	
 	\item \textbf{Memilih algoritma yang akan dijalankan untuk mendapatkan solusi.} Pada tahap ini, salah satu dari dua algoritma dipilih untuk menyelesaikan puzzle. Dalam konteks eksperimen, kedua algoritma dijalankan pada puzzle yang sama untuk keperluan perbandingan.
 	
-	\item \textbf{Menjalankan algoritma pencarian \textit{backtracking} sampai menemukan solusi.} Apabila algoritma \textit{backtracking} dengan \textit{forward checking} dan AC-3 dipilih, solver melakukan pencarian sistematis dengan pemangkasan domain hingga solusi valid ditemukan. Sifat deterministik dan kelengkapan (\textit{completeness}) algoritma ini menjamin ditemukannya solusi apabila solusi tersebut ada. Perancangan solver dibahas pada Bagian \ref{subsubsec:kelas-backtracking}.
+	\item \textbf{Menjalankan algoritma pencarian \textit{backtracking} sampai menemukan solusi.} Apabila algoritma \textit{backtracking} dengan \textit{forward checking} dan AC-3 dipilih, \textit{solver} melakukan pencarian sistematis dengan pemangkasan domain hingga solusi valid ditemukan. Sifat deterministik dan kelengkapan (\textit{completeness}) algoritma ini menjamin ditemukannya solusi apabila solusi tersebut ada. Perancangan algoritma dibahas pada Bagian \ref{sec:analisis-backtracking}.
 	
-	\item \textbf{Menjalankan algoritma \textit{metaheuristic} PSO hingga menemukan solusi atau sampai suatu \textit{stopping condition}.} Apabila algoritma PSO diskrit dipilih, solver mengeksplorasi ruang solusi melalui sejumlah partikel yang berinteraksi dalam \textit{neighborhood}. Pencarian berhenti apabila solusi valid ditemukan, batas iterasi tercapai, atau stagnasi terdeteksi. Perancangan solver dibahas pada Bagian \ref{subsubsec:kelas-psosolver}.
+	\item \textbf{Menjalankan algoritma \textit{metaheuristic} PSO hingga menemukan solusi atau sampai suatu \textit{stopping condition}.} Apabila algoritma PSO diskrit dipilih, \textit{solver} mengeksplorasi ruang solusi melalui sejumlah partikel yang berinteraksi dalam \textit{neighborhood}. Pencarian berhenti apabila solusi valid ditemukan, batas iterasi tercapai, atau stagnasi terdeteksi. Perancangan algoritma dibahas pada Bagian \ref{sec:analisis-pso}.
 	
-	\item \textbf{Solusi valid akan ditampilkan.} Solusi berupa pasangan koordinat penempatan menteri untuk setiap sektor warna ditampilkan. Pada konteks aplikasi, solusi dirender pada papan melalui \texttt{GameWindow} (Bagian \ref{subsec:antarmuka}). Pada konteks eksperimen, solusi beserta metrik kinerja dicatat ke dalam berkas hasil.
+	\item \textbf{Solusi valid akan ditampilkan.} Solusi berupa pasangan koordinat penempatan menteri untuk setiap sektor warna dihasilkan oleh solver. Pada konteks aplikasi, solusi dirender secara visual pada papan permainan. Pada konteks eksperimen, solusi beserta metrik kinerja dicatat ke dalam berkas hasil untuk dianalisis lebih lanjut.
 	
-	\item \textbf{Melakukan perbandingan dan evaluasi.} Metrik dari kedua solver diagregasi dan dibandingkan berdasarkan waktu eksekusi, tingkat keberhasilan, dan karakteristik pencarian pada berbagai ukuran papan dan konfigurasi parameter. Skenario pengujian dibahas pada Bagian \ref{sec:skenario-pengujian} dan hasil analisis disajikan pada Bab \ref{chap:hasil}.
+	\item \textbf{Melakukan perbandingan dan evaluasi.} Metrik dari kedua \textit{solver} diagregasi dan dibandingkan berdasarkan waktu eksekusi, tingkat keberhasilan, dan karakteristik pencarian pada berbagai ukuran papan dan konfigurasi parameter. Skenario pengujian dibahas pada Bagian \ref{sec:skenario-pengujian} dan hasil analisis disajikan pada Bab \ref{chap:hasil}.
 \end{enumerate}
 
 \section{Pemodelan Permasalahan \textit{Colored Queens} sebagai CSP}
@@ -54,10 +54,11 @@ Sektor warna didefinisikan sebagai himpunan sel-sel yang memiliki warna sama. Pa
 \subsection{Definisi Variabel}
 \label{subsec:definisi-variabel}
 
-Mengacu pada kerangka CSP yang dijelaskan pada Bagian~\ref{sec:csp}, variabel dalam permasalahan \textit{Colored Queens} didefinisikan sebagai sektor warna pada papan. Secara formal, diberikan himpunan warna $C = \{c_1, c_2, \dots, c_n\}$, maka himpunan variabel adalah:
+Mengacu pada kerangka CSP yang dijelaskan pada Bagian~\ref{sec:csp}, variabel dalam permasalahan \textit{Colored Queens} didefinisikan sebagai sektor warna pada papan. Secara formal, diberikan himpunan warna $C = \{c_1, c_2, \dots, c_n\}$, maka himpunan variabel didefinisikan pada Persamaan~\ref{eq:def-variabel}.
 
 \begin{equation}
 	X = \{X_{c_1}, X_{c_2}, \dots, X_{c_n}\}
+	\label{eq:def-variabel}
 \end{equation}
 
 di mana setiap variabel $X_{c_i}$ merepresentasikan pilihan posisi penempatan menteri untuk sektor warna $c_i$.
@@ -67,10 +68,11 @@ Pemilihan sektor warna sebagai variabel, bukan baris atau kolom seperti pada N-Q
 \subsection{Definisi Domain}
 \label{subsec:definisi-domain}
 
-Domain dari setiap variabel $X_{c_i}$ adalah himpunan semua sel yang termasuk dalam sektor warna $c_i$. Secara formal:
+Domain dari setiap variabel $X_{c_i}$ adalah himpunan semua sel yang termasuk dalam sektor warna $c_i$, sebagaimana didefinisikan pada Persamaan~\ref{eq:def-domain}.
 
 \begin{equation}
 	D_{c_i} = \{(r, k) \mid \text{sel } (r, k) \text{ memiliki warna } c_i\}
+	\label{eq:def-domain}
 \end{equation}
 
 Dengan demikian, ukuran domain setiap variabel dapat berbeda-beda tergantung pada bentuk dan luas sektor warna yang bersangkutan pada papan. Tidak seperti N-Queens klasik yang menggunakan representasi permutasi dengan domain seragam $\{1, 2, \dots, n\}$, domain pada \textit{Colored Queens} bersifat heterogen dan bergantung pada tata letak papan yang diberikan.
@@ -82,27 +84,31 @@ Selama proses pencarian, status kevalidan setiap sel dalam domain bersifat dinam
 
 Sesuai dengan aturan permainan \textit{Colored Queens} yang dijabarkan pada Bagian~\ref{subsec:colored-queens-definisi}, terdapat tiga jenis kendala yang harus dipenuhi secara bersamaan oleh setiap pasangan variabel $(X_{c_i}, X_{c_j})$ dengan $i \neq j$. Ketiga kendala ini bersifat biner dan membentuk \textit{constraint graph} yang lengkap (\textit{complete}), artinya setiap pasang variabel terhubung oleh kendala.
 
-\textbf{Kendala Baris.} Dua menteri tidak boleh ditempatkan pada baris yang sama. Untuk dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ yang ditugaskan kepada variabel $X_{c_i}$ dan $X_{c_j}$, kendala ini dinyatakan sebagai:
+\textbf{Kendala Baris.} Dua menteri tidak boleh ditempatkan pada baris yang sama. Untuk dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ yang ditugaskan kepada variabel $X_{c_i}$ dan $X_{c_j}$, kendala ini dinyatakan pada Persamaan~\ref{eq:kendala-baris}.
 \begin{equation}
 	r_1 \neq r_2
+	\label{eq:kendala-baris}
 \end{equation}
 
-\textbf{Kendala Kolom.} Dua menteri tidak boleh ditempatkan pada kolom yang sama:
+\textbf{Kendala Kolom.} Dua menteri tidak boleh ditempatkan pada kolom yang sama, sebagaimana dinyatakan pada Persamaan~\ref{eq:kendala-kolom}.
 \begin{equation}
 	k_1 \neq k_2
+	\label{eq:kendala-kolom}
 \end{equation}
 
-\textbf{Kendala \textit{Adjacency}.} Berbeda dari permasalahan N-Queens klasik yang melarang konflik diagonal tak terbatas, \textit{Colored Queens} hanya melarang penempatan dua menteri pada sel yang bertetangga secara langsung dalam delapan arah (horizontal, vertikal, dan diagonal). Dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ dinyatakan bertetangga apabila:
+\textbf{Kendala \textit{Adjacency}.} Berbeda dari permasalahan N-Queens klasik yang melarang konflik diagonal tak terbatas, \textit{Colored Queens} hanya melarang penempatan dua menteri pada sel yang bertetangga secara langsung dalam delapan arah (horizontal, vertikal, dan diagonal). Dua sel $(r_1, k_1)$ dan $(r_2, k_2)$ dinyatakan bertetangga apabila memenuhi Persamaan~\ref{eq:kendala-adjacency}.
 \begin{equation}
 	|r_1 - r_2| \leq 1 \quad \text{dan} \quad |k_1 - k_2| \leq 1
+	\label{eq:kendala-adjacency}
 \end{equation}
 
 Perlu dicatat bahwa tidak ada larangan bagi dua menteri untuk berada pada diagonal yang sama, selama keduanya tidak bertetangga secara langsung. Hal ini merupakan perbedaan struktural yang signifikan dari N-Queens klasik dan menjadi karakteristik utama dari \textit{Colored Queens} sebagaimana dibahas pada Bagian~\ref{subsec:colored-queens-definisi}.
 
-Ketiga kendala di atas dapat digabungkan menjadi sebuah definisi konflik tunggal antara dua sel. Dua sel dinyatakan berkonflik apabila memenuhi salah satu dari kondisi berikut:
+Ketiga kendala di atas dapat digabungkan menjadi sebuah definisi konflik tunggal antara dua sel sebagaimana dinyatakan pada Persamaan~\ref{eq:def-konflik}. Dua sel dinyatakan berkonflik apabila memenuhi salah satu dari kondisi pada persamaan tersebut.
 
 \begin{equation}
 	\text{konflik}((r_1, k_1),\, (r_2, k_2)) \iff (r_1 = r_2) \;\lor\; (k_1 = k_2) \;\lor\; (|r_1 - r_2| \leq 1 \;\land\; |k_1 - k_2| \leq 1)
+	\label{eq:def-konflik}
 \end{equation}
 
 Pemeriksaan konflik melalui formulasi ini akan digunakan secara konsisten oleh kedua algoritma penyelesaian yang dirancang pada bagian-bagian berikutnya.
@@ -110,13 +116,14 @@ Pemeriksaan konflik melalui formulasi ini akan digunakan secara konsisten oleh k
 \subsection{Representasi Solusi}
 \label{subsec:representasi-solusi}
 
-Sebuah solusi valid dari permasalahan \textit{Colored Queens} yang dimodelkan sebagai CSP adalah sebuah penugasan lengkap
+Sebuah solusi valid dari permasalahan \textit{Colored Queens} yang dimodelkan sebagai CSP adalah sebuah penugasan lengkap sebagaimana dinyatakan pada Persamaan~\ref{eq:def-penugasan}.
 
 \begin{equation}
 	A = \{X_{c_1} \mapsto s_1,\; X_{c_2} \mapsto s_2,\; \dots,\; X_{c_n} \mapsto s_n\}
+	\label{eq:def-penugasan}
 \end{equation}
 
-di mana $s_i \in D_{c_i}$ untuk setiap $i$, dan tidak ada pasangan $(s_i, s_j)$ dengan $i \neq j$ yang melanggar ketiga kendala yang telah didefinisikan pada Bagian~\ref{subsec:definisi-constraint}.
+di mana $s_i \in D_{c_i}$ untuk setiap $i$, dan tidak ada pasangan $(s_i, s_j)$ dengan $i \neq j$ yang melanggar kendala konflik yang telah didefinisikan pada Persamaan~\ref{eq:def-konflik}.
 
 Penugasan lengkap inilah yang menjadi keluaran dari kedua algoritma yang dirancang dalam tugas akhir ini. Pada algoritma \textit{backtracking}, penugasan dibangun secara inkremental melalui penambahan satu variabel pada satu waktu hingga seluruh variabel mendapat nilai. Pada algoritma PSO, setiap partikel pada setiap iterasi merepresentasikan satu kandidat penugasan lengkap, meskipun belum tentu memenuhi seluruh kendala.
 
@@ -231,7 +238,7 @@ Busur yang diambil dari antrean diproses dengan menjalankan fungsi \textit{revis
 
 \subsubsection{Evaluasi Hasil Pemangkasan}
 
-Apabila fungsi \textit{revise} tidak menghasilkan perubahan pada domain variabel tujuan, dampak propagasi terhenti pada busur tersebut, dan alur kembali memeriksa antrean. Apabila domain mengalami perubahan, prosedur selanjutnya memeriksa apakah domain variabel tujuan menjadi kosong. Apabila ya, hal ini menandakan terjadinya \textit{domain wipeout}, yaitu kondisi di mana tidak ada nilai konsisten yang dapat ditugaskan kepada variabel tersebut. Pada kondisi ini, propagasi dihentikan dan sinyal kegagalan dikembalikan kepada alur utama \textit{backtracking} agar dapat melakukan \textit{backtrack}.
+Apabila fungsi \textit{revise} tidak menghasilkan perubahan pada domain variabel tujuan, dampak propagasi terhenti pada busur tersebut, dan alur kembali memeriksa antrean. Apabila domain mengalami perubahan, prosedur selanjutnya memeriksa apakah domain variabel tujuan menjadi kosong. Jika demikian, hal ini menandakan terjadinya \textit{domain wipeout}. Pada kondisi ini, propagasi dihentikan dan sinyal kegagalan dikembalikan kepada alur utama \textit{backtracking} agar dapat melakukan \textit{backtrack}.
 
 \subsubsection{Pengembangan Antrean dengan Busur Terkait}
 
@@ -322,7 +329,7 @@ Setelah pemangkasan selesai dan tidak ada domain yang kosong, algoritma melanjut
 	\label{fig:bt-step27}
 \end{figure}
 
-Setelah penempatan ini, \textit{forward checking} dan AC-3 dijalankan kembali. Namun, kombinasi penempatan ini ternyata menyebabkan seluruh sel pada domain warna kuning menjadi tidak valid, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step28}. Kondisi ini disebut \textit{domain wipeout}, yaitu kondisi di mana tidak ada lagi nilai yang dapat ditugaskan kepada suatu variabel. Algoritma menyimpulkan bahwa cabang pencarian ini tidak dapat menghasilkan solusi valid, sehingga \textit{backtrack} diperlukan.
+Setelah penempatan ini, \textit{forward checking} dan AC-3 dijalankan kembali. Namun, kombinasi penempatan ini ternyata menyebabkan seluruh sel pada domain warna kuning menjadi tidak valid, sebagaimana diperlihatkan pada Gambar~\ref{fig:bt-step28}. Kondisi ini merupakan \textit{domain wipeout}, di mana tidak ada lagi nilai yang dapat ditugaskan kepada warna kuning, sehingga \textit{backtrack} diperlukan.
 
 \begin{figure}[!htbp]
 	\centering
@@ -365,7 +372,6 @@ Proses penempatan, pemangkasan, dan \textit{backtrack} berulang hingga seluruh t
 Studi kasus ini mengilustrasikan bagaimana sinergi antara \textit{forward checking} dan AC-3 secara signifikan mengurangi ruang pencarian. \textit{Forward checking} menangani konflik langsung dengan penugasan terbaru, sementara AC-3 menelusuri konsekuensi tidak langsung dari penugasan tersebut terhadap konsistensi seluruh pasangan variabel yang belum ditugaskan. Mekanisme \textit{backtrack} memastikan bahwa kegagalan pada satu cabang pencarian dapat ditangani secara efisien dengan memulihkan domain ke kondisi sebelumnya, sehingga algoritma dapat mengeksplorasi cabang alternatif tanpa perlu menghitung ulang seluruh struktur domain.
 
 
-
 \section{Analisis Algoritma \textit{Particle Swarm Optimization}}
 \label{sec:analisis-pso}
 
@@ -378,7 +384,7 @@ Berbeda dengan algoritma \textit{backtracking} yang menjamin validitas solusi me
 
 Fungsi \textit{fitness} pada penelitian ini dirancang untuk mengukur dua jenis pelanggaran kendala yang dapat terjadi pada konfigurasi penempatan menteri, yang masing-masing bersesuaian dengan kendala yang telah didefinisikan pada Bagian~\ref{subsec:definisi-constraint}. Pelanggaran pertama, yang disebut \textit{attacking violation}, menghitung jumlah pasangan menteri yang ditempatkan pada baris atau kolom yang sama. Pelanggaran jenis ini menggabungkan kendala baris dan kendala kolom yang secara struktural setara: keduanya melarang dua menteri berbagi sebuah sumbu linear pada papan. Pelanggaran kedua, yang disebut \textit{adjacency violation}, menghitung jumlah pasangan menteri yang menempati sel-sel yang bertetangga secara langsung dalam delapan arah. Kedua jenis pelanggaran ini diperhitungkan secara terpisah karena merepresentasikan dimensi konflik yang berbeda secara semantik: \textit{attacking} mengukur konflik berbasis sumbu (\textit{axis-based conflict}), sedangkan \textit{adjacency} mengukur konflik berbasis kedekatan posisi (\textit{proximity-based conflict}). Kendala sektor warna tidak perlu diperhitungkan dalam fungsi \textit{fitness} karena telah dipenuhi secara implisit oleh representasi posisi partikel, di mana setiap indeks pada vektor posisi merepresentasikan pilihan sel dari domain satu sektor tertentu.
 
-Kedua komponen pelanggaran tersebut kemudian dikombinasikan menjadi sebuah nilai \textit{fitness} tunggal melalui penjumlahan berbobot:
+Kedua komponen pelanggaran tersebut kemudian dikombinasikan menjadi sebuah nilai \textit{fitness} tunggal melalui penjumlahan berbobot, sebagaimana ditunjukkan pada Persamaan~\ref{eq:fitness-pso}.
 
 \begin{equation}
 	f(\vec{x}) = w_1 \cdot V_{\textit{attacking}}(\vec{x}) + w_2 \cdot V_{\textit{adjacency}}(\vec{x})
@@ -413,14 +419,14 @@ Untuk setiap \textit{neighborhood} yang diambil, prosedur mengiterasi seluruh pa
 
 \subsubsection{Penghitungan Kecepatan Baru}
 \label{subsubsec:update-velocity}
-Kecepatan baru setiap partikel dihitung sebagai kombinasi linear dari tiga komponen, yaitu komponen inersia yang mempertahankan arah pergerakan sebelumnya, komponen kognitif yang menarik partikel menuju posisi terbaik historisnya (\textit{personal best} atau \textit{pBest}), dan komponen sosial yang menarik partikel menuju \textit{nBest}. Untuk setiap partikel, kecepatan baru pada dimensi ke-$j$ dihitung sebagai:
+Kecepatan baru setiap partikel dihitung sebagai kombinasi linear dari tiga komponen, yaitu komponen inersia yang mempertahankan arah pergerakan sebelumnya, komponen kognitif yang menarik partikel menuju posisi terbaik historisnya (\textit{personal best} atau \textit{pBest}), dan komponen sosial yang menarik partikel menuju \textit{nBest}. Untuk setiap partikel, kecepatan baru pada dimensi ke-$j$ dihitung sebagaimana ditunjukkan pada Persamaan~\ref{eq:pso-velocity-update}.
 
 \begin{equation}
 	v_j^{(t+1)} = w \cdot v_j^{(t)} + c_1 \cdot r_1 \cdot \delta_{pBest,j} + c_2 \cdot r_2 \cdot \delta_{nBest,j}
 	\label{eq:pso-velocity-update}
 \end{equation}
 
-di mana $w$ adalah koefisien inersia, $c_1$ dan $c_2$ adalah koefisien akselerasi kognitif dan sosial, $r_1$ dan $r_2$ adalah bilangan acak seragam pada interval $[0, 1)$ yang dibangkitkan secara independen untuk setiap dimensi, dan $\delta_{pBest,j}$ serta $\delta_{nBest,j}$ adalah indikator perbedaan posisi yang didefinisikan sebagai:
+di mana $w$ adalah koefisien inersia, $c_1$ dan $c_2$ adalah koefisien akselerasi kognitif dan sosial, $r_1$ dan $r_2$ adalah bilangan acak seragam pada interval $[0, 1)$ yang dibangkitkan secara independen untuk setiap dimensi, dan $\delta_{pBest,j}$ serta $\delta_{nBest,j}$ adalah indikator perbedaan posisi yang didefinisikan pada Persamaan~\ref{eq:pso-delta}.
 
 \begin{equation}
 	\delta_{pBest,j} = \begin{cases} 1 & \text{jika } x_j^{(t)} \neq pBest_j \\ 0 & \text{jika } x_j^{(t)} = pBest_j \end{cases}
@@ -431,7 +437,7 @@ di mana $w$ adalah koefisien inersia, $c_1$ dan $c_2$ adalah koefisien akseleras
 
 Penggunaan indikator biner $\delta$ sebagai pengganti selisih aritmatika merupakan adaptasi kunci dari PSO kontinu ke ruang diskrit. Pada PSO kontinu, komponen kognitif dan sosial dihitung melalui selisih vektor posisi yang menghasilkan arah perpindahan dalam ruang Euclidean. Pada ruang diskrit berindeks, selisih aritmatika antara dua indeks sel tidak memiliki makna geometris: sel dengan indeks tertentu dan sel dengan indeks lain dalam domain suatu warna tidak memiliki hubungan spasial yang ditentukan oleh selisih indeksnya. Oleh sebab itu, informasi yang relevan hanyalah apakah posisi saat ini berbeda dari posisi referensi (\textit{pBest} atau \textit{nBest}), bukan seberapa jauh perbedaannya.
 
-Setelah perhitungan, nilai kecepatan di-\textit{clamp} pada interval $[0, 1]$ untuk mempertahankan interpretasinya sebagai probabilitas:
+Setelah perhitungan, nilai kecepatan di-\textit{clamp} pada interval $[0, 1]$ untuk mempertahankan interpretasinya sebagai probabilitas, sebagaimana ditunjukkan pada Persamaan~\ref{eq:pso-clamp}.
 
 \begin{equation}
 	v_j^{(t+1)} = \max(0,\; \min(1,\; v_j^{(t+1)}))
@@ -440,7 +446,7 @@ Setelah perhitungan, nilai kecepatan di-\textit{clamp} pada interval $[0, 1]$ un
 
 \subsubsection{Pembaruan Posisi Partikel}
 \label{subsubsec:update-position}
-Posisi baru partikel diturunkan dari kecepatan dengan interpretasi probabilistik. Untuk setiap dimensi $j$, sebuah bilangan acak $r \in [0, 1)$ dibangkitkan, kemudian dibandingkan dengan nilai kecepatan pada dimensi tersebut. Apabila $r < v_j$, posisi partikel pada dimensi tersebut diadopsi dari \textit{nBest}. Apabila $r \geq v_j$, posisi tidak berubah. Secara formal:
+Posisi baru partikel diturunkan dari kecepatan dengan interpretasi probabilistik. Untuk setiap dimensi $j$, sebuah bilangan acak $r \in [0, 1)$ dibangkitkan, kemudian dibandingkan dengan nilai kecepatan pada dimensi tersebut. Apabila $r < v_j$, posisi partikel pada dimensi tersebut diadopsi dari \textit{nBest}. Apabila $r \geq v_j$, posisi tidak berubah. Secara formal, mekanisme pembaruan posisi ini dinyatakan pada Persamaan~\ref{eq:pso-position-update}.
 
 \begin{equation}
 	x_j^{(t+1)} = \begin{cases} nBest_j & \text{jika } r < v_j^{(t+1)} \\ x_j^{(t)} & \text{jika } r \geq v_j^{(t+1)} \end{cases}
@@ -523,41 +529,45 @@ Karena partikel 1 memiliki nilai \textit{fitness} terendah, partikel 1 ditetapka
 
 \subsubsection{Pembaruan Kecepatan}
 
-Pada iterasi pertama, kecepatan setiap partikel diperbarui menggunakan formula yang telah dijabarkan pada Persamaan~\ref{eq:pso-velocity-update}. Sebagai contoh ilustratif, misalkan parameter PSO ditetapkan sebagai $\omega = 0.7$, $c_1 = 0.5$, $c_2 = 0.5$, dan bilangan acak yang dibangkitkan adalah $r_1 = 0.2$ serta $r_2 = 0.27$. Untuk index ke-0 dari partikel 2, perhitungan kecepatan baru adalah sebagai berikut:
+Pada iterasi pertama, kecepatan setiap partikel diperbarui menggunakan Persamaan~\ref{eq:pso-velocity-update}. Sebagai contoh ilustratif, misalkan parameter PSO ditetapkan sebagai $\omega = 0.7$, $c_1 = 0.5$, $c_2 = 0.5$, dan bilangan acak yang dibangkitkan adalah $r_1 = 0.2$ serta $r_2 = 0.27$. Untuk index ke-0 dari partikel 2, perhitungan kecepatan baru ditunjukkan pada Persamaan~\ref{eq:contoh-velocity-pso} dan menghasilkan nilai $v_{i+1}[0] = 0.682$.
 
-\begin{equation*}
+\begin{equation}
 	\begin{aligned}
 		v_{i+1}[0] &= \underbrace{(\omega \cdot v_i[0])}_{\text{inersia}} + \underbrace{(r_1 \cdot c_1 \cdot \delta_{pBest,0})}_{\text{kognitif}} + \underbrace{(r_2 \cdot c_2 \cdot \delta_{nBest,0})}_{\text{sosial}} \\
 		&= (0.7 \cdot 0.76) + (0.2 \cdot 0.5 \cdot 0) + (0.27 \cdot 0.5 \cdot 1) \\
 		&= 0.532 + 0 + 0.15 = 0.682
 	\end{aligned}
-\end{equation*}
+	\label{eq:contoh-velocity-pso}
+\end{equation}
 
-Nilai $\delta_{pBest,0} = 0$ karena nilai partikel 2 pada index ke-0 sama dengan nilai \textit{pBest}-nya pada index yang sama (keduanya bernilai $0$). Sebaliknya, $\delta_{nBest,0} = 1$ karena nilai partikel 2 pada index ke-0 (bernilai $0$) berbeda dengan nilai \textit{nBest} pada index ke-0 (bernilai $3$). Perhitungan serupa dilakukan untuk seluruh index, menghasilkan vektor kecepatan baru:
+Nilai $\delta_{pBest,0} = 0$ pada Persamaan~\ref{eq:contoh-velocity-pso} muncul karena nilai partikel 2 pada index ke-0 sama dengan nilai \textit{pBest}-nya pada index yang sama (keduanya bernilai $0$), sesuai dengan definisi $\delta$ pada Persamaan~\ref{eq:pso-delta}. Sebaliknya, $\delta_{nBest,0} = 1$ karena nilai partikel 2 pada index ke-0 (bernilai $0$) berbeda dengan nilai \textit{nBest} pada index ke-0 (bernilai $3$). Perhitungan serupa dilakukan untuk seluruh index, menghasilkan vektor kecepatan baru pada Persamaan~\ref{eq:contoh-velocity-vector}.
 
-\begin{equation*}
+\begin{equation}
 	v_{i+1} = [0.682,\, 0.497,\, 0.606,\, 0.2728,\, 0.483,\, 0.579,\, 0.581]
-\end{equation*}
+	\label{eq:contoh-velocity-vector}
+\end{equation}
 
 \subsubsection{Pembaruan Posisi}
 
-Selanjutnya, posisi partikel diperbarui berdasarkan kecepatan baru menggunakan formula pada Persamaan~\ref{eq:pso-position-update}. Untuk setiap index, bilangan acak $r \in [0, 1)$ dibangkitkan, dan apabila $r < v_{i+1}[j]$, nilai pada index tersebut diadopsi dari \textit{nBest}; apabila tidak, nilai tetap.
+Selanjutnya, posisi partikel diperbarui berdasarkan kecepatan baru menggunakan Persamaan~\ref{eq:pso-position-update}. Untuk setiap index, bilangan acak $r \in [0, 1)$ dibangkitkan, dan apabila $r < v_{i+1}[j]$, nilai pada index tersebut diadopsi dari \textit{nBest}; apabila tidak, nilai tetap.
 
-Sebagai contoh, untuk index ke-0 partikel 2, dibangkitkan bilangan acak $r = 0.25$. Karena $r < v_{i+1}[0]$ (yaitu $0.25 < 0.682$), maka nilai pada index ke-0 mengadopsi nilai dari \textit{nBest}, sehingga $x_{i+1}[0] = 3$ (menggantikan nilai sebelumnya yang bernilai $0$). Perhitungan serupa dilakukan untuk seluruh index. Posisi baru partikel 2 menjadi:
+Sebagai contoh, untuk index ke-0 partikel 2, dibangkitkan bilangan acak $r = 0.25$. Karena $r < v_{i+1}[0]$ (yaitu $0.25 < 0.682$), maka nilai pada index ke-0 mengadopsi nilai dari \textit{nBest}, sehingga $x_{i+1}[0] = 3$ (menggantikan nilai sebelumnya yang bernilai $0$). Perhitungan serupa dilakukan untuk seluruh index, menghasilkan posisi baru partikel 2 pada Persamaan~\ref{eq:contoh-posisi-baru}.
 
-\begin{equation*}
+\begin{equation}
 	x_{i+1} = [3,\, 3,\, 12,\, 2,\, 0,\, 2,\, 1]
-\end{equation*}
+	\label{eq:contoh-posisi-baru}
+\end{equation}
 
 \subsubsection{Evaluasi \textit{Fitness} Partikel Baru}
 
-Setelah posisi diperbarui, nilai \textit{fitness} partikel 2 dievaluasi ulang menggunakan fungsi \textit{fitness} yang telah dijabarkan pada Bagian~\ref{subsec:fungsi-fitness-pso}:
+Setelah posisi diperbarui, nilai \textit{fitness} partikel 2 dievaluasi ulang menggunakan Persamaan~\ref{eq:fitness-pso}. Untuk contoh ini, ditetapkan $w_1 = 1$ dan $w_2 = 2$. Posisi baru partikel 2 pada Persamaan~\ref{eq:contoh-posisi-baru} memetakan menteri ke sel-sel tertentu pada papan, dan pelanggaran kendala kemudian dihitung berdasarkan dua komponen, yaitu $V_{\textit{attacking}}$ dan $V_{\textit{adjacency}}$.
 
-\begin{equation*}
-	fitness = w_1 \cdot \textit{attackingViolation} + w_2 \cdot \textit{adjacencyViolation}
-\end{equation*}
+Dengan kelima pasangan tersebut, nilai $V_{\textit{attacking}}$ adalah $5$. Nilai \textit{fitness} akhir partikel 2 setelah iterasi pertama dihitung berdasarkan Persamaan~\ref{eq:fitness-pso} dan menghasilkan nilai $11$, sebagaimana ditunjukkan pada Persamaan~\ref{eq:contoh-fitness-1}.
 
-dengan $w_1$ sebagai bobot pelanggaran \textit{attacking} dan $w_2$ sebagai bobot pelanggaran \textit{adjacency}. Untuk contoh ini, ditetapkan $w_1 = 1$ dan $w_2 = 2$. Posisi baru partikel 2 yaitu $[3,\, 3,\, 12,\, 2,\, 0,\, 2,\, 1]$ memetakan menteri ke sel-sel tertentu pada papan, dan pelanggaran kendala kemudian dihitung berdasarkan dua komponen tersebut.
+\begin{equation}
+	f(\vec{x}) = w_1 \cdot V_{\textit{attacking}} + w_2 \cdot V_{\textit{adjacency}} = (1 \cdot 5) + (2 \cdot 3) = 5 + 6 = 11
+	\label{eq:contoh-fitness-1}
+\end{equation}
 
 \textbf{Pelanggaran \textit{adjacency}.} Komponen ini menghitung pasangan menteri yang bertetangga secara langsung dalam delapan arah. Pada konfigurasi partikel 2, terdapat tiga pasangan \textit{adjacency}. Pasangan pertama, sebagaimana disorot pada Gambar~\ref{fig:pso-step39}, terdiri atas menteri pada (3,1) dan menteri pada (4,1) yang bertetangga secara vertikal.
 
@@ -633,11 +643,12 @@ Pasangan kelima, sebagaimana disorot pada Gambar~\ref{fig:pso-step46}, terdiri a
 	\label{fig:pso-step46}
 \end{figure}
 
-Dengan kelima pasangan tersebut, nilai \textit{attackingViolation} adalah $5$. Nilai \textit{fitness} partikel 2 setelah iterasi pertama dihitung sebagai berikut:
+Dengan kelima pasangan tersebut, nilai \textit{attackingViolation} adalah $5$. Nilai \textit{fitness} akhir partikel 2 setelah iterasi pertama dihitung berdasarkan Persamaan~\ref{eq:fitness-pso} dan menghasilkan nilai $11$, sebagaimana ditunjukkan pada Persamaan~\ref{eq:contoh-fitness-final}.
 
-\begin{equation*}
+\begin{equation}
 	fitness = w_1 \cdot \textit{attackingViolation} + w_2 \cdot \textit{adjacencyViolation} = (1 \cdot 5) + (2 \cdot 3) = 5 + 6 = 11
-\end{equation*}
+	\label{eq:contoh-fitness-final}
+\end{equation}
 
 Nilai \textit{fitness} ini lebih rendah dari \textit{fitness} awal partikel 2 (yang sebesar $20$), sehingga \textit{pBest} partikel 2 diperbarui dengan posisi baru. Selain itu, karena nilai ini ($11$) juga lebih rendah daripada \textit{fitness} \textit{nBest} sebelumnya (yaitu $14$ dari partikel 1), maka \textit{nBest} \textit{neighborhood} diperbarui menjadi partikel 2.
 

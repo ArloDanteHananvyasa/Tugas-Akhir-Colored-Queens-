@@ -38,6 +38,13 @@ Russell, S.~J. dan Norvig, P. (2020) {\em Artificial Intelligence: A Modern
   \url{http://repo.darmajaya.ac.id/5272/1/Artificial%20Intelligence-A%20Modern%20Approach%20(3rd%20Edition)%20(%20PDFDrive%20).pdf}
   Diakses: 2026-05-10.
 
+\bibitem{van2006backtracking}
+Van~Beek, P. (2006) Backtracking search algorithms.
+\newblock {\em Handbook of Constraint Programming},  pp. 85--134. Elsevier,
+  Amsterdam.
+\newblock \url{https://cs.uwaterloo.ca/~vanbeek/Publications/survey06.pdf}
+  Diakses: 17 Mei 2026.
+
 \bibitem{kennedy1995particle}
 Kennedy, J. dan Eberhart, R. (1995) Particle swarm optimization.
 \newblock {\em Proceedings of ICNN'95-international conference on neural
@@ -61,6 +68,12 @@ Hoffman, E.~J., Loessi, J., dan Moore, R.~C. (1969) Constructions for the
   \url{https://exp-blog.com/algorithm/poj/poj3239-solution-to-the-n-queens-puzzle/doc/Constructions%20for%20the%20Solution%20of%20the%20m%20Queens%20Problem.pdf}
   Diakses: 2026-05-14.
 
+\bibitem{arora2009computational}
+Arora, S. dan Barak, B. (2009) {\em Computational complexity: a modern
+  approach}. Cambridge University Press,  Cambridge.
+\newblock \url{https://theory.cs.princeton.edu/complexity/book.pdf} Diakses:
+  2026-06-07.
+
 \bibitem{montanari1974networks}
 Montanari, U. (1974) Networks of constraints: Fundamental properties and
   applications to picture processing.
@@ -75,11 +88,12 @@ Kumar, V. (1998) Algorithms for constraint satisfaction problems: A survey.
   \url{https://www.researchgate.net/publication/2513379_Algorithms_for_Constraint_Satisfaction_Problems_A_Survey}
   Diakses: 17 Mei 2026.
 
-\bibitem{van2006backtracking}
-Van~Beek, P. (2006) Backtracking search algorithms.
-\newblock {\em Handbook of Constraint Programming},  pp. 85--134. Elsevier,
+\bibitem{bessiere2006constraint}
+Bessiere, C. (2006) Constraint propagation.
+\newblock {\em Handbook of Constraint Programming},  pp. 29--83. Elsevier,
   Amsterdam.
-\newblock \url{https://cs.uwaterloo.ca/~vanbeek/Publications/survey06.pdf}
+\newblock
+  \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
   Diakses: 17 Mei 2026.
 
 \bibitem{mackworth1977consistency}
@@ -94,19 +108,11 @@ Mohr, R. dan Henderson, T.~C. (1986) Arc and path consistency revisited.
 \newblock \url{https://sci-hub.mk/10.1016/0004-3702%2886%2990083-4} Diakses: 17
   Mei 2026.
 
-\bibitem{bessiere2006constraint}
-Bessiere, C. (2006) Constraint propagation.
-\newblock {\em Handbook of Constraint Programming},  pp. 29--83. Elsevier,
-  Amsterdam.
-\newblock
-  \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
-  Diakses: 17 Mei 2026.
-
 \bibitem{blum2003metaheuristics}
 Blum, C. dan Roli, A. (2003) Metaheuristics in combinatorial optimization:
   Overview and conceptual comparison.
 \newblock {\em ACM computing surveys (CSUR)}, {\bf  35}, 268--308.
-\newblock \url{https://dl.acm.org/doi/epdf/10.1145/937503.937505}Diakses: 17
+\newblock \url{https://dl.acm.org/doi/epdf/10.1145/937503.937505} Diakses: 17
   Mei 2026.
 
 \bibitem{hoos2006local}
@@ -116,6 +122,20 @@ Hoos, H.~H. dan Tsang, E. (2006) Local search methods.
 \newblock
   \url{https://www.dcs.gla.ac.uk/~pat/cpM/papers/CP_Handbook-20060315-final.pdf}
   Diakses: 17 Mei 2026.
+
+\bibitem{michalewicz2000solve}
+Michalewicz, Z., Fogel, D.~B., dan Michaelewica, A. (2000) {\em How to solve
+  it: modern heuristics}. Springer,  Berlin.
+\newblock
+  \url{https://people.vts.su.ac.rs/~pmiki/AI/Michalewicz%20Z.,%20Fogel%20D.-How%20to%20solve%20it.%20Modern%20heuristics-Springer%20(2004).pdf}
+  Diakses: 24 Mei 2026.
+
+\bibitem{engelbrecht2007computational}
+Engelbrecht, A.~P. dkk. (2007) {\em Computational intelligence: an
+  introduction}. Wiley Online Library,  Chichester.
+\newblock
+  \url{https://dai.fmph.uniba.sk/courses/ICI/engelbrecht.comp-intel-intro.07.pdf}
+  Diakses: 24 Mei 2026.
 
 \bibitem{hu2003swarm}
 Hu, X., Eberhart, R.~C., dan Shi, Y. (2003) Swarm intelligence for permutation
@@ -134,19 +154,5 @@ Kennedy, J. dan Eberhart, R.~C. (1997) A discrete binary version of the
 \newblock
   \url{https://www.ahmetcevahircinar.com.tr/wp-content/uploads/2017/02/A_discrete_binary_version_of_the_particle_swarm_algorithm.pdf}
   Diakses: 18 Mei 2026.
-
-\bibitem{engelbrecht2007computational}
-Engelbrecht, A.~P. dkk. (2007) {\em Computational intelligence: an
-  introduction}. Wiley Online Library,  Chichester.
-\newblock
-  \url{https://dai.fmph.uniba.sk/courses/ICI/engelbrecht.comp-intel-intro.07.pdf}
-  Diakses: 24 Mei 2026.
-
-\bibitem{michalewicz2000solve}
-Michalewicz, Z., Fogel, D.~B., dan Michaelewica, A. (2000) {\em How to solve
-  it: modern heuristics}. Springer,  Berlin.
-\newblock
-  \url{https://people.vts.su.ac.rs/~pmiki/AI/Michalewicz%20Z.,%20Fogel%20D.-How%20to%20solve%20it.%20Modern%20heuristics-Springer%20(2004).pdf}
-  Diakses: 24 Mei 2026.
 
 \end{thebibliography}
