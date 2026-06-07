@@ -5,64 +5,62 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Contoh aturan penyerangan bidak menteri pada permainan catur. Silang merah menandakan kotak yang terserang oleh bidak menteri.}}{7}{figure.caption.4}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Contoh solusi valid permasalahan 8-Queens. Panah hijau menandakan jangkauan serangan salah satu menteri; tidak ada menteri lain yang berada pada baris, kolom, ataupun diagonal yang sama.\footnotemark }}{9}{figure.caption.5}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Contoh papan permainan \textit {Colored Queens} berukuran $8 \times 8$ dengan 8 sektor warna. Setiap sektor membentuk wilayah terhubung, dan solusi menempatkan tepat satu menteri per baris, kolom, dan sektor warna tanpa ada dua menteri yang bertetangga.\footnotemark }}{11}{figure.caption.6}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Ilustrasi \textit {domain wipeout} pada satu sektor warna. Penempatan satu menteri mengeliminasi seluruh kandidat sel pada sektor yang berdekatan (ditandai dengan tanda X merah dan bingkai merah), sehingga sektor tersebut tidak memiliki sel valid lagi untuk ditugaskan.}}{12}{figure.caption.7}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Ilustrasi \textit {domain wipeout} pada beberapa sektor warna sekaligus. Satu penempatan menteri secara bersamaan mengeliminasi seluruh kandidat sel pada dua sektor yang berdekatan, memperlihatkan bagaimana satu keputusan dapat memicu kegagalan berantai pada cabang pencarian.}}{13}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Dampak kendala \textit {adjacency} pada papan berukuran kecil. Penempatan satu menteri pada papan $7 \times 7$ mengeliminasi delapan sel tetangga (ditandai dengan tanda X merah), yang setara dengan sekitar $16\%$ dari total $49$ sel papan.}}{13}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Contoh propagasi AC-3 pada \textit {constraint graph} dengan lima variabel. Sebelum propagasi (a), domain variabel masih lebar. Setelah AC-3 diterapkan (b), nilai-nilai yang tidak memiliki \textit {support} dieliminasi, menghasilkan domain yang jauh lebih kecil.\footnotemark }}{20}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Ilustrasi perpindahan satu partikel berdasarkan \textit {velocity} baru yang dipengaruhi oleh \textit {personal best} dan \textit {global best}.\footnotemark }}{25}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Diagram alir algoritma PSO.}}{26}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Dampak kendala \textit {adjacency} pada papan berukuran kecil. Penempatan satu menteri pada papan $7 \times 7$ mengeliminasi delapan sel tetangga (ditandai dengan tanda X merah), yang setara dengan sekitar $16\%$ dari total $49$ sel papan.}}{13}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Contoh propagasi AC-3 pada \textit {constraint graph} dengan lima variabel. Sebelum propagasi (a), domain variabel masih lebar. Setelah AC-3 diterapkan (b), nilai-nilai yang tidak memiliki \textit {support} dieliminasi, menghasilkan domain yang jauh lebih kecil.\footnotemark }}{20}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Ilustrasi perpindahan satu partikel berdasarkan \textit {velocity} baru yang dipengaruhi oleh \textit {personal best} dan \textit {global best}.\footnotemark }}{25}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Diagram alir algoritma PSO.}}{26}{figure.caption.17}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Alur kerja penelitian secara keseluruhan.}}{32}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagram alur prosedur rekursif pencarian \textit {backtracking}.}}{36}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Diagram alur prosedur \textit {forward checking}.}}{38}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagram alur fungsi \textit {revise}.}}{39}{figure.caption.34}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagram alur prosedur propagasi AC-3.}}{40}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Penempatan menteri pertama pada salah satu sel dari domain warna biru.}}{42}{figure.caption.45}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Hasil pemangkasan oleh \textit {forward checking} setelah penempatan menteri pertama.}}{42}{figure.caption.46}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Konsep dasar busur (\textit {arc}) dalam AC-3.}}{42}{figure.caption.48}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Graf kendala lengkap dan antrean awal busur AC-3.}}{43}{figure.caption.49}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Pemrosesan busur Hijau$\rightarrow $Kuning: sel Hijau(1,2) memiliki \textit {support} pada Kuning(6,3) dan tetap valid.}}{43}{figure.caption.50}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Pemrosesan busur Hijau$\rightarrow $Kuning: sel Hijau(5,2) dan Hijau(5,3) tidak memiliki \textit {support} dan dipangkas.}}{44}{figure.caption.51}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Kondisi papan setelah propagasi AC-3 selesai.}}{44}{figure.caption.52}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Penempatan menteri kedua pada salah satu sel dari domain warna oranye.}}{44}{figure.caption.54}%
-\contentsline {figure}{\numberline {3.14}{\ignorespaces \textit {Domain wipeout}: seluruh sel pada domain warna kuning menjadi tidak valid.}}{45}{figure.caption.55}%
-\contentsline {figure}{\numberline {3.15}{\ignorespaces \textit {Backtrack}: pembatalan penempatan menteri oranye yang menyebabkan kegagalan.}}{45}{figure.caption.57}%
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Penempatan alternatif untuk warna oranye setelah \textit {backtrack}.}}{45}{figure.caption.58}%
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Solusi akhir papan 7$\times $7 yang memenuhi seluruh kendala \textit {Colored Queens}.}}{46}{figure.caption.60}%
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Diagram alur pembaruan kecepatan dan posisi partikel PSO diskrit.}}{48}{figure.caption.61}%
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Diagram alur utama algoritma PSO diskrit.}}{51}{figure.caption.67}%
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Pasangan \textit {adjacency} pertama: menteri pada (3,1) dan (4,1) bertetangga vertikal.}}{54}{figure.caption.79}%
-\contentsline {figure}{\numberline {3.21}{\ignorespaces Pasangan \textit {adjacency} kedua: menteri pada (4,1) dan (4,2) bertetangga horizontal.}}{54}{figure.caption.80}%
-\contentsline {figure}{\numberline {3.22}{\ignorespaces Pasangan \textit {adjacency} ketiga: menteri pada (3,1) dan (4,2) bertetangga diagonal.}}{55}{figure.caption.81}%
-\contentsline {figure}{\numberline {3.23}{\ignorespaces Pasangan \textit {attacking} pertama: menteri pada (4,2) dan (6,2) berada pada kolom yang sama.}}{55}{figure.caption.82}%
-\contentsline {figure}{\numberline {3.24}{\ignorespaces Pasangan \textit {attacking} kedua: menteri pada (4,1) dan (4,2) berada pada baris yang sama. Pasangan ini juga merupakan pelanggaran \textit {adjacency}.}}{55}{figure.caption.83}%
-\contentsline {figure}{\numberline {3.25}{\ignorespaces Pasangan \textit {attacking} ketiga: menteri pada (4,1) dan (4,4) berada pada baris yang sama.}}{56}{figure.caption.84}%
-\contentsline {figure}{\numberline {3.26}{\ignorespaces Pasangan \textit {attacking} keempat: menteri pada (3,1) dan (4,1) berada pada kolom yang sama. Pasangan ini juga merupakan pelanggaran \textit {adjacency}.}}{56}{figure.caption.85}%
-\contentsline {figure}{\numberline {3.27}{\ignorespaces Pasangan \textit {attacking} kelima: menteri pada (4,2) dan (4,4) berada pada baris yang sama.}}{56}{figure.caption.86}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Alur kerja penelitian secara keseluruhan.}}{32}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagram alur prosedur rekursif pencarian \textit {backtracking}.}}{36}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Diagram alur prosedur \textit {forward checking}.}}{38}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagram alur fungsi \textit {revise}.}}{39}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagram alur prosedur propagasi AC-3.}}{40}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Penempatan menteri pertama pada salah satu sel dari domain warna biru.}}{42}{figure.caption.43}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Hasil pemangkasan oleh \textit {forward checking} setelah penempatan menteri pertama.}}{42}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Konsep dasar busur (\textit {arc}) dalam AC-3.}}{42}{figure.caption.46}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Graf kendala lengkap dan antrean awal busur AC-3.}}{43}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Pemrosesan busur Hijau$\rightarrow $Kuning: sel Hijau(1,2) memiliki \textit {support} pada Kuning(6,3) dan tetap valid.}}{43}{figure.caption.48}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Pemrosesan busur Hijau$\rightarrow $Kuning: sel Hijau(5,2) dan Hijau(5,3) tidak memiliki \textit {support} dan dipangkas.}}{44}{figure.caption.49}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Kondisi papan setelah propagasi AC-3 selesai.}}{44}{figure.caption.50}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Penempatan menteri kedua pada salah satu sel dari domain warna oranye.}}{44}{figure.caption.52}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces \textit {Domain wipeout}: seluruh sel pada domain warna kuning menjadi tidak valid.}}{45}{figure.caption.53}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces \textit {Backtrack}: pembatalan penempatan menteri oranye yang menyebabkan kegagalan.}}{45}{figure.caption.55}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Penempatan alternatif untuk warna oranye setelah \textit {backtrack}.}}{45}{figure.caption.56}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Solusi akhir papan 7$\times $7 yang memenuhi seluruh kendala \textit {Colored Queens}.}}{46}{figure.caption.58}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Diagram alur pembaruan kecepatan dan posisi partikel PSO diskrit.}}{48}{figure.caption.59}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Diagram alur utama algoritma PSO diskrit.}}{51}{figure.caption.65}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Pasangan \textit {adjacency} pertama: menteri pada (3,1) dan (4,1) bertetangga vertikal.}}{54}{figure.caption.77}%
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Pasangan \textit {adjacency} kedua: menteri pada (4,1) dan (4,2) bertetangga horizontal.}}{54}{figure.caption.78}%
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Pasangan \textit {adjacency} ketiga: menteri pada (3,1) dan (4,2) bertetangga diagonal.}}{55}{figure.caption.79}%
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Pasangan \textit {attacking} pertama: menteri pada (4,2) dan (6,2) berada pada kolom yang sama.}}{55}{figure.caption.80}%
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Pasangan \textit {attacking} kedua: menteri pada (4,1) dan (4,2) berada pada baris yang sama. Pasangan ini juga merupakan pelanggaran \textit {adjacency}.}}{55}{figure.caption.81}%
+\contentsline {figure}{\numberline {3.25}{\ignorespaces Pasangan \textit {attacking} ketiga: menteri pada (4,1) dan (4,4) berada pada baris yang sama.}}{56}{figure.caption.82}%
+\contentsline {figure}{\numberline {3.26}{\ignorespaces Pasangan \textit {attacking} keempat: menteri pada (3,1) dan (4,1) berada pada kolom yang sama. Pasangan ini juga merupakan pelanggaran \textit {adjacency}.}}{56}{figure.caption.83}%
+\contentsline {figure}{\numberline {3.27}{\ignorespaces Pasangan \textit {attacking} kelima: menteri pada (4,2) dan (4,4) berada pada baris yang sama.}}{56}{figure.caption.84}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagram kelas sistem yang menunjukkan hubungan antara kelas data, kelas \textit {solver}, dan kelas antarmuka.}}{60}{figure.caption.87}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Alur interaksi pengguna pada aplikasi \textit {Colored Queens}.}}{74}{figure.caption.99}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Rancangan halaman utama (\textit {Homepage}).}}{75}{figure.caption.100}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Rancangan halaman pemilihan level (\textit {Level Selector}).}}{76}{figure.caption.101}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Rancangan halaman permainan (\textit {Game Window}).}}{76}{figure.caption.102}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Tampilan papan setelah solver menerapkan solusi lengkap.}}{77}{figure.caption.103}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Tampilan peringatan pelanggaran kendala \textit {adjacency}.}}{77}{figure.caption.104}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Tampilan peringatan pelanggaran kendala kesamaan warna.}}{78}{figure.caption.105}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Tampilan peringatan pelanggaran kendala baris.}}{78}{figure.caption.106}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Tampilan peringatan pelanggaran kendala kolom.}}{79}{figure.caption.107}%
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Tampilan fitur \textit {hint}: sorotan posisi yang benar.}}{79}{figure.caption.108}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Tampilan fitur \textit {hint}: sorotan posisi salah dan posisi benar.}}{79}{figure.caption.109}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Rancangan tampilan kemenangan.}}{80}{figure.caption.110}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagram kelas sistem yang menunjukkan hubungan antara kelas data, kelas \textit {solver}, dan kelas antarmuka.}}{59}{figure.caption.85}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Alur interaksi pengguna pada aplikasi \textit {Colored Queens}.}}{74}{figure.caption.97}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Rancangan halaman utama (\textit {Homepage}).}}{75}{figure.caption.98}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Rancangan halaman pemilihan level (\textit {Level Selector}).}}{76}{figure.caption.99}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Rancangan halaman permainan (\textit {Game Window}).}}{76}{figure.caption.100}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Tampilan papan setelah solver menerapkan solusi lengkap.}}{77}{figure.caption.101}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Tampilan peringatan pelanggaran kendala \textit {adjacency}.}}{77}{figure.caption.102}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Tampilan peringatan pelanggaran kendala kesamaan warna.}}{78}{figure.caption.103}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Tampilan peringatan pelanggaran kendala baris.}}{78}{figure.caption.104}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Tampilan peringatan pelanggaran kendala kolom.}}{79}{figure.caption.105}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Tampilan fitur \textit {hint}: sorotan posisi yang benar.}}{79}{figure.caption.106}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Tampilan fitur \textit {hint}: sorotan posisi salah dan posisi benar.}}{79}{figure.caption.107}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Rancangan tampilan kemenangan.}}{80}{figure.caption.108}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Tangkapan layar halaman utama (\textit {Homepage}).}}{89}{figure.caption.124}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Tangkapan layar halaman pemilihan level.}}{90}{figure.caption.125}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Tangkapan layar halaman permainan utama.}}{90}{figure.caption.126}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri pada warna yang sama.}}{90}{figure.caption.127}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri pada baris yang sama.}}{91}{figure.caption.128}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri pada kolom yang sama.}}{91}{figure.caption.129}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri yang bersebelahan.}}{92}{figure.caption.130}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Tangkapan layar bantuan dari sistem ketika belum ada bidak menteri yang ditempatkan pada sektor warna tersebut.}}{92}{figure.caption.131}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Tangkapan layar bantuan dari sistem ketika ada bidak menteri yang ditempatkan pada sektor warna tersebut}}{93}{figure.caption.132}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Tangkapan layar respons dari sistem ketika pemain berhasil menyelesaikan \textit {puzzle}.}}{93}{figure.caption.133}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Tangkapan layar halaman utama (\textit {Homepage}).}}{89}{figure.caption.122}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Tangkapan layar halaman pemilihan level.}}{90}{figure.caption.123}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Tangkapan layar halaman permainan utama.}}{90}{figure.caption.124}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri pada warna yang sama.}}{90}{figure.caption.125}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri pada baris yang sama.}}{91}{figure.caption.126}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri pada kolom yang sama.}}{91}{figure.caption.127}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Tangkapan layar respons sistem terhadap pelanggaran penempatan dua bidak menteri yang bersebelahan.}}{91}{figure.caption.128}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Tangkapan layar bantuan dari sistem ketika belum ada bidak menteri yang ditempatkan pada sektor warna tersebut.}}{92}{figure.caption.129}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Tangkapan layar bantuan dari sistem ketika ada bidak menteri yang ditempatkan pada sektor warna tersebut}}{92}{figure.caption.130}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Tangkapan layar respons dari sistem ketika pemain berhasil menyelesaikan \textit {puzzle}.}}{92}{figure.caption.131}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -19,55 +19,51 @@ Reallocating 'name_of_file' (item size: 1) to 10 items.
 Reallocating 'name_of_file' (item size: 1) to 19 items.
 A level-1 auxiliary file: Lampiran/lampA.aux
 Database file #1: referensi.bib
-Warning--I didn't find a database entry for "vanbeek2006backtracking"
-Warning--I didn't find a database entry for "fig:ac3-contoh"
-Warning--I didn't find a database entry for "eq:pso-velocity"
-Warning--I didn't find a database entry for "eq:pso-position"
 Warning--empty month in kennedy1995particle
 Warning--empty publisher in kennedy1995particle
 Warning--empty month in hu2003swarm
 Warning--empty publisher in hu2003swarm
 Warning--empty month in kennedy1997discrete
 Warning--empty publisher in kennedy1997discrete
-You've used 21 entries,
+You've used 22 entries,
             1957 wiz_defined-function locations,
-            702 strings with 9695 characters,
-and the built_in function-call counts, 5198 in all, are:
-= -- 527
-> -- 134
+            703 strings with 9810 characters,
+and the built_in function-call counts, 5369 in all, are:
+= -- 542
+> -- 141
 < -- 6
-+ -- 40
-- -- 40
-* -- 377
-:= -- 732
-add.period$ -- 68
-call.type$ -- 21
++ -- 42
+- -- 42
+* -- 388
+:= -- 760
+add.period$ -- 71
+call.type$ -- 22
 change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 259
-empty$ -- 578
-format.name$ -- 40
-if$ -- 1245
+cite$ -- 28
+duplicate$ -- 269
+empty$ -- 599
+format.name$ -- 42
+if$ -- 1287
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 21
-newline$ -- 104
-num.names$ -- 21
-pop$ -- 66
+missing$ -- 23
+newline$ -- 108
+num.names$ -- 22
+pop$ -- 71
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 114
+skip$ -- 115
 stack$ -- 0
 substring$ -- 355
-swap$ -- 78
+swap$ -- 79
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 6
-while$ -- 54
+while$ -- 55
 width$ -- 0
-write$ -- 259
-(There were 10 warnings)
+write$ -- 270
+(There were 6 warnings)

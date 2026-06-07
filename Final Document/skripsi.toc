@@ -1,6 +1,6 @@
 \babel@toc {bahasa}{}\relax 
-\contentsline {chapter}{Daftar Isi}{iii}{section*.1}%
-\contentsline {chapter}{Daftar Gambar}{v}{section*.2}%
+\contentsline {chapter}{Daftar Isi}{ix}{section*.1}%
+\contentsline {chapter}{Daftar Gambar}{xi}{section*.2}%
 \contentsline {chapter}{\numberline {1}Pendahuluan}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Rumusan Masalah}{3}{section.1.2}%
@@ -13,27 +13,27 @@
 \contentsline {subsection}{\numberline {2.1.1}Definisi dan Representasi}{7}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Aturan Konflik Queen}{8}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Kompleksitas dan Relevansi}{9}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Colored Queens Problem}{10}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Definisi dan Aturan Permainan}{10}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.2}Colored Queens Problem}{11}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Definisi dan Aturan Permainan}{11}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Kompleksitas dan Struktur Masalah}{12}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Posisi dan Relevansi Penelitian}{14}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}Posisi dan Relevansi Penelitian}{13}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}Constraint Satisfaction Problem}{14}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Definisi dan Komponen CSP}{14}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Teknik Representasi}{15}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Pemodelan Colored Queens sebagai CSP}{16}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.3}Pemodelan Colored Queens sebagai CSP}{15}{subsection.2.3.3}%
 \contentsline {section}{\numberline {2.4}Teknik Penyelesaian CSP}{16}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Algoritma Sistematis}{16}{subsection.2.4.1}%
-\contentsline {subsubsection}{Backtracking Search}{17}{subsubsection*.10}%
-\contentsline {subsubsection}{Forward Checking}{18}{subsubsection*.11}%
-\contentsline {subsubsection}{Arc Consistency (AC-3)}{19}{subsubsection*.12}%
+\contentsline {subsubsection}{Backtracking Search}{16}{subsubsection*.8}%
+\contentsline {subsubsection}{Forward Checking}{18}{subsubsection*.9}%
+\contentsline {subsubsection}{Arc Consistency (AC-3)}{19}{subsubsection*.10}%
 \contentsline {subsection}{\numberline {2.4.2}Metaheuristic}{22}{subsection.2.4.2}%
-\contentsline {subsubsection}{Konsep Umum Metaheuristic}{22}{subsubsection*.14}%
-\contentsline {subsubsection}{Particle Swarm Optimization (PSO)}{24}{subsubsection*.15}%
-\contentsline {paragraph}{PSO pada Ruang Kontinu.}{24}{paragraph*.16}%
-\contentsline {subsubsection}{Topologi Kawanan PSO}{25}{subsubsection*.18}%
-\contentsline {paragraph}{Adaptasi PSO untuk Ruang Diskrit.}{27}{paragraph*.20}%
-\contentsline {paragraph}{Parameter PSO dan Pengaruhnya pada Perilaku Algoritma.}{28}{paragraph*.21}%
-\contentsline {paragraph}{Kondisi Terminasi dan Stagnasi.}{29}{paragraph*.22}%
+\contentsline {subsubsection}{Konsep Umum Metaheuristic}{22}{subsubsection*.12}%
+\contentsline {subsubsection}{Particle Swarm Optimization (PSO)}{24}{subsubsection*.13}%
+\contentsline {paragraph}{PSO pada Ruang Kontinu.}{24}{paragraph*.14}%
+\contentsline {subsubsection}{Topologi Kawanan PSO}{25}{subsubsection*.16}%
+\contentsline {paragraph}{Adaptasi PSO untuk Ruang Diskrit.}{27}{paragraph*.18}%
+\contentsline {paragraph}{Parameter PSO dan Pengaruhnya pada Perilaku Algoritma.}{27}{paragraph*.19}%
+\contentsline {paragraph}{Kondisi Terminasi dan Stagnasi.}{29}{paragraph*.20}%
 \contentsline {chapter}{\numberline {3}Analisis}{31}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Analisis Masalah}{31}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Pemodelan Permasalahan \textit {Colored Queens} sebagai CSP}{33}{section.3.2}%
@@ -44,115 +44,115 @@
 \contentsline {subsection}{\numberline {3.2.5}Representasi Solusi}{35}{subsection.3.2.5}%
 \contentsline {section}{\numberline {3.3}Analisis Algoritma \textit {Backtracking} dengan \textit {Forward Checking} dan AC-3}{35}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Alur Utama Algoritma \textit {Backtracking}}{36}{subsection.3.3.1}%
-\contentsline {subsubsection}{Pengecekan Kondisi Terminasi}{36}{subsubsection*.25}%
-\contentsline {subsubsection}{Pemilihan dan Penempatan Menteri}{36}{subsubsection*.26}%
-\contentsline {subsubsection}{Penyimpanan \textit {Checkpoint} dan Pemangkasan Domain}{37}{subsubsection*.27}%
-\contentsline {subsubsection}{Evaluasi Pemangkasan dan Pemanggilan Rekursif}{37}{subsubsection*.28}%
-\contentsline {subsubsection}{Pemulihan dan Eksplorasi Sel Berikutnya}{37}{subsubsection*.29}%
+\contentsline {subsubsection}{Pengecekan Kondisi Terminasi}{36}{subsubsection*.23}%
+\contentsline {subsubsection}{Pemilihan dan Penempatan Menteri}{36}{subsubsection*.24}%
+\contentsline {subsubsection}{Penyimpanan \textit {Checkpoint} dan Pemangkasan Domain}{37}{subsubsection*.25}%
+\contentsline {subsubsection}{Evaluasi Pemangkasan dan Pemanggilan Rekursif}{37}{subsubsection*.26}%
+\contentsline {subsubsection}{Pemulihan dan Eksplorasi Sel Berikutnya}{37}{subsubsection*.27}%
 \contentsline {subsection}{\numberline {3.3.2}\textit {Forward Checking}}{37}{subsection.3.3.2}%
-\contentsline {subsubsection}{Iterasi atas Warna yang Belum Ditugaskan}{38}{subsubsection*.31}%
-\contentsline {subsubsection}{Iterasi atas Sel dalam Domain Warna Terpilih}{38}{subsubsection*.32}%
-\contentsline {subsubsection}{Pemeriksaan Konflik dan Pemangkasan Sel}{38}{subsubsection*.33}%
+\contentsline {subsubsection}{Iterasi atas Warna yang Belum Ditugaskan}{38}{subsubsection*.29}%
+\contentsline {subsubsection}{Iterasi atas Sel dalam Domain Warna Terpilih}{38}{subsubsection*.30}%
+\contentsline {subsubsection}{Pemeriksaan Konflik dan Pemangkasan Sel}{38}{subsubsection*.31}%
 \contentsline {subsection}{\numberline {3.3.3}Fungsi \textit {Revise}}{38}{subsection.3.3.3}%
-\contentsline {subsubsection}{Inisialisasi dan Iterasi atas Domain Variabel Tujuan}{39}{subsubsection*.35}%
-\contentsline {subsubsection}{Pemeriksaan Keberadaan \textit {Support} pada Variabel Sumber}{39}{subsubsection*.36}%
-\contentsline {subsubsection}{Pemeriksaan Konflik dengan Menteri yang Sudah Ditempatkan}{39}{subsubsection*.37}%
-\contentsline {subsubsection}{Pemangkasan Sel Tanpa \textit {Support}}{40}{subsubsection*.38}%
+\contentsline {subsubsection}{Inisialisasi dan Iterasi atas Domain Variabel Tujuan}{39}{subsubsection*.33}%
+\contentsline {subsubsection}{Pemeriksaan Keberadaan \textit {Support} pada Variabel Sumber}{39}{subsubsection*.34}%
+\contentsline {subsubsection}{Pemeriksaan Konflik dengan Menteri yang Sudah Ditempatkan}{39}{subsubsection*.35}%
+\contentsline {subsubsection}{Pemangkasan Sel Tanpa \textit {Support}}{40}{subsubsection*.36}%
 \contentsline {subsection}{\numberline {3.3.4}Propagasi AC-3}{40}{subsection.3.3.4}%
-\contentsline {subsubsection}{Pengecekan Antrean dan Pengambilan Busur}{40}{subsubsection*.40}%
-\contentsline {subsubsection}{Pemanggilan Fungsi \textit {Revise}}{41}{subsubsection*.41}%
-\contentsline {subsubsection}{Evaluasi Hasil Pemangkasan}{41}{subsubsection*.42}%
-\contentsline {subsubsection}{Pengembangan Antrean dengan Busur Terkait}{41}{subsubsection*.43}%
+\contentsline {subsubsection}{Pengecekan Antrean dan Pengambilan Busur}{40}{subsubsection*.38}%
+\contentsline {subsubsection}{Pemanggilan Fungsi \textit {Revise}}{41}{subsubsection*.39}%
+\contentsline {subsubsection}{Evaluasi Hasil Pemangkasan}{41}{subsubsection*.40}%
+\contentsline {subsubsection}{Pengembangan Antrean dengan Busur Terkait}{41}{subsubsection*.41}%
 \contentsline {subsection}{\numberline {3.3.5}Studi Kasus: Penyelesaian Papan 7$\times $7}{41}{subsection.3.3.5}%
-\contentsline {subsubsection}{Penempatan Awal dan \textit {Forward Checking}}{41}{subsubsection*.44}%
-\contentsline {subsubsection}{Propagasi AC-3}{42}{subsubsection*.47}%
-\contentsline {subsubsection}{Penempatan Berikutnya dan Deteksi \textit {Domain Wipeout}}{44}{subsubsection*.53}%
-\contentsline {subsubsection}{\textit {Backtrack} dan Pemulihan Domain}{45}{subsubsection*.56}%
-\contentsline {subsubsection}{Solusi Akhir}{46}{subsubsection*.59}%
+\contentsline {subsubsection}{Penempatan Awal dan \textit {Forward Checking}}{41}{subsubsection*.42}%
+\contentsline {subsubsection}{Propagasi AC-3}{42}{subsubsection*.45}%
+\contentsline {subsubsection}{Penempatan Berikutnya dan Deteksi \textit {Domain Wipeout}}{44}{subsubsection*.51}%
+\contentsline {subsubsection}{\textit {Backtrack} dan Pemulihan Domain}{45}{subsubsection*.54}%
+\contentsline {subsubsection}{Solusi Akhir}{46}{subsubsection*.57}%
 \contentsline {section}{\numberline {3.4}Analisis Algoritma \textit {Particle Swarm Optimization}}{46}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Fungsi \textit {Fitness}}{47}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Pembaruan Kecepatan dan Posisi Partikel}{48}{subsection.3.4.2}%
-\contentsline {subsubsection}{Iterasi atas \textit {Neighborhood}}{49}{subsubsection*.62}%
-\contentsline {subsubsection}{Iterasi atas Partikel dalam \textit {Neighborhood}}{49}{subsubsection*.63}%
-\contentsline {subsubsection}{Penghitungan Kecepatan Baru}{49}{subsubsection*.64}%
-\contentsline {subsubsection}{Pembaruan Posisi Partikel}{50}{subsubsection*.65}%
-\contentsline {subsubsection}{Evaluasi \textit {Fitness} dan Pembaruan \textit {pBest} serta \textit {nBest}}{50}{subsubsection*.66}%
+\contentsline {subsubsection}{Iterasi atas \textit {Neighborhood}}{49}{subsubsection*.60}%
+\contentsline {subsubsection}{Iterasi atas Partikel dalam \textit {Neighborhood}}{49}{subsubsection*.61}%
+\contentsline {subsubsection}{Penghitungan Kecepatan Baru}{49}{subsubsection*.62}%
+\contentsline {subsubsection}{Pembaruan Posisi Partikel}{50}{subsubsection*.63}%
+\contentsline {subsubsection}{Evaluasi \textit {Fitness} dan Pembaruan \textit {pBest} serta \textit {nBest}}{50}{subsubsection*.64}%
 \contentsline {subsection}{\numberline {3.4.3}Alur Utama Algoritma PSO}{50}{subsection.3.4.3}%
-\contentsline {subsubsection}{Inisialisasi Populasi dan Variabel Pelacakan}{50}{subsubsection*.68}%
-\contentsline {subsubsection}{Pengecekan Batas Iterasi}{51}{subsubsection*.69}%
-\contentsline {subsubsection}{Pembaruan Seluruh Partikel}{51}{subsubsection*.70}%
-\contentsline {subsubsection}{Pengecekan Solusi Valid}{51}{subsubsection*.71}%
-\contentsline {subsubsection}{Pembaruan \textit {Fitness} Global dan Pencacah Stagnasi}{52}{subsubsection*.72}%
-\contentsline {subsubsection}{Pengecekan Stagnasi dan Lanjutan Iterasi}{52}{subsubsection*.73}%
+\contentsline {subsubsection}{Inisialisasi Populasi dan Variabel Pelacakan}{50}{subsubsection*.66}%
+\contentsline {subsubsection}{Pengecekan Batas Iterasi}{51}{subsubsection*.67}%
+\contentsline {subsubsection}{Pembaruan Seluruh Partikel}{51}{subsubsection*.68}%
+\contentsline {subsubsection}{Pengecekan Solusi Valid}{52}{subsubsection*.69}%
+\contentsline {subsubsection}{Pembaruan \textit {Fitness} Global dan Pencacah Stagnasi}{52}{subsubsection*.70}%
+\contentsline {subsubsection}{Pengecekan Stagnasi dan Lanjutan Iterasi}{52}{subsubsection*.71}%
 \contentsline {subsection}{\numberline {3.4.4}Studi Kasus: Pencarian Solusi dengan PSO pada Papan 7$\times $7}{52}{subsection.3.4.4}%
-\contentsline {subsubsection}{Inisialisasi Populasi}{52}{subsubsection*.74}%
-\contentsline {subsubsection}{Perhitungan \textit {Fitness} Awal dan Penetapan \textit {nBest}}{53}{subsubsection*.75}%
-\contentsline {subsubsection}{Pembaruan Kecepatan}{53}{subsubsection*.76}%
-\contentsline {subsubsection}{Pembaruan Posisi}{53}{subsubsection*.77}%
-\contentsline {subsubsection}{Evaluasi \textit {Fitness} Partikel Baru}{53}{subsubsection*.78}%
+\contentsline {subsubsection}{Inisialisasi Populasi}{52}{subsubsection*.72}%
+\contentsline {subsubsection}{Perhitungan \textit {Fitness} Awal dan Penetapan \textit {nBest}}{53}{subsubsection*.73}%
+\contentsline {subsubsection}{Pembaruan Kecepatan}{53}{subsubsection*.74}%
+\contentsline {subsubsection}{Pembaruan Posisi}{53}{subsubsection*.75}%
+\contentsline {subsubsection}{Evaluasi \textit {Fitness} Partikel Baru}{54}{subsubsection*.76}%
 \contentsline {chapter}{\numberline {4}Perancangan}{59}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Perancangan Perangkat Lunak}{59}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Desain Kelas}{59}{subsection.4.1.1}%
-\contentsline {subsubsection}{Kelas \texttt {Cell}}{59}{subsubsection*.88}%
-\contentsline {subsubsection}{Kelas \texttt {Board}}{61}{subsubsection*.89}%
-\contentsline {subsubsection}{Kelas \texttt {BoardImporter}}{62}{subsubsection*.90}%
-\contentsline {subsubsection}{Kelas \texttt {BacktrackingSolverAC3}}{63}{subsubsection*.91}%
-\contentsline {subsubsection}{Kelas \texttt {Particle}}{68}{subsubsection*.92}%
-\contentsline {subsubsection}{Kelas \texttt {PSOSolver}}{69}{subsubsection*.93}%
-\contentsline {subsubsection}{Kelas \texttt {Main}}{72}{subsubsection*.94}%
-\contentsline {subsubsection}{Kelas \texttt {Homepage}}{72}{subsubsection*.95}%
-\contentsline {subsubsection}{Kelas \texttt {LevelSelectorWindow}}{72}{subsubsection*.96}%
-\contentsline {subsubsection}{Kelas \texttt {GameWindow}}{73}{subsubsection*.97}%
-\contentsline {subsubsection}{Kelas \texttt {UITheme}}{74}{subsubsection*.98}%
+\contentsline {subsubsection}{Kelas \texttt {Cell}}{60}{subsubsection*.86}%
+\contentsline {subsubsection}{Kelas \texttt {Board}}{60}{subsubsection*.87}%
+\contentsline {subsubsection}{Kelas \texttt {BoardImporter}}{62}{subsubsection*.88}%
+\contentsline {subsubsection}{Kelas \texttt {BacktrackingSolverAC3}}{63}{subsubsection*.89}%
+\contentsline {subsubsection}{Kelas \texttt {Particle}}{67}{subsubsection*.90}%
+\contentsline {subsubsection}{Kelas \texttt {PSOSolver}}{68}{subsubsection*.91}%
+\contentsline {subsubsection}{Kelas \texttt {Main}}{71}{subsubsection*.92}%
+\contentsline {subsubsection}{Kelas \texttt {Homepage}}{71}{subsubsection*.93}%
+\contentsline {subsubsection}{Kelas \texttt {LevelSelectorWindow}}{72}{subsubsection*.94}%
+\contentsline {subsubsection}{Kelas \texttt {GameWindow}}{72}{subsubsection*.95}%
+\contentsline {subsubsection}{Kelas \texttt {UITheme}}{74}{subsubsection*.96}%
 \contentsline {subsection}{\numberline {4.1.2}Antarmuka Pengguna}{74}{subsection.4.1.2}%
 \contentsline {subsection}{\numberline {4.1.3}Teknologi yang Digunakan}{80}{subsection.4.1.3}%
 \contentsline {chapter}{\numberline {5}Implementasi dan Pengujian}{83}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Implementasi}{83}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Implementasi Solver \textit {Backtracking} dengan \textit {Forward Checking} dan AC-3}{83}{subsection.5.1.1}%
-\contentsline {subsubsection}{Struktur Data Domain}{83}{subsubsection*.111}%
-\contentsline {subsubsection}{Mekanisme \textit {Undo} dengan \textit {PruneStack}}{84}{subsubsection*.112}%
-\contentsline {subsubsection}{Pemeriksaan Konflik \textit {Inline}}{84}{subsubsection*.113}%
-\contentsline {subsubsection}{Inisialisasi Antrean AC-3}{85}{subsubsection*.114}%
+\contentsline {subsubsection}{Struktur Data Domain}{83}{subsubsection*.109}%
+\contentsline {subsubsection}{Mekanisme \textit {Undo} dengan \textit {PruneStack}}{84}{subsubsection*.110}%
+\contentsline {subsubsection}{Pemeriksaan Konflik \textit {Inline}}{84}{subsubsection*.111}%
+\contentsline {subsubsection}{Inisialisasi Antrean AC-3}{85}{subsubsection*.112}%
 \contentsline {subsection}{\numberline {5.1.2}Implementasi Solver PSO Diskrit}{85}{subsection.5.1.2}%
-\contentsline {subsubsection}{Struktur Kelas \texttt {Particle}}{85}{subsubsection*.115}%
-\contentsline {subsubsection}{Fungsi \textit {Fitness}}{85}{subsubsection*.116}%
-\contentsline {subsubsection}{Partisi \textit {Neighborhood}}{86}{subsubsection*.117}%
-\contentsline {subsubsection}{Pembaruan Kecepatan dan Posisi Diskrit}{86}{subsubsection*.118}%
-\contentsline {subsubsection}{Terminasi dan Deteksi Stagnasi}{87}{subsubsection*.119}%
+\contentsline {subsubsection}{Struktur Kelas \texttt {Particle}}{85}{subsubsection*.113}%
+\contentsline {subsubsection}{Fungsi \textit {Fitness}}{85}{subsubsection*.114}%
+\contentsline {subsubsection}{Partisi \textit {Neighborhood}}{86}{subsubsection*.115}%
+\contentsline {subsubsection}{Pembaruan Kecepatan dan Posisi Diskrit}{86}{subsubsection*.116}%
+\contentsline {subsubsection}{Terminasi dan Deteksi Stagnasi}{87}{subsubsection*.117}%
 \contentsline {subsection}{\numberline {5.1.3}Implementasi Antarmuka Pengguna}{87}{subsection.5.1.3}%
-\contentsline {subsubsection}{Navigasi Antarlayar}{88}{subsubsection*.120}%
-\contentsline {subsubsection}{Integrasi Solver dengan Antarmuka}{88}{subsubsection*.121}%
-\contentsline {subsubsection}{Rendering Papan}{88}{subsubsection*.122}%
-\contentsline {subsubsection}{Pemeriksaan Pelanggaran dan Fitur \textit {Hint}}{89}{subsubsection*.123}%
-\contentsline {subsection}{\numberline {5.1.4}Implementasi Kerangka Pengujian}{94}{subsection.5.1.4}%
-\contentsline {section}{\numberline {5.2}Skenario dan Metode Pengujian}{95}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Dataset Puzzle}{95}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Parameter Pengujian}{95}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Skenario Pengujian}{96}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Lingkungan Pengujian}{97}{subsection.5.2.4}%
-\contentsline {section}{\numberline {5.3}Hasil Pengujian}{97}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Hasil Pengujian \textit {Backtracking}}{97}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Hasil Pengujian Variasi Parameter PSO}{98}{subsection.5.3.2}%
-\contentsline {subsubsection}{Tingkat Keberhasilan}{98}{subsubsection*.134}%
-\contentsline {subsubsection}{Rata-rata Waktu Eksekusi}{99}{subsubsection*.135}%
-\contentsline {subsubsection}{Ringkasan Pengaruh Per Parameter}{100}{subsubsection*.136}%
-\contentsline {subsection}{\numberline {5.3.3}Hasil Perbandingan \textit {Backtracking} vs PSO}{101}{subsection.5.3.3}%
-\contentsline {section}{\numberline {5.4}Analisis dan Pembahasan}{102}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Analisis Skalabilitas \textit {Backtracking}}{102}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Analisis Pengaruh Parameter PSO}{102}{subsection.5.4.2}%
-\contentsline {subsubsection}{Jumlah Partikel ($P$)}{102}{subsubsection*.137}%
-\contentsline {subsubsection}{Jumlah \textit {Neighborhood} ($N_{\textit {nh}}$)}{103}{subsubsection*.138}%
-\contentsline {subsubsection}{Koefisien Inersia ($w$)}{103}{subsubsection*.139}%
-\contentsline {subsubsection}{Koefisien Kognitif ($c_1$) dan Sosial ($c_2$)}{104}{subsubsection*.140}%
-\contentsline {subsubsection}{Bobot \textit {Fitness} ($w_1$ dan $w_2$)}{104}{subsubsection*.141}%
-\contentsline {subsection}{\numberline {5.4.3}Analisis Perbandingan Kedua Pendekatan}{105}{subsection.5.4.3}%
+\contentsline {subsubsection}{Navigasi Antarlayar}{88}{subsubsection*.118}%
+\contentsline {subsubsection}{Integrasi Solver dengan Antarmuka}{88}{subsubsection*.119}%
+\contentsline {subsubsection}{Rendering Papan}{88}{subsubsection*.120}%
+\contentsline {subsubsection}{Pemeriksaan Pelanggaran dan Fitur \textit {Hint}}{89}{subsubsection*.121}%
+\contentsline {subsection}{\numberline {5.1.4}Implementasi Kerangka Pengujian}{89}{subsection.5.1.4}%
+\contentsline {section}{\numberline {5.2}Skenario dan Metode Pengujian}{93}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Dataset Puzzle}{93}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Parameter Pengujian}{94}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Skenario Pengujian}{94}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Lingkungan Pengujian}{95}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Hasil Pengujian}{96}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Hasil Pengujian \textit {Backtracking}}{96}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Hasil Pengujian Variasi Parameter PSO}{97}{subsection.5.3.2}%
+\contentsline {subsubsection}{Tingkat Keberhasilan}{97}{subsubsection*.132}%
+\contentsline {subsubsection}{Rata-rata Waktu Eksekusi}{98}{subsubsection*.133}%
+\contentsline {subsubsection}{Ringkasan Pengaruh Per Parameter}{98}{subsubsection*.134}%
+\contentsline {subsection}{\numberline {5.3.3}Hasil Perbandingan \textit {Backtracking} dan PSO}{99}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Analisis dan Pembahasan}{100}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Analisis Skalabilitas \textit {Backtracking}}{101}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Analisis Pengaruh Parameter PSO}{101}{subsection.5.4.2}%
+\contentsline {subsubsection}{Jumlah Partikel ($P$)}{101}{subsubsection*.135}%
+\contentsline {subsubsection}{Jumlah \textit {Neighborhood} ($N_{\textit {nh}}$)}{102}{subsubsection*.136}%
+\contentsline {subsubsection}{Koefisien Inersia ($w$)}{102}{subsubsection*.137}%
+\contentsline {subsubsection}{Koefisien Kognitif ($c_1$) dan Sosial ($c_2$)}{103}{subsubsection*.138}%
+\contentsline {subsubsection}{Bobot \textit {Fitness} ($w_1$ dan $w_2$)}{103}{subsubsection*.139}%
+\contentsline {subsection}{\numberline {5.4.3}Analisis Perbandingan Kedua Pendekatan}{103}{subsection.5.4.3}%
 \contentsline {chapter}{\numberline {6}Kesimpulan dan Saran}{107}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Kesimpulan}{107}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Saran}{108}{section.6.2}%
-\contentsline {chapter}{Daftar Referensi}{109}{chapter*.142}%
-\contentsline {chapter}{\numberline {A}Kode Program}{111}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Kelas Inti}{111}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Solver}{117}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}Solver \textit {Backtracking} dengan \textit {Forward Checking} dan AC-3}{117}{subsection.A.2.1}%
-\contentsline {subsection}{\numberline {A.2.2}Solver PSO Diskrit}{121}{subsection.A.2.2}%
-\contentsline {section}{\numberline {A.3}Antarmuka Pengguna}{127}{section.A.3}%
+\contentsline {chapter}{Daftar Referensi}{111}{chapter*.140}%
+\contentsline {chapter}{\numberline {A}Kode Program}{113}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Kelas Inti}{113}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Solver}{119}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Solver \textit {Backtracking} dengan \textit {Forward Checking} dan AC-3}{119}{subsection.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}Solver PSO Diskrit}{123}{subsection.A.2.2}%
+\contentsline {section}{\numberline {A.3}Antarmuka Pengguna}{129}{section.A.3}%
