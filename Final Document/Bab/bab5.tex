@@ -67,15 +67,15 @@ Apabila fungsi \texttt{revise()} berhasil memangkas domain suatu variabel, busur
 \subsection{Implementasi Solver PSO Diskrit}
 \label{subsec:impl-pso}
 
-Solver PSO diskrit diimplementasikan dalam dua kelas pada paket \texttt{solver.PSO}: kelas \texttt{Particle} yang merepresentasikan satu partikel, dan kelas \texttt{PSOSolver} yang mengelola populasi dan menjalankan proses optimasi. Implementasi ini merealisasikan rancangan yang telah dijabarkan pada Bagian~\ref{subsubsec:kelas-psosolver}. Seluruh kode sumber kedua kelas disajikan pada Lampiran~\ref{lampiran:pso-solver}.
+Solver PSO diskrit diimplementasikan dalam dua kelas pada paket \texttt{solver.PSO}, yang mencakup kelas \texttt{Particle} yang merepresentasikan satu partikel, dan kelas \texttt{PSOSolver} yang mengelola populasi dan menjalankan proses optimasi. Implementasi ini merealisasikan rancangan yang telah dijabarkan pada Bagian~\ref{subsubsec:kelas-psosolver}. Seluruh kode sumber kedua kelas disajikan pada Lampiran~\ref{lampiran:pso-solver}.
 
 \subsubsection{Struktur Kelas \texttt{Particle}}
 
-Setiap partikel dienkapsulasi dalam kelas \texttt{Particle} yang menyimpan empat atribut utama: array integer \texttt{candidate[]} sebagai posisi saat ini, array \texttt{double[]} \texttt{velocity} sebagai probabilitas perubahan per dimensi, array integer \texttt{pBest[]} sebagai posisi terbaik individual, dan nilai \texttt{pBestFitness} bertipe \texttt{double}. Pemisahan \texttt{Particle} sebagai kelas tersendiri dari \texttt{PSOSolver} dipilih untuk menjaga enkapsulasi data partikel dan memudahkan pengelolaan populasi melalui \texttt{List<Particle>}.
+Setiap partikel dienkapsulasi dalam kelas \texttt{Particle} yang menyimpan empat atribut utama, yaitu \textit{array integer}\texttt{candidate[]} sebagai posisi saat ini, array \texttt{double[]} \texttt{velocity} sebagai probabilitas perubahan per dimensi, array integer \texttt{pBest[]} sebagai posisi terbaik individual, dan nilai \texttt{pBestFitness} bertipe \texttt{double}. Pemisahan \texttt{Particle} sebagai kelas tersendiri dari \texttt{PSOSolver} dipilih untuk menjaga enkapsulasi data partikel dan memudahkan pengelolaan populasi melalui \texttt{List<Particle>}.
 
 \subsubsection{Fungsi \textit{Fitness}}
 
-Fungsi \textit{fitness} diimplementasikan dalam metode \texttt{calculateFitness()} yang memanggil dua sub-fungsi secara berurutan: \texttt{calculateAttackingViolation()} dan \texttt{calculateAdjacencyViolation()}. Penghitungan \textit{fitness} keseluruhan ditunjukkan pada Kode~\ref{lst:fitness-calc}.
+Fungsi \textit{fitness} diimplementasikan dalam metode \texttt{calculateFitness()} yang memanggil dua sub-fungsi secara berurutan, yang pertama adalah \texttt{calculateAttackingViolation()} dan yang kedua adalah \texttt{calculateAdjacencyViolation()}. Penghitungan \textit{fitness} keseluruhan ditunjukkan pada Kode~\ref{lst:fitness-calc}.
 
 \begin{lstlisting}[language=Java, caption=Penghitungan fungsi \textit{fitness}, label={lst:fitness-calc}]
 	int attackingViolations = calculateAttackingViolation(candidate);
@@ -84,7 +84,7 @@ Fungsi \textit{fitness} diimplementasikan dalam metode \texttt{calculateFitness(
 	double fitness = w1 * attackingViolations + w2 * adjacencyViolations;
 \end{lstlisting}
 
-Penghitungan \textit{attacking violations} memeriksa setiap pasangan menteri dan menghitung jumlah pasangan yang berbagi baris atau kolom yang sama. Iterasi dilakukan dengan indeks $i < j$ untuk menghindari penghitungan ganda. Penghitungan \textit{adjacency violations} menggunakan pendekatan berbeda: untuk setiap menteri, delapan sel tetangga diperiksa terhadap matriks \texttt{occupied[][]}. Karena pendekatan ini menghitung setiap pasangan bertetangga dua kali (sekali dari perspektif masing-masing menteri), hasil akhir dibagi dua melalui pembagian integer, sebagaimana ditunjukkan pada Kode~\ref{lst:adjacency-violations}.
+Penghitungan \textit{attacking violations} memeriksa setiap pasangan menteri dan menghitung jumlah pasangan yang berbagi baris atau kolom yang sama. Iterasi dilakukan dengan indeks $i < j$ untuk menghindari penghitungan ganda. Penghitungan \textit{adjacency violations} menggunakan pendekatan berbeda, di mana untuk setiap menteri, delapan sel tetangga diperiksa terhadap matriks \texttt{occupied[][]}. Karena pendekatan ini menghitung setiap pasangan bertetangga dua kali (sekali dari perspektif masing-masing menteri), hasil akhir dibagi dua melalui pembagian integer, sebagaimana ditunjukkan pada Kode~\ref{lst:adjacency-violations}.
 
 
 \begin{lstlisting}[language=Java, caption=Penghitungan \textit{adjacency violations} dengan koreksi penghitungan ganda, label={lst:adjacency-violations}]
@@ -173,7 +173,7 @@ Apabila tidak ada solusi valid yang ditemukan pada saat terminasi, solver melapo
 \subsection{Implementasi Antarmuka Pengguna}
 \label{subsec:impl-antarmuka}
 
-Antarmuka pengguna diimplementasikan menggunakan Java Swing dan JFrame sesuai dengan rancangan pada Bagian~\ref{subsec:antarmuka}. Implementasi terdiri atas empat kelas dalam paket \texttt{GUI}: \texttt{Homepage}, \texttt{LevelSelectorWindow}, \texttt{GameWindow}, dan \texttt{UITheme}. Seluruh kode sumber kelas-kelas ini disajikan pada Lampiran~\ref{lampiran:gui}. Bagian ini menjelaskan aspek-aspek implementasi yang relevan, dengan fokus pada integrasi solver dan mekanisme interaksi pengguna.
+Antarmuka pengguna diimplementasikan menggunakan Java Swing dan JFrame sesuai dengan rancangan pada Bagian~\ref{subsec:antarmuka}. Implementasi terdiri atas empat kelas dalam paket \texttt{GUI}, yaitu \texttt{Homepage}, \texttt{LevelSelectorWindow}, \texttt{GameWindow}, dan \texttt{UITheme}. Seluruh kode sumber kelas-kelas ini disajikan pada Lampiran~\ref{lampiran:gui}. Bagian ini menjelaskan aspek-aspek implementasi yang relevan, dengan fokus pada integrasi solver dan mekanisme interaksi pengguna.
 
 \subsubsection{Navigasi Antarlayar}
 
@@ -212,7 +212,7 @@ Solusi yang dihasilkan disimpan dalam variabel \texttt{solution} bertipe \texttt
 
 \subsubsection{Rendering Papan}
 
-Papan permainan dirender oleh kelas dalam \texttt{BoardPanel} yang merupakan subkelas dari \texttt{JPanel}. Metode \texttt{paintComponent()} menggambar tiga lapisan secara berurutan: (1) latar belakang berwarna untuk setiap sel berdasarkan data warna RGB dari objek \texttt{Board}, (2) garis grid hitam sebagai pembatas antarsel, dan (3) ikon menteri pada sel-sel yang telah ditempati. Ukuran sel dihitung secara dinamis berdasarkan dimensi jendela (\texttt{Math.min(getWidth(), getHeight()) / size}), sehingga papan tetap proporsional pada berbagai ukuran jendela.
+Papan permainan dirender oleh kelas dalam \texttt{BoardPanel} yang merupakan subkelas dari \texttt{JPanel}. Metode \texttt{paintComponent()} menggambar tiga lapisan secara berurutan, yang pertama adalah latar belakang berwarna untuk setiap sel berdasarkan data warna RGB dari objek \texttt{Board}, yang kedua adalah garis grid hitam sebagai pembatas antarsel, dan yang ketiga merupakan ikon menteri pada sel-sel yang telah ditempati. Ukuran sel dihitung secara dinamis berdasarkan dimensi jendela (\texttt{Math.min(getWidth(), getHeight()) / size}), sehingga papan tetap proporsional pada berbagai ukuran jendela.
 
 Pemilihan warna ikon menteri dilakukan secara adaptif berdasarkan luminansi latar belakang sel. Fungsi \texttt{isDark()} menghitung luminansi menggunakan formula standar ($0{,}299R + 0{,}587G + 0{,}114B$); apabila luminansi di bawah 0,5, ikon putih digunakan, dan sebaliknya ikon hitam digunakan. Menteri yang terlibat dalam pelanggaran kendala ditampilkan dengan ikon merah.
 
@@ -641,7 +641,7 @@ Untuk memudahkan identifikasi pengaruh masing-masing parameter, Tabel~\ref{tab:p
 	& w2        & 2,0 & 67,60 & 2,80 & 869 & 3.239 \\
 \end{longtable}
 
-Dari Tabel~\ref{tab:pso-ringkasan-param}, parameter yang memberikan pengaruh paling signifikan terhadap tingkat keberhasilan adalah jumlah partikel ($P$): peningkatan dari 5.000 ke 50.000 menaikkan tingkat keberhasilan dari 5,60\% menjadi 61,20\% pada papan $9 \times 9$. Jumlah \textit{neighborhood} dan koefisien inersia juga menunjukkan pengaruh yang terukur, di mana nilai yang lebih kecil ($N_{\textit{nh}} = 50$ dan $w = 0{,}4$) menghasilkan kinerja yang lebih baik. Sebaliknya, variasi koefisien kognitif ($c_1$), sosial ($c_2$), dan bobot \textit{fitness} ($w_1$, $w_2$) memberikan pengaruh yang relatif kecil terhadap kinerja keseluruhan.
+Dari Tabel~\ref{tab:pso-ringkasan-param}, parameter yang memberikan pengaruh paling signifikan terhadap tingkat keberhasilan adalah jumlah partikel ($P$), yaitu peningkatan dari 5.000 ke 50.000 menaikkan tingkat keberhasilan dari 5,60\% menjadi 61,20\% pada papan $9 \times 9$. Jumlah \textit{neighborhood} dan koefisien inersia juga menunjukkan pengaruh yang terukur, di mana nilai yang lebih kecil ($N_{\textit{nh}} = 50$ dan $w = 0{,}4$) menghasilkan kinerja yang lebih baik. Sebaliknya, variasi koefisien kognitif ($c_1$), sosial ($c_2$), dan bobot \textit{fitness} ($w_1$, $w_2$) memberikan pengaruh yang relatif kecil terhadap kinerja keseluruhan.
 
 \subsection{Hasil Perbandingan \textit{Backtracking} dan PSO}
 \label{subsec:hasil-perbandingan}
@@ -715,7 +715,7 @@ Hasil pengujian pada Tabel~\ref{tab:hasil-bt} menunjukkan bahwa solver \textit{b
 
 Kunci dari efisiensi ini terletak pada interaksi antara struktur kendala \textit{Colored Queens} dan mekanisme propagasi domain. Sebagaimana dibahas pada Bagian~\ref{subsec:csp-colored-queens}, \textit{constraint graph} pada \textit{Colored Queens} bersifat \textit{complete}, yang berarti setiap pasangan variabel (sektor warna) terhubung oleh setidaknya satu kendala (baris, kolom, atau \textit{adjacency}). Implikasi dari graf kendala yang \textit{complete} ini adalah bahwa setiap penugasan menteri pada satu sektor warna memicu propagasi ke \textit{seluruh} sektor warna lainnya, bukan hanya ke tetangga tertentu. \textit{Forward checking} menghapus posisi-posisi yang berkonflik langsung dengan penugasan baru, dan AC-3 melanjutkan dengan mendeteksi inkonsistensi tidak langsung yang muncul akibat penyempitan domain secara berantai.
 
-Dampak propagasi ini dapat diilustrasikan secara kuantitatif. Pada papan $n \times n$, penempatan satu menteri pada posisi $(r, k)$ langsung mengeliminasi: (1) seluruh posisi pada baris $r$ dan kolom $k$ dari domain variabel lain, serta (2) hingga 8 posisi bertetangga dari domain setiap variabel yang memiliki sel pada area tersebut. Untuk papan $12 \times 12$ dengan rata-rata ukuran domain $\bar{d} \approx 12$ sel per warna, penugasan pertama dapat memangkas sebagian besar domain variabel lainnya, sehingga penugasan berikutnya beroperasi pada ruang pencarian yang sudah jauh menyempit. Efek kumulatif dari propagasi ini menjelaskan mengapa solver mampu menemukan seluruh solusi dalam waktu sub-milidetik.
+Dampak propagasi ini dapat diilustrasikan secara kuantitatif. Pada papan $n \times n$, penempatan satu menteri pada posisi $(r, k)$ langsung dua kelompok sel, yaitu seluruh posisi pada baris $r$ dan kolom $k$ dari domain variabel lain, serta hingga 8 posisi bertetangga dari domain setiap variabel yang memiliki sel pada area tersebut. Untuk papan $12 \times 12$ dengan rata-rata ukuran domain $\bar{d} \approx 12$ sel per warna, penugasan pertama dapat memangkas sebagian besar domain variabel lainnya, sehingga penugasan berikutnya beroperasi pada ruang pencarian yang sudah jauh menyempit. Efek kumulatif dari propagasi ini menjelaskan mengapa solver mampu menemukan seluruh solusi dalam waktu sub-milidetik.
 
 \subsection{Analisis Pengaruh Parameter PSO}
 \label{subsec:analisis-pso}
@@ -747,13 +747,13 @@ Koefisien inersia mengendalikan keseimbangan antara eksplorasi dan eksploitasi s
 
 \subsubsection{Koefisien Kognitif ($c_1$) dan Sosial ($c_2$)}
 
-Variasi koefisien kognitif ($c_1 = 1{,}5$; $c_1 = 1{,}0$ ) memberikan pengaruh yang sangat kecil: tingkat keberhasilan pada $7 \times 7$ berubah dari 67,20\% menjadi 66,00\%, dan pada $9 \times 9$ dari 5,60\% menjadi 6,00\%. Peningkatan koefisien sosial ($c_2 = 1{,}5$) justru menurunkan kinerja secara lebih terukur, dari 67,20\% menjadi 52,40\% pada $7 \times 7$.
+Variasi koefisien kognitif ($c_1 = 1{,}5$; $c_1 = 1{,}0$ ) memberikan pengaruh yang sangat kecil, yang dapat dilihat di tingkat keberhasilan pada $7 \times 7$ berubah dari 67,20\% menjadi 66,00\%, dan pada $9 \times 9$ dari 5,60\% menjadi 6,00\%. Peningkatan koefisien sosial ($c_2 = 1{,}5$) justru menurunkan kinerja secara lebih terukur, dari 67,20\% menjadi 52,40\% pada $7 \times 7$.
 
 Asimetri pengaruh antara $c_1$ dan $c_2$ ini dapat ditelusuri dari mekanisme pembaruan posisi pada implementasi. Sebagaimana dibahas pada Bagian~\ref{subsubsec:update-position}, posisi baru partikel hanya dipengaruhi oleh \textit{nBest} (bukan \textit{pBest} secara langsung) — kecepatan $v_j$ digunakan sebagai probabilitas adopsi posisi \textit{nBest} per dimensi. Peningkatan $c_2$ memperbesar komponen sosial dalam formula kecepatan, yang pada gilirannya meningkatkan probabilitas adopsi \textit{nBest}. Apabila \textit{nBest} belum mendekati solusi valid, adopsi yang terlalu agresif justru menghilangkan keragaman populasi dan menyebabkan konvergensi prematur menuju solusi yang kurang optimal. Sementara itu, peningkatan $c_1$ memiliki efek yang lebih lemah karena pengaruh \textit{pBest} hanya masuk secara tidak langsung melalui kecepatan, bukan melalui adopsi posisi.
 
 \subsubsection{Bobot \textit{Fitness} ($w_1$ dan $w_2$)}
 
-Variasi bobot \textit{attacking} ($w_1 = 2{,}0$) menaikkan tingkat keberhasilan pada $7 \times 7$ dari 67,20\% menjadi 74,80\%, namun menurunkannya pada $9 \times 9$ dari 5,60\% menjadi 2,80\%. Variasi bobot \textit{adjacency} ($w_2 = 2{,}0$) menunjukkan pola serupa: sedikit peningkatan pada $7 \times 7$ (67,60\%) namun penurunan pada $9 \times 9$ (2,80\%).
+Variasi bobot \textit{attacking} ($w_1 = 2{,}0$) menaikkan tingkat keberhasilan pada $7 \times 7$ dari 67,20\% menjadi 74,80\%, namun menurunkannya pada $9 \times 9$ dari 5,60\% menjadi 2,80\%. Variasi bobot \textit{adjacency} ($w_2 = 2{,}0$) menunjukkan pola serupa, yaitu peningkatan kecil pada $7 \times 7$ (67,60\%) namun penurunan pada $9 \times 9$ (2,80\%).
 
 Peningkatan salah satu bobot secara efektif memperbesar gradien \textit{fitness} pada jenis pelanggaran yang bersangkutan, mendorong partikel untuk memprioritaskan penyelesaian jenis pelanggaran tersebut. Pada papan kecil, prioritasi pelanggaran baris/kolom ($w_1 = 2{,}0$) sedikit membantu karena pelanggaran jenis ini lebih mudah diselesaikan dan memberikan sinyal arah yang jelas. Namun pada papan yang lebih besar, ketidakseimbangan bobot dapat mengarahkan pencarian ke area yang bebas dari satu jenis pelanggaran namun masih memiliki pelanggaran jenis lain, sehingga secara keseluruhan tidak membantu konvergensi menuju solusi valid. Hasil ini menunjukkan bahwa bobot seimbang ($w_1 = w_2 = 1{,}0$) merupakan pilihan yang cukup baik sebagai \textit{baseline}.
 

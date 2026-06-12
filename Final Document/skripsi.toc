@@ -124,12 +124,12 @@
 \contentsline {subsubsection}{Integrasi Solver dengan Antarmuka}{88}{subsubsection*.119}%
 \contentsline {subsubsection}{Rendering Papan}{88}{subsubsection*.120}%
 \contentsline {subsubsection}{Pemeriksaan Pelanggaran dan Fitur \textit {Hint}}{89}{subsubsection*.121}%
-\contentsline {subsection}{\numberline {5.1.4}Implementasi Kerangka Pengujian}{89}{subsection.5.1.4}%
-\contentsline {section}{\numberline {5.2}Skenario dan Metode Pengujian}{93}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Dataset Puzzle}{93}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.1.4}Implementasi Kerangka Pengujian}{93}{subsection.5.1.4}%
+\contentsline {section}{\numberline {5.2}Skenario dan Metode Pengujian}{94}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Dataset Puzzle}{94}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}Parameter Pengujian}{94}{subsection.5.2.2}%
 \contentsline {subsection}{\numberline {5.2.3}Skenario Pengujian}{94}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Lingkungan Pengujian}{95}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.4}Lingkungan Pengujian}{96}{subsection.5.2.4}%
 \contentsline {section}{\numberline {5.3}Hasil Pengujian}{96}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}Hasil Pengujian \textit {Backtracking}}{96}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}Hasil Pengujian Variasi Parameter PSO}{97}{subsection.5.3.2}%
